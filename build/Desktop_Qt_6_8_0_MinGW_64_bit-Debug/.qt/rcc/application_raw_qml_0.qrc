@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/pattern_coders/">
+    <file alias="src/test.qml">D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/test.qml</file>
+  </qresource>
+</RCC>
+

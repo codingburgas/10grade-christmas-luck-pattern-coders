@@ -1,0 +1,2 @@
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/cmake-build-debug/CMakeFiles/rebuild_cache.dir

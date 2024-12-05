@@ -1,0 +1,14 @@
+-rootPath
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders
+-cmake-output
+-output-file
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/.qt/qml_imports/application_conf.cmake
+-importPath
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/pattern_coders
+-importPath
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug
+-importPath
+D:/Qt/6.8.0/mingw_64/qml
+-qrcFiles
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/.qt/rcc/qmake_pattern_coders.qrc
+D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/.qt/rcc/application_raw_qml_0.qrc
