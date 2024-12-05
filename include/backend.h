@@ -1,5 +1,6 @@
 //
-// Created by Oleksandr Vinichenko on 05.12.2024.
+// backend.h
+// Header file declares functions which are used in backend
 //
 
 #ifndef BACKEND_H
@@ -21,11 +22,11 @@ std::vector<int> userInputToVector(std::string &userInput){
     try {
         std::vector<int> result = {};
 
-        if (userInput.empty()) { throw 1; }
+        if (userInput.empty()) { throw 1; } // check if input is empty
 
 
         size_t commaPosition = userInput.find(',');
-        int first_number;
+        int first_number; //find first number separately, so that algorithm would be easier for the rest of the string
         try {
             first_number = std::stoi( userInput.substr(0, commaPosition) );
         }
@@ -40,6 +41,7 @@ std::vector<int> userInputToVector(std::string &userInput){
             size_t nextCommaPosition = userInput.find(',', commaPosition+1);
             int number;
             try {
+                // convert to int a slice from char after comma until the char before the next comma
                 number = std::stoi( userInput.substr(commaPosition+1, nextCommaPosition-commaPosition) );
             }
             catch (const std::invalid_argument& e) { throw 2; } // throw error code

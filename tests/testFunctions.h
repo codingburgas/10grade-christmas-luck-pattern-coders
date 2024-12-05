@@ -1,5 +1,6 @@
 //
-// Created by Oleksandr Vinichenko on 05.12.2024.
+// testFunctions.h
+// Header file with functions, which test functions, that are used in the application
 //
 
 #ifndef TEST_FUNCTIONS_H

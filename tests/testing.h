@@ -1,5 +1,6 @@
 //
-// Created by Oleksandr Vinichenko on 05.12.2024.
+// testing.h
+// Header file, where are declared functions, needed for testing
 //
 
 #ifndef TESTING_H
@@ -18,7 +19,7 @@
  * --std::vector<T> &vector1: reference to a vector, containing some values
  * --std::vector<T> &vector2: reference to a vector, containing some values
  * Returns:
- * --code: 0 - succes
+ * --code: 0 - success
 *         -1 - fail
  */
 template <typename T>
@@ -38,4 +39,5 @@ int compare(std::vector<T> &vector1, std::vector<T> &vector2) {
 
     return 0;
 }
+
 #endif //TESTING_H
