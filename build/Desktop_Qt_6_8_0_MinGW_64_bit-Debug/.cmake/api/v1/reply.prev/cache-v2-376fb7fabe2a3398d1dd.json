@@ -6990,6 +6990,18 @@
 			"value" : "D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network"
 		},
 		{
+			"name" : "Qt6OpenGLWidgets_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6OpenGLWidgets."
+				}
+			],
+			"type" : "PATH",
+			"value" : "D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6OpenGLWidgets"
+		},
+		{
 			"name" : "Qt6OpenGL_DIR",
 			"properties" : 
 			[
@@ -7108,6 +7120,30 @@
 			],
 			"type" : "PATH",
 			"value" : "D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Quick"
+		},
+		{
+			"name" : "Qt6UiPlugin_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6UiPlugin."
+				}
+			],
+			"type" : "PATH",
+			"value" : "D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6UiPlugin"
+		},
+		{
+			"name" : "Qt6UiTools_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6UiTools."
+				}
+			],
+			"type" : "PATH",
+			"value" : "D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6UiTools"
 		},
 		{
 			"name" : "Qt6WidgetsTools_DIR",

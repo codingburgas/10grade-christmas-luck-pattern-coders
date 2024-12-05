@@ -9,6 +9,8 @@
 
 #include <QApplication>
 #include <QWidget>
+#include <QFile>
+#include <QUiLoader>
 
 
 
@@ -33,7 +35,15 @@ APPLICATION* init(int argc, char *argv[]){
 
     auto *app = new QApplication(argc, argv);
 
-    auto *window = new QWidget;
+
+    //open file with ui
+    QFile file(":/main.ui");
+    file.open(QFile::ReadOnly);
+
+    QUiLoader loader;
+    QWidget *window = loader.load(&file);
+    file.close();
+
 
     auto *application = new APPLICATION{
         app,
@@ -56,8 +66,6 @@ APPLICATION* init(int argc, char *argv[]){
  * --status code
  */
 int run(APPLICATION *app){
-    app->window->setWindowTitle("Pattern Coders");
-    app->window->resize(400, 400);
     app->window->show();
 
     int code =  app->app->exec();
