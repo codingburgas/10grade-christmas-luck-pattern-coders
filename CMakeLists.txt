@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.16)
 
 project(pattern_coders VERSION 1.0.0 LANGUAGES CXX)
@@ -12,10 +13,15 @@ find_package(Qt6 REQUIRED COMPONENTS
 qt_standard_project_setup()
 
 qt_add_executable(application
+    #tests/test.cpp                 #
+    #ests/testFunctions.h           # COMMENT OUT THIS 3 LINE IN ORDER TO TЕST FUNCTIONS
+    #tests/testing.h                #
+
+
     src/main.cpp
     include/algorithms.h
     include/application.h
-    include/backend.h
+
     assets/main.ui
     assets/resources.qrc
     include/api.h

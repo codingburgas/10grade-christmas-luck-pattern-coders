@@ -10,7 +10,8 @@
 #include <vector>
 #include <string>
 
-#include "../include/backend.h"
+#include "../include/api.h"
+#include "../include/application.h"
 #include "testing.h"
 
 
@@ -52,6 +53,29 @@ int test_userInputToVector() {
 
 
 
+
+    return 0;
+}
+
+
+
+
+/*
+ * Tests APPLICATION.performAlgorithm
+ * Parameters:
+ * --args: arguments count
+ * --argv: stands for "argument vector" and is a pointer to the first string( char array ) out of arguments, which is path to file
+ * Returns:
+ * --status code
+ */
+int test_performAlgorithm(int argc, char *argv[]){
+    APPLICATION *app = init(argc, argv);
+
+    std::string testInput = "4, 1, 3";
+    app->arrayToBeSorted = userInputToVector(testInput);
+
+    std::string name = "bubbleSort";
+    app->performAlgorithm(name);
 
     return 0;
 }

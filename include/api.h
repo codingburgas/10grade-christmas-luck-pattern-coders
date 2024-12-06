@@ -84,8 +84,13 @@ std::vector<int> userInputToVector(std::string &userInput){
 
 
 
-
-enum
+/*
+ *A structure for tracking array changes
+ */
+struct arrayModificationInfo{
+    size_t elementIndex;
+    size_t movedTo;
+};
 
 
 #endif // API_H
