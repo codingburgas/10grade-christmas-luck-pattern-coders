@@ -18,6 +18,7 @@ qt_add_executable(application
     include/backend.h
     assets/main.ui
     assets/resources.qrc
+    include/api.h
 )
 
 qt_add_resources(RESOURCES assets/resources.qrc)
