@@ -13,18 +13,26 @@ find_package(Qt6 REQUIRED COMPONENTS
 qt_standard_project_setup()
 
 qt_add_executable(application
-    #tests/test.cpp                 #
-    #ests/testFunctions.h           # COMMENT OUT THIS 3 LINE IN ORDER TO TЕST FUNCTIONS
-    #tests/testing.h                #
+    tests/test.cpp                 #
+    tests/testFunctions.h          # COMMENT OUT THIS 3 LINE IN ORDER TO TЕST FUNCTIONS
+    tests/testing.h                #
 
 
-    src/main.cpp
+    #src/main.cpp
     include/algorithms.h
-    include/application.h
+
 
     assets/main.ui
     assets/resources.qrc
+
+    include/notifications.h
+    include/application.h
     include/api.h
+    src/api.cpp
+    src/application.cpp
+    include/arrayModificationInfo.h
+    src/algorithms.cpp
+
 )
 
 qt_add_resources(RESOURCES assets/resources.qrc)

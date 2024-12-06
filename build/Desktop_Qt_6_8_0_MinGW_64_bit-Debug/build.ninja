@@ -57,9 +57,33 @@ build CMakeFiles/application.dir/application_autogen/mocs_compilation.cpp.obj: C
   OBJECT_DIR = CMakeFiles\application.dir
   OBJECT_FILE_DIR = CMakeFiles\application.dir\application_autogen
 
-build CMakeFiles/application.dir/src/main.cpp.obj: CXX_COMPILER__application_unscanned_Debug D$:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/main.cpp || cmake_object_order_depends_target_application
+build CMakeFiles/application.dir/tests/test.cpp.obj: CXX_COMPILER__application_unscanned_Debug D$:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/test.cpp || cmake_object_order_depends_target_application
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_UITOOLS_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\application.dir\src\main.cpp.obj.d
+  DEP_FILE = CMakeFiles\application.dir\tests\test.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -ID:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/application_autogen/include -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtUiTools -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGLWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGL
+  OBJECT_DIR = CMakeFiles\application.dir
+  OBJECT_FILE_DIR = CMakeFiles\application.dir\tests
+
+build CMakeFiles/application.dir/src/api.cpp.obj: CXX_COMPILER__application_unscanned_Debug D$:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/api.cpp || cmake_object_order_depends_target_application
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_UITOOLS_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\application.dir\src\api.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -ID:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/application_autogen/include -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtUiTools -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGLWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGL
+  OBJECT_DIR = CMakeFiles\application.dir
+  OBJECT_FILE_DIR = CMakeFiles\application.dir\src
+
+build CMakeFiles/application.dir/src/application.cpp.obj: CXX_COMPILER__application_unscanned_Debug D$:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/application.cpp || cmake_object_order_depends_target_application
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_UITOOLS_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\application.dir\src\application.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -ID:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/application_autogen/include -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtUiTools -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGLWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGL
+  OBJECT_DIR = CMakeFiles\application.dir
+  OBJECT_FILE_DIR = CMakeFiles\application.dir\src
+
+build CMakeFiles/application.dir/src/algorithms.cpp.obj: CXX_COMPILER__application_unscanned_Debug D$:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/algorithms.cpp || cmake_object_order_depends_target_application
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_UITOOLS_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\application.dir\src\algorithms.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -ID:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/application_autogen/include -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtUiTools -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGLWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtOpenGL
   OBJECT_DIR = CMakeFiles\application.dir
@@ -81,7 +105,7 @@ build CMakeFiles/application.dir/qrc_resources.cpp.obj: CXX_COMPILER__applicatio
 #############################################
 # Link the executable application.exe
 
-build application.exe: CXX_EXECUTABLE_LINKER__application_Debug CMakeFiles/application.dir/application_autogen/mocs_compilation.cpp.obj CMakeFiles/application.dir/src/main.cpp.obj CMakeFiles/application.dir/qrc_resources.cpp.obj | D$:/Qt/6.8.0/mingw_64/lib/libQt6UiTools.a D$:/Qt/6.8.0/mingw_64/lib/libQt6OpenGLWidgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6OpenGL.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || application_autogen application_autogen_timestamp_deps
+build application.exe: CXX_EXECUTABLE_LINKER__application_Debug CMakeFiles/application.dir/application_autogen/mocs_compilation.cpp.obj CMakeFiles/application.dir/tests/test.cpp.obj CMakeFiles/application.dir/src/api.cpp.obj CMakeFiles/application.dir/src/application.cpp.obj CMakeFiles/application.dir/src/algorithms.cpp.obj CMakeFiles/application.dir/qrc_resources.cpp.obj | D$:/Qt/6.8.0/mingw_64/lib/libQt6UiTools.a D$:/Qt/6.8.0/mingw_64/lib/libQt6OpenGLWidgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6OpenGL.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || application_autogen application_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/Qt/6.8.0/mingw_64/lib/libQt6UiTools.a  D:/Qt/6.8.0/mingw_64/lib/libQt6OpenGLWidgets.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a  D:/Qt/6.8.0/mingw_64/lib/libQt6OpenGL.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

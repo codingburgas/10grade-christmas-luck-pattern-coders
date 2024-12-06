@@ -295,6 +295,30 @@
 			"MU",
 			"6YEA5652QU/moc_application.cpp",
 			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/arrayModificationInfo.h",
+			"MU",
+			"6YEA5652QU/moc_arrayModificationInfo.cpp",
+			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/notifications.h",
+			"MU",
+			"6YEA5652QU/moc_notifications.cpp",
+			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/testFunctions.h",
+			"MU",
+			"KRHXW7JQHD/moc_testFunctions.cpp",
+			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/testing.h",
+			"MU",
+			"KRHXW7JQHD/moc_testing.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -378,7 +402,22 @@
 	"SOURCES" : 
 	[
 		[
-			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/main.cpp",
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/algorithms.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/api.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/application.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/test.cpp",
 			"MU",
 			null
 		]

@@ -19,12 +19,15 @@
 /*
  * tests userInputToVector function
  * Parameters:
- * --None
+ * --args: arguments count
+ * --argv: stands for "argument vector" and is a pointer to the first string( char array ) out of arguments, which is path to file
  * Returns:
- * --int: 0 - success
- *       -1 - fail
+ * --status code: 0 - success
+ *                -1 - fail
  */
-int test_userInputToVector() {
+int test_userInputToVector(int argc, char *argv[]) {
+    APPLICATION *app = init(argc, argv);
+
     std::vector<std::string> testInputs = {
         "12, 23, 34, 56",
         "12",
@@ -41,7 +44,7 @@ int test_userInputToVector() {
     for (int caseIndex = 0; caseIndex<testInputs.size(); caseIndex++) {
         std::string testInput = testInputs[caseIndex];
 
-        std::vector<int> result = userInputToVector(testInput);
+        std::vector<int> result = userInputToVector(app, testInput);
         std::vector<int> expectedResult = expectedResults[caseIndex];
 
              //declared in testing.h
@@ -72,7 +75,7 @@ int test_performAlgorithm(int argc, char *argv[]){
     APPLICATION *app = init(argc, argv);
 
     std::string testInput = "4, 1, 3";
-    app->arrayToBeSorted = userInputToVector(testInput);
+    app->arrayToBeSorted = userInputToVector(app, testInput);
 
     std::string name = "bubbleSort";
     app->performAlgorithm(name);

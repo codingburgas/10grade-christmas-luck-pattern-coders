@@ -207,7 +207,14 @@ application_autogen/timestamp: \
 	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/3.29.3/CMakeRCCompiler.cmake \
 	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/3.29.3/CMakeSystem.cmake \
 	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/algorithms.h \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/api.h \
 	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/application.h \
-	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/backend.h \
-	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/main.cpp \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/arrayModificationInfo.h \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/notifications.h \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/algorithms.cpp \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/api.cpp \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/src/application.cpp \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/test.cpp \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/testFunctions.h \
+	D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/tests/testing.h \
 	D:/Qt/Tools/CMake_64/bin/cmake.exe

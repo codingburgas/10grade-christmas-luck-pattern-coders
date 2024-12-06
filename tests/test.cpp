@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
 
     {
         std::cout << "----------------------\nTesting 'userInputToVector'\n\n";
-        code = test_userInputToVector();
+        code = test_userInputToVector(argc, argv);
 
         switch (code) {
             case 0: {
