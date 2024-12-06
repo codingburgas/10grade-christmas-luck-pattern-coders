@@ -1,4 +1,0 @@
-module pattern_coders
-typeinfo application.qmltypes
-prefer :/qt/qml/pattern_coders/
-
