@@ -223,8 +223,24 @@ Project_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=D:/personal/IT/projects/10grade-christmas-luck-pattern-coders
 
+//Additional directories where find(Qt6 ...) host Qt components
+// are searched
+QT_ADDITIONAL_HOST_PACKAGES_PREFIX_PATH:STRING=
+
+//Additional directories where find(Qt6 ...) components are searched
+QT_ADDITIONAL_PACKAGES_PREFIX_PATH:STRING=
+
+//The directory containing a CMake configuration file for Qt6CoreTools.
+Qt6CoreTools_DIR:PATH=Qt6CoreTools_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for Qt6WidgetsTools.
+Qt6WidgetsTools_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6WidgetsTools
+
+//The directory containing a CMake configuration file for Qt6Widgets.
+Qt6Widgets_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets
+
 //The directory containing a CMake configuration file for Qt6.
-Qt6_DIR:PATH=Qt6_DIR-NOTFOUND
+Qt6_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6
 
 //Value Computed by CMake
 pattern_coders_BINARY_DIR:STATIC=D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/cmake-build-debug
@@ -308,6 +324,12 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
+//Have library pthreads
+CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
+//Have library pthread
+CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=D:/personal/IT/projects/10grade-christmas-luck-pattern-coders
@@ -372,4 +394,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 

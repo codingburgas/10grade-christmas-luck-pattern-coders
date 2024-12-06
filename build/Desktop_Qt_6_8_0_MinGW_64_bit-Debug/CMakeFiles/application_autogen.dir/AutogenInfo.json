@@ -285,15 +285,15 @@
 			null
 		],
 		[
-			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/application.h",
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/api.h",
 			"MU",
-			"6YEA5652QU/moc_application.cpp",
+			"6YEA5652QU/moc_api.cpp",
 			null
 		],
 		[
-			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/backend.h",
+			"D:/personal/IT/projects/10grade-christmas-luck-pattern-coders/include/application.h",
 			"MU",
-			"6YEA5652QU/moc_backend.cpp",
+			"6YEA5652QU/moc_application.cpp",
 			null
 		]
 	],
