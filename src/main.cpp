@@ -13,5 +13,5 @@
 int main(int argc, char *argv[]) {
     APPLICATION *app = init(argc, argv);
 
-    return run(app);
+    return app->run();
 }

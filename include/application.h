@@ -20,6 +20,30 @@
 struct APPLICATION {
     QApplication *app;
     QWidget *window;
+
+    /*
+     * Runs an application
+     * Parameters:
+     * --app: APPLICATION, which operations are directed to
+     * Returns:
+     * --status code
+     */
+    int run(){
+        window->show();
+
+        int code =  app->exec();
+
+        switch (code) {
+        case 0:
+            std::cout << "Application exited successfully! \n";
+            break;
+        default:
+            std::cerr << "Unknown error occured. \n";
+            break;
+        }
+
+        return code;
+    }
 };
 
 
@@ -53,31 +77,12 @@ APPLICATION* init(int argc, char *argv[]){
     return application;
 }
 
+
+
+
 #endif //APPLICATION_H
 
 
 
 
-/*
- * Runs an application
- * Parameters:
- * --app: APPLICATION, which operations are directed to
- * Returns:
- * --status code
- */
-int run(APPLICATION *app){
-    app->window->show();
 
-    int code =  app->app->exec();
-
-    switch (code) {
-    case 0:
-        std::cout << "Application exited successfully! \n";
-        break;
-    default:
-        std::cerr << "Unknown error occured. \n";
-        break;
-    }
-
-    return code;
-}
