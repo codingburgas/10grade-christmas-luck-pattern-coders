@@ -10,40 +10,88 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     UiTools
 )
+
+# Specify the path to libcurl
+set(CURL_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/libcurl/include")
+set(CURL_LIBRARY "${CMAKE_SOURCE_DIR}/libcurl/lib")
+
+find_package(CURL REQUIRED)
+
 qt_standard_project_setup()
 
+
+link_directories(${CURL_LIBRARY})
+# Add the include directory to the project
+include_directories(${CURL_INCLUDE_DIR})
+
+
+
+#set(GUMBO_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/gumbo/src")
+#include_directories(${GUMBO_INCLUDE_DIR})
+#file(GLOB GUMBO_SRC gumbo/src/*.c gumbo/src/*.h gumbo/src/*.rl)
+#set(GUMBO ${GUMBO_SRC})
+
+
+#set(GUMBO_QUERY_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/gumbo-query/src")
+#include_directories(${GUMBO_QUERY_INCLUDE_DIR})
+#file(GLOB GUMBO_QUERY_SRC gumbo-query/src/*.h gumbo-query/src/*.cpp)
+#set(GUMBO_QUERY ${GUMBO_QUERY_SRC})
+
+
+
 qt_add_executable(application
-    tests/test.cpp                 #
-    tests/testFunctions.h          # COMMENT OUT THIS 3 LINE IN ORDER TO TЕST FUNCTIONS
-    tests/testing.h                #
+        #tests/test.cpp                 #
+        #tests/testFunctions.h          # COMMENT OUT THIS LINEs IN ORDER TO TЕST FUNCTIONS
 
 
-    #src/main.cpp
-    include/algorithms.h
+        #${GUMBO}
+        #${GUMBO_QUERY}
 
 
-    assets/main.ui
-    assets/resources.qrc
 
-    include/notifications.h
-    include/application.h
-    include/api.h
-    src/api.cpp
-    src/application.cpp
-    include/arrayModificationInfo.h
-    src/algorithms.cpp
+
+        src/main.cpp
+        include/word.h
+        include/parser.h
+        src/parser.cpp
+        src/word.cpp
+        include/scrapper.h
+        src/scrapper.cpp
+        tests/testFunctions.cpp
+
+        .gitignore
+
+
 
 )
 
-qt_add_resources(RESOURCES assets/resources.qrc)
+
+
+
+#qt_add_resources(RESOURCES assets/resources.qrc)
 target_sources(application PRIVATE ${RESOURCES})
 
+
+
+
 target_link_libraries(application PRIVATE
-    Qt6::Widgets
-    Qt6::UiTools
+        Qt6::Widgets
+        Qt6::UiTools
+        "${CURL_LIBRARY}/libcurl.a"
+        "${CURL_LIBRARY}/libcurl.dll.a"
+        "${GUMBO_LIBRARY}"
 )
+
+# Copy libcurl.dll to the output folder
+#add_custom_command(TARGET application POST_BUILD
+#        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+#        "${CURL_LIBRARY}/libcurl.dll.a"
+#        "${CMAKE_SOURCE_DIR}/bin"
+#)
+
 
 set_target_properties(application PROPERTIES
         WIN32_EXECUTABLE ON
         MACOSX_BUNDLE ON
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
 )

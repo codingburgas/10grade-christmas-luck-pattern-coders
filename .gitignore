@@ -1,4 +1,12 @@
-build
+build/
+
+gumbo/
+gumbo-query/
+cmake-build-debug/
+libcurl/docs/
+libcurl/dep/
+libcurl/bin/
+
 
 # Prerequisites
 *.d
