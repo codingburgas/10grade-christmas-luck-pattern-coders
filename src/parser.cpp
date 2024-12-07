@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "../include/parser.h"
+#include "../include/word.h"
 
 
 Tag *getTagData(std::string &htmlCode, size_t &tagPosition){
@@ -66,7 +67,7 @@ Tag *getTagData(std::string &htmlCode, size_t &tagPosition){
 
 
 
-std::vector< Tag* > select(std::string &htmlCode, std::string &partOfTagCode, int amount){
+std::vector< Tag* > select(std::string &htmlCode, const std::string &partOfTagCode, int amount){
     if (amount==0){ return {}; }
 
 
@@ -90,10 +91,16 @@ std::vector< Tag* > select(std::string &htmlCode, std::string &partOfTagCode, in
 
 std::string getWordData(std::string &htmlCode){
 
-    std::string wordSelector = "span[class='headword hdb tw-bw dhw dpos-h_hw']";
-    auto result = select(htmlCode, wordSelector, 0);
+    std::string result = "";
 
-    return "";
+
+
+    result += select(htmlCode, wordSelector(), 1)[0]->getProperty("visibleText") + ";";
+    result += select(htmlCode, definitionSelector(), 1)[0]->getProperty("visibleText") + ";";
+    result += select(htmlCode, partOfSpeechSelector(), 1)[0]->getProperty("visibleText") + ";";
+    result += select(htmlCode, difficultySelector(), 1)[0]->getProperty("visibleText") + ";";
+
+    return result;
 }
 
 

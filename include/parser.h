@@ -12,6 +12,17 @@
 struct Tag{
     //name, value
     std::vector<std::vector< std::string >> properties;
+
+    std::string getProperty(std::string key){
+        for (auto keyValue : properties){
+            if (keyValue[0] == key){
+                return (keyValue[1].empty()) ? "Undefined value.": keyValue[1];
+            }
+        }
+
+        return "Undefined value.";
+    }
+
 };
 
 
@@ -21,7 +32,7 @@ Tag *getTagData(std::string &htmlCode, size_t &tagPosition);
 
 
 //                                                                              max value
-std::vector<Tag*> select(std::string &htmlCode, std::string &partOfTagCode, int amount=100);
+std::vector<Tag*> select(std::string &htmlCode, const std::string &partOfTagCode, int amount=100);
 
 
 std::string getWordData(std::string &htmlCode);

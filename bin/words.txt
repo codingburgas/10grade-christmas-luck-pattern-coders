@@ -1,3 +1,13 @@
 Test text
 Test text
 Test text
+;;adjective;;
+
+
+
+
+
+
+
+
+degree;Undefined value.;noun;B2;

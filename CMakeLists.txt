@@ -60,6 +60,7 @@ qt_add_executable(application
         tests/testFunctions.cpp
 
         .gitignore
+        bin/words.txt
 
 
 

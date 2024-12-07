@@ -6,6 +6,6 @@
 #include "../include/scrapper.h"
 
 int main(int argc, char *argv[]){
-    createWordsFile("https://dictionary.cambridge.org/dictionary/english/fumbling");
+    createWordsFile("https://dictionary.cambridge.org/dictionary/english/degree");
     std::cout << "End\n";
 }
