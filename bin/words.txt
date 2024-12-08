@@ -1,16 +1,2 @@
-Test text
-Test text
-Test text
-;;adjective;;
-
-
-
-
-
-
-
-
-degree;Undefined value.;noun;B2;
-degree;amountlevel</a> of something: ;noun;B2;
-degree;(an) amount or level of something: ;noun;B2;
 degree;(an) amount or level of something;noun;B2;
+amount;a collection or mass, especially of something that cannot be counted;noun;B1;

@@ -5,10 +5,13 @@
 #ifndef WORD_H
 #define WORD_H
 
+
+#pragma once
+
 #include <iostream>
 
 
-struct WORD{
+struct Word{
     long id;
     std::string word;
     std::string definition;
@@ -17,24 +20,23 @@ struct WORD{
     std::string difficulty;
 
 
-
 };
 
 
-std::string wordSelector(){
-    return "<span class=\"hw dhw\"";
-}
-std::string partOfSpeechSelector(){
-    return "<span class=\"pos dpos\"";
-}
-std::string difficultySelector(){
-    return "<span class=\"epp-xref";
-}
-std::string definitionSelector(){
-    return "<div class=\"def ddef_d db\"";
-}
+std::string wordSelector();
+
+std::string partOfSpeechSelector();
+
+std::string difficultySelector();
+
+std::string definitionSelector();
+
+std::string wordLinkSelector();
 /*std::string wordSelector(){
     return "<span class=\"headword hdb tw-bw dhw dpos-h_hw\"";
 }*/
+
+
+
 
 #endif //WORD_H

@@ -5,7 +5,9 @@
 #include <curl/curl.h>
 
 #include "../include/scrapper.h"
+#include "../include/word.h"
 #include "../include/parser.h"
+
 
 
 
@@ -41,7 +43,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
 
 
 
-void appendWord(CURL* curl, std::string &url){
+void appendWord(CURL* curl, std::string *url, int *wordsAddedAlready, int *wordsNeeded){
     CURLcode res;
     std::string htmlCode;
 
@@ -50,7 +52,7 @@ void appendWord(CURL* curl, std::string &url){
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &htmlCode);
 
     // Set the URL to fetch
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_URL, (*url).c_str());
 
 
     // Perform the request
@@ -63,6 +65,17 @@ void appendWord(CURL* curl, std::string &url){
         std::string fileName = "words.txt";
         std::string wordData = getWordData(htmlCode);
         appendToFile(fileName, wordData);
+        *wordsAddedAlready += 1;
+
+        std::vector<Tag*> linksToNewWords = select(htmlCode, wordLinkSelector());
+        for (auto* link : linksToNewWords){
+            if (*wordsAddedAlready < *wordsNeeded){
+                std::string newUrl = link->getProperty("href");
+                appendWord(curl, &newUrl, wordsAddedAlready, wordsNeeded);
+            }
+            else break;
+
+        }
     }
 
 }
@@ -71,7 +84,7 @@ void appendWord(CURL* curl, std::string &url){
 
 
 // Function to fetch a web page
-void createWordsFile(std::string url) {
+void createWordsFile(std::string url, int amount) {
     CURL* curl;
 
 
@@ -86,10 +99,8 @@ void createWordsFile(std::string url) {
 
 
 
-
-        for (int i=0; i<1; i++){
-            appendWord(curl, url);
-        }
+        int count = 0;
+        appendWord(curl, &url, &count, &amount);
 
 
         // Clean up the CURL session

@@ -129,20 +129,22 @@ std::vector< Tag* > select(std::string &htmlCode, const std::string &partOfTagCo
 }
 
 
+
 std::string getWordData(std::string &htmlCode){
 
     std::string result = "";
 
 
 
-    result += select(htmlCode, wordSelector(), 1)[0]->getProperty("visibleText") + ";";
-    std::string definition = select(htmlCode, definitionSelector(), 1)[0]->getProperty("visibleText");
+    result += select(htmlCode, wordSelector(), 1)[0]->properties[1][1] + ";";
+    std::string definition = select(htmlCode, definitionSelector(), 1)[0]->properties[1][1];
     result +=  definition.substr(0, definition.size()-2)+ ";";
     //                              crop ": "
-    result += select(htmlCode, partOfSpeechSelector(), 1)[0]->getProperty("visibleText") + ";";
-    result += select(htmlCode, difficultySelector(), 1)[0]->getProperty("visibleText") + ";";
+    result += select(htmlCode, partOfSpeechSelector(), 1)[0]->properties[1][1] + ";";
+    result += select(htmlCode, difficultySelector(), 1)[0]->properties[1][1] + ";";
 
     return result;
+
 }
 
 
