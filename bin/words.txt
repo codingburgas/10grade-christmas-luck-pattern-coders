@@ -11,3 +11,6 @@ Test text
 
 
 degree;Undefined value.;noun;B2;
+degree;amountlevel</a> of something: ;noun;B2;
+degree;(an) amount or level of something: ;noun;B2;
+degree;(an) amount or level of something;noun;B2;

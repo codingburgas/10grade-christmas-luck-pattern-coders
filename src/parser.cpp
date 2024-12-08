@@ -5,6 +5,13 @@
 #include "../include/word.h"
 
 
+std::string getTextInQuotes(std::string &text, size_t &firstQuotePosition){
+    size_t secondQuotePosition = text.find('"', firstQuotePosition+1);
+
+    return text.substr(firstQuotePosition+1, secondQuotePosition-firstQuotePosition-1);
+}
+
+
 Tag *getTagData(std::string &htmlCode, size_t &tagPosition){
     //<a href="url">Text</a>
     auto *tag = new Tag{};
@@ -12,15 +19,6 @@ Tag *getTagData(std::string &htmlCode, size_t &tagPosition){
     //<a href="url">Text</a>
     //             ↑
     size_t closingBracketPosition = htmlCode.find('>', tagPosition);
-    //<a href="url">Text</a>
-    //                  ↑
-    size_t secondOpeningBracketPosition = htmlCode.find('<', closingBracketPosition+1);
-
-    //<a href="url">Text</a>
-    //              ↑  ↑
-    tag->properties.push_back({
-        "visibleText", htmlCode.substr(closingBracketPosition+1, secondOpeningBracketPosition-closingBracketPosition-1)
-    });
 
 
     //<a href="url">Text</a>
@@ -32,12 +30,54 @@ Tag *getTagData(std::string &htmlCode, size_t &tagPosition){
     // ↑
     size_t firstSpace = tagParams.find(' ');
 
-    //a href="url"
+    /*//a href="url"
     //↑
     tag->properties.push_back({
         "tagName", tagParams.substr(0, firstSpace)
-    });
+    });*/
+    std::string tagName = tagParams.substr(0, firstSpace);
     tagParams.erase(0, firstSpace+1);//delete tagName and space ->    //href="url"
+
+
+    std::string closingTag = "</"+tagName+">";
+    //<a href="url">Text</a>
+    //                  ↑
+    size_t closingTagPosition = htmlCode.find(closingTag, tagPosition);
+
+    std::string tagHtmlCode = htmlCode.substr(tagPosition, closingTagPosition+closingTag.size()-tagPosition);
+    tag->properties.push_back({
+        "outerHTML", tagHtmlCode
+    });
+
+    std::string textInsideTag = htmlCode.substr(closingBracketPosition+1, closingTagPosition-closingBracketPosition-1);
+
+    /*//<a href="url">Text</a>
+    //              ↑  ↑
+    tag->properties.push_back({
+        "visibleText", htmlCode.substr(closingBracketPosition+1, closingTagPosition-closingBracketPosition-1)
+    });*/
+
+    std::string tagVisibleText = "";
+    size_t nextTagIndex = textInsideTag.find("<");
+
+
+    while((nextTagIndex = textInsideTag.find("<")) != std::string::npos){
+        std::string justTextWithoutTag = textInsideTag.substr(0, nextTagIndex);
+        tagVisibleText += justTextWithoutTag;
+
+
+        Tag *childTag = getTagData(textInsideTag, nextTagIndex);
+        tagVisibleText += childTag->getProperty("visibleText");
+        textInsideTag.erase(0, justTextWithoutTag.size() + childTag->getProperty("outerHTML").size());
+
+    }
+    tagVisibleText += textInsideTag; // add what's left
+
+    tag->properties.push_back({
+        "visibleText", tagVisibleText
+    });
+
+
 
     size_t equalsIndex;
     while ((equalsIndex = tagParams.find('=')) != std::string::npos){
@@ -96,11 +136,14 @@ std::string getWordData(std::string &htmlCode){
 
 
     result += select(htmlCode, wordSelector(), 1)[0]->getProperty("visibleText") + ";";
-    result += select(htmlCode, definitionSelector(), 1)[0]->getProperty("visibleText") + ";";
+    std::string definition = select(htmlCode, definitionSelector(), 1)[0]->getProperty("visibleText");
+    result +=  definition.substr(0, definition.size()-2)+ ";";
+    //                              crop ": "
     result += select(htmlCode, partOfSpeechSelector(), 1)[0]->getProperty("visibleText") + ";";
     result += select(htmlCode, difficultySelector(), 1)[0]->getProperty("visibleText") + ";";
 
     return result;
 }
+
 
 

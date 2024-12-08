@@ -31,7 +31,7 @@ std::string difficultySelector(){
     return "<span class=\"epp-xref";
 }
 std::string definitionSelector(){
-    return "<span class=\"def ddef_d db\"";
+    return "<div class=\"def ddef_d db\"";
 }
 /*std::string wordSelector(){
     return "<span class=\"headword hdb tw-bw dhw dpos-h_hw\"";
