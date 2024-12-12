@@ -9,6 +9,9 @@
 #include <string>
 #include <vector>
 
+#include "json.hpp"
+using json=nlohmann::json;
+
 struct Tag{
     //name, value
     std::vector<std::vector< std::string >> properties;
@@ -35,7 +38,7 @@ Tag *getTagData(std::string &htmlCode, size_t &tagPosition);
 std::vector<Tag*> select(std::string &htmlCode, const std::string &partOfTagCode, int amount=100);
 
 
-std::string getWordData(std::string &htmlCode);
+json getWordData(std::string &htmlCode);
 
 
 

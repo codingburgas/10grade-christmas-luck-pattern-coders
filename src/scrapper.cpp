@@ -4,31 +4,24 @@
 #include <fstream>
 #include <curl/curl.h>
 
+#include "json.hpp"
+using json=nlohmann::json;
+
 #include "../include/scrapper.h"
 #include "../include/word.h"
 #include "../include/parser.h"
+#include "../include/fileManager.h"
 
 
-
-
-
-// Function to append text to a file
-void appendToFile(const std::string& fileName, const std::string& textToAppend) {
-    // Open the file in append mode
-    std::ofstream outFile(fileName, std::ios::app);
-
-
-    if (!outFile.is_open()) {
-        std::cerr << "Error: Unable to open file: " << fileName << std::endl;
-        return;
+template <typename T>
+bool contains(std::vector<T> *vector, T value){
+    for (T element : *vector){
+        if (element == value) return true;
     }
 
-    // Append the text to the file
-    outFile << textToAppend << std::endl;
-
-    outFile.close();
-
+    return false;
 }
+
 
 
 
@@ -43,7 +36,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
 
 
 
-void appendWord(CURL* curl, std::string *url, int *wordsAddedAlready, int *wordsNeeded){
+void appendWord(CURL* curl, std::string *url, std::vector<std::string*> *wordsAddedAlready, int *amountWordsNeeded){
     CURLcode res;
     std::string htmlCode;
 
@@ -62,20 +55,37 @@ void appendWord(CURL* curl, std::string *url, int *wordsAddedAlready, int *words
     if (res != CURLE_OK) {
         std::cerr << "CURL request failed: " << curl_easy_strerror(res) << std::endl;
     } else {
-        std::string fileName = "words.txt";
-        std::string wordData = getWordData(htmlCode);
-        appendToFile(fileName, wordData);
-        *wordsAddedAlready += 1;
+        if (wordsAddedAlready->size() == 7){
+            std::cout << "Test\n";
+        }
+        std::string fileName = "words.json";
+        json wordData = getWordData(htmlCode);
 
-        std::vector<Tag*> linksToNewWords = select(htmlCode, wordLinkSelector());
-        for (auto* link : linksToNewWords){
-            if (*wordsAddedAlready < *wordsNeeded){
-                std::string newUrl = link->getProperty("href");
-                appendWord(curl, &newUrl, wordsAddedAlready, wordsNeeded);
+        auto* word = new std::string( wordData["word"] );
+        if (!contains(wordsAddedAlready, word)){
+            appendToFile(fileName, wordData);
+            wordsAddedAlready->push_back(word);
+
+            std::vector<Tag*> linksToNewWords = select(htmlCode, wordLinkSelector());
+            for (auto* link : linksToNewWords){
+                if (wordsAddedAlready->size() < *amountWordsNeeded){
+                    std::string newUrl = link->getProperty("href");
+                    appendWord(curl, &newUrl, wordsAddedAlready, amountWordsNeeded);
+                    delete link;
+                }
+                else {
+                    delete link;
+                    break;
+                }
+
             }
-            else break;
+
 
         }
+
+
+
+
     }
 
 }
@@ -98,9 +108,12 @@ void createWordsFile(std::string url, int amount) {
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
 
 
+        std::vector<std::string*> wordsAdded = {};
+        appendWord(curl, &url, &wordsAdded, &amount);
 
-        int count = 0;
-        appendWord(curl, &url, &count, &amount);
+        for (auto* word : wordsAdded){
+            delete word;
+        }
 
 
         // Clean up the CURL session

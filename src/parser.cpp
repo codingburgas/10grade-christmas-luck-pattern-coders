@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "json.hpp"
+using json=nlohmann::json;
+
 #include "../include/parser.h"
 #include "../include/word.h"
 
@@ -112,7 +116,12 @@ std::vector< Tag* > select(std::string &htmlCode, const std::string &partOfTagCo
 
 
     size_t tagPosition = htmlCode.find(partOfTagCode); // handle first tag
-    Tag* tag = getTagData(htmlCode, tagPosition);
+    if (tagPosition == std::string::npos){
+        return { new Tag{} };
+    }
+
+
+    Tag *tag = getTagData(htmlCode, tagPosition);
 
     if (amount==1){ return {tag}; }
 
@@ -123,6 +132,7 @@ std::vector< Tag* > select(std::string &htmlCode, const std::string &partOfTagCo
         result.push_back(
             getTagData(htmlCode, tagPosition)
         );
+        count++;
     }
 
     return result;
@@ -130,18 +140,18 @@ std::vector< Tag* > select(std::string &htmlCode, const std::string &partOfTagCo
 
 
 
-std::string getWordData(std::string &htmlCode){
+json getWordData(std::string &htmlCode){
 
-    std::string result = "";
+    json result;
 
 
 
-    result += select(htmlCode, wordSelector(), 1)[0]->properties[1][1] + ";";
+    result["word"] = select(htmlCode, wordSelector(), 1)[0]->properties[1][1];
     std::string definition = select(htmlCode, definitionSelector(), 1)[0]->properties[1][1];
-    result +=  definition.substr(0, definition.size()-2)+ ";";
+    result["definition"] =  definition.substr(0, definition.size()-2);
     //                              crop ": "
-    result += select(htmlCode, partOfSpeechSelector(), 1)[0]->properties[1][1] + ";";
-    result += select(htmlCode, difficultySelector(), 1)[0]->properties[1][1] + ";";
+    result["partOfSpeech"] = select(htmlCode, partOfSpeechSelector(), 1)[0]->properties[1][1];
+    result["difficulty"] = select(htmlCode, difficultySelector(), 1)[0]->properties[1][1];
 
     return result;
 

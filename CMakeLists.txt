@@ -25,17 +25,10 @@ link_directories(${CURL_LIBRARY})
 include_directories(${CURL_INCLUDE_DIR})
 
 
-
-#set(GUMBO_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/gumbo/src")
-#include_directories(${GUMBO_INCLUDE_DIR})
-#file(GLOB GUMBO_SRC gumbo/src/*.c gumbo/src/*.h gumbo/src/*.rl)
-#set(GUMBO ${GUMBO_SRC})
-
-
-#set(GUMBO_QUERY_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/gumbo-query/src")
-#include_directories(${GUMBO_QUERY_INCLUDE_DIR})
-#file(GLOB GUMBO_QUERY_SRC gumbo-query/src/*.h gumbo-query/src/*.cpp)
-#set(GUMBO_QUERY ${GUMBO_QUERY_SRC})
+set(NLOHMANN_JSON_DIR "${CMAKE_SOURCE_DIR}/include/json")
+include_directories("${NLOHMANN_JSON_DIR}")
+file(GLOB NLOHMANN_JSON_SRC "${NLOHMANN_JSON_DIR}/json.hpp")
+set(NLOHMANN_JSON ${NLOHMANN_JSON_SRC})
 
 
 
@@ -44,10 +37,8 @@ qt_add_executable(application
         #tests/testFunctions.h          # COMMENT OUT THIS LINEs IN ORDER TO TЕST FUNCTIONS
 
 
-        #${GUMBO}
-        #${GUMBO_QUERY}
 
-
+        ${NLOHMANN_JSON}
 
 
         src/main.cpp
@@ -61,6 +52,9 @@ qt_add_executable(application
 
         .gitignore
         bin/words.txt
+        bin/words.json
+        include/fileManager.h
+        src/fileManager.cpp
 
 
 
