@@ -5,8 +5,8 @@
 #include "json.hpp"
 using json=nlohmann::json;
 
-#include "../include/parser.h"
-#include "../include/word.h"
+#include "scrapping/parser.h"
+#include "word.h"
 
 
 

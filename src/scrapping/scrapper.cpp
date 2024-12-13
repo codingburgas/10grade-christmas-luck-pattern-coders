@@ -7,10 +7,10 @@
 #include "json.hpp"
 using json=nlohmann::json;
 
-#include "../include/scrapper.h"
-#include "../include/word.h"
-#include "../include/parser.h"
-#include "../include/fileManager.h"
+#include "scrapping/scrapper.h"
+#include "word.h"
+#include "scrapping/parser.h"
+#include "fileManager.h"
 
 
 template <typename T>

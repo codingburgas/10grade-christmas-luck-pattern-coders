@@ -20,15 +20,23 @@ find_package(CURL REQUIRED)
 qt_standard_project_setup()
 
 
+set(PROJECT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
+include_directories(${PROJECT_INCLUDE_DIR})
+
+
 link_directories(${CURL_LIBRARY})
 # Add the include directory to the project
 include_directories(${CURL_INCLUDE_DIR})
 
 
-set(NLOHMANN_JSON_DIR "${CMAKE_SOURCE_DIR}/include/json")
+set(NLOHMANN_JSON_DIR "${PROJECT_INCLUDE_DIR}/json")
 include_directories("${NLOHMANN_JSON_DIR}")
 file(GLOB NLOHMANN_JSON_SRC "${NLOHMANN_JSON_DIR}/json.hpp")
 set(NLOHMANN_JSON ${NLOHMANN_JSON_SRC})
+
+
+
+
 
 
 
@@ -43,17 +51,18 @@ qt_add_executable(application
 
         src/main.cpp
         include/word.h
-        include/parser.h
-        src/parser.cpp
+        include/scrapping/parser.h
+        src/scrapping/parser.cpp
         src/word.cpp
-        include/scrapper.h
-        src/scrapper.cpp
+        include/scrapping/scrapper.h
+        src/scrapping/scrapper.cpp
 
         .gitignore
         bin/words.txt
         bin/words.json
         include/fileManager.h
         src/fileManager.cpp
+        src/scrapping/main.cpp
 
 
 
