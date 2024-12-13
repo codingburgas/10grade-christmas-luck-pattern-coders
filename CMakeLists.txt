@@ -48,7 +48,6 @@ qt_add_executable(application
         src/word.cpp
         include/scrapper.h
         src/scrapper.cpp
-        tests/testFunctions.cpp
 
         .gitignore
         bin/words.txt

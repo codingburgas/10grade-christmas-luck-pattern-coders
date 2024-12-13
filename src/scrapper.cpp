@@ -55,9 +55,6 @@ void appendWord(CURL* curl, std::string *url, std::vector<std::string*> *wordsAd
     if (res != CURLE_OK) {
         std::cerr << "CURL request failed: " << curl_easy_strerror(res) << std::endl;
     } else {
-        if (wordsAddedAlready->size() == 7){
-            std::cout << "Test\n";
-        }
         std::string fileName = "words.json";
         json wordData = getWordData(htmlCode);
 
@@ -66,17 +63,13 @@ void appendWord(CURL* curl, std::string *url, std::vector<std::string*> *wordsAd
             appendToFile(fileName, wordData);
             wordsAddedAlready->push_back(word);
 
-            std::vector<Tag*> linksToNewWords = select(htmlCode, wordLinkSelector());
-            for (auto* link : linksToNewWords){
+            std::vector<Tag> linksToNewWords = select(htmlCode, wordLinkSelector());
+            for (auto link : linksToNewWords){
                 if (wordsAddedAlready->size() < *amountWordsNeeded){
-                    std::string newUrl = link->getProperty("href");
+                    std::string newUrl = link.getProperty("href");
                     appendWord(curl, &newUrl, wordsAddedAlready, amountWordsNeeded);
-                    delete link;
                 }
-                else {
-                    delete link;
-                    break;
-                }
+                else break;
 
             }
 

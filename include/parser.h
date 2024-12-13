@@ -14,7 +14,7 @@ using json=nlohmann::json;
 
 struct Tag{
     //name, value
-    std::vector<std::vector< std::string >> properties;
+    std::vector<std::vector< std::string >> properties = {};
 
     std::string getProperty(std::string key){
         for (auto keyValue : properties){
@@ -29,13 +29,15 @@ struct Tag{
 };
 
 
-Tag *getTagData(std::string &htmlCode, size_t &tagPosition);
+
+
+Tag getTagData(std::string &htmlCode, size_t &tagPosition);
 
 
 
 
 //                                                                              max value
-std::vector<Tag*> select(std::string &htmlCode, const std::string &partOfTagCode, int amount=100);
+std::vector<Tag> select(std::string &htmlCode, const std::string &partOfTagCode, int amount=100);
 
 
 json getWordData(std::string &htmlCode);
