@@ -2,5 +2,6 @@
 
 int main(){
     //test_getTagData();
-    test_select();
+    //test_select();
+    test_getJsonDataFromFile();
 }

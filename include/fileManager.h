@@ -6,6 +6,8 @@ using json=nlohmann::json;
 
 void appendToFile(const std::string& fileName, const json& jsonToAppend);
 
+json getJsonDataFromFile(const std::string& fileName);
+
 
 
 

@@ -31,41 +31,58 @@ include_directories(${CURL_INCLUDE_DIR})
 
 set(NLOHMANN_JSON_DIR "${PROJECT_INCLUDE_DIR}/json")
 include_directories("${NLOHMANN_JSON_DIR}")
-file(GLOB NLOHMANN_JSON_SRC "${NLOHMANN_JSON_DIR}/json.hpp")
-set(NLOHMANN_JSON ${NLOHMANN_JSON_SRC})
+#file(GLOB NLOHMANN_JSON_SRC "${NLOHMANN_JSON_DIR}/json.hpp")
+set(NLOHMANN_JSON "${NLOHMANN_JSON_DIR}/json.hpp")
 
 
 
+set(SCRAPPING
+    "src/scrapping/main.cpp"
+    "include/scrapping/scrapper.h"
+    "src/scrapping/scrapper.cpp"
+    "include/scrapping/parser.h"
+    "src/scrapping/parser.cpp"
 
+)
+
+
+set(APP_FILES
+    "include/word.h"
+    "src/word.cpp"
+    "bin/words.json"
+    "include/fileManager.h"
+    "src/fileManager.cpp"
+)
+
+
+set(TESTING_FILES
+    "tests/test.cpp"
+    "tests/testFunctions.h"
+    "tests/testFunctions.cpp"
+)
 
 
 
 qt_add_executable(application
-        #tests/test.cpp                 #
-        #tests/testFunctions.h          # COMMENT OUT THIS LINEs IN ORDER TO TЕST FUNCTIONS
 
-
-
+        #------ dependencies -----
         ${NLOHMANN_JSON}
 
 
-        src/main.cpp
-        include/word.h
-        include/scrapping/parser.h
-        src/scrapping/parser.cpp
-        src/word.cpp
-        include/scrapping/scrapper.h
-        src/scrapping/scrapper.cpp
+        #----- scrapping -----
+        #${SCRAPPING}
 
+        #------ application ------
+        ${APP_FILES}
+
+        #----- testing -----------
+        ${TESTING_FILES}
+
+        #----- git -------
         .gitignore
-        bin/words.txt
-        bin/words.json
-        include/fileManager.h
-        src/fileManager.cpp
-        src/scrapping/main.cpp
+        tests/testJsonFile.json
 
-
-
+        #src/main.cpp
 )
 
 
