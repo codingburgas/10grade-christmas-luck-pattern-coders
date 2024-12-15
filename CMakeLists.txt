@@ -20,43 +20,69 @@ find_package(CURL REQUIRED)
 qt_standard_project_setup()
 
 
+set(PROJECT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
+include_directories(${PROJECT_INCLUDE_DIR})
+
+
 link_directories(${CURL_LIBRARY})
 # Add the include directory to the project
 include_directories(${CURL_INCLUDE_DIR})
 
 
-set(NLOHMANN_JSON_DIR "${CMAKE_SOURCE_DIR}/include/json")
+set(NLOHMANN_JSON_DIR "${PROJECT_INCLUDE_DIR}/json")
 include_directories("${NLOHMANN_JSON_DIR}")
-file(GLOB NLOHMANN_JSON_SRC "${NLOHMANN_JSON_DIR}/json.hpp")
-set(NLOHMANN_JSON ${NLOHMANN_JSON_SRC})
+#file(GLOB NLOHMANN_JSON_SRC "${NLOHMANN_JSON_DIR}/json.hpp")
+set(NLOHMANN_JSON "${NLOHMANN_JSON_DIR}/json.hpp")
+
+
+
+set(SCRAPPING
+    "src/scrapping/main.cpp"
+    "include/scrapping/scrapper.h"
+    "src/scrapping/scrapper.cpp"
+    "include/scrapping/parser.h"
+    "src/scrapping/parser.cpp"
+
+)
+
+
+set(APP_FILES
+    "include/word.h"
+    "src/word.cpp"
+    "bin/words.json"
+    "include/fileManager.h"
+    "src/fileManager.cpp"
+)
+
+
+set(TESTING_FILES
+    "tests/test.cpp"
+    "tests/testFunctions.h"
+    "tests/testFunctions.cpp"
+)
 
 
 
 qt_add_executable(application
-        #tests/test.cpp                 #
-        #tests/testFunctions.h          # COMMENT OUT THIS LINEs IN ORDER TO TЕST FUNCTIONS
 
-
-
+        #------ dependencies -----
         ${NLOHMANN_JSON}
 
 
-        src/main.cpp
-        include/word.h
-        include/parser.h
-        src/parser.cpp
-        src/word.cpp
-        include/scrapper.h
-        src/scrapper.cpp
+        #----- scrapping -----
+        #${SCRAPPING}
 
+        #------ application ------
+        ${APP_FILES}
+
+        #----- testing -----------
+        ${TESTING_FILES}
+
+        #----- git -------
         .gitignore
-        bin/words.txt
-        bin/words.json
-        include/fileManager.h
-        src/fileManager.cpp
+        tests/testJsonFile.json
 
-
-
+        #src/main.cpp
 )
 
 

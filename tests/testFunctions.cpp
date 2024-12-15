@@ -1,9 +1,15 @@
 
+#include "testFunctions.h"
+
 #include <iostream>
 #include <string>
-#include "../include/parser.h"
 
-void test_getTagData(){
+//files, which are tested
+#include "scrapping/parser.h"
+#include "fileManager.h"
+
+
+/*void test_getTagData(){
     std::string htmlCode = "<h1>This is for test</h1><a class=\"some class\" href=\"some/url\">Some text</a>";
     //std::string selector = "<a class=\"some class\"";
     size_t tagPos = 25;
@@ -31,4 +37,13 @@ void test_select(){
         std::cout << "------------------\n";
     }
 
+}*/
+
+
+
+void test_getJsonDataFromFile(){
+    std::string fileName = "../tests/testJsonFile.json";
+    json result = getJsonDataFromFile(fileName);
+
+    std::cout << result.dump();
 }

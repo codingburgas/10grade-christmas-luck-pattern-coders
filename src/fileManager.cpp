@@ -1,23 +1,42 @@
 #include <iostream>
 #include <fstream>
 
-#include "../include/fileManager.h"
+#include "fileManager.h"
 #include "json.hpp"
 using json=nlohmann::json;
 
 
+
+
+/*
+ * Reads JSON data, saved in the file
+ * Parameters:
+ * --fileName: ath to a file from which JSON data is read.
+ * Returns:
+ * --data as json
+ */
+json getJsonDataFromFile(const std::string &fileName){
+    json result;
+
+    std::ifstream file(fileName);
+
+
+    try{
+        file >> result;
+    } catch(std::exception &e){
+        std::cerr << "Failed to read from the file.\n";
+    }
+
+    file.close();
+
+    return result;
+}
+
+
+
 // Function to append text to a file
 void appendToFile(const std::string& fileName, const json& jsonToAppend) {
-    json data;
-    std::ifstream fileInReadMode(fileName);
-
-    //read exisiting data
-    try {
-        fileInReadMode >> data;
-    } catch (const std::exception& e) {
-        std::cerr << "Error reading JSON file: " << e.what() << std::endl;
-    }
-    fileInReadMode.close();
+    json data = getJsonDataFromFile(fileName);
 
 
     // Check if the existing data is an array, if not, convert it to an array
@@ -36,4 +55,5 @@ void appendToFile(const std::string& fileName, const json& jsonToAppend) {
     } catch (const std::exception& e) {
         std::cerr << "Error writing JSON to file: " << e.what() << std::endl;
     }
+    fileInWriteMode.close();
 }
