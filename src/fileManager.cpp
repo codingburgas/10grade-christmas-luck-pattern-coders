@@ -8,6 +8,13 @@ using json=nlohmann::json;
 
 
 
+/*
+ * Reads JSON data, saved in the file
+ * Parameters:
+ * --fileName: ath to a file from which JSON data is read.
+ * Returns:
+ * --data as json
+ */
 json getJsonDataFromFile(const std::string &fileName){
     json result;
 
