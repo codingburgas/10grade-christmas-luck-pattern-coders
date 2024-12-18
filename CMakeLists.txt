@@ -52,6 +52,8 @@ set(APP_FILES
     "bin/words.json"
     "include/fileManager.h"
     "src/fileManager.cpp"
+    "include/wordAlgorithms.h"
+    "src/wordAlgorithms.cpp"
 )
 
 
@@ -59,6 +61,7 @@ set(TESTING_FILES
     "tests/test.cpp"
     "tests/testFunctions.h"
     "tests/testFunctions.cpp"
+    "tests/testJsonFile.json"
 )
 
 
@@ -80,7 +83,7 @@ qt_add_executable(application
 
         #----- git -------
         .gitignore
-        tests/testJsonFile.json
+
 
         #src/main.cpp
 )
