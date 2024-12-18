@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm> // For std::remove
+#include <cctype>    // For std::tolower
 
 #include "word.h"
 
@@ -105,6 +107,30 @@ void hybridSort(std::vector<Word>& arr, int begin, int end) {
 void sortWords(std::vector<Word>& arr) {
     if (!arr.empty()) {
         hybridSort(arr, 0, arr.size() - 1);
+    }
+}
+
+
+std::string toLower(std::string str){
+    for(auto& c : str)
+    {
+        c = tolower(c);
+    }
+}
+
+bool stringContainsAnother(std::string& part, std::string& fullString, bool &caseSensitive){
+    if (!caseSensitive){
+        return fullString.find(part) == std::string::npos;
+    } else{
+        return toLower(fullString).find(toLower(part)) == std::string::npos;
+    }
+}
+
+void leaveWordsWithSpecificPart(std::vector<Word> &arr, std::string &part, std::string &propertyName, bool &caseSensitive){
+    for (Word word:arr){
+        if (!stringContainsAnother(part, word.getProperty(propertyName), caseSensitive)){
+            arr.erase(std::remove(arr.begin(), arr.end(), word), arr.end());
+        }
     }
 }
 

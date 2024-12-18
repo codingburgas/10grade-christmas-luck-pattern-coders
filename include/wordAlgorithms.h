@@ -66,5 +66,8 @@ void hybridSort(std::vector<Word>& arr, int begin, int end);
 void sortWords(std::vector<Word>& arr);
 
 
+void leaveWordsWithSpecificPart(std::vector<Word>& arr, std::string& part, std::string &propertyName);
+
+
 
 #endif // WORDALGORITHMS_H
