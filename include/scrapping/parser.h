@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "json.hpp"
-using json=nlohmann::json;
+using json=nlohmann::json;   //type alias
 
 struct Tag{
     //name, value

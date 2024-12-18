@@ -7,6 +7,7 @@
 //files, which are tested
 #include "scrapping/parser.h"
 #include "fileManager.h"
+#include "wordAlgorithms.h"
 
 
 /*void test_getTagData(){
@@ -46,4 +47,17 @@ void test_getJsonDataFromFile(){
     json result = getJsonDataFromFile(fileName);
 
     std::cout << result.dump();
+}
+
+
+
+void test_sortWords(){
+    std::vector<Word> testWords = {
+        Word{"apple"}, Word{"banana"}, Word{"apples"}, Word{"orange"}
+    };
+
+    for (auto word:testWords) std::cout << word.word << ", ";
+    std::cout << "\n";
+    sortWords(testWords);
+    for (auto word:testWords) std::cout << word.word << ", ";
 }

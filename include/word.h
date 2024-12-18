@@ -12,7 +12,7 @@
 
 
 struct Word{
-    long id;
+    //long id;
     std::string word;
     std::string definition;
     std::string synonym;
@@ -32,9 +32,7 @@ std::string difficultySelector();
 std::string definitionSelector();
 
 std::string wordLinkSelector();
-/*std::string wordSelector(){
-    return "<span class=\"headword hdb tw-bw dhw dpos-h_hw\"";
-}*/
+
 
 
 
