@@ -1,9 +1,11 @@
+void printResult(int code, bool *failed);
+
+
 /*void test_getTagData();
 
 void test_select();*/
 
-void test_getJsonDataFromFile();
 
-void test_sortWords();
+int test_sortWords();
 
-void test_leaveWordsWithSpecificPart();
+int test_leaveWordsWithSpecificPart();

@@ -1,6 +1,9 @@
 //
 // Created by Oleksandr Vinichenko on 06.12.2024.
 //
+#include <iostream>
+#include <vector>
+
 #include "../include/word.h"
 
 
@@ -19,4 +22,28 @@ std::string definitionSelector(){
 }
 std::string wordLinkSelector(){
     return "<a class=\"query\"";
+}
+
+
+bool sameWords(Word& word1, Word& word2){
+
+    std::vector< std::string > properties = {
+        "word", "definition", "partOfSpeech", "difficulty"
+    };
+
+    for (std::string property:properties){
+        if (word1.getProperty(property) != word2.getProperty(property)){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Word::operator==(Word& objectToCompare){
+    return sameWords(*this, objectToCompare);
+}
+
+bool Word::operator!=(Word& objectToCompare){
+    return !sameWords(*this, objectToCompare);
 }
