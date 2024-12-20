@@ -52,12 +52,32 @@ void test_getJsonDataFromFile(){
 
 
 void test_sortWords(){
-    std::vector<Word> testWords = {
-        Word{"apple"}, Word{"banana"}, Word{"apples"}, Word{"orange"}
+    std::vector<Word*> testWords = {
+        new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}
     };
 
-    for (auto word:testWords) std::cout << word.word << ", ";
+    for (auto word:testWords) std::cout << word->word << ", ";
     std::cout << "\n";
     sortWords(testWords);
-    for (auto word:testWords) std::cout << word.word << ", ";
+    for (auto word:testWords) std::cout << word->word << ", ";
+}
+
+
+
+void test_leaveWordsWithSpecificPart(){
+    std::vector<Word*> testWords = {
+        new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}, new Word{"APPLICATION"}
+    };
+
+    std::cout << "Array at the start: \n";
+    for (auto* word:testWords) std::cout << word->word << ", ";
+
+    std::string part = "app", propertyName = "word";
+    bool caseSensitive = true;
+    leaveWordsWithSpecificPart(testWords, part, propertyName, caseSensitive);
+
+    std::cout << "\nArray at the end: \n";
+    for (auto* word:testWords) std::cout << word->word << ", ";
+
+
 }

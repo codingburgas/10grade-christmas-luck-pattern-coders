@@ -12,7 +12,7 @@
 
 
 struct Word {
-    long id;
+    //long id;
     std::string word;
     std::string definition;
     std::string synonym;
@@ -35,7 +35,6 @@ struct Word {
         }
     }
 };
-
 
 
 std::string wordSelector();
