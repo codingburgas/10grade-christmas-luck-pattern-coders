@@ -34,6 +34,11 @@ struct Word {
             throw std::invalid_argument("Invalid property name: " + property);
         }
     }
+
+
+
+    bool operator!=(Word& objectToCompare);
+    bool operator==(Word& objectToCompare);
 };
 
 

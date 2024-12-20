@@ -10,6 +10,24 @@
 #include "wordAlgorithms.h"
 
 
+void printResult(int code, bool *failed){
+    switch (code){
+    case 0:
+        std::cout << "All tests passed successfully\n";
+        break;
+
+    case 1:
+        std::cout << "One or more tests failed\n";
+        *failed = true;
+        break;
+
+    default:
+        std::cout << "Unexpected exit code\n";
+        break;
+    }
+}
+
+
 /*void test_getTagData(){
     std::string htmlCode = "<h1>This is for test</h1><a class=\"some class\" href=\"some/url\">Some text</a>";
     //std::string selector = "<a class=\"some class\"";
@@ -41,43 +59,92 @@ void test_select(){
 }*/
 
 
+template<typename T>
+bool compareVectors(std::vector<T> &v1, std::vector<T> &v2, bool useValueAtPointer){
+    if (v1.size() != v2.size()){
+        return false;
+    }
 
-void test_getJsonDataFromFile(){
-    std::string fileName = "../tests/testJsonFile.json";
-    json result = getJsonDataFromFile(fileName);
+    for (size_t i=0; i<v1.size(); i++){
+        if (useValueAtPointer){
 
-    std::cout << result.dump();
+            if ( *(v1[i]) != *(v2[i]) ) return false;
+
+        } else{
+
+            if (v1[i] != v2[i]) return false;
+
+        }
+
+    }
+
+    return true;
+}
+
+
+int test_sortWords(){
+    std::vector< std::vector< Word* > > testArrays = {
+        {new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}},
+        {new Word{"d"}, new Word{"c"}, new Word{"b"}, new Word{"a"}}
+    };
+
+    std::vector< std::vector< Word* > > expectedResults{
+        {new Word{"apple"}, new Word{"apples"}, new Word{"banana"}, new Word{"orange"}},
+        {new Word{"a"}, new Word{"b"}, new Word{"c"}, new Word{"d"}}
+    };
+
+    for (size_t i=0; i<testArrays.size(); i++){
+        sortWords( testArrays[i] );
+        if (!compareVectors(testArrays[i], expectedResults[i], true)){
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
 
 
-void test_sortWords(){
-    std::vector<Word*> testWords = {
-        new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}
+int test_leaveWordsWithSpecificPart(){
+    std::vector< std::vector< Word* > > testArrays = {
+        {new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}, new Word{"APPLICATION"}},
+        {new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}, new Word{"APPLICATION"}},
+        {new Word{"abcdefgh"}, new Word{"ABCDEFGH"}, new Word{"abcde"}, new Word{"fghabcde"}},
+        {new Word{"abcdefgh"}, new Word{"ABCDEFGH"}, new Word{"abcde"}, new Word{"fghabcde"}}
     };
 
-    for (auto word:testWords) std::cout << word->word << ", ";
-    std::cout << "\n";
-    sortWords(testWords);
-    for (auto word:testWords) std::cout << word->word << ", ";
-}
-
-
-
-void test_leaveWordsWithSpecificPart(){
-    std::vector<Word*> testWords = {
-        new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}, new Word{"APPLICATION"}
+    struct Options{
+        std::string part;
+        std::string propertyName;
+        bool caseSensitive;
     };
 
-    std::cout << "Array at the start: \n";
-    for (auto* word:testWords) std::cout << word->word << ", ";
+    std::vector< Options> options = {
+        Options{"app", "word", false},
+        Options{"app", "word", true},
+        Options{"abcdef", "word", false},
+        Options{"abcdef", "word", true}
+    };
 
-    std::string part = "app", propertyName = "word";
-    bool caseSensitive = true;
-    leaveWordsWithSpecificPart(testWords, part, propertyName, caseSensitive);
+    std::vector< std::vector< Word* > > expectedResults = {
+        {new Word{"apple"}, new Word{"apples"}, new Word{"APPLICATION"}},
+        {new Word{"apple"}, new Word{"apples"}},
+        {new Word{"abcdefgh"}, new Word{"ABCDEFGH"}},
+        {new Word{"abcdefgh"}}
+    };
 
-    std::cout << "\nArray at the end: \n";
-    for (auto* word:testWords) std::cout << word->word << ", ";
+
+
+    for (size_t i=0; i<testArrays.size(); i++){
+        leaveWordsWithSpecificPart(testArrays[i], options[i].part, options[i].propertyName, options[i].caseSensitive);
+        if (!compareVectors(testArrays[i], expectedResults[i], true)){
+            return 1;
+        }
+    }
+
+
+
+    return 0;
 
 
 }
