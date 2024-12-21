@@ -1,2 +1,2 @@
-libcurl/* linguist-vendored
-idea/* linguist-documentation
+libcurl/** linguist-vendored
+idea/** linguist-documentation
