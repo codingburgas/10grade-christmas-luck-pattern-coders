@@ -1,5 +1,6 @@
 //
-// Created by Oleksandr Vinichenko on 06.12.2024.
+// parser.h
+// Header file, which parses html
 //
 
 #ifndef PARSER_H

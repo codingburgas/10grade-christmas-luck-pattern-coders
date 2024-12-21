@@ -1,3 +1,8 @@
+//
+// fileManager.cpp
+// C++ file with functions, which interact with files
+//
+
 #include <iostream>
 #include <fstream>
 
@@ -36,7 +41,14 @@ json getJsonDataFromFile(const std::string &fileName){
 
 
 
-// Function to append text to a file
+/*
+ * Appends JSON data to an existing file.
+ * Parameters:
+ * --fileName: Path to the file where JSON data is appended.
+ * --jsonToAppend: The JSON data to be appended to the file.
+ * Returns:
+ * --None
+ */
 void appendToFile(const std::string& fileName, const json& jsonToAppend) {
     json data = getJsonDataFromFile(fileName);
 

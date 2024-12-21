@@ -1,3 +1,9 @@
+//
+// scrapper.cpp
+// C++ file, which performs html scrapping
+//
+
+
 #include <iostream>
 #include <vector>
 #include <fstream>

@@ -1,3 +1,8 @@
+//
+// wordAlgorithms.h
+// Header file, which performs operations with array of 'Word's
+//
+
 #ifndef WORDALGORITHMS_H
 #define WORDALGORITHMS_H
 
@@ -66,6 +71,14 @@ void hybridSort(std::vector<Word*>& arr, int begin, int end);
 void sortWords(std::vector<Word*>& arr);
 
 
+/*
+ * Removes words from the vector where the specified property contains a specific part.
+ * Parameters:
+ * --arr: The vector of Word pointers to filter.
+ * --part: The part of the string to search for within the specified property.
+ * --propertyName: The name of the property to search for the part.
+ * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
+ */
 void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool& caseSensitive);
 
 

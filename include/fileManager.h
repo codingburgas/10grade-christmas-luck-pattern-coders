@@ -10,6 +10,15 @@
 #include "json.hpp"
 using json=nlohmann::json;
 
+
+/*
+ * Appends JSON data to an existing file.
+ * Parameters:
+ * --fileName: Path to the file where JSON data is appended.
+ * --jsonToAppend: The JSON data to be appended to the file.
+ * Returns:
+ * --None
+ */
 void appendToFile(const std::string& fileName, const json& jsonToAppend);
 
 

@@ -1,6 +1,8 @@
 //
-// Created by Oleksandr Vinichenko on 06.12.2024.
+// word.cpp
+// C++ file, which makes it easy to interact with data related to words
 //
+
 #include <iostream>
 #include <vector>
 
@@ -8,23 +10,59 @@
 
 
 
+/*
+ * Returns the HTML selector for the word.
+ * Returns:
+ * --std::string: The HTML span element selector for the word.
+ */
 std::string wordSelector(){
     return "<span class=\"hw dhw\"";
 }
+
+/*
+ * Returns the HTML selector for the part of speech.
+ * Returns:
+ * --std::string: The HTML span element selector for the part of speech.
+ */
 std::string partOfSpeechSelector(){
     return "<span class=\"pos dpos\"";
 }
+
+/*
+ * Returns the HTML selector for the difficulty level.
+ * Returns:
+ * --std::string: The HTML span element selector for difficulty.
+ */
 std::string difficultySelector(){
     return "<span class=\"epp-xref";
 }
+
+/*
+ * Returns the HTML selector for the definition.
+ * Returns:
+ * --std::string: The HTML div element selector for the definition.
+ */
 std::string definitionSelector(){
     return "<div class=\"def ddef_d db\"";
 }
+
+/*
+ * Returns the HTML selector for the word link.
+ * Returns:
+ * --std::string: The HTML anchor element selector for the word link.
+ */
 std::string wordLinkSelector(){
     return "<a class=\"query\"";
 }
 
-
+/*
+ * Compares two Word objects for equality based on specific properties.
+ * Parameters:
+ * --word1: The first Word object to compare.
+ * --word2: The second Word object to compare.
+ * Returns:
+ * --bool: Returns true if all the properties of the two Word objects are equal, otherwise false.
+ */
 bool sameWords(Word& word1, Word& word2){
 
     std::vector< std::string > properties = {
@@ -40,14 +78,66 @@ bool sameWords(Word& word1, Word& word2){
     return true;
 }
 
+
+/*
+ * Retrieves the value of a specified property from the Word structure.
+ * Parameters:
+ * --property: The name of the property to retrieve. It should be one of the following:
+ *   - "word": Retrieves the word itself.
+ *   - "definition": Retrieves the definition of the word.
+ *   - "url": Retrieves the URL associated with the word.
+ *   - "partOfSpeech": Retrieves the part of speech of the word.
+ *   - "difficulty": Retrieves the difficulty level of the word.
+ * Returns:
+ * --std::string: The value of the specified property.
+ */
+std::string Word::getProperty(const std::string &property){
+
+    if (property == "word") {
+        return word;
+    } else if (property == "definition") {
+        return definition;
+    } else if (property == "url") {
+        return url;
+    } else if (property == "partOfSpeech") {
+        return partOfSpeech;
+    } else if (property == "difficulty") {
+        return difficulty;
+    } else {
+        throw std::invalid_argument("Invalid property name: " + property);
+    }
+
+}
+
+/*
+ * Compares two Word objects for equality.
+ * Parameters:
+ * --objectToCompare: The Word object to compare with the current object.
+ * Returns:
+ * --bool: Returns true if the two Word objects are considered equal, otherwise false.
+ */
 bool Word::operator==(Word& objectToCompare){
     return sameWords(*this, objectToCompare);
 }
 
+/*
+ * Compares two Word objects for inequality.
+ * Parameters:
+ * --objectToCompare: The Word object to compare with the current object.
+ * Returns:
+ * --bool: Returns true if the two Word objects are considered unequal, otherwise false.
+ */
 bool Word::operator!=(Word& objectToCompare){
     return !sameWords(*this, objectToCompare);
 }
 
+/*
+ * Converts JSON data to a Word object.
+ * Parameters:
+ * --jsonData: The JSON data to convert into a Word object.
+ * Returns:
+ * --Word*: A pointer to a newly created Word object.
+ */
 Word* convertJsonToWord(json &jsonData){
     Word *word = new Word{};
 
@@ -68,11 +158,16 @@ Word* convertJsonToWord(json &jsonData){
     }catch(...){}
 
     return word;
-
 }
 
+/*
+ * Retrieves all URLs from the provided JSON data.
+ * Parameters:
+ * --jsonData: The JSON data to extract URLs from.
+ * Returns:
+ * --std::vector<std::string>: A vector containing all the URLs found in the JSON data.
+ */
 std::vector<std::string> getWordsLinks(json jsonData){
-
     if (jsonData.is_array()){
         std::vector<std::string> result={};
         for (json wordInJson : jsonData){

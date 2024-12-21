@@ -1,3 +1,8 @@
+//
+// wordAlgorithms.cpp
+// C++ file, which performs operations with array of 'Word's
+//
+
 #include "wordAlgorithms.h"
 
 #include <iostream>
@@ -107,6 +112,13 @@ void sortWords(std::vector<Word*>& arr) {
     }
 }
 
+/*
+ * Converts all characters in the given string to lowercase.
+ * Parameters:
+ * --str: The string to convert to lowercase.
+ * Returns:
+ * --std::string: The converted lowercase string.
+ */
 std::string toLower(std::string str) {
     for (auto& c : str) {
         c = tolower(c);
@@ -114,6 +126,16 @@ std::string toLower(std::string str) {
     return str;
 }
 
+/*
+ * Checks if a string (part) is found within another string (fullString).
+ * The case-sensitivity of the search can be controlled by the caseSensitive flag.
+ * Parameters:
+ * --part: The substring to search for.
+ * --fullString: The string in which to search for the part.
+ * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
+ * Returns:
+ * --bool: Returns true if part is not found within fullString, otherwise false.
+ */
 bool stringContainsAnother(std::string& part, std::string& fullString, bool& caseSensitive) {
     if (caseSensitive) {
         return fullString.find(part) == std::string::npos;
@@ -122,6 +144,14 @@ bool stringContainsAnother(std::string& part, std::string& fullString, bool& cas
     }
 }
 
+/*
+ * Removes words from the vector where the specified property contains a specific part.
+ * Parameters:
+ * --arr: The vector of Word pointers to filter.
+ * --part: The part of the string to search for within the specified property.
+ * --propertyName: The name of the property to search for the part.
+ * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
+ */
 void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool& caseSensitive) {
     for (auto it = arr.begin(); it != arr.end(); ) {
         std::string wordProperty = (*it)->getProperty(propertyName);
@@ -132,3 +162,4 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
         }
     }
 }
+

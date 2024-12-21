@@ -19,5 +19,26 @@
         "partOfSpeech": "noun",
         "url": "https://dictionary.cambridge.org/dictionary/english/situation",
         "word": "situation"
+    },
+    {
+        "definition": "the regular work that a person does to earn money",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/job",
+        "word": "job"
+    },
+    {
+        "definition": "happening or doing something often",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/regular",
+        "word": "regular"
+    },
+    {
+        "definition": "something that has happened",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/happening",
+        "word": "happening"
     }
 ]

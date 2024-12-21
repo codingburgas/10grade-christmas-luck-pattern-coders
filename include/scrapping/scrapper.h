@@ -1,3 +1,9 @@
+//
+// scrapper.h
+// Header file, which performs html scrapping
+//
+
+
 #ifndef SCRAPPER_H
 #define SCRAPPER_H
 
