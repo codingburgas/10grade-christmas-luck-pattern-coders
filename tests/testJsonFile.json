@@ -1,0 +1,32 @@
+[
+    {
+      "bookstore": {
+        "name": "The Book Haven",
+        "location": "Downtown",
+        "books": [
+          {
+            "id": 1,
+            "title": "The Great Gatsby",
+            "author": "F. Scott Fitzgerald",
+            "price": 10.99,
+            "inStock": true
+          },
+          {
+            "id": 2,
+            "title": "1984",
+            "author": "George Orwell",
+            "price": 8.99,
+            "inStock": false
+          },
+          {
+            "id": 3,
+            "title": "To Kill a Mockingbird",
+            "author": "Harper Lee",
+            "price": 12.49,
+            "inStock": true
+          }
+        ],
+        "categories": ["Fiction", "Classics", "Drama"]
+      }
+    }
+]
