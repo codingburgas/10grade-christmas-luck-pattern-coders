@@ -8,6 +8,70 @@
 #include "fileManager.h"
 #include "wordAlgorithms.h"
 
+
+/*
+ * Executes all tests in the program and reports the results
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test(){
+    bool failed = false;
+
+
+    /*{
+        std::cout << "----Testing getTagData-----------\n";
+        int code = test_getTagData();
+        printResult(code);
+
+        std::cout << "---------------------------------\n";
+    }*/
+
+
+
+    /*{
+        std::cout << "----Testing select-----------\n";
+        int code = test_select()();
+        printResult(code);
+
+        std::cout << "---------------------------------\n";
+    }*/
+
+
+
+
+
+    {
+        std::cout << "----Testing sortWords-----------\n";
+        int code = test_sortWords();
+        printResult(code, &failed);
+
+        std::cout << "---------------------------------\n";
+    }
+
+
+
+
+    {
+        std::cout << "----Testing leaveWordsWithSpecificPart-----------\n";
+        int code = test_leaveWordsWithSpecificPart();
+        printResult(code, &failed);
+
+        std::cout << "---------------------------------\n";
+    }
+
+
+    if (failed){
+        std::cout << "\n\nProgram works not as intended\n\n";
+    } else{
+        std::cout << "\n\nProgram is ready to run\n\n";
+    }
+
+    return (int)(failed);
+}
+
+
 /*
  * Prints the result of test execution
  * Parameters:

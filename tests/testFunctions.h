@@ -1,4 +1,14 @@
 /*
+ * Executes all tests in the program and reports the results
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test();
+
+
+/*
  * Prints the result of test execution
  * Parameters:
  * -- code: exit code of the test
