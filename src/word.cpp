@@ -150,6 +150,10 @@ Word* convertJsonToWord(json &jsonData){
     }catch(...){}
 
     try{
+        word->url = jsonData["url"];
+    }catch(...){}
+
+    try{
         word->partOfSpeech = jsonData["partOfSpeech"];
     }catch(...){}
 

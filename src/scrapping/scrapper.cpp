@@ -77,19 +77,20 @@ void appendWord(CURL* curl, std::string *url, std::vector<std::string> *linksOfW
     if (res != CURLE_OK) {
         std::cerr << "CURL request failed: " << curl_easy_strerror(res) << "\nUrl was \"" << *url << "\"\n";
     } else {
-        std::string fileName = "words.json";
-        json wordData = getWordData(htmlCode);
-        if (!wordData.empty()){
-            wordData["url"] = *url;
+        if (!contains(linksOfWordsAddedAlready, *url)){
+            json wordData = getWordData(htmlCode);
+            if (!wordData.empty()){
+                wordData["url"] = *url;
 
-            //auto* word = new std::string( wordData["word"] );
-            if (!contains(linksOfWordsAddedAlready, *url)){
+                std::string fileName = "words.json";
                 appendToFile(fileName, wordData);
+
                 linksOfWordsAddedAlready->push_back(*url);
+
             }
         }
 
-
+        // handle links on the page
         std::vector<Tag> linksToNewWords = select(htmlCode, wordLinkSelector());
         for (auto link : linksToNewWords){
             if ((linksOfWordsAddedAlready->size() < *amountWordsNeeded)){
@@ -130,9 +131,6 @@ void createWordsFile(std::string url, int amount) {
         std::vector<std::string> linksOfWordsAdded = getWordsLinks(wordsData);
         appendWord(curl, &url, &linksOfWordsAdded, &amount);
 
-        /*for (auto* word : wordsAdded){
-            delete word;
-        }*/
 
         // Clean up the CURL session
         curl_easy_cleanup(curl);

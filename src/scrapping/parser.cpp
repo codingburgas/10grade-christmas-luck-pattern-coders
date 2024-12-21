@@ -36,62 +36,86 @@ std::string getTextInQuotes(std::string &text, size_t &firstQuotePosition){
  * -- Tag: an object containing tag properties and visible text
  */
 Tag getTagData(std::string &htmlCode, size_t &tagPosition){
-    //<a href="url">Text</a>
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
     Tag tag = {};
 
-    // Find the closing bracket of the opening tag
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    //                    ↑
     size_t closingBracketPosition = htmlCode.find('>', tagPosition);
 
-    // Extract tag parameters (e.g., attributes and their values)
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     std::string tagParams = htmlCode.substr(tagPosition+1, closingBracketPosition-tagPosition-1);
 
-    // Extract the tag name
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    // ↑↑↑
     size_t firstSpace = tagParams.find(' ');
     std::string tagName = tagParams.substr(0, firstSpace);
 
+    //class="content"
     tagParams.erase(0, firstSpace+1); // Remove tag name and space
 
-    // Find the closing tag
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    //                                                              ↑
     std::string closingTag = "</"+tagName+">";
     size_t closingTagPosition = htmlCode.find(closingTag, tagPosition);
 
-    // Extract the full outer HTML of the tag
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     std::string tagHtmlCode = htmlCode.substr(tagPosition, closingTagPosition+closingTag.size()-tagPosition);
     tag.properties.push_back({"outerHTML", tagHtmlCode});
 
-    // Extract visible text inside the tag
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    //                     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     std::string textInsideTag = htmlCode.substr(closingBracketPosition+1, closingTagPosition-closingBracketPosition-1);
     std::string tagVisibleText = "";
 
-    // Parse child tags recursively and append visible text
+    //<div class="content">Text <a href="url_to_and">and</a> another text</div>
+    //                          ↑
     size_t nextTagIndex;
     while((nextTagIndex = textInsideTag.find("<")) != std::string::npos) {
+        //Text <a href="url_to_and">and</a> another text
+        //↑↑↑↑↑
         std::string justTextWithoutTag = textInsideTag.substr(0, nextTagIndex);
         tagVisibleText += justTextWithoutTag;
 
+        //Text <a href="url_to_and">and</a> another text
+        //     ↑
         Tag childTag = getTagData(textInsideTag, nextTagIndex);
         tagVisibleText += childTag.getProperty("visibleText");
+
+        // another text
         textInsideTag.erase(0, justTextWithoutTag.size() + childTag.getProperty("outerHTML").size());
     }
+    // another text
     tagVisibleText += textInsideTag; // Add remaining text
 
     tag.properties.push_back({"visibleText", tagVisibleText});
 
 
-    // Parse tag attributes and their values
+    // class="content"
+    //      ↑
     size_t equalsIndex;
     while ((equalsIndex = tagParams.find('=')) != std::string::npos) {
+        //class="content"
+        //↑↑↑↑↑
         std::string key = tagParams.substr(0, equalsIndex);
-        tagParams.erase(0, equalsIndex + 2); // Skip key and the '="'
 
+        //content"
+        tagParams.erase(0, equalsIndex + 2); // delete key and the '="'
+
+        //content"
+        //       ↑
         size_t quotesPos = tagParams.find('"');
+        //content"
+        //↑↑↑↑↑↑↑
         std::string value = tagParams.substr(0, quotesPos);
+        // (nothing left in this exmple)
         tagParams.erase(0, quotesPos + 2); // Skip value and the closing quote
 
         tag.properties.push_back({key, value});
 
     }
-    // <a class="name">
 
     return tag;
 }
@@ -112,15 +136,14 @@ std::vector<Tag> select(std::string &htmlCode, const std::string &partOfTagCode,
 
     if (tagPosition == std::string::npos){
         Tag blankTag = {};
+
+        // add essential properties
         blankTag.properties.push_back({
             "outerHtml", ""
         });
         blankTag.properties.push_back({
             "visibleText", ""
         });
-        /*blankTag.properties.push_back({
-            "blank", "true"
-        });*/
         return { blankTag };
     }
 
@@ -134,8 +157,8 @@ std::vector<Tag> select(std::string &htmlCode, const std::string &partOfTagCode,
     std::vector<Tag> result = {tag};
 
     // Retrieve subsequent matching tags
-    while ((tagPosition = htmlCode.find(partOfTagCode, tagPosition+1)) != std::string::npos && count < amount) {
-        result.push_back(getTagData(htmlCode, tagPosition));
+    while (( (tagPosition = htmlCode.find(partOfTagCode, tagPosition+1)) != std::string::npos ) && ( count < amount) ) {
+        result.push_back( getTagData(htmlCode, tagPosition) );
         count++;
     }
 
@@ -153,17 +176,21 @@ json getWordData(std::string &htmlCode){
     json result;
 
     result["word"] = select(htmlCode, wordSelector(), 1)[0].getProperty("visibleText");
-    if (result["word"] == "happen"){
-        std::cout << "Test\n";
-    }
+
+
     std::vector<Tag> definitions = select(htmlCode, definitionSelector());
     std::string definitionToAdd = "";
 
+
     for (Tag definition : definitions){
         std::string visibleText = definition.getProperty("visibleText");
+
+        // don't add the plural form of the word
         if (visibleText.find("plural of") != std::string::npos){
             return json({});
         }
+
+        // try to find real definition(sometimes firstly comes spelling)
         if (visibleText.find("US spelling of") == std::string::npos){
             size_t colonPosition = visibleText.find(":");
             if (colonPosition != std::string::npos) visibleText.erase(colonPosition); // Remove trailing ":"

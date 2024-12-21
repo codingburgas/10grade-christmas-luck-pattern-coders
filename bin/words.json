@@ -40,5 +40,68 @@
         "partOfSpeech": "noun",
         "url": "https://dictionary.cambridge.org/dictionary/english/happening",
         "word": "happening"
+    },
+    {
+        "definition": "an electronic machine that is used for storing, organizing, and finding words, numbers, and pictures, for doing calculations, and for controlling other machines",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/computer",
+        "word": "computer"
+    },
+    {
+        "definition": "(especially of equipment), using, based on, or used in a system of operation that involves the control of electric current by various devices",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/electronic",
+        "word": "electronic"
+    },
+    {
+        "definition": "very much; more than usual or more than other people or things",
+        "difficulty": "A2",
+        "partOfSpeech": "adverb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/especially",
+        "word": "especially"
+    },
+    {
+        "definition": "a series of instructions that can be put into a computer in order to make it perform an operation",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/program",
+        "word": "program"
+    },
+    {
+        "definition": "a number of similar or related events or things, one following another",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/series",
+        "word": "series"
+    },
+    {
+        "definition": "(a sign or symbol representing) a unit that forms part of the system of counting and calculating",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/number",
+        "word": "number"
+    },
+    {
+        "definition": "to write your name, usually on a written or printed document, to show that you agree with its contents or have written or created it yourself",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/sign",
+        "word": "sign"
+    },
+    {
+        "definition": "belonging or relating to the person or group of people being spoken or written to",
+        "difficulty": "A1",
+        "partOfSpeech": "determiner",
+        "url": "https://dictionary.cambridge.org/dictionary/english/your",
+        "word": "your"
+    },
+    {
+        "definition": "a feeling of being happy or comfortable as part of a particular group and having a good relationship with the other members of the group because they welcome you and accept you",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/belonging",
+        "word": "belonging"
     }
 ]
