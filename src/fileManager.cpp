@@ -24,7 +24,7 @@ json getJsonDataFromFile(const std::string &fileName){
     try{
         file >> result;
     } catch(...){
-        std::cerr << "Failed to read from the file.\n";
+        std::cerr << "Json data is either incorrect or blank. It will be replaced with blank array.\n";
     }
 
     file.close();

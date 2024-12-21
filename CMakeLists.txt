@@ -50,6 +50,7 @@ set(APP_FILES
     "include/word.h"
     "src/word.cpp"
     "bin/words.json"
+    "bin/words_.json"
     "include/fileManager.h"
     "src/fileManager.cpp"
     "include/wordAlgorithms.h"
@@ -102,7 +103,6 @@ target_link_libraries(application PRIVATE
         Qt6::UiTools
         "${CURL_LIBRARY}/libcurl.a"
         "${CURL_LIBRARY}/libcurl.dll.a"
-        "${GUMBO_LIBRARY}"
 )
 
 # Copy libcurl.dll to the output folder

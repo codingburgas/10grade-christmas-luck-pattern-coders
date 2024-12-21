@@ -159,7 +159,9 @@ json getWordData(std::string &htmlCode){
             return json({});
         }
         if (visibleText.find("US spelling of") == std::string::npos){
-            definitionToAdd = visibleText.substr(0, visibleText.size()-2); // Remove trailing ": "
+            size_t colonPosition = visibleText.find(":");
+            if (colonPosition != std::string::npos) visibleText.erase(colonPosition); // Remove trailing ":"
+            definitionToAdd = visibleText;
             break;
         }
     }

@@ -10,7 +10,7 @@ using json=nlohmann::json;
 
 int main(int argc, char *argv[]){
     //createWordsFile("https://dictionary.cambridge.org/dictionary/english/game", 10);
-    createWordsFile("https://dictionary.cambridge.org/dictionary/english/programming", 200);
+    createWordsFile("https://dictionary.cambridge.org/dictionary/english/programming", 3);
     //createWordsFile("https://dictionary.cambridge.org/dictionary/english/lives", 3);
 
 

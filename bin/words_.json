@@ -1,0 +1,1402 @@
+[
+    {
+        "definition": "the activity or job of writing computer progra",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/programming",
+        "word": "programming"
+    },
+    {
+        "definition": "the situation in which a lot of things are happening or people are moving around",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/activity",
+        "word": "activity"
+    },
+    {
+        "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/situation",
+        "word": "situation"
+    },
+    {
+        "definition": "something that has happened",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/happening",
+        "word": "happening"
+    },
+    {
+        "definition": "(of a situation or an event) to have existence or come into existence",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/happen",
+        "word": "happen"
+    },
+    {
+        "definition": "anything that happens, especially something important or unusual",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/event",
+        "word": "event"
+    },
+    {
+        "definition": "very much; more than usual or more than other people or things",
+        "difficulty": "A2",
+        "partOfSpeech": "adverb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/especially",
+        "word": "especially"
+    },
+    {
+        "definition": "normal; happening, done, or used most often",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/usual",
+        "word": "usual"
+    },
+    {
+        "definition": "ordinary or usual; the same as would be expected",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/normal",
+        "word": "normal"
+    },
+    {
+        "definition": "not different or special or unexpected in any way; usual",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/ordinary",
+        "word": "ordinary"
+    },
+    {
+        "definition": "not ordinary or usual",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/special",
+        "word": "special"
+    },
+    {
+        "definition": "a road vehicle with an engine, four wheels, and seats for a small number of people",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/car",
+        "word": "car"
+    },
+    {
+        "definition": "a long, hard surface built for vehicles to travel along",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/road",
+        "word": "road"
+    },
+    {
+        "definition": "continuing for a large amount of time",
+        "difficulty": "A1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/long",
+        "word": "long"
+    },
+    {
+        "definition": "happening or existing without stopping",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/continuing",
+        "word": "continuing"
+    },
+    {
+        "definition": "used to refer to something that exists now",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/existing",
+        "word": "existing"
+    },
+    {
+        "definition": "to be, or to be real",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/exist",
+        "word": "exist"
+    },
+    {
+        "definition": "existing in fact and not imaginary",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/real",
+        "word": "real"
+    },
+    {
+        "definition": "something that is known to have happened or to exist, especially something for which proof exists, or about which there is information",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/fact",
+        "word": "fact"
+    },
+    {
+        "definition": "used to refer to something or someone that is familiar to or understood by people",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/known",
+        "word": "known"
+    },
+    {
+        "definition": "easy to recognize because of being seen, met, heard, etc. before",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/familiar",
+        "word": "familiar"
+    },
+    {
+        "definition": "needing little effort",
+        "difficulty": "A1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/easy",
+        "word": "easy"
+    },
+    {
+        "definition": "to have to have something, or to want something very much",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/need",
+        "word": "need"
+    },
+    {
+        "definition": "to wish for a particular thing or plan of action. \"Want\" is not used in polite requests",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/want",
+        "word": "want"
+    },
+    {
+        "definition": "used with the past simple to express that you feel sorry or sad about a state or situation that exists at the moment",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/wish",
+        "word": "wish"
+    },
+    {
+        "definition": "easy to understand or do; not difficult",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/simple",
+        "word": "simple"
+    },
+    {
+        "definition": "to know the meaning of something that someone says",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/understand",
+        "word": "understand"
+    },
+    {
+        "definition": "to have information in your mind",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/know",
+        "word": "know"
+    },
+    {
+        "definition": "facts about a situation, person, event, etc.",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/information",
+        "word": "information"
+    },
+    {
+        "definition": "a man, woman, or child",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/person",
+        "word": "person"
+    },
+    {
+        "definition": "a boy or girl from the time of birth until he or she is an adult, or a son or daughter of any age",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/child",
+        "word": "child"
+    },
+    {
+        "definition": "a male child or, more generally, a male of any age",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/boy",
+        "word": "boy"
+    },
+    {
+        "definition": "belonging or relating to men or boys",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/male",
+        "word": "male"
+    },
+    {
+        "definition": "a feeling of being happy or comfortable as part of a particular group and having a good relationship with the other members of the group because they welcome you and accept you",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/belonging",
+        "word": "belonging"
+    },
+    {
+        "definition": "the fact of feeling something physical",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/feeling",
+        "word": "feeling"
+    },
+    {
+        "definition": "relating to the body",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/physical",
+        "word": "physical"
+    },
+    {
+        "definition": "to find or show the connection between two or more things",
+        "difficulty": "C2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/relate",
+        "word": "relate"
+    },
+    {
+        "definition": "to discover, especially where a thing or person is, either unexpectedly or by searching, or to discover where to get or how to achieve something",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/find",
+        "word": "find"
+    },
+    {
+        "definition": "to find information, a place, or an object, especially for the first time",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/discover",
+        "word": "discover"
+    },
+    {
+        "definition": "an area, town, building, etc.",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/place",
+        "word": "place"
+    },
+    {
+        "definition": "a particular part of a place, piece of land, or country",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/area",
+        "word": "area"
+    },
+    {
+        "definition": "special, or this and not any other",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/particular",
+        "word": "particular"
+    },
+    {
+        "definition": "wished for and loved by other people",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/wanted",
+        "word": "wanted"
+    },
+    {
+        "definition": "to like another adult very much and be romantically and sexually attracted to them, or to have strong feelings of liking a friend or person in your family",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/love",
+        "word": "love"
+    },
+    {
+        "definition": "a person or animal that has grown to full size and strength",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/adult",
+        "word": "adult"
+    },
+    {
+        "definition": "something that lives and moves but is not a human, bird, fish, or insect",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/animal",
+        "word": "animal"
+    },
+    {
+        "definition": "the period between birth and death, or the experience or state of being alive",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/life",
+        "word": "life"
+    },
+    {
+        "definition": "a length of time",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/period",
+        "word": "period"
+    },
+    {
+        "definition": "the measurement of something from end to end or along its longest side",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/length",
+        "word": "length"
+    },
+    {
+        "definition": "the act or process of measuring",
+        "difficulty": "C2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/measurement",
+        "word": "measurement"
+    },
+    {
+        "definition": "to behave in the stated way",
+        "difficulty": "B2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/act",
+        "word": "act"
+    },
+    {
+        "definition": "to act in a particular way",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/behave",
+        "word": "behave"
+    },
+    {
+        "definition": "in a severe and harmful way",
+        "difficulty": "A2",
+        "partOfSpeech": "adverb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/badly",
+        "word": "badly"
+    },
+    {
+        "definition": "causing very great pain, difficulty, worry, damage, etc.; very serious",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/severe",
+        "word": "severe"
+    },
+    {
+        "definition": "the reason why something, especially something bad, happens",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/cause",
+        "word": "cause"
+    },
+    {
+        "definition": "the cause of an event or situation or something that provides an excuse or explanation",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/reason",
+        "word": "reason"
+    },
+    {
+        "definition": "to give someone something that they need",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/provide",
+        "word": "provide"
+    },
+    {
+        "definition": "a very thin book with a small number of pages and a paper cover, giving information about somethi",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/booklet",
+        "word": "booklet"
+    },
+    {
+        "definition": "having a small distance between two opposite sides",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/thin",
+        "word": "thin"
+    },
+    {
+        "definition": "little in size or amount when compared with what is typical or average",
+        "difficulty": "A1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/small",
+        "word": "small"
+    },
+    {
+        "definition": "how large or small something or someone is",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/size",
+        "word": "size"
+    },
+    {
+        "definition": "big in size or amount",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/large",
+        "word": "large"
+    },
+    {
+        "definition": "large in size or amount",
+        "difficulty": "A1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/big",
+        "word": "big"
+    },
+    {
+        "definition": "a collection or mass, especially of something that cannot be counted",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/amount",
+        "word": "amount"
+    },
+    {
+        "definition": "a group of objects of one type that have been collected by one person or in one place",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/collection",
+        "word": "collection"
+    },
+    {
+        "definition": "a number of people or things that are put together or considered as a unit",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/group",
+        "word": "group"
+    },
+    {
+        "definition": "(a sign or symbol representing) a unit that forms part of the system of counting and calculating",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/number",
+        "word": "number"
+    },
+    {
+        "definition": "to write your name, usually on a written or printed document, to show that you agree with its contents or have written or created it yourself",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/sign",
+        "word": "sign"
+    },
+    {
+        "definition": "belonging or relating to the person or group of people being spoken or written to",
+        "difficulty": "A1",
+        "partOfSpeech": "determiner",
+        "url": "https://dictionary.cambridge.org/dictionary/english/your",
+        "word": "your"
+    },
+    {
+        "definition": "men, women, and children",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/people",
+        "word": "people"
+    },
+    {
+        "definition": "physical activity that you do to make your body strong and healthy",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/exercise",
+        "word": "exercise"
+    },
+    {
+        "definition": "the whole physical structure that forms a person or animal",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/body",
+        "word": "body"
+    },
+    {
+        "definition": "complete or not divided",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/whole",
+        "word": "whole"
+    },
+    {
+        "definition": "to make whole or perfect",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/complete",
+        "word": "complete"
+    },
+    {
+        "definition": "complete and correct in every way, of the best possible type or without fault",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/perfect",
+        "word": "perfect"
+    },
+    {
+        "definition": "in agreement with the true facts or with what is generally accepted",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/correct",
+        "word": "correct"
+    },
+    {
+        "definition": "the situation in which people have the same opinion, or in which they approve of or accept something",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/agreement",
+        "word": "agreement"
+    },
+    {
+        "definition": "a thought or belief about something or someone",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/opinion",
+        "word": "opinion"
+    },
+    {
+        "definition": "past simple and past participle ofclass=\"usage dusage\">past simple and past participle of\n        \n         thinkclass=\"x-h dx-h\">think  Undefined value.n>  Undefined value.n>\n        \n         thinkclass=\"x-h dx-h\">think  Undefined value.n>  Undefined value.",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/thought",
+        "word": "thought"
+    },
+    {
+        "definition": "the activity of using your mind to consider something",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/thinking",
+        "word": "thinking"
+    },
+    {
+        "definition": "the part of a person that makes it possible for him or her to think, feel emotions, and understand things",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/mind",
+        "word": "mind"
+    },
+    {
+        "definition": "some but not all of a thing",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/part",
+        "word": "part"
+    },
+    {
+        "definition": "a thick, flat piece of meat or fish, especially meat from a cow",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/steak",
+        "word": "steak"
+    },
+    {
+        "definition": "having a large distance between two sides",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/thick",
+        "word": "thick"
+    },
+    {
+        "definition": "the amount of space between two places",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/distance",
+        "word": "distance"
+    },
+    {
+        "definition": "an empty area that is available to be used",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/space",
+        "word": "space"
+    },
+    {
+        "definition": "not containing any things or people",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/empty",
+        "word": "empty"
+    },
+    {
+        "definition": "to have something inside or include something as a part",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/contain",
+        "word": "contain"
+    },
+    {
+        "definition": "to contain something as a part of something else, or to make something part of something else",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/include",
+        "word": "include"
+    },
+    {
+        "definition": "used after words beginning with any-, every-, no-, and some-, or after how, what, where, who, why, but not which, to mean 'other', 'another', 'different', 'extra'",
+        "difficulty": "A2",
+        "partOfSpeech": "adverb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/else",
+        "word": "else"
+    },
+    {
+        "definition": "the first part of something or the start of something",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/beginning",
+        "word": "beginning"
+    },
+    {
+        "definition": "to begin doing something",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/start",
+        "word": "start"
+    },
+    {
+        "definition": "to start to happen or exist",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/begin",
+        "word": "begin"
+    },
+    {
+        "definition": "the part of existence that is measured in minutes, days, years, etc., or this process considered as a whole",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/time",
+        "word": "time"
+    },
+    {
+        "definition": "the fact of something or someone existing",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/existence",
+        "word": "existence"
+    },
+    {
+        "definition": "a sentence or phrase used to find out information",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/question",
+        "word": "question"
+    },
+    {
+        "definition": "a group of words, usually containing a verb, that expresses a thought in the form of a statement, question, instruction, or exclamation and starts with a capital letter when written",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/sentence",
+        "word": "sentence"
+    },
+    {
+        "definition": "a word or phrase that describes an action, condition, or experience",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/verb",
+        "word": "verb"
+    },
+    {
+        "definition": "to say or write what someone or something is like",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/describe",
+        "word": "describe"
+    },
+    {
+        "definition": "to try to hurt or defeat using violence",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/attack",
+        "word": "attack"
+    },
+    {
+        "definition": "to attempt to do something",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/try",
+        "word": "try"
+    },
+    {
+        "definition": "to try to do something, especially something difficult",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/attempt",
+        "word": "attempt"
+    },
+    {
+        "definition": "needing skill or effort",
+        "difficulty": "A1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/difficult",
+        "word": "difficult"
+    },
+    {
+        "definition": "an ability to do an activity or job well, especially because you have practised it",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/skill",
+        "word": "skill"
+    },
+    {
+        "definition": "the physical or mental power or skill needed to do something",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/ability",
+        "word": "ability"
+    },
+    {
+        "definition": "relating to the mind, or involving the process of thinking",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/mental",
+        "word": "mental"
+    },
+    {
+        "definition": "If an activity, situation, etc. involves something, that thing is a part of the activity, etc.",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/involve",
+        "word": "involve"
+    },
+    {
+        "definition": "connected with the natural processes of living things",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/biological",
+        "word": "biological"
+    },
+    {
+        "definition": "(of wires, pipes, devices, etc.) joined together",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/connected",
+        "word": "connected"
+    },
+    {
+        "definition": "(especially in the past) a piece of paper with a message sent by telegra",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/telegram",
+        "word": "telegram"
+    },
+    {
+        "definition": "a part of something",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/piece",
+        "word": "piece"
+    },
+    {
+        "definition": "(a type of) woven material",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/cloth",
+        "word": "cloth"
+    },
+    {
+        "definition": "a particular group of people or things that share similar characteristics and form a smaller division of a larger set",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/type",
+        "word": "type"
+    },
+    {
+        "definition": "to have or use something at the same time as someone else",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/share",
+        "word": "share"
+    },
+    {
+        "definition": "If you are possessive about something that you own, you do not like lending it to other people or sharing it with other people",
+        "difficulty": "C2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/possessive",
+        "word": "possessive"
+    },
+    {
+        "definition": "the activity of lending money to people and organizations which they pay back with interest",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/lending",
+        "word": "lending"
+    },
+    {
+        "definition": "coins or notes (= special pieces of paper) that are used to buy things, or an amount of these that a person has",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/money",
+        "word": "money"
+    },
+    {
+        "definition": "a small, round piece of metal, usually silver or copper coloured, that is used as money",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/coin",
+        "word": "coin"
+    },
+    {
+        "definition": "a chemical element, such as iron or gold, or a mixture of such elements, such as steel, that is generally hard and strong, and through which electricity and heat can travel",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/metal",
+        "word": "metal"
+    },
+    {
+        "definition": "any basic substance that is used in or produced by a reaction involving changes to atoms or molecules",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/chemical",
+        "word": "chemical"
+    },
+    {
+        "definition": "simple and not complicated, so able to provide the base or starting point from which something can develop",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/basic",
+        "word": "basic"
+    },
+    {
+        "definition": "involving a lot of different parts, in a way that is difficult to understand",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/complicated",
+        "word": "complicated"
+    },
+    {
+        "definition": "advice and information about how to do or use something, often written in a book or on the side of a container",
+        "difficulty": "A2",
+        "partOfSpeech": "phrase",
+        "url": "https://dictionary.cambridge.org/dictionary/english/instructions",
+        "word": "instructions"
+    },
+    {
+        "definition": "an opinion that someone offers you about what you should do or how you should act in a particular situation",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/advice",
+        "word": "advice"
+    },
+    {
+        "definition": "to ask someone if they would like to have something or if they would like you to do something",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/offer",
+        "word": "offer"
+    },
+    {
+        "definition": "to put a question to someone, or to request an answer from someone",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/ask",
+        "word": "ask"
+    },
+    {
+        "definition": "the act of politely or officially asking for something",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/request",
+        "word": "request"
+    },
+    {
+        "definition": "behaving in a way that is socially correct and shows understanding of and care for other people's feelings",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/polite",
+        "word": "polite"
+    },
+    {
+        "definition": "in or relating to a social situation",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adverb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/socially",
+        "word": "socially"
+    },
+    {
+        "definition": "relating to activities in which you meet and spend time with other people and that happen during the time when you are not working",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/social",
+        "word": "social"
+    },
+    {
+        "definition": "to see and talk to someone for the first time",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/meet",
+        "word": "meet"
+    },
+    {
+        "definition": "to be conscious of what is around you by using your eyes",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/see",
+        "word": "see"
+    },
+    {
+        "definition": "to notice that a particular thing or person exists or is present",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/conscious",
+        "word": "conscious"
+    },
+    {
+        "definition": "to see or become conscious of something or someone",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/notice",
+        "word": "notice"
+    },
+    {
+        "definition": "to start to be",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/become",
+        "word": "become"
+    },
+    {
+        "definition": "to (make something) become larger in amount or size",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/increase",
+        "word": "increase"
+    },
+    {
+        "definition": "using or carrying weapons",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/armed",
+        "word": "armed"
+    },
+    {
+        "definition": "to hold something or someone with your hands, arms, or on your back and transport it, him, or her from one place to another",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/carry",
+        "word": "carry"
+    },
+    {
+        "definition": "to take and keep something in your hand or arms",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/hold",
+        "word": "hold"
+    },
+    {
+        "definition": "to have or continue to have in your possession",
+        "difficulty": "A2",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep",
+        "word": "keep"
+    },
+    {
+        "definition": "to keep happening, existing, or doing something, or to cause something or someone to do this",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/continue",
+        "word": "continue"
+    },
+    {
+        "definition": "a small vehicle for travelling on water",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/boat",
+        "word": "boat"
+    },
+    {
+        "definition": "a machine, usually with wheels and an engine, used for transporting people or goods, especially on land",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/vehicle",
+        "word": "vehicle"
+    },
+    {
+        "definition": "a piece of equipment with several moving parts that uses power to do a particular type of work",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/machine",
+        "word": "machine"
+    },
+    {
+        "definition": "the set of necessary tools, clothing, etc. for a particular purpose",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/equipment",
+        "word": "equipment"
+    },
+    {
+        "definition": "needed in order to achieve a particular result",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/necessary",
+        "word": "necessary"
+    },
+    {
+        "definition": "necessary or wanted",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/needed",
+        "word": "needed"
+    },
+    {
+        "definition": "the amount of time during the day or week that you work",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/hours",
+        "word": "hours"
+    },
+    {
+        "definition": "a period of 24 hours, especially from twelve o'clock one night to twelve o'clock the next night",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/day",
+        "word": "day"
+    },
+    {
+        "definition": "the part of every 24-hour period when it is dark because there is very little light from the sun",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/night",
+        "word": "night"
+    },
+    {
+        "definition": "open or available all day and all night without closing or stopping",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/24-hour",
+        "word": "24-hour"
+    },
+    {
+        "definition": "not closed or fastened",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/open",
+        "word": "open"
+    },
+    {
+        "definition": "not open",
+        "difficulty": "A1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/closed",
+        "word": "closed"
+    },
+    {
+        "definition": "A draughty place, especially a room, has currents of unpleasantly cold air blowing through it",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/draughty",
+        "word": "draughty"
+    },
+    {
+        "definition": "a part of the inside of a building that is separated from other parts by walls, floor, and ceiling",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/room",
+        "word": "room"
+    },
+    {
+        "definition": "a structure with walls and a roof, such as a house or factory",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/building",
+        "word": "building"
+    },
+    {
+        "definition": "the way in which the parts of a system or object are arranged or organized, or a system arranged in this way",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/structure",
+        "word": "structure"
+    },
+    {
+        "definition": "a set of connected things or devices that operate together",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/system",
+        "word": "system"
+    },
+    {
+        "definition": "an object or machine that has been invented for a particular purpose",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/device",
+        "word": "device"
+    },
+    {
+        "definition": "a thing that you can see or touch but that is not usually a living animal, plant, or person",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/object",
+        "word": "object"
+    },
+    {
+        "definition": "to put your hand or another part of your body lightly onto and off something or someone",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/touch",
+        "word": "touch"
+    },
+    {
+        "definition": "the part of the body at the end of the arm that is used for holding, moving, touching, and feeling things",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/hand",
+        "word": "hand"
+    },
+    {
+        "definition": "either of the two long parts of the upper body that are attached to the shoulders and have the hands at the end",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/arm",
+        "word": "arm"
+    },
+    {
+        "definition": "at a higher position or level than something else, or being the top part of something",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/upper",
+        "word": "upper"
+    },
+    {
+        "definition": "comparative ofclass=\"usage dusage\">comparative of\n        \n         highclass=\"x-h dx-h\">high  Undefined value.n>  Undefined value.n>\n        \n         highclass=\"x-h dx-h\">high  Undefined value.n>  Undefined value.",
+        "difficulty": "Undefined value.",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/higher",
+        "word": "higher"
+    },
+    {
+        "definition": "modern and well developed",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/advanced",
+        "word": "advanced"
+    },
+    {
+        "definition": "designed and made using the most recent ideas and methods",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/modern",
+        "word": "modern"
+    },
+    {
+        "definition": "to make or draw plans for something, for example clothes or buildings",
+        "difficulty": "B1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/design",
+        "word": "design"
+    },
+    {
+        "definition": "to make a picture of something or someone with a pencil or pen",
+        "difficulty": "A1",
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/draw",
+        "word": "draw"
+    },
+    {
+        "definition": "a drawing, painting, photograph, etc.",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/picture",
+        "word": "picture"
+    },
+    {
+        "definition": "the act of making a picture with a pencil or pen, or a picture made in this way",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/drawing",
+        "word": "drawing"
+    },
+    {
+        "definition": "a long, thin object, usually made of wood, for writing or drawing, with a sharp black or coloured point at one end",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/pencil",
+        "word": "pencil"
+    },
+    {
+        "definition": "a hard substance that forms the branches and trunks of trees and can be used as a building material, for making things, or as a fuel",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/wood",
+        "word": "wood"
+    },
+    {
+        "definition": "material with particular physical characteristics",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/substance",
+        "word": "substance"
+    },
+    {
+        "definition": "a physical substance that things can be made from",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/material",
+        "word": "material"
+    },
+    {
+        "definition": "the hard, solid substance found in the ground that is often used for building, or a piece of this",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/stone",
+        "word": "stone"
+    },
+    {
+        "definition": "hard or firm, keeping a clear shape",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/solid",
+        "word": "solid"
+    },
+    {
+        "definition": "not soft but not completely hard",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/firm",
+        "word": "firm"
+    },
+    {
+        "definition": "not hard or firm",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/soft",
+        "word": "soft"
+    },
+    {
+        "definition": "the surface of the earth",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/ground",
+        "word": "ground"
+    },
+    {
+        "definition": "the outer or top part or layer of something",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/surface",
+        "word": "surface"
+    },
+    {
+        "definition": "at a greater distance from the centre",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/outer",
+        "word": "outer"
+    },
+    {
+        "definition": "large in amount, size, or degree",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/great",
+        "word": "great"
+    },
+    {
+        "definition": "(an) amount or level of something",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/degree",
+        "word": "degree"
+    },
+    {
+        "definition": "the height of something",
+        "difficulty": "B2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/level",
+        "word": "level"
+    },
+    {
+        "definition": "the distance from the top to the bottom of something, or the quality of being tall",
+        "difficulty": "B1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/height",
+        "word": "height"
+    },
+    {
+        "definition": "the highest place or part",
+        "difficulty": "A2",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/top",
+        "word": "top"
+    },
+    {
+        "definition": "(especially of things that are not living) being a large distance from top to bottom or a long way above the ground, or having the stated distance from top to bottom",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/high",
+        "word": "high"
+    },
+    {
+        "definition": "alive now",
+        "difficulty": "B2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/living",
+        "word": "living"
+    },
+    {
+        "definition": "living, not dead",
+        "difficulty": "B1",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/alive",
+        "word": "alive"
+    },
+    {
+        "definition": "not now living",
+        "difficulty": "A2",
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/dead",
+        "word": "dead"
+    },
+    {
+        "definition": "a period of twelve months, especially from 1 January to 31 December",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/year",
+        "word": "year"
+    },
+    {
+        "definition": "a period of about four weeks, especially one of the twelve periods into which a year is divided",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/month",
+        "word": "month"
+    },
+    {
+        "definition": "a period of seven days, especially either from Monday to Sunday or from Sunday to Saturday",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/week",
+        "word": "week"
+    },
+    {
+        "definition": "the day of the week after Sunday and before Tuesday",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/monday",
+        "word": "Monday"
+    },
+    {
+        "definition": "the day of the week after Saturday and before Monday, when most people in Western countries do not go to work",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/sunday",
+        "word": "Sunday"
+    },
+    {
+        "definition": "the day of the week after Friday and before Sunday",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/saturday",
+        "word": "Saturday"
+    },
+    {
+        "definition": "the day of the week after Thursday and before Saturday",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/friday",
+        "word": "Friday"
+    },
+    {
+        "definition": "the day of the week after Wednesday and before Friday",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/thursday",
+        "word": "Thursday"
+    },
+    {
+        "definition": "the day of the week after Tuesday and before Thursday",
+        "difficulty": "A1",
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/wednesday",
+        "word": "Wednesday"
+    }
+]
