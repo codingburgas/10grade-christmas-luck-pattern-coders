@@ -6,9 +6,9 @@ project(pattern_coders VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 find_package(Qt6 REQUIRED COMPONENTS
-    Widgets
-    UiTools
+    Quick
 )
 
 # Specify the path to libcurl
@@ -54,6 +54,9 @@ set(APP_FILES
     "src/fileManager.cpp"
     "include/wordAlgorithms.h"
     "src/wordAlgorithms.cpp"
+    "src/main.cpp"
+    "assets/resources.qrc"
+    "assets/ui/main.qml"
 )
 
 
@@ -87,6 +90,7 @@ qt_add_executable(application
 
 
         #src/main.cpp
+
 )
 
 
@@ -99,8 +103,7 @@ target_sources(application PRIVATE ${RESOURCES})
 
 
 target_link_libraries(application PRIVATE
-        Qt6::Widgets
-        Qt6::UiTools
+        Qt6::Quick
         "${CURL_LIBRARY}/libcurl.a"
         "${CURL_LIBRARY}/libcurl.dll.a"
 )
@@ -111,6 +114,10 @@ target_link_libraries(application PRIVATE
 #        "${CURL_LIBRARY}/libcurl.dll.a"
 #        "${CMAKE_SOURCE_DIR}/bin"
 #)
+    
+)
+
+
 
 
 set_target_properties(application PROPERTIES
