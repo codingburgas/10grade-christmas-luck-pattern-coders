@@ -139,7 +139,7 @@ std::vector<Tag> select(std::string &htmlCode, const std::string &partOfTagCode,
 
         // add essential properties
         blankTag.properties.push_back({
-            "outerHtml", ""
+            "outerHTML", ""
         });
         blankTag.properties.push_back({
             "visibleText", ""

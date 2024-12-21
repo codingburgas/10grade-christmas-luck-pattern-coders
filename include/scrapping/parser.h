@@ -14,9 +14,17 @@
 using json=nlohmann::json;   //type alias
 
 struct Tag{
-    //name, value
+    //key, value
     std::vector<std::vector< std::string >> properties = {};
 
+
+    /*
+     * Retrieves the value of a specified property from the Tag structure.
+     * Parameters:
+     * --property: The name of the property to retrieve.
+     * Returns:
+     * --std::string: The value of the specified property.
+     */
     std::string getProperty(std::string key){
         for (auto keyValue : properties){
             if (keyValue[0] == key){
@@ -25,6 +33,33 @@ struct Tag{
         }
 
         return "Undefined value.";
+    }
+
+
+    /*
+     * Compares two Tag objects for equality.
+     * Parameters:
+     * --tagToCompare: The Tag object to compare with the current object.
+     * Returns:
+     * --bool: Returns true if the two Tag objects are considered equal, otherwise false.
+     */
+    bool operator ==(Tag &tagToCompare){
+        for (std::vector<std::string> property : properties){
+            if (property[1] != tagToCompare.getProperty(property[0])) return false;
+        }
+
+        return true;
+    }
+
+    /*
+     * Compares two Tag objects for inequality.
+     * Parameters:
+     * --tagToCompare: The Tag object to compare with the current object.
+     * Returns:
+     * --bool: Returns true if the two Tag objects are considered inequal, otherwise false.
+     */
+    bool operator !=(Tag &tagToCompare){
+        return !(*this==tagToCompare);
     }
 
 };

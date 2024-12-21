@@ -20,23 +20,23 @@ int test(){
     bool failed = false;
 
 
-    /*{
+    {
         std::cout << "----Testing getTagData-----------\n";
         int code = test_getTagData();
-        printResult(code);
+        printResult(code, &failed);
 
         std::cout << "---------------------------------\n";
-    }*/
+    }
 
 
 
-    /*{
+    {
         std::cout << "----Testing select-----------\n";
-        int code = test_select()();
-        printResult(code);
+        int code = test_select();
+        printResult(code, &failed);
 
         std::cout << "---------------------------------\n";
-    }*/
+    }
 
 
 
@@ -92,7 +92,8 @@ void printResult(int code, bool *failed){
         break;
 
     default:
-        std::cout << "Unexpected exit code\n";
+        std::cerr << "Unexpected exit code\n";
+        *failed = true;
         break;
     }
 }
@@ -160,6 +161,79 @@ bool compareVectors(std::vector<T> &v1, std::vector<T> &v2, bool useValueAtPoint
 
     return true;
 }
+
+
+/*
+ * Tests the getTagData function
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test_getTagData(){
+    int code = 0;
+
+    std::vector<std::string> testTags = {
+        "<a class=\"testLink\" href=\"someUrl\">Click to change page</a>",
+        "<div class=\"info\">Information</div>"
+    };
+
+    std::vector<Tag> expectedTags = {
+        Tag{
+            .properties = {
+                {"outerHTML", "<a class=\"testLink\" href=\"someUrl\">Click to change page</a>"},
+                {"visibleText", "Click to change page"},
+                {"class", "testLink"},
+                {"href", "someUrl"}
+            }
+        },
+        Tag{
+            .properties = {
+                {"outerHTML", "<div class=\"info\">Information</div>"},
+                {"visibleText", "Information"},
+                {"class", "info"},
+            }
+        },
+    };
+
+    for (size_t i=0; i<testTags.size(); i++){
+        size_t tagPosition = 0;
+        Tag tag = getTagData(testTags[i], tagPosition);
+
+        if (tag != expectedTags[i]) code = 1;
+    }
+
+    return code;
+}
+
+
+
+/*
+ * Tests the select function
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test_select(){
+    int code = 0;
+
+    std::vector< std::pair<std::string, std::string> > testData = {
+        {"<a class=\"query\" href=\"some_url\">Click</a><a class=\"query\" href=\"some_url\">Click</a>", "<a class=\"query\""},
+        {"<div id=\"div_id\">some info</div>", "<div id=\"div_id\""}
+    };
+
+    std::vector<int> expectedLength = {2, 2};
+
+    for (size_t i=0; i<testData.size(); i++){
+        if (select(testData[i].first, testData[i].second).size() != expectedLength[i]) code = 1;
+    }
+
+    return code;
+}
+
+
+
 
 /*
  * Tests the sortWords function by comparing sorted results to expected outputs

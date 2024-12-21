@@ -18,10 +18,23 @@ int test();
  */
 void printResult(int code, bool *failed);
 
+/*
+ * Tests the getTagData function
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test_getTagData();
 
-/*void test_getTagData();
-
-void test_select();*/
+/*
+ * Tests the select function
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test_select();
 
 
 /*

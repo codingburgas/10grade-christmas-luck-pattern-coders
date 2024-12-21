@@ -37,7 +37,6 @@ set(NLOHMANN_JSON "${NLOHMANN_JSON_DIR}/json.hpp")
 
 
 set(SCRAPPING
-    "src/scrapping/main.cpp"
     "include/scrapping/scrapper.h"
     "src/scrapping/scrapper.cpp"
     "include/scrapping/parser.h"
@@ -75,12 +74,13 @@ qt_add_executable(application
 
         #----- scrapping -----
         ${SCRAPPING}
+        #src/scrapping/main.cpp
 
         #------ application ------
         ${APP_FILES}
 
         #----- testing -----------
-        #${TESTING_FILES}
+        ${TESTING_FILES}
 
         #----- git -------
         .gitignore
