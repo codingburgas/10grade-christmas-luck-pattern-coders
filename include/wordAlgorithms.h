@@ -17,7 +17,7 @@
  * Returns:
  * --None
  */
-void insertionSort(std::vector<Word>& arr, int begin, int end);
+void insertionSort(std::vector<Word*>& arr, int begin, int end);
 
 
 /*
@@ -29,7 +29,7 @@ void insertionSort(std::vector<Word>& arr, int begin, int end);
  * Returns:
  * --The index of the pivot element after partitioning
  */
-int partition(std::vector<Word>& arr, int begin, int end);
+int partition(std::vector<Word*>& arr, int begin, int end);
 
 
 /*
@@ -41,7 +41,7 @@ int partition(std::vector<Word>& arr, int begin, int end);
  * Returns:
  * --None
  */
-void quickSort(std::vector<Word>& arr, int begin, int end);
+void quickSort(std::vector<Word*>& arr, int begin, int end);
 
 
 /*
@@ -53,7 +53,7 @@ void quickSort(std::vector<Word>& arr, int begin, int end);
  * Returns:
  * --None
  */
-void hybridSort(std::vector<Word>& arr, int begin, int end);
+void hybridSort(std::vector<Word*>& arr, int begin, int end);
 
 
 /*
@@ -63,7 +63,10 @@ void hybridSort(std::vector<Word>& arr, int begin, int end);
  * Returns:
  * --None
  */
-void sortWords(std::vector<Word>& arr);
+void sortWords(std::vector<Word*>& arr);
+
+
+void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool& caseSensitive);
 
 
 

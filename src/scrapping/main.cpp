@@ -5,7 +5,14 @@
 //#include "../include/parser.h"
 #include "scrapping/scrapper.h"
 
+#include "json.hpp"
+using json=nlohmann::json;
+
 int main(int argc, char *argv[]){
-    createWordsFile("https://dictionary.cambridge.org/dictionary/english/game", 20);
+    //createWordsFile("https://dictionary.cambridge.org/dictionary/english/game", 10);
+    createWordsFile("https://dictionary.cambridge.org/dictionary/english/programming", 200);
+    //createWordsFile("https://dictionary.cambridge.org/dictionary/english/lives", 3);
+
+
     std::cout << "End\n";
 }

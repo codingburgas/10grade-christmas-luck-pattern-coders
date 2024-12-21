@@ -73,13 +73,13 @@ qt_add_executable(application
 
 
         #----- scrapping -----
-        #${SCRAPPING}
+        ${SCRAPPING}
 
         #------ application ------
         ${APP_FILES}
 
         #----- testing -----------
-        ${TESTING_FILES}
+        #${TESTING_FILES}
 
         #----- git -------
         .gitignore
