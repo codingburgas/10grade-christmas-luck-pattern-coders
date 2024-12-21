@@ -45,6 +45,7 @@ set(SCRAPPING
 )
 
 
+
 set(APP_FILES
     "include/word.h"
     "src/word.cpp"
@@ -76,14 +77,14 @@ qt_add_executable(application
 
 
         #----- scrapping -----
-        ${SCRAPPING}
+        #${SCRAPPING}
         #src/scrapping/main.cpp
 
         #------ application ------
         ${APP_FILES}
 
         #----- testing -----------
-        ${TESTING_FILES}
+        #${TESTING_FILES}
 
         #----- git -------
         .gitignore
@@ -96,7 +97,7 @@ qt_add_executable(application
 
 
 
-#qt_add_resources(RESOURCES assets/resources.qrc)
+qt_add_resources(RESOURCES assets/resources.qrc)
 target_sources(application PRIVATE ${RESOURCES})
 
 
@@ -115,7 +116,7 @@ target_link_libraries(application PRIVATE
 #        "${CMAKE_SOURCE_DIR}/bin"
 #)
     
-)
+#)
 
 
 
