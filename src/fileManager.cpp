@@ -23,11 +23,13 @@ json getJsonDataFromFile(const std::string &fileName){
 
     try{
         file >> result;
-    } catch(std::exception &e){
+    } catch(...){
         std::cerr << "Failed to read from the file.\n";
     }
 
     file.close();
+
+    if (result.empty()) result = json::parse("[]");
 
     return result;
 }
@@ -51,7 +53,7 @@ void appendToFile(const std::string& fileName, const json& jsonToAppend) {
     // write to file
     std::ofstream fileInWriteMode(fileName);
     try{
-        fileInWriteMode << data;
+        fileInWriteMode << data.dump(4);
     } catch (const std::exception& e) {
         std::cerr << "Error writing JSON to file: " << e.what() << std::endl;
     }

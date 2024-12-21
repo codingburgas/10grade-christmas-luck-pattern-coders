@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../include/word.h"
+#include "word.h"
 
 
 
@@ -46,4 +46,40 @@ bool Word::operator==(Word& objectToCompare){
 
 bool Word::operator!=(Word& objectToCompare){
     return !sameWords(*this, objectToCompare);
+}
+
+Word* convertJsonToWord(json &jsonData){
+    Word *word = new Word{};
+
+    try{
+        word->word = jsonData["word"];
+    }catch(...){}
+
+    try{
+        word->definition = jsonData["definition"];
+    }catch(...){}
+
+    try{
+        word->partOfSpeech = jsonData["partOfSpeech"];
+    }catch(...){}
+
+    try{
+        word->difficulty = jsonData["difficulty"];
+    }catch(...){}
+
+    return word;
+
+}
+
+std::vector<std::string> getWordsLinks(json jsonData){
+
+    if (jsonData.is_array()){
+        std::vector<std::string> result={};
+        for (json wordInJson : jsonData){
+            result.push_back(wordInJson["url"]);
+        }
+        return result;
+    } else{
+        return {jsonData["url"]};
+    }
 }

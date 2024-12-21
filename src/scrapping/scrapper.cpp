@@ -48,12 +48,12 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
  * Parameters:
  * -- curl: CURL session handle
  * -- url: pointer to the URL string
- * -- wordsAddedAlready: pointer to a vector tracking added words
+ * -- linksOfWordsAddedAlready: pointer to a vector tracking added words
  * -- amountWordsNeeded: pointer to the total number of words needed
  * Returns:
  * -- None
  */
-void appendWord(CURL* curl, std::string *url, std::vector<std::string*> *wordsAddedAlready, int *amountWordsNeeded){
+void appendWord(CURL* curl, std::string *url, std::vector<std::string> *linksOfWordsAddedAlready, int *amountWordsNeeded){
     CURLcode res;
     std::string htmlCode;
 
@@ -69,25 +69,32 @@ void appendWord(CURL* curl, std::string *url, std::vector<std::string*> *wordsAd
 
     // Check for errors
     if (res != CURLE_OK) {
-        std::cerr << "CURL request failed: " << curl_easy_strerror(res) << std::endl;
+        std::cerr << "CURL request failed: " << curl_easy_strerror(res) << "\nUrl was \"" << *url << "\"\n";
     } else {
         std::string fileName = "words.json";
         json wordData = getWordData(htmlCode);
+        if (!wordData.empty()){
+            wordData["url"] = *url;
 
-        auto* word = new std::string( wordData["word"] );
-        if (!contains(wordsAddedAlready, word)){
-            appendToFile(fileName, wordData);
-            wordsAddedAlready->push_back(word);
+            //auto* word = new std::string( wordData["word"] );
+            if (!contains(linksOfWordsAddedAlready, *url)){
+                appendToFile(fileName, wordData);
+                linksOfWordsAddedAlready->push_back(*url);
+            }
+        }
 
-            std::vector<Tag> linksToNewWords = select(htmlCode, wordLinkSelector());
-            for (auto link : linksToNewWords){
-                if (wordsAddedAlready->size() < *amountWordsNeeded){
-                    std::string newUrl = link.getProperty("href");
-                    appendWord(curl, &newUrl, wordsAddedAlready, amountWordsNeeded);
+
+        std::vector<Tag> linksToNewWords = select(htmlCode, wordLinkSelector());
+        for (auto link : linksToNewWords){
+            if ((linksOfWordsAddedAlready->size() < *amountWordsNeeded)){
+                std::string newUrl = link.getProperty("href");
+                if (!contains(linksOfWordsAddedAlready, newUrl)){
+                    appendWord(curl, &newUrl, linksOfWordsAddedAlready, amountWordsNeeded);
                 }
-                else break;
 
             }
+            else break;
+
         }
     }
 }
@@ -112,12 +119,14 @@ void createWordsFile(std::string url, int amount) {
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
 
-        std::vector<std::string*> wordsAdded = {};
-        appendWord(curl, &url, &wordsAdded, &amount);
+        std::string fileName = "words.json";
+        json wordsData = getJsonDataFromFile(fileName);
+        std::vector<std::string> linksOfWordsAdded = getWordsLinks(wordsData);
+        appendWord(curl, &url, &linksOfWordsAdded, &amount);
 
-        for (auto* word : wordsAdded){
+        /*for (auto* word : wordsAdded){
             delete word;
-        }
+        }*/
 
         // Clean up the CURL session
         curl_easy_cleanup(curl);
