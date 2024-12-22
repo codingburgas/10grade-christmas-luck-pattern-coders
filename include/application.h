@@ -15,6 +15,11 @@ using json=nlohmann::json;
 
 #include "word.h"
 #include "fileManager.h"
+#include "wordAlgorithms.h"
+
+
+void getAllWords(std::vector<Word*> &arr);
+
 
 
 struct Application : public QObject{
@@ -41,7 +46,7 @@ public:
     void setTest(QString &val){ test=val; }
 
     QList<QList<QString>> getDisplayedWords(){ return displayedWords; }
-    void setDisplayedWords(QList<QList<QString>> &val){ displayedWords=val; }
+    void setDisplayedWords(QList<QList<QString>> &val){ displayedWords=val; emit displayedWordsChanged(); }
 
 
 
@@ -63,6 +68,19 @@ public:
 
         setDisplayedWords(result);
     }
+
+    Q_INVOKABLE int getDisplayedWordsSize(){
+        return displayedWords.size();
+    }
+
+    Q_INVOKABLE void searchWords(QString part, QString propertyName){
+        getAllWords(words);
+        std::string strPart = part.toStdString();
+        std::string strPropertyName = propertyName.toStdString();
+        leaveWordsWithSpecificPart(words, strPart, strPropertyName, true);
+
+        updateDisplayedWords();
+    }
     // -----------------------------
 
 
@@ -79,7 +97,7 @@ signals:
 
 
 
-void getAllWords(std::vector<Word*> &arr);
+
 
 
 

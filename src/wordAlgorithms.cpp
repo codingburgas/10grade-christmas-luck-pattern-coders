@@ -188,7 +188,7 @@ bool stringContainsAnother(std::string& part, std::string& fullString, bool& cas
  * --propertyName: The name of the property to search for the part.
  * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
  */
-void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool& caseSensitive) {
+void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool caseSensitive) {
     for (auto it = arr.begin(); it != arr.end(); ) {
         std::string wordProperty = (*it)->getProperty(propertyName);
         if (stringContainsAnother(part, wordProperty, caseSensitive)) {
