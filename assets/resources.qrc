@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>ui/main.qml</file>
+        <file>ui/WordRectangle.qml</file>
     </qresource>
 </RCC>

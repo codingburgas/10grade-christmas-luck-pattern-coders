@@ -123,6 +123,16 @@ std::vector<std::string> getWordsLinks(json jsonData);
 int countSyllables(const std::string& word, int index=0, int syllableCount=0, bool prevWasVowel=false);
 
 
+/*
+ * Converts JSON data to a Word object.
+ * Parameters:
+ * --jsonData: The JSON data to convert into a Word object.
+ * Returns:
+ * --Word*: A pointer to a newly created Word object.
+ */
+Word* convertJsonToWord(json &jsonData);
+
+
 
 
 #endif //WORD_H

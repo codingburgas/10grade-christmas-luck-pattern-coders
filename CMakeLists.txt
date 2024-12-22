@@ -55,8 +55,9 @@ set(APP_FILES
     "src/fileManager.cpp"
     "include/wordAlgorithms.h"
     "src/wordAlgorithms.cpp"
+    "include/application.h"
+    "src/application.cpp"
     "assets/resources.qrc"
-    "assets/ui/main.qml"
 )
 
 
@@ -75,19 +76,21 @@ qt_add_executable(application
 
 
         #----- scrapping -----
-        ${SCRAPPING}
+        #${SCRAPPING}
         #src/scrapping/main.cpp
 
         #------ application ------
         ${APP_FILES}
-        #src/main.cpp
+        src/main.cpp
 
         #----- testing -----------
-        ${TESTING_FILES}
-        tests/test.cpp
+        #${TESTING_FILES}
+        #tests/test.cpp
 
         #----- git -------
         .gitignore
+
+
 
 
 
