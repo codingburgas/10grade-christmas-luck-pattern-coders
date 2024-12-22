@@ -1,1 +1,122 @@
-[]
+[
+    {
+        "definition": "the activity or job of writing computer programs",
+        "difficulty": "B2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/programming",
+        "word": "programming"
+    },
+    {
+        "definition": "the situation in which a lot of things are happening or people are moving around",
+        "difficulty": "B2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/activity",
+        "word": "activity"
+    },
+    {
+        "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
+        "difficulty": "B1",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/situation",
+        "word": "situation"
+    },
+    {
+        "definition": "something that has happened",
+        "difficulty": "Undefined value.",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/happening",
+        "word": "happening"
+    },
+    {
+        "definition": "(of a situation or an event) to have existence or come into existence",
+        "difficulty": "A2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "verb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/happen",
+        "word": "happen"
+    },
+    {
+        "definition": "anything that happens, especially something important or unusual",
+        "difficulty": "B1",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/event",
+        "word": "event"
+    },
+    {
+        "definition": "very much; more than usual or more than other people or things",
+        "difficulty": "A2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adverb",
+        "url": "https://dictionary.cambridge.org/dictionary/english/especially",
+        "word": "especially"
+    },
+    {
+        "definition": "normal; happening, done, or used most often",
+        "difficulty": "A2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/usual",
+        "word": "usual"
+    },
+    {
+        "definition": "ordinary or usual; the same as would be expected",
+        "difficulty": "A2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/normal",
+        "word": "normal"
+    },
+    {
+        "definition": "not different or special or unexpected in any way; usual",
+        "difficulty": "B1",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/ordinary",
+        "word": "ordinary"
+    },
+    {
+        "definition": "not ordinary or usual",
+        "difficulty": "A2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/special",
+        "word": "special"
+    },
+    {
+        "definition": "a road vehicle with an engine, four wheels, and seats for a small number of people",
+        "difficulty": "A1",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/car",
+        "word": "car"
+    },
+    {
+        "definition": "a long, hard surface built for vehicles to travel along",
+        "difficulty": "A1",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "url": "https://dictionary.cambridge.org/dictionary/english/road",
+        "word": "road"
+    },
+    {
+        "definition": "continuing for a large amount of time",
+        "difficulty": "A1",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/long",
+        "word": "long"
+    },
+    {
+        "definition": "happening or existing without stopping",
+        "difficulty": "Undefined value.",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "adjective",
+        "url": "https://dictionary.cambridge.org/dictionary/english/continuing",
+        "word": "continuing"
+    }
+]

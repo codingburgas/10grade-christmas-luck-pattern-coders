@@ -24,6 +24,7 @@ struct Word {
     std::string partOfSpeech;
     std::string difficulty;
     std::string url;
+    unsigned long frequencyOfUse = 0;
 
 
     /*

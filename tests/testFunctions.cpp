@@ -260,15 +260,17 @@ int test_sortWords(){
         {new Word{ .word = "apple"}, new Word{ .word = "banana"}, new Word{ .word = "apples" }, new Word{ .word = "orange"}},
         {new Word{ .word = "d"}, new Word{ .word = "c"}, new Word{ .word = "b"}, new Word{ .word = "a"}},
         {new Word{ .word = "apple", .difficulty = "c1"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}},
+        {new Word{ .frequencyOfUse=100 }, new Word{ .frequencyOfUse=40 } }
     };
 
 
-    std::vector<std::string> propertyToSortBy = {"word", "word", "difficulty"};
+    std::vector<std::string> propertyToSortBy = {"word", "word", "difficulty", "frequencyOfUse"};
 
     std::vector< std::vector< Word* > > expectedResults{
         {new Word{ .word = "apple"}, new Word{ .word = "apples"}, new Word{ .word = "banana"}, new Word{ .word = "orange"}},
         {new Word{ .word = "a"}, new Word{ .word = "b"}, new Word{ .word = "c"}, new Word{ .word = "d"}},
-        {new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apple", .difficulty = "c1"} }
+        {new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apple", .difficulty = "c1"} },
+        {new Word{ .frequencyOfUse=40 }, new Word{ .frequencyOfUse=100 } }
     };
 
 

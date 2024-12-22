@@ -28,11 +28,19 @@ void insertionSort(std::vector<Word*>& arr, std::string &propertyName, int begin
         Word* key = arr[i];
         int j = i - 1;
 
-        // Compare strings lexicographically
-        while (j >= begin && arr[j]->getProperty(propertyName) > key->getProperty(propertyName)) {
-            arr[j + 1] = arr[j];
-            --j;
+        if (propertyName == "frequencyOfUse"){
+            // compare words' frequency as ints, not strings
+            while (j >= begin && arr[j]->frequencyOfUse > key->frequencyOfUse) {
+                arr[j + 1] = arr[j];
+                --j;
+            }
+        } else{
+            while (j >= begin && arr[j]->getProperty(propertyName) > key->getProperty(propertyName)) {
+                arr[j + 1] = arr[j];
+                --j;
+            }
         }
+
         arr[j + 1] = key;
     }
 }
@@ -48,17 +56,38 @@ void insertionSort(std::vector<Word*>& arr, std::string &propertyName, int begin
  * --The index of the pivot element after partitioning
  */
 int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int end) {
-    std::string pivot = arr[end]->getProperty(propertyName);
-    int i = begin - 1;
+    if (propertyName == "frequencyOfUse"){
+        unsigned long pivot = arr[end]->frequencyOfUse;
 
-    for (int j = begin; j < end; ++j) {
-        if (arr[j]->getProperty(propertyName) <= pivot) {
-            ++i;
-            std::swap(arr[i], arr[j]);
+        int i = begin - 1;
+
+        for (int j = begin; j < end; ++j) {
+            // compare words' frequency as ints, not strings
+            if (arr[j]->frequencyOfUse <= pivot) {
+                ++i;
+                std::swap(arr[i], arr[j]);
+            }
         }
+        std::swap(arr[i + 1], arr[end]);
+        return i + 1;
+
+
+    } else{
+        std::string pivot = arr[end]->getProperty(propertyName);
+
+        int i = begin - 1;
+
+        for (int j = begin; j < end; ++j) {
+            if (arr[j]->getProperty(propertyName) <= pivot) {
+                ++i;
+                std::swap(arr[i], arr[j]);
+            }
+        }
+        std::swap(arr[i + 1], arr[end]);
+        return i + 1;
     }
-    std::swap(arr[i + 1], arr[end]);
-    return i + 1;
+
+
 }
 
 

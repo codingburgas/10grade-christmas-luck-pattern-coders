@@ -81,6 +81,7 @@ void appendWord(CURL* curl, std::string *url, std::vector<std::string> *linksOfW
             json wordData = getWordData(htmlCode);
             if (!wordData.empty()){
                 wordData["url"] = *url;
+                wordData["frequencyOfUse"] = 0;
 
                 std::string fileName = "words.json";
                 appendToFile(fileName, wordData);

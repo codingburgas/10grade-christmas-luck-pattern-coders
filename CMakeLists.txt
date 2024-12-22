@@ -50,7 +50,7 @@ set(APP_FILES
     "include/word.h"
     "src/word.cpp"
     "bin/words.json"
-    "bin/words_.json"
+
     "include/fileManager.h"
     "src/fileManager.cpp"
     "include/wordAlgorithms.h"

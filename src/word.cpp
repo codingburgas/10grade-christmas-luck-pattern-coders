@@ -104,7 +104,9 @@ std::string Word::getProperty(const std::string &property){
         return partOfSpeech;
     } else if (property == "difficulty") {
         return difficulty;
-    } else {
+    } else if (property == "frequncyOfUse"){
+        return std::to_string(frequencyOfUse);
+    }else {
         throw std::invalid_argument("Invalid property name: " + property);
     }
 
@@ -161,6 +163,10 @@ Word* convertJsonToWord(json &jsonData){
     try{
         word->difficulty = jsonData["difficulty"];
     }catch(...){}
+
+    try{
+        word->frequencyOfUse = jsonData["frequencyOfUse"];
+    } catch(...){}
 
     return word;
 }
