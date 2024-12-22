@@ -22,13 +22,13 @@
  * Returns:
  * --None
  */
-void insertionSort(std::vector<Word*>& arr, int begin, int end) {
+void insertionSort(std::vector<Word*>& arr, std::string &propertyName, int begin, int end) {
     for (int i = begin + 1; i <= end; ++i) {
         Word* key = arr[i];
         int j = i - 1;
 
         // Compare strings lexicographically
-        while (j >= begin && arr[j]->word > key->word) {
+        while (j >= begin && arr[j]->getProperty(propertyName) > key->getProperty(propertyName)) {
             arr[j + 1] = arr[j];
             --j;
         }
@@ -45,12 +45,12 @@ void insertionSort(std::vector<Word*>& arr, int begin, int end) {
  * Returns:
  * --The index of the pivot element after partitioning
  */
-int partition(std::vector<Word*>& arr, int begin, int end) {
-    std::string pivot = arr[end]->word;
+int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int end) {
+    std::string pivot = arr[end]->getProperty(propertyName);
     int i = begin - 1;
 
     for (int j = begin; j < end; ++j) {
-        if (arr[j]->word <= pivot) {
+        if (arr[j]->getProperty(propertyName) <= pivot) {
             ++i;
             std::swap(arr[i], arr[j]);
         }
@@ -58,6 +58,7 @@ int partition(std::vector<Word*>& arr, int begin, int end) {
     std::swap(arr[i + 1], arr[end]);
     return i + 1;
 }
+
 
 /*
  * Quicksort for array of word pointers
@@ -67,7 +68,7 @@ int partition(std::vector<Word*>& arr, int begin, int end) {
  * --end: ending index of the subarray to partition
  * Returns:
  * --None
- */
+
 void quickSort(std::vector<Word*>& arr, int begin, int end) {
     if (begin < end) {
         int pivotIndex = partition(arr, begin, end);
@@ -75,6 +76,7 @@ void quickSort(std::vector<Word*>& arr, int begin, int end) {
         quickSort(arr, pivotIndex + 1, end);
     }
 }
+*/
 
 /*
  * Hybrid sort for array of word pointers
@@ -85,17 +87,17 @@ void quickSort(std::vector<Word*>& arr, int begin, int end) {
  * Returns:
  * --None
  */
-void hybridSort(std::vector<Word*>& arr, int begin, int end) {
+void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, int end) {
     const int SMALL_THRESHOLD = 32;
 
     if (end - begin + 1 <= SMALL_THRESHOLD) {
         // Use Insertion Sort for small subarrays
-        insertionSort(arr, begin, end);
+        insertionSort(arr, propertyName, begin, end);
     } else {
         // Use Quicksort for larger subarrays
-        int pivotIndex = partition(arr, begin, end);
-        hybridSort(arr, begin, pivotIndex - 1);
-        hybridSort(arr, pivotIndex + 1, end);
+        int pivotIndex = partition(arr, propertyName, begin, end);
+        hybridSort(arr, propertyName, begin, pivotIndex - 1);
+        hybridSort(arr, propertyName, pivotIndex + 1, end);
     }
 }
 
@@ -106,9 +108,9 @@ void hybridSort(std::vector<Word*>& arr, int begin, int end) {
  * Returns:
  * --None
  */
-void sortWords(std::vector<Word*>& arr) {
+void sortWords(std::vector<Word*>& arr, std::string &propertyName) {
     if (!arr.empty()) {
-        hybridSort(arr, 0, arr.size() - 1);
+        hybridSort(arr, propertyName, 0, arr.size() - 1);
     }
 }
 

@@ -223,7 +223,7 @@ int test_select(){
         {"<div id=\"div_id\">some info</div>", "<div id=\"div_id\""}
     };
 
-    std::vector<int> expectedLength = {2, 2};
+    std::vector<int> expectedLength = {2, 1};
 
     for (size_t i=0; i<testData.size(); i++){
         if (select(testData[i].first, testData[i].second).size() != expectedLength[i]) code = 1;
@@ -246,17 +246,23 @@ int test_sortWords(){
     int code = 0;
 
     std::vector< std::vector< Word* > > testArrays = {
-        {new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}},
-        {new Word{"d"}, new Word{"c"}, new Word{"b"}, new Word{"a"}}
+        {new Word{ .word = "apple"}, new Word{ .word = "banana"}, new Word{ .word = "apples" }, new Word{ .word = "orange"}},
+        {new Word{ .word = "d"}, new Word{ .word = "c"}, new Word{ .word = "b"}, new Word{ .word = "a"}},
+        {new Word{ .word = "apple", .difficulty = "c1"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}},
     };
+
+
+    std::vector<std::string> propertyToSortBy = {"word", "word", "difficulty"};
 
     std::vector< std::vector< Word* > > expectedResults{
-        {new Word{"apple"}, new Word{"apples"}, new Word{"banana"}, new Word{"orange"}},
-        {new Word{"a"}, new Word{"b"}, new Word{"c"}, new Word{"d"}}
+        {new Word{ .word = "apple"}, new Word{ .word = "apples"}, new Word{ .word = "banana"}, new Word{ .word = "orange"}},
+        {new Word{ .word = "a"}, new Word{ .word = "b"}, new Word{ .word = "c"}, new Word{ .word = "d"}},
+        {new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apple", .difficulty = "c1"} }
     };
 
+
     for (size_t i=0; i<testArrays.size(); i++){
-        sortWords( testArrays[i] );
+        sortWords( testArrays[i], propertyToSortBy[i] );
         if (!compareVectors(testArrays[i], expectedResults[i], true)){
             code = 1;
         }

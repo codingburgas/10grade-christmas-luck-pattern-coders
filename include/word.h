@@ -18,7 +18,7 @@ using json=nlohmann::json;
 
 
 struct Word {
-    //long id;
+
     std::string word;
     std::string definition;
     std::string partOfSpeech;
