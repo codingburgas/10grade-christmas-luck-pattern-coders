@@ -4,6 +4,7 @@
 #include <string>
 
 //files, which are tested
+#include "word.h"
 #include "scrapping/parser.h"
 #include "fileManager.h"
 #include "wordAlgorithms.h"
@@ -56,6 +57,16 @@ int test(){
     {
         std::cout << "----Testing leaveWordsWithSpecificPart-----------\n";
         int code = test_leaveWordsWithSpecificPart();
+        printResult(code, &failed);
+
+        std::cout << "---------------------------------\n";
+    }
+
+
+
+    {
+        std::cout << "----Testing countSyllables-----------\n";
+        int code = test_countSyllables();
         printResult(code, &failed);
 
         std::cout << "---------------------------------\n";
@@ -325,6 +336,37 @@ int test_leaveWordsWithSpecificPart(){
     deleteObjectsInVector(testArrays);
     deleteObjectsInVector(expectedResults);
 
+
+    return code;
+}
+
+
+
+/*
+ * Tests the countSyllables function
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- int: 0 if all tests pass, 1 if any test fails
+ */
+int test_countSyllables(){
+    int code = 0;
+
+    std::vector<std::string> testWords = {
+        "count", "ally", "Bulgaria", "programming"
+    };
+
+    std::vector<int> expectedSyllablesCount = {
+        1, 2, 4, 3
+    };
+
+    for (size_t index=0; index<testWords.size(); index++){
+        int syllablesCount = countSyllables(testWords[index]);
+        if (syllablesCount != expectedSyllablesCount[index]) code = 1;
+        if (code == 1){
+            std::cout << "Word is " << testWords[index] << " and program returned " << syllablesCount << "\n";
+        }
+    }
 
     return code;
 }

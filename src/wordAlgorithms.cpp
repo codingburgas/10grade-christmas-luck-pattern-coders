@@ -17,6 +17,7 @@
  * Insertion sort for array of word pointers
  * Parameters:
  * --arr: array of word pointers
+ * --propertyName: string, which contains property to sort by
  * --begin: starting index of the subarray to partition
  * --end: ending index of the subarray to partition
  * Returns:
@@ -40,6 +41,7 @@ void insertionSort(std::vector<Word*>& arr, std::string &propertyName, int begin
  * Partition function for quicksort on an array of word pointers
  * Parameters:
  * --arr: array of word pointers to partition
+ * --propertyName: string, which contains property to sort by
  * --begin: starting index of the subarray to partition
  * --end: ending index of the subarray to partition
  * Returns:
@@ -64,6 +66,7 @@ int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int
  * Quicksort for array of word pointers
  * Parameters:
  * --arr: array of word pointers
+ * --propertyName: string, which contains property to sort by
  * --begin: starting index of the subarray to partition
  * --end: ending index of the subarray to partition
  * Returns:
@@ -82,6 +85,7 @@ void quickSort(std::vector<Word*>& arr, int begin, int end) {
  * Hybrid sort for array of word pointers
  * Parameters:
  * --arr: array of word pointers
+ *--propertyName: string, which contains property to sort by
  * --begin: index, from which to start sorting
  * --end: index, where to end sorting
  * Returns:
@@ -105,6 +109,7 @@ void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, i
  * Sorts array of word pointers by alphabet
  * Parameters:
  * --arr: array of word pointers
+ * --propertyName: string, which contains property to sort by
  * Returns:
  * --None
  */

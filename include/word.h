@@ -109,5 +109,19 @@ std::vector<std::string> getWordsLinks(json jsonData);
 
 
 
+/*
+ * Counts the number of syllables in a given word recursively.
+ * Parameters:
+ * --word: The input string representing the word to analyze.
+ * --index: The current character index being processed in the word.
+ * --syllableCount: The running count of syllables found so far.
+ * --prevWasVowel: A boolean indicating whether the previous character was a vowel.
+ * Returns:
+ * --int: The total number of syllables in the word after processing all characters.
+ */
+int countSyllables(const std::string& word, int index=0, int syllableCount=0, bool prevWasVowel=false);
+
+
+
 
 #endif //WORD_H

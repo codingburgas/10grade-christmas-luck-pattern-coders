@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cctype>    // For std::tolower
 
 #include "word.h"
 
@@ -69,7 +70,7 @@ bool sameWords(Word& word1, Word& word2){
         "word", "definition", "partOfSpeech", "difficulty"
     };
 
-    for (std::string property:properties){
+    for (std::string &property:properties){
         if (word1.getProperty(property) != word2.getProperty(property)){
             return false;
         }
@@ -181,4 +182,44 @@ std::vector<std::string> getWordsLinks(json jsonData){
     } else{
         return {jsonData["url"]};
     }
+}
+
+
+
+/*
+ * Counts the number of syllables in a given word recursively.
+ * Parameters:
+ * --word: The input string representing the word to analyze.
+ * --index: The current character index being processed in the word.
+ * --syllableCount: The running count of syllables found so far.
+ * --prevWasVowel: A boolean indicating whether the previous character was a vowel.
+ * Returns:
+ * --int: The total number of syllables in the word after processing all characters.
+ */
+int countSyllables(const std::string& word, int index, int syllableCount, bool prevWasVowel) {
+    if (word.empty()) return 0;
+
+    const std::string vowels = "aeiouy";
+
+    if (index == word.size()) {
+        // Handle the ending adjustments
+        if (word.size() > 2 && word.substr(word.size() - 2) == "le" && vowels.find(tolower(word[word.size() - 3])) == std::string::npos) {
+            syllableCount++;
+        }
+
+        if (word.size() > 2 && word.substr(word.size() - 2) == "ia"){
+            syllableCount++;
+        }
+        if (word.size() > 1 && word[word.size() - 1] == 'e') {
+            syllableCount--;
+        }
+        return syllableCount > 0 ? syllableCount : 1;
+    }
+
+    bool isVowel = vowels.find(tolower(word[index])) != std::string::npos;
+    if (isVowel && !prevWasVowel) {
+        syllableCount++;
+    }
+
+    return countSyllables(word, index + 1, syllableCount, isVowel);
 }

@@ -55,3 +55,6 @@ int test_sortWords();
  * -- int: 0 if all tests pass, 1 if any test fails
  */
 int test_leaveWordsWithSpecificPart();
+
+
+int test_countSyllables();
