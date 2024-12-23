@@ -22,6 +22,8 @@ using json=nlohmann::json;
 void appendToFile(const std::string& fileName, const json& jsonToAppend);
 
 
+void writeJsonToFile(const json& data, const std::string& fileName);
+
 
 /*
  * Reads JSON data, saved in the file
@@ -31,6 +33,7 @@ void appendToFile(const std::string& fileName, const json& jsonToAppend);
  * --data as json
  */
 json getJsonDataFromFile(const std::string& fileName);
+
 
 
 

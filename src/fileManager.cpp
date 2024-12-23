@@ -41,6 +41,18 @@ json getJsonDataFromFile(const std::string &fileName){
 
 
 
+void writeJsonToFile(const json& data, const std::string& fileName){
+    std::ofstream file(fileName);
+    try{
+        file << data.dump(4);
+    } catch (const std::exception& e) {
+        std::cerr << "Error writing JSON to file: " << e.what() << std::endl;
+    }
+    file.close();
+}
+
+
+
 /*
  * Appends JSON data to an existing file.
  * Parameters:
@@ -63,11 +75,5 @@ void appendToFile(const std::string& fileName, const json& jsonToAppend) {
 
 
     // write to file
-    std::ofstream fileInWriteMode(fileName);
-    try{
-        fileInWriteMode << data.dump(4);
-    } catch (const std::exception& e) {
-        std::cerr << "Error writing JSON to file: " << e.what() << std::endl;
-    }
-    fileInWriteMode.close();
+    writeJsonToFile(data, fileName);
 }

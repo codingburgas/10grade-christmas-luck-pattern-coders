@@ -8,6 +8,7 @@
 #include <cctype>    // For std::tolower
 
 #include "word.h"
+#include "fileManager.h"
 
 
 
@@ -111,6 +112,46 @@ std::string Word::getProperty(const std::string &property){
     }
 
 }
+
+
+json Word::toJson(){
+    json wordData;
+    wordData["word"] = word;
+    wordData["definition"] = definition;
+    wordData["partOfSpeech"] = partOfSpeech;
+    wordData["difficulty"] = difficulty;
+    wordData["url"] = url;
+    wordData["frequencyOfUse"] = frequencyOfUse;
+
+    return wordData;
+}
+
+
+void Word::increaseFrequencyOfUse(){
+
+    std::string fileName = "words.json";
+    json data = getJsonDataFromFile(fileName);
+
+    json wordData = toJson();
+    size_t wordIndex = std::string::npos;
+
+    for (size_t i = 0; i < data.size(); i++) {
+        if (data[i] == wordData) {
+            wordIndex = i;
+            break;
+        }
+    }
+
+    if (wordIndex != std::string::npos){
+        json& wordDataInFile = data[wordIndex];
+        wordDataInFile["frequencyOfUse"] = frequencyOfUse + 1;
+    }
+
+    writeJsonToFile(data, fileName);
+
+    frequencyOfUse++;
+}
+
 
 /*
  * Compares two Word objects for equality.

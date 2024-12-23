@@ -81,3 +81,13 @@ void Application::sortWords(QString propertyName, bool ascendingOrder){
 
     updateDisplayedWords();
 }
+
+
+
+void Application::increaseWordFrequncyOfUse(int wordIndex){
+    Word* word = words[wordIndex];
+
+    word->increaseFrequencyOfUse();
+
+    //updateDisplayedWords();
+}

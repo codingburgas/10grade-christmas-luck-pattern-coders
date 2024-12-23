@@ -29,7 +29,6 @@ struct Application : public QObject{
 
 public:
     //properties
-    QString test = "Oleksandr";
     std::vector<Word*> words = {};
     QList<QList<QString>> displayedWords = {};
 
@@ -46,6 +45,8 @@ public:
     Q_INVOKABLE void searchWords(QString part, QString propertyName);
 
     Q_INVOKABLE void sortWords(QString propertyName, bool ascendingOrder=true);
+
+    Q_INVOKABLE void increaseWordFrequncyOfUse(int wordIndex);
     // -----------------------------
 
 

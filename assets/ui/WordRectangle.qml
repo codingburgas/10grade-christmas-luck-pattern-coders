@@ -45,6 +45,14 @@ Rectangle {
         }
     }
 
+    MouseArea{
+        anchors.fill: parent
+
+        onClicked: {
+            application.increaseWordFrequncyOfUse(word.indexInDisplayedWords);
+        }
+    }
+
 
 
 

@@ -60,6 +60,11 @@ struct Word {
      * --bool: Returns true if the two Word objects are considered equal, otherwise false.
      */
     bool operator==(Word& objectToCompare);
+
+
+    json toJson();
+
+    void increaseFrequencyOfUse();
 };
 
 
@@ -131,6 +136,10 @@ int countSyllables(const std::string& word, int index=0, int syllableCount=0, bo
  * --Word*: A pointer to a newly created Word object.
  */
 Word* convertJsonToWord(json &jsonData);
+
+
+
+
 
 
 

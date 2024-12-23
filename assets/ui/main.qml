@@ -142,13 +142,14 @@ Window {
                             WordRectangle{
                                 //Layout.fillWidth: true
                                 required property int index
+                                property int indexInDisplayedWords: (content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index
 
-                                property string word: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][0] + " " + parent.index
-                                property string definition: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][1]
-                                property string partOfSpeech: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][2]
-                                property string difficulty: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][3]
-                                property string url: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][4]
-                                property string frequencyOfUse: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][5]
+                                property string word: application.displayedWords[indexInDisplayedWords][0]
+                                property string definition: application.displayedWords[indexInDisplayedWords][1]
+                                property string partOfSpeech: application.displayedWords[indexInDisplayedWords][2]
+                                property string difficulty: application.displayedWords[indexInDisplayedWords][3]
+                                property string url: application.displayedWords[indexInDisplayedWords][4]
+                                property string frequencyOfUse: application.displayedWords[indexInDisplayedWords][5]
                             }
 
                         }
