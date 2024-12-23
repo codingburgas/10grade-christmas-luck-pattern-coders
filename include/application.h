@@ -25,16 +25,21 @@ void getAllWords(std::vector<Word*> &arr);
 struct Application : public QObject{
     Q_OBJECT
     Q_PROPERTY(QList<QList<QString>> displayedWords READ getDisplayedWords WRITE setDisplayedWords NOTIFY displayedWordsChanged FINAL)
+    Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
 
 
 public:
     //properties
     std::vector<Word*> words = {};
+    size_t indexOfClickedWord;
     QList<QList<QString>> displayedWords = {};
 
     // Qt methods ----------
     QList<QList<QString>> getDisplayedWords(){ return displayedWords; }
     void setDisplayedWords(QList<QList<QString>> &val){ displayedWords=val; emit displayedWordsChanged(); }
+
+    size_t getIndexOfClickedWord(){ return indexOfClickedWord; }
+    void setIndexOfClickedWord(size_t &val){ indexOfClickedWord=val; emit indexOfClickedWordChanged(); }
 
 
 
@@ -57,6 +62,7 @@ public:
 
 signals:
     void displayedWordsChanged();
+    void indexOfClickedWordChanged();
 
 };
 

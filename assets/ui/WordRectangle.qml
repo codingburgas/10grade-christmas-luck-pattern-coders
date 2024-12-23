@@ -50,6 +50,8 @@ Rectangle {
 
         onClicked: {
             application.increaseWordFrequncyOfUse(word.indexInDisplayedWords);
+            application.indexOfClickedWord = word.indexInDisplayedWords;
+            word.page.screenChanged("WordPage.qml");
         }
     }
 

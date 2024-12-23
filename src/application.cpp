@@ -32,7 +32,7 @@ int Application::run(int argc, char *argv[]){
 
 
 
-    engine.load(QUrl(QStringLiteral("qrc:/ui/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/ui/Application.qml")));
     if (engine.rootObjects().isEmpty()){
         return -1;
     }
