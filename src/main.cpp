@@ -1,14 +1,8 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
+#include "application.h"
+#include "fileManager.h"
 
 int main(int argc, char *argv[]) {
-    QGuiApplication app(argc, argv);
-    QQmlApplicationEngine engine;
+    Application app;
 
-    engine.load(QUrl(QStringLiteral("qrc:/ui/main.qml")));
-    if (engine.rootObjects().isEmpty()){
-        return -1;
-    }
-
-    return app.exec();
+    return app.run(argc, argv);
 }

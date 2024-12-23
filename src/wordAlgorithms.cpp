@@ -13,6 +13,13 @@
 
 #include "word.h"
 
+template<typename T>
+void reverseVector(std::vector<T>& v){
+    std::reverse(v.begin(), v.end());
+}
+
+
+
 /*
  * Insertion sort for array of word pointers
  * Parameters:
@@ -135,16 +142,20 @@ void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, i
 }
 
 /*
- * Sorts array of word pointers by alphabet
+ * sorts array of words by alphabet
  * Parameters:
- * --arr: array of word pointers
+ * --arr: array of words
  * --propertyName: string, which contains property to sort by
+ * --ascendingOrder: boolean, which represents if vector should be sorted in ascending ot descending order
  * Returns:
  * --None
  */
-void sortWords(std::vector<Word*>& arr, std::string &propertyName) {
+void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool ascendingOrder){
     if (!arr.empty()) {
         hybridSort(arr, propertyName, 0, arr.size() - 1);
+        if (!ascendingOrder){
+            reverseVector(arr);
+        }
     }
 }
 
@@ -170,13 +181,13 @@ std::string toLower(std::string str) {
  * --fullString: The string in which to search for the part.
  * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
  * Returns:
- * --bool: Returns true if part is not found within fullString, otherwise false.
+ * --size_t: Returns index of part wihin fullString
  */
-bool stringContainsAnother(std::string& part, std::string& fullString, bool& caseSensitive) {
+size_t findIndex(std::string& part, std::string& fullString, bool& caseSensitive) {
     if (caseSensitive) {
-        return fullString.find(part) == std::string::npos;
+        return fullString.find(part);
     } else {
-        return toLower(fullString).find(toLower(part)) == std::string::npos;
+        return toLower(fullString).find(toLower(part));
     }
 }
 
@@ -187,15 +198,34 @@ bool stringContainsAnother(std::string& part, std::string& fullString, bool& cas
  * --part: The part of the string to search for within the specified property.
  * --propertyName: The name of the property to search for the part.
  * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
+ * --startsWith: A boolean flag to determine if word should start with part.
+ * --endsWith: A boolean flag to determine if word should end with part.
  */
-void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool& caseSensitive) {
+void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool caseSensitive, bool startsWith, bool endsWith) {
     for (auto it = arr.begin(); it != arr.end(); ) {
         std::string wordProperty = (*it)->getProperty(propertyName);
-        if (stringContainsAnother(part, wordProperty, caseSensitive)) {
-            it = arr.erase(it);
-        } else {
-            ++it;
+        bool erased = false;
+        if (startsWith){
+            if (findIndex(part, wordProperty, caseSensitive) != 0) {
+                it = arr.erase(it);
+                erased = true;
+            }
+        } else if (endsWith){
+            if (findIndex(part, wordProperty, caseSensitive) != (wordProperty.size() - part.size())) {
+                it = arr.erase(it);
+                erased = true;
+            }
+        }else{
+            if (findIndex(part, wordProperty, caseSensitive) == std::string::npos) {
+                it = arr.erase(it);
+                erased = true;
+            }
         }
+
+        if (!erased){
+            it++;
+        }
+
     }
 }
 

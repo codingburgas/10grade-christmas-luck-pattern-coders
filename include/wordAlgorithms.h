@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm> // for std::reverse
 #include "word.h"
 
 
@@ -65,15 +66,19 @@ int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int
 void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, int end);
 
 
+template<typename T>
+void reverseVector(std::vector<T>& v);
+
 /*
  * sorts array of words by alphabet
  * Parameters:
  * --arr: array of words
  * --propertyName: string, which contains property to sort by
+ * --ascendingOrder: boolean, which represents if vector should be sorted in ascending ot descending order
  * Returns:
  * --None
  */
-void sortWords(std::vector<Word*>& arr, std::string &propertyName);
+void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool ascendingOrder);
 
 
 /*
@@ -83,8 +88,10 @@ void sortWords(std::vector<Word*>& arr, std::string &propertyName);
  * --part: The part of the string to search for within the specified property.
  * --propertyName: The name of the property to search for the part.
  * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
+ * --startsWith: A boolean flag to determine if word should start with part.
+ * --endsWith: A boolean flag to determine if word should end with part.
  */
-void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool& caseSensitive);
+void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool caseSensitive, bool startsWith=false, bool endsWith=false);
 
 
 
