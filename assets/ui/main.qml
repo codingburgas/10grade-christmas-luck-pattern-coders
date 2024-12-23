@@ -9,7 +9,7 @@ Window {
     visible: true
     width: 800
     height: 600
-    title: "Hello, " + application.test
+    title: "LEXIFY"
 
 
     Rectangle{
@@ -166,11 +166,6 @@ Window {
 
             }
 
-            onPageChanged: {
-                console.log(`Page now is ${content.page}`)
-                console.log(`Amount of rows is ${rowsAmount}`)
-                //console.log(`Amount of rows is ${(content.page * content.rowsPerPage <= content.rowsAmount) ? (content.rowsPerPage) : (content.rowsAmount - (content.page-1) * content.rowsAmount)}`);
-            }
 
             onDisplayedWordsSizeChanged: {
                 page = 1;
@@ -181,7 +176,6 @@ Window {
 
                 var newPageNumber = firstElementOnOldPageIndex / rowsPerPage / wordsPerRow;
 
-                console.log(`Calculating new page number:\nPage: ${page}\npreviousRowsPerPage: ${previousRowsPerPage}\npreviousWordsPerRow: ${previousWordsPerRow}\nfirstElementOnOldPageIndex: ${firstElementOnOldPageIndex}\nrowsPerPage: ${rowsPerPage}\nwordsPerRow: ${wordsPerRow}\nnewPageNumber: ${Math.ceil(newPageNumber)}\n`)
 
                 return Math.ceil(newPageNumber);
             }
