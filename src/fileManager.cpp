@@ -45,7 +45,14 @@ json getJsonDataFromFile(const std::string &fileName){
 }
 
 
-
+/*
+ * Writes JSON data to a specified file.
+ * Parameters:
+ * -- data: the JSON object to write to the file.
+ * -- fileName: the path to the file where the JSON data should be saved.
+ * Returns:
+ * -- No return value. If an error occurs during the writing process, a Message exception is thrown.
+ */
 void writeJsonToFile(const json& data, const std::string& fileName){
     std::ofstream file(fileName);
     try{

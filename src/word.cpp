@@ -116,7 +116,14 @@ std::string Word::getProperty(const std::string &property){
 }
 
 
-json Word::toJson(){
+/*
+ * Converts the Word object to a JSON representation.
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- A JSON object representing the word with properties: word, definition, partOfSpeech, difficulty, url, and frequencyOfUse.
+ */
+json Word::toJson() {
     json wordData;
     wordData["word"] = word;
     wordData["definition"] = definition;
@@ -129,14 +136,24 @@ json Word::toJson(){
 }
 
 
-void Word::increaseFrequencyOfUse(){
 
+/*
+ * Increases the frequency of use of the word and updates the word's frequency in the corresponding JSON file.
+ * If the word is found in the JSON file, its frequencyOfUse is incremented by 1.
+ * If the word is not found, an error message is thrown.
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- No return value. The frequencyOfUse property is updated, and the JSON file is rewritten.
+ */
+void Word::increaseFrequencyOfUse() {
     std::string fileName = "words.json";
     json data = getJsonDataFromFile(fileName);
 
     json wordData = toJson();
     size_t wordIndex = std::string::npos;
 
+    // Search for the word in the JSON data
     for (size_t i = 0; i < data.size(); i++) {
         if (data[i] == wordData) {
             wordIndex = i;
@@ -144,17 +161,22 @@ void Word::increaseFrequencyOfUse(){
         }
     }
 
-    if (wordIndex != std::string::npos){
+    if (wordIndex != std::string::npos) {
+        // Update the frequency of use in the JSON data
         json& wordDataInFile = data[wordIndex];
         wordDataInFile["frequencyOfUse"] = frequencyOfUse + 1;
-    } else{
+    } else {
+        // Throw an error if the word is not found
         throw Message("Couldn't find the word", "Couldn't find the word", "error");
     }
 
+    // Write the updated JSON data back to the file
     writeJsonToFile(data, fileName);
 
+    // Increment the local frequencyOfUse value
     frequencyOfUse++;
 }
+
 
 
 /*

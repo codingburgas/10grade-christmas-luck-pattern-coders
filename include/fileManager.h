@@ -28,7 +28,7 @@ void writeJsonToFile(const json& data, const std::string& fileName);
 /*
  * Reads JSON data, saved in the file
  * Parameters:
- * --fileName: ath to a file from which JSON data is read.
+ * --fileName: path to a file from which JSON data is read.
  * Returns:
  * --data as json
  */
