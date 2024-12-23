@@ -11,16 +11,7 @@ Window {
     height: 600
     title: "Hello, " + application.test
 
-    /*Rectangle{
-        width: 300
-        height: 300
-        color: "#ff0000"
 
-        Text{
-            text: application.displayedWords[index]
-
-        }
-    }*/
     Rectangle{
         id: mainPart
         anchors.margins: 10
@@ -30,7 +21,6 @@ Window {
 
         Rectangle{
             id: toolBar
-            //width: 400
             height: 50
             width: parent.width
             Row{
@@ -96,6 +86,7 @@ Window {
             id: content
             anchors.top: toolBar.bottom
             width: parent.width
+            anchors.bottom: mainPart.bottom
             anchors.topMargin: 10
             //Layout.fillHeight: true
             //width: mainWindow.width - 2*anchors.margins
@@ -103,13 +94,24 @@ Window {
 
             //anchors.centerIn: parent
 
+            property int wordRectWidth: 305
+            property int wordRectHeight: 155
+
 
             property int displayedWordsSize: application.getDisplayedWordsSize()
-            property int wordRectWidth: 305
+
+            property int rowsPerPage: content.height / wordRectHeight
+            property int previousRowsPerPage: rowsPerPage
+            // for calculating page number when resizing the window
+
             property int wordsPerRow: content.width / content.wordRectWidth
-            //property int rowsAmount: displayedWordsSize / wordsPerRow
-            //property int wordsPerRow: (content.width % content.wordRectWidth == 0) ? (content.width / content.wordRectWidth) : ((content.width / content.wordRectWidth) + 1)
+            property int previousWordsPerRow: wordsPerRow
+
             property int rowsAmount: (displayedWordsSize % wordsPerRow == 0) ? (displayedWordsSize / wordsPerRow) : ((displayedWordsSize / wordsPerRow) + 1)
+
+
+            property int page: 1
+            property int pagesTotal: (rowsAmount % rowsPerPage == 0) ? (rowsAmount / rowsPerPage) : ((rowsAmount / rowsPerPage) + 1)
 
 
             ColumnLayout{
@@ -120,7 +122,7 @@ Window {
                 Repeater{
                     id: rowRepeater
 
-                    model: content.rowsAmount
+                    model: (content.page * content.rowsPerPage <= content.rowsAmount) ? (content.rowsPerPage) : (content.rowsAmount - (content.page-1) * content.rowsPerPage)
                     //model: 3
 
                     RowLayout {
@@ -134,19 +136,19 @@ Window {
                         Repeater{
                             id: wordRepeater
 
-                            model: ((rowOfWords.index+1) * content.wordsPerRow <= content.displayedWordsSize) ? (content.wordsPerRow) : (content.displayedWordsSize - rowOfWords.index * content.wordsPerRow)
+                            model: (((content.page-1) * content.rowsPerPage * content.wordsPerRow + (rowOfWords.index+1) * content.wordsPerRow) <= content.displayedWordsSize) ? (content.wordsPerRow) : (content.displayedWordsSize - ((content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow))
 
 
                             WordRectangle{
                                 //Layout.fillWidth: true
                                 required property int index
 
-                                property string word: application.displayedWords[rowOfWords.index * content.wordsPerRow + index][0] + " " + parent.index
-                                property string definition: application.displayedWords[rowOfWords.index * content.wordsPerRow + index][1]
-                                property string partOfSpeech: application.displayedWords[rowOfWords.index * content.wordsPerRow + index][2]
-                                property string difficulty: application.displayedWords[rowOfWords.index * content.wordsPerRow + index][3]
-                                property string url: application.displayedWords[rowOfWords.index * content.wordsPerRow + index][4]
-                                property string frequencyOfUse: application.displayedWords[rowOfWords.index * content.wordsPerRow + index][5]
+                                property string word: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][0] + " " + parent.index
+                                property string definition: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][1]
+                                property string partOfSpeech: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][2]
+                                property string difficulty: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][3]
+                                property string url: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][4]
+                                property string frequencyOfUse: application.displayedWords[(content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index][5]
                             }
 
                         }
@@ -164,9 +166,53 @@ Window {
 
             }
 
+            onPageChanged: {
+                console.log(`Page now is ${content.page}`)
+                console.log(`Amount of rows is ${rowsAmount}`)
+                //console.log(`Amount of rows is ${(content.page * content.rowsPerPage <= content.rowsAmount) ? (content.rowsPerPage) : (content.rowsAmount - (content.page-1) * content.rowsAmount)}`);
+            }
+
+            onDisplayedWordsSizeChanged: {
+                page = 1;
+            }
+
+            function calculateNewPage(){
+                var firstElementOnOldPageIndex = (page-1) * previousRowsPerPage * previousWordsPerRow;
+
+                var newPageNumber = firstElementOnOldPageIndex / rowsPerPage / wordsPerRow;
+
+                console.log(`Calculating new page number:\nPage: ${page}\npreviousRowsPerPage: ${previousRowsPerPage}\npreviousWordsPerRow: ${previousWordsPerRow}\nfirstElementOnOldPageIndex: ${firstElementOnOldPageIndex}\nrowsPerPage: ${rowsPerPage}\nwordsPerRow: ${wordsPerRow}\nnewPageNumber: ${Math.ceil(newPageNumber)}\n`)
+
+                return Math.ceil(newPageNumber);
+            }
+
+            onRowsPerPageChanged: {
+                var newPageNumber = calculateNewPage();
+                previousRowsPerPage = rowsPerPage
+                if (newPageNumber < 1){
+                    page = 1;
+                }else{
+                    page = newPageNumber;
+                }
+            }
+
+            onWordsPerRowChanged: {
+                var newPageNumber = calculateNewPage();
+                previousWordsPerRow = wordsPerRow
+                if (newPageNumber < 1){
+                    page = 1;
+                }else{
+                    page = newPageNumber;
+                }
+            }
+
         }
 
-        //Spacer{}
+        Pagination{
+            anchors.bottom: content.bottom
+            anchors.horizontalCenter: content.horizontalCenter
+            property QtObject contentRect: content
+        }
     }
 
 
