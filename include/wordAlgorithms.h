@@ -88,8 +88,10 @@ void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool asc
  * --part: The part of the string to search for within the specified property.
  * --propertyName: The name of the property to search for the part.
  * --caseSensitive: A boolean flag to determine if the search should be case-sensitive.
+ * --startsWith: A boolean flag to determine if word should start with part.
+ * --endsWith: A boolean flag to determine if word should end with part.
  */
-void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool caseSensitive);
+void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool caseSensitive, bool startsWith=false, bool endsWith=false);
 
 
 

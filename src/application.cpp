@@ -71,12 +71,12 @@ void Application::updateDisplayedWords(){
 
 
 
-void Application::searchWords(QString part, QString propertyName){
+void Application::searchWords(QString part, QString propertyName, bool caseSensitive, bool startsWith, bool endsWith){
     try{
         getAllWords(words);
         std::string strPart = part.toStdString();
         std::string strPropertyName = propertyName.toStdString();
-        leaveWordsWithSpecificPart(words, strPart, strPropertyName, true);
+        leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
 
         updateDisplayedWords();
     } catch(Message& m){

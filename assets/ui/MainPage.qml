@@ -50,7 +50,7 @@ Rectangle{
 
                     onClicked: {
                         var propertyName = "word";
-                        application.searchWords(searchInput.text, propertyName);
+                        application.searchWords(searchInput.text, propertyName, true, startWithCheckBox.checked);
                     }
                 }
             }
@@ -68,6 +68,11 @@ Rectangle{
                         application.sortWords(propertyName, false);
                     }
                 }
+            }
+
+            CheckBox{
+                id: startWithCheckBox
+                text: "Start with"
             }
         }
     }
@@ -126,7 +131,7 @@ Rectangle{
                     required property int index
                     spacing: 5
 
-                    Spacer{}
+                    //Spacer{}
 
                     Repeater{
                         id: wordRepeater

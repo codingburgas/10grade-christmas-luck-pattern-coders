@@ -77,7 +77,7 @@ qt_add_executable(application
 
 
         #----- scrapping -----
-        #${SCRAPPING}
+        ${SCRAPPING}
         #src/scrapping/main.cpp
 
         #------ application ------

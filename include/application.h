@@ -47,7 +47,7 @@ public:
 
     Q_INVOKABLE int getDisplayedWordsSize(){ return displayedWords.size(); }
 
-    Q_INVOKABLE void searchWords(QString part, QString propertyName);
+    Q_INVOKABLE void searchWords(QString part, QString propertyName, bool caseSensitive, bool startsWith=false, bool endsWith=false);
 
     Q_INVOKABLE void sortWords(QString propertyName, bool ascendingOrder=true);
 
