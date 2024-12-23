@@ -8,6 +8,7 @@
 #include <cctype>    // For std::tolower
 
 #include "word.h"
+#include "message.h"
 #include "fileManager.h"
 
 
@@ -108,7 +109,8 @@ std::string Word::getProperty(const std::string &property){
     } else if (property == "frequncyOfUse"){
         return std::to_string(frequencyOfUse);
     }else {
-        throw std::invalid_argument("Invalid property name: " + property);
+        //throw std::invalid_argument("Invalid property name: " + property);
+        throw Message("Something went wrong :( ", "Invalid property name", "error");
     }
 
 }
@@ -145,6 +147,8 @@ void Word::increaseFrequencyOfUse(){
     if (wordIndex != std::string::npos){
         json& wordDataInFile = data[wordIndex];
         wordDataInFile["frequencyOfUse"] = frequencyOfUse + 1;
+    } else{
+        throw Message("Couldn't find the word", "Couldn't find the word", "error");
     }
 
     writeJsonToFile(data, fileName);

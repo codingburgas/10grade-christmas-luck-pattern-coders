@@ -7,6 +7,7 @@
 #include <fstream>
 
 #include "fileManager.h"
+#include "message.h"
 #include "json.hpp"
 using json=nlohmann::json;
 
@@ -29,7 +30,11 @@ json getJsonDataFromFile(const std::string &fileName){
     try{
         file >> result;
     } catch(...){
-        std::cerr << "Json data is either incorrect or blank. It will be replaced with blank array.\n";
+        std::string title = "File with data is blank";
+        std::string description =  "Json data is either incorrect or blank. It will be replaced with blank array.";
+        std::string type = "warning";
+
+        throw Message(title, description, type);
     }
 
     file.close();
@@ -46,7 +51,12 @@ void writeJsonToFile(const json& data, const std::string& fileName){
     try{
         file << data.dump(4);
     } catch (const std::exception& e) {
-        std::cerr << "Error writing JSON to file: " << e.what() << std::endl;
+        //std::cerr << "Error writing JSON to file: " << e.what() << std::endl;
+        std::string title = "Something went wrong :(";
+        std::string description =  "Error writing JSON to file";
+        std::string type = "error";
+
+        throw Message(title, description, type);
     }
     file.close();
 }

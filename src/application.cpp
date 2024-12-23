@@ -5,6 +5,7 @@
 
 
 #include "application.h"
+#include "message.h"
 
 void getAllWords(std::vector<Word *> &arr){
     arr = {};
@@ -43,51 +44,79 @@ int Application::run(int argc, char *argv[]){
 
 
 void Application::updateDisplayedWords(){
-    QList<QList<QString>> result = {};
-    for (Word* word : words){
-        //words.append(QString::fromStdString(word->word));
-        QList<QString> wordData = {
-            QString::fromStdString(word->word),
-            QString::fromStdString(word->definition),
-            QString::fromStdString(word->partOfSpeech),
-            QString::fromStdString(word->difficulty),
-            QString::fromStdString(word->url),
-            QString::number(word->frequencyOfUse)
-        };
+    try{
+        QList<QList<QString>> result = {};
+        for (Word* word : words){
+            //words.append(QString::fromStdString(word->word));
+            QList<QString> wordData = {
+                QString::fromStdString(word->word),
+                QString::fromStdString(word->definition),
+                QString::fromStdString(word->partOfSpeech),
+                QString::fromStdString(word->difficulty),
+                QString::fromStdString(word->url),
+                QString::number(word->frequencyOfUse)
+            };
 
-        result.append(wordData);
+            result.append(wordData);
+        }
+
+        setDisplayedWords(result);
+    } catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message();
     }
 
-    setDisplayedWords(result);
 }
 
 
 
 void Application::searchWords(QString part, QString propertyName){
-    getAllWords(words);
-    std::string strPart = part.toStdString();
-    std::string strPropertyName = propertyName.toStdString();
-    leaveWordsWithSpecificPart(words, strPart, strPropertyName, true);
+    try{
+        getAllWords(words);
+        std::string strPart = part.toStdString();
+        std::string strPropertyName = propertyName.toStdString();
+        leaveWordsWithSpecificPart(words, strPart, strPropertyName, true);
 
-    updateDisplayedWords();
+        updateDisplayedWords();
+    } catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message();
+    }
+
 }
 
 
 
 void Application::sortWords(QString propertyName, bool ascendingOrder){
-    std::string strPropertyName = propertyName.toStdString();
+    try{
+        std::string strPropertyName = propertyName.toStdString();
 
-    sortByProperty(words, strPropertyName, ascendingOrder);
+        sortByProperty(words, strPropertyName, ascendingOrder);
 
-    updateDisplayedWords();
+        updateDisplayedWords();
+    } catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message();
+    }
+
 }
 
 
 
 void Application::increaseWordFrequncyOfUse(int wordIndex){
-    Word* word = words[wordIndex];
+    try{
+        Word* word = words[wordIndex];
 
-    word->increaseFrequencyOfUse();
+        word->increaseFrequencyOfUse();
 
-    //updateDisplayedWords();
+        //updateDisplayedWords();
+    } catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message();
+    }
+
 }

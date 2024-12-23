@@ -53,7 +53,7 @@ Window {
                     }else if (newComponent.status === Component.Loading) {
                         newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
                     } else if (newComponent.status === Component.Error) {
-                        console.error("Error loading component:", newComponent.errorString()); // Handle error case
+                        application.message("Failed to load new page", `Failed to go to the ${page}`, "error");
                     }
                 }
 
@@ -66,6 +66,39 @@ Window {
 
         }
 
+
+    }
+
+
+    Connections{
+        target: application
+
+        function onMessage(title, description, type){
+            let messageComponent = Qt.createComponent( Qt.resolvedUrl("Message.qml") )
+
+
+            let waitFunction = () => {
+                if (messageComponent.status == Component.Ready){
+                    let message = messageComponent.createObject(
+                        mainWindow,
+                        {
+                            title: title,
+                            description: description,
+                            type: type
+                        });
+
+                    message.destroy(2000)
+                }else if (newComponent.status === Component.Loading) {
+                    newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+                } else if (newComponent.status === Component.Error) {
+                    //console.error("Error loading component:", newComponent.errorString()); // Handle error case
+                    //application.message("Failed to create message", `Failed to go to the ${page}`, "error");
+                }
+            }
+
+
+            waitFunction();
+        }
     }
 
 

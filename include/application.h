@@ -63,6 +63,7 @@ public:
 signals:
     void displayedWordsChanged();
     void indexOfClickedWordChanged();
+    void message(QString title = QString::fromStdString("Something went wrong :("), QString description = QString::fromStdString("Unknown error"), QString type = QString::fromStdString("error"));
 
 };
 

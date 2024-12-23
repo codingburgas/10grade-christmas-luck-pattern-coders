@@ -57,6 +57,7 @@ set(APP_FILES
     "src/wordAlgorithms.cpp"
     "include/application.h"
     "src/application.cpp"
+    "include/message.h"
     "assets/resources.qrc"
 )
 
@@ -89,6 +90,7 @@ qt_add_executable(application
 
         #----- git -------
         .gitignore
+
 
 
 

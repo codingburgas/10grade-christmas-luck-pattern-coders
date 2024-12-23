@@ -6,5 +6,6 @@
         <file>ui/Spacer.qml</file>
         <file>ui/MainPage.qml</file>
         <file>ui/WordPage.qml</file>
+        <file>ui/Message.qml</file>
     </qresource>
 </RCC>

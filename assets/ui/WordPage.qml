@@ -14,11 +14,23 @@ Rectangle{
     Rectangle{
         anchors.fill: parent
         Text{
+            id: word
             anchors.fill: parent
             text: application.displayedWords[wordPage.index][0]
             font.pointSize: 30
         }
     }
+
+
+
+    MouseArea{
+        anchors.fill: parent
+
+        onClicked: {
+            application.message(word.text, "description of the message", "type");
+        }
+    }
+
 
 
 
