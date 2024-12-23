@@ -2,7 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick 2.15
 import QtQuick.Layouts 2.15
-//import QtQuick.Controls 2.15
+import QtQuick.Controls 2.15
 
 Window {
     id: mainWindow
@@ -21,7 +21,7 @@ Window {
 
         }
     }*/
-    ColumnLayout{
+    Rectangle{
         id: mainPart
         anchors.margins: 10
         anchors.centerIn: parent
@@ -29,9 +29,10 @@ Window {
         height: mainWindow.height - 2*anchors.margins
 
         Rectangle{
+            id: toolBar
             //width: 400
-            //height: 50
-            Layout.fillWidth: true
+            height: 50
+            width: parent.width
             Row{
                 anchors.fill: parent
                 spacing: 5
@@ -41,11 +42,12 @@ Window {
                     height: 50
                     border.width: 3
 
-                    TextInput{
+                    TextField{
                         id: searchInput
                         anchors.fill: parent
                         font.pointSize: 18
-                        text: "hi"
+                        text: ""
+                        placeholderText: "Leave blank to get all words"
 
                     }
                 }
@@ -67,6 +69,21 @@ Window {
                         }
                     }
                 }
+                Rectangle{
+                    id: sortButton
+                    width: 50
+                    height: 50
+                    border.width: 3
+
+                    MouseArea{
+                        anchors.fill: parent
+
+                        onClicked: {
+                            var propertyName = "word";
+                            application.sortWords(propertyName, false);
+                        }
+                    }
+                }
             }
         }
 
@@ -77,8 +94,9 @@ Window {
 
         Rectangle{
             id: content
-            //anchors.margins: 10
-            Layout.fillWidth: true
+            anchors.top: toolBar.bottom
+            width: parent.width
+            anchors.topMargin: 10
             //Layout.fillHeight: true
             //width: mainWindow.width - 2*anchors.margins
             //height: mainWindow.height - 2*anchors.margins
@@ -147,6 +165,8 @@ Window {
             }
 
         }
+
+        //Spacer{}
     }
 
 

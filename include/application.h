@@ -27,21 +27,14 @@ struct Application : public QObject{
     Q_PROPERTY(QString test READ getTest WRITE setTest NOTIFY testChanged FINAL)
     Q_PROPERTY(QList<QList<QString>> displayedWords READ getDisplayedWords WRITE setDisplayedWords NOTIFY displayedWordsChanged FINAL)
 
+
 public:
+    //properties
     QString test = "Oleksandr";
-    /*std::vector<Word*> words = {new Word{
-        "apple",
-        "definition of an apple",
-        "noun",
-        "a1",
-        "https://dictionary.cambridge.org/dictionary/english/apple",
-        52
-    }
-    };*/
     std::vector<Word*> words = {};
     QList<QList<QString>> displayedWords = {};
 
-    // Qt thing ----------
+    // Qt methods ----------
     QString getTest(){ return test; }
     void setTest(QString &val){ test=val; }
 
@@ -50,37 +43,13 @@ public:
 
 
 
-    Q_INVOKABLE void updateDisplayedWords(){
-        QList<QList<QString>> result = {};
-        for (Word* word : words){
-            //words.append(QString::fromStdString(word->word));
-            QList<QString> wordData = {
-                QString::fromStdString(word->word),
-                QString::fromStdString(word->definition),
-                QString::fromStdString(word->partOfSpeech),
-                QString::fromStdString(word->difficulty),
-                QString::fromStdString(word->url),
-                QString::number(word->frequencyOfUse)
-            };
+    Q_INVOKABLE void updateDisplayedWords();
 
-            result.append(wordData);
-        }
+    Q_INVOKABLE int getDisplayedWordsSize(){ return displayedWords.size(); }
 
-        setDisplayedWords(result);
-    }
+    Q_INVOKABLE void searchWords(QString part, QString propertyName);
 
-    Q_INVOKABLE int getDisplayedWordsSize(){
-        return displayedWords.size();
-    }
-
-    Q_INVOKABLE void searchWords(QString part, QString propertyName){
-        getAllWords(words);
-        std::string strPart = part.toStdString();
-        std::string strPropertyName = propertyName.toStdString();
-        leaveWordsWithSpecificPart(words, strPart, strPropertyName, true);
-
-        updateDisplayedWords();
-    }
+    Q_INVOKABLE void sortWords(QString propertyName, bool ascendingOrder=true);
     // -----------------------------
 
 

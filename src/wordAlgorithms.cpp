@@ -13,6 +13,13 @@
 
 #include "word.h"
 
+template<typename T>
+void reverseVector(std::vector<T>& v){
+    std::reverse(v.begin(), v.end());
+}
+
+
+
 /*
  * Insertion sort for array of word pointers
  * Parameters:
@@ -135,16 +142,20 @@ void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, i
 }
 
 /*
- * Sorts array of word pointers by alphabet
+ * sorts array of words by alphabet
  * Parameters:
- * --arr: array of word pointers
+ * --arr: array of words
  * --propertyName: string, which contains property to sort by
+ * --ascendingOrder: boolean, which represents if vector should be sorted in ascending ot descending order
  * Returns:
  * --None
  */
-void sortWords(std::vector<Word*>& arr, std::string &propertyName) {
+void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool ascendingOrder){
     if (!arr.empty()) {
         hybridSort(arr, propertyName, 0, arr.size() - 1);
+        if (!ascendingOrder){
+            reverseVector(arr);
+        }
     }
 }
 

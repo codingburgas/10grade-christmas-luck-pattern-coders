@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm> // for std::reverse
 #include "word.h"
 
 
@@ -65,15 +66,19 @@ int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int
 void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, int end);
 
 
+template<typename T>
+void reverseVector(std::vector<T>& v);
+
 /*
  * sorts array of words by alphabet
  * Parameters:
  * --arr: array of words
  * --propertyName: string, which contains property to sort by
+ * --ascendingOrder: boolean, which represents if vector should be sorted in ascending ot descending order
  * Returns:
  * --None
  */
-void sortWords(std::vector<Word*>& arr, std::string &propertyName);
+void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool ascendingOrder);
 
 
 /*
