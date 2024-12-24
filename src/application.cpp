@@ -26,19 +26,15 @@ bool contains(std::vector<T> &v, T &val){
  */
 void getAllWords(std::vector<Word*> &arr) {
     arr = {};
-    //tags = {};
+
 
     std::string fileName = "words.json";
+
     for (json &wordData : getJsonDataFromFile(fileName)) {
-        //arr.push_back(convertJsonToWord(wordData));
         arr.push_back(new Word(wordData));
-        /*for (json& tag : wordData["tags"]){
-            std::string strTag = tag.get<std::string>();
-            if (!contains(tags, strTag)){
-                tags.push_back(strTag);
-            }
-        }*/
     }
+
+
 }
 
 
@@ -95,7 +91,14 @@ int Application::run(int argc, char *argv[]) {
     });
 
 
-    getAllWords(words);
+    try{
+        getAllWords(words);
+    }catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message();
+    }
+
     updateWordsUi();
 
     engine.rootContext()->setContextProperty("application", this);
@@ -218,6 +221,41 @@ void Application::increaseWordFrequncyOfUse(int wordIndex) {
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
+        emit message();
+    }
+}
+
+
+
+void Application::deleteWordTag(int wordIndex, int tagIndex){
+    try{
+        std::cout << "Deleting tag with index: " << tagIndex << " on word " << wordIndex;
+        // check if tagIndex is valid, because QList doesn't throw 'out of range' exception, but crashes application
+        if (tagIndex < 0 || tagIndex >= wordsUi[wordIndex]->tags.size()){
+            emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+            return;
+        }
+
+
+        std::string &tag = words[wordIndex]->tags[tagIndex];
+
+        if (!contains(tags->customTags, tag)){
+            emit message("This tag can not be deleted", "Tags, containing difficulty and part of speech are impossible to delete", "warning");
+            return;
+        }
+
+
+        words[wordIndex]->tags.erase(words[wordIndex]->tags.begin() + tagIndex);
+        wordsUi[wordIndex]->tags.erase(wordsUi[wordIndex]->tags.begin() + tagIndex);
+
+        words[wordIndex]->save();
+
+        emit wordsUi[wordIndex]->tagsChanged();
+
+
+    } catch(std::out_of_range&){
+        emit message("Couldn't find the word", "Couldn't find the word", "error");
+    } catch(...){
         emit message();
     }
 }

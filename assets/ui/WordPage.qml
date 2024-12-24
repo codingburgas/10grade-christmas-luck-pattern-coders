@@ -82,15 +82,22 @@ Rectangle{
     }
 
 
-
-
     MouseArea{
+        anchors.fill: parent
+
+        onClicked: {
+            application.deleteWordTag(application.indexOfClickedWord, 2);
+        }
+    }
+
+
+    /*MouseArea{
         anchors.fill: parent
 
         onClicked: {
             application.message(word.text, "description of the message", "type");
         }
-    }
+    }*/
 
 
 

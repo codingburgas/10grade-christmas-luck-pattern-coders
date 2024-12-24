@@ -2,11 +2,12 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "B2"
+            "B2",
+            "testCustomTag2"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/programming",
         "word": "programming"

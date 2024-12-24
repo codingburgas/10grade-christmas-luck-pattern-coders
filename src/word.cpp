@@ -152,7 +152,7 @@ void Word::save(){
 
     // Search for the word in the JSON data
     for (size_t i = 0; i < data.size(); i++) {
-        if (data[i] == wordData) {
+        if (data[i]["word"] == wordData["word"] && data[i]["definition"] == wordData["definition"] && data[i]["url"] == wordData["url"]) {
             wordIndex = i;
             break;
         }

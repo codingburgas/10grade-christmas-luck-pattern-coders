@@ -195,6 +195,10 @@ public:
      */
     Q_INVOKABLE void increaseWordFrequncyOfUse(int wordIndex);
 
+
+
+    Q_INVOKABLE void deleteWordTag(int wordIndex, int tagIndex);
+
     // -----------------------------
 
     /*
