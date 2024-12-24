@@ -41,7 +41,7 @@ public:
     // Part of Speech Tags
     const QList<QString> getPartOfSpeechTags() const { return partOfSpeechTags; }
     Q_INVOKABLE const int getPartOfSpeechTagsSize() const { return partOfSpeechTags.size(); }
-    void setPartOfSpeechTags(const QList<QString>& tags) {}
+    void setPartOfSpeechTags(const QList<QString>&) {}
 
 
     // Custom Tags

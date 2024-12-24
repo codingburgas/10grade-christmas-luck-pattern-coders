@@ -3,15 +3,19 @@
 
 
 TagsUi::TagsUi(Tags *tags){
+    difficultyTags = {};
+    partOfSpeechTags = {};
+    customTags = {};
+
     for (const std::string& difficultyTag : tags->difficultyTags){
-        this->difficultyTags.append(QString::fromStdString(difficultyTag));
+        difficultyTags.append(QString::fromStdString(difficultyTag));
     }
 
     for (const std::string& partOfSpeechTag : tags->partOfSpeechTags){
-        this->partOfSpeechTags.append(QString::fromStdString(partOfSpeechTag));
+        partOfSpeechTags.append(QString::fromStdString(partOfSpeechTag));
     }
 
     for (std::string& customTag : tags->customTags){
-        this->customTags.append(QString::fromStdString(customTag));
+        customTags.append(QString::fromStdString(customTag));
     }
 }
