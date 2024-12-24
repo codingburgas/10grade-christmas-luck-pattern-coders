@@ -70,7 +70,7 @@ Rectangle {
 
         onClicked: {
             application.increaseWordFrequncyOfUse(word.indexInDisplayedWords);
-            application.indexOfClickedWord = word.indexInDisplayedWords;
+            application.indexOfClickedWord = word.indexInWordsUi;
             word.page.screenChanged("WordPage.qml");
         }
     }

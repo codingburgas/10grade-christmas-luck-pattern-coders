@@ -60,6 +60,10 @@ set(APP_FILES
     "src/application.cpp"
     "include/wordUi.h"
     "src/wordUi.cpp"
+    "include/tags.h"
+    "include/tagsUi.h"
+    "src/tags.cpp"
+    "src/tagsUi.cpp"
     "include/message.h"
     "assets/resources.qrc"
 )

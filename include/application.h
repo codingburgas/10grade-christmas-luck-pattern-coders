@@ -18,6 +18,8 @@ using json = nlohmann::json;
 #include "fileManager.h"
 #include "wordAlgorithms.h"
 #include "wordUi.h"
+#include "tags.h"
+#include "tagsUi.h"
 
 
 /*
@@ -51,17 +53,17 @@ void getAllTags(std::vector<std::string> &arr);
  */
 struct Application : public QObject {
     Q_OBJECT
-    Q_PROPERTY(QList<WordUi*> displayedWords READ getDisplayedWords WRITE setDisplayedWords NOTIFY displayedWordsChanged FINAL)
+    Q_PROPERTY(QList<WordUi*> wordsUi READ getWordsUi WRITE setWordsUi NOTIFY wordsUiChanged FINAL)
     Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
-    Q_PROPERTY(QList<QString> displayedTags READ getDisplayedTags WRITE setDisplayedTags NOTIFY displayedTagsChanged FINAL)
+    Q_PROPERTY(TagsUi* tagsUi READ getTagsUi WRITE setTagsUi NOTIFY tagsUiChanged FINAL)
 
 public:
     //properties
     std::vector<Word*> words = {};   // List of words in the application.
-    std::vector<std::string> tags = {}; // List of all tags used in application
+    Tags* tags = {}; // Object, containing all tags used in application
     size_t indexOfClickedWord;        // Index of the currently clicked word.
-    QList<WordUi*> displayedWords = {};   // List of words to display.
-    QList<QString> displayedTags = {}; // List of all tags
+    QList<WordUi*> wordsUi = {};   // List of words to display.
+    TagsUi* tagsUi = {}; // List of all tags
 
     // Qt methods ----------
 
@@ -70,11 +72,11 @@ public:
      * Parameters:
      * -- None
      * Returns:
-     * -- displayedWords: List of words currently displayed.
+     * -- wordsUi: List of words currently displayed.
      */
-    QList<WordUi*> getDisplayedWords() {
-        return displayedWords;
-        //return QQmlListProperty<WordUi>(dynamic_cast<QObject*>(this), &displayedWords);
+    QList<WordUi*> getWordsUi() {
+        return wordsUi;
+        //return QQmlListProperty<WordUi>(dynamic_cast<QObject*>(this), &WordsUi);
     }
 
     /*
@@ -82,27 +84,27 @@ public:
      * Parameters:
      * -- None
      * Returns:
-     * -- displayedTags: List of tags currently displayed.
+     * -- tagsUi: List of tags currently displayed.
      */
-    QList<QString> getDisplayedTags() { return displayedTags; }
+    TagsUi* getTagsUi() { return tagsUi; }
 
     /*
      * Sets the list of displayed words.
      * Parameters:
      * -- val: New list of displayed words.
      * Returns:
-     * -- No return value. Sets the displayedWords property.
+     * -- No return value. Sets the wordsUi property.
      */
-    void setDisplayedWords(QList<WordUi*> &val) { displayedWords = val; emit displayedWordsChanged(); }
+    void setWordsUi(QList<WordUi*> &val) { wordsUi = val; emit wordsUiChanged(); }
 
     /*
      * Sets the list of displayed Tags.
      * Parameters:
      * -- val: New list of displayed Tags.
      * Returns:
-     * -- No return value. Sets the displayedTags property.
+     * -- No return value. Sets the tagsUi property.
      */
-    void setDisplayedTags(QList<QString> &val) { displayedTags = val; emit displayedTagsChanged(); }
+    void setTagsUi(TagsUi *val) { delete tagsUi; tagsUi = val; emit tagsUiChanged(); }
 
     /*
      * Gets the index of the currently clicked word.
@@ -127,18 +129,18 @@ public:
      * Parameters:
      * -- None
      * Returns:
-     * -- No return value. Updates the displayedWords property.
+     * -- No return value. Updates the WordsUi property.
      */
-    Q_INVOKABLE void updateDisplayedWords();
+    Q_INVOKABLE void updateWordsUi();
 
     /*
      * Updates the list of displayed Tags.
      * Parameters:
      * -- None
      * Returns:
-     * -- No return value. Updates the displayedTags property.
+     * -- No return value. Updates the tagsUi property.
      */
-    Q_INVOKABLE void updateDisplayedTags();
+    Q_INVOKABLE void updateTagsUi();
 
     /*
      * Gets the size of the displayed words list.
@@ -147,17 +149,17 @@ public:
      * Returns:
      * -- Integer representing the number of displayed words.
      */
-    Q_INVOKABLE int getDisplayedWordsSize() { return displayedWords.size(); }
+    Q_INVOKABLE int getWordsUiSize() { return wordsUi.size(); }
 
 
     /*
-     * Gets the size of the displayedTags list.
+     * Gets the size of the tagsUi list.
      * Parameters:
      * -- None
      * Returns:
-     * -- Integer representing the number of displayedTags.
+     * -- Integer representing the number of tagsUi.
      */
-    Q_INVOKABLE int getDisplayedTagsSize() { return displayedTags.size(); }
+    //Q_INVOKABLE int getTagsUiSize() { return tagsUi.size(); }
 
 
     /*
@@ -206,8 +208,8 @@ public:
     int run(int argc, char *argv[]);
 
 signals:
-    void displayedWordsChanged();
-    void displayedTagsChanged();
+    void wordsUiChanged();
+    void tagsUiChanged();
     void indexOfClickedWordChanged();
     void message(QString title = QString::fromStdString("Something went wrong :("), QString description = QString::fromStdString("Unknown error"), QString type = QString::fromStdString("error"));
 };

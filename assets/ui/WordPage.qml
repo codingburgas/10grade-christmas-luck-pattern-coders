@@ -11,9 +11,9 @@ Rectangle{
 
     signal screenChanged(path: string)
 
-    property WordUi word: application.displayedWords[application.indexOfClickedWord]
+    property WordUi word: application.wordsUi[application.indexOfClickedWord]
 
-    property int tagsSize: application.getDisplayedTagsSize()
+    //property int tagsSize: application.getTagsUiSize()
 
 
     Rectangle{
@@ -30,15 +30,54 @@ Rectangle{
     }
 
     Repeater{
-        id: tagsRepeater
-        anchors.top: title.bottom
+        id: wordTagsRepeater
+        //anchors.top: title.bottom
         model: wordPage.word.getTagsSize()
 
         Text{
-            y: 100 + index*50
-            height: 50
             required property int index
+            y: 100 + index*100
+            height: 50
             text: wordPage.word.tags[index]
+        }
+    }
+
+    Repeater{
+        id: difficultyTagsRepeater
+        //anchors.top: title.bottom
+        model: application.tagsUi.getDifficultyTagsSize()
+
+        Text{
+            required property int index
+            x: 100 + index*100
+            y: 50
+            text: application.tagsUi.difficultyTags[index]
+        }
+    }
+
+    Repeater{
+        id: partOfSpeechTagsRepeater
+        //anchors.top: title.bottom
+        model: application.tagsUi.getPartOfSpeechTagsSize()
+
+        Text{
+            required property int index
+            x: 100 + index*100
+            y: 100
+            text: application.tagsUi.partOfSpeechTags[index]
+        }
+    }
+
+    Repeater{
+        id: customTagsRepeater
+        //anchors.top: title.bottom
+        model: application.tagsUi.getCustomTagsSize()
+
+        Text{
+            required property int index
+            x: 100 + index*100
+            y: 150
+            text: application.tagsUi.customTags[index]
         }
     }
 
@@ -56,21 +95,22 @@ Rectangle{
 
 
 
-
+    /*
     Connections{
         target: application
 
-        function onDisplayedTagsChanged(){
+        function onTagsUiChanged(){
             wordPage.tagsSize = application.getDisplayedTagsSize();
         }
     }
+    */
 
     Connections{
         target: wordPage.word
 
         function onTagsChanged(){
             //wordPage.tagsSize = application.getDisplayedTagsSize();
-            tagsRepeater.model = wordPage.word.getTagsSize()
+            wordTagsRepeater.model = wordPage.word.getTagsSize()
         }
     }
 

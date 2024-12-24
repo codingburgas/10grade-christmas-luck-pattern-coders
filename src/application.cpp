@@ -71,28 +71,31 @@ int Application::run(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
+    tags = new Tags();
+    updateTagsUi();
+
     qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
+    qmlRegisterType<TagsUi>("TagsUi", 1, 0, "TagsUi");
+
 
 
     // Connect the 'aboutToQuit' signal to a lambda function
     QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
         //save tags into json file
-        json tagsJson = json::parse("[]");
-        for (std::string &tag : tags){
-            tagsJson.push_back(tag);
-        }
+        json tagsJson = tags->toJson();
 
         std::string fileName = "tags.json";
         writeJsonToFile(tagsJson, fileName);
 
 
         for (Word* word : words){ delete word; }
-        for (WordUi* wordUi : displayedWords){ delete wordUi; }
+        for (WordUi* wordUi : wordsUi){ delete wordUi; }
+        delete tagsUi;
     });
 
 
     getAllWords(words);
-    updateDisplayedWords();
+    updateWordsUi();
 
     engine.rootContext()->setContextProperty("application", this);
 
@@ -112,7 +115,7 @@ int Application::run(int argc, char *argv[]) {
  * Returns:
  * -- No return value. Updates the displayedWords property.
  */
-void Application::updateDisplayedWords() {
+void Application::updateWordsUi() {
     try {
         QList<WordUi*> result = {};
         for (Word *word : words) {
@@ -120,7 +123,7 @@ void Application::updateDisplayedWords() {
             result.append(wordUi);
         }
 
-        setDisplayedWords(result);
+        setWordsUi(result);
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -136,16 +139,11 @@ void Application::updateDisplayedWords() {
  * Returns:
  * -- No return value. Updates the displayedTags property.
  */
-void Application::updateDisplayedTags(){
+void Application::updateTagsUi(){
     try {
-        QList<QString> result = {};
-        for (std::string strTag : tags) {
-            QString tag = QString::fromStdString(strTag);
+        TagsUi* result = new TagsUi(tags);
 
-            result.append(tag);
-        }
-
-        setDisplayedTags(result);
+        setTagsUi(result);
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -172,7 +170,7 @@ void Application::searchWords(QString part, QString propertyName, bool caseSensi
         std::string strPropertyName = propertyName.toStdString();
         leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
 
-        updateDisplayedWords();
+        updateWordsUi();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -194,7 +192,7 @@ void Application::sortWords(QString propertyName, bool ascendingOrder) {
 
         sortByProperty(words, strPropertyName, ascendingOrder);
 
-        updateDisplayedWords();
+        updateWordsUi();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {

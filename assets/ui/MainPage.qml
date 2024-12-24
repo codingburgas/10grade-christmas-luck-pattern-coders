@@ -100,7 +100,7 @@ Rectangle{
         property int wordRectHeight: 155
 
 
-        property int displayedWordsSize: application.getDisplayedWordsSize()
+        property int wordsUiSize: application.getWordsUiSize()
 
         property int rowsPerPage: content.height / wordRectHeight
         property int previousRowsPerPage: rowsPerPage
@@ -109,7 +109,7 @@ Rectangle{
         property int wordsPerRow: content.width / content.wordRectWidth
         property int previousWordsPerRow: wordsPerRow
 
-        property int rowsAmount: (displayedWordsSize % wordsPerRow == 0) ? (displayedWordsSize / wordsPerRow) : ((displayedWordsSize / wordsPerRow) + 1)
+        property int rowsAmount: (wordsUiSize % wordsPerRow == 0) ? (wordsUiSize / wordsPerRow) : ((wordsUiSize / wordsPerRow) + 1)
 
 
         property int page: 1
@@ -138,13 +138,13 @@ Rectangle{
                     Repeater{
                         id: wordRepeater
 
-                        model: (((content.page-1) * content.rowsPerPage * content.wordsPerRow + (rowOfWords.index+1) * content.wordsPerRow) <= content.displayedWordsSize) ? (content.wordsPerRow) : (content.displayedWordsSize - ((content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow))
+                        model: (((content.page-1) * content.rowsPerPage * content.wordsPerRow + (rowOfWords.index+1) * content.wordsPerRow) <= content.wordsUiSize) ? (content.wordsPerRow) : (content.wordsUiSize - ((content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow))
 
 
                         WordRectangle{
                             //Layout.fillWidth: true
                             required property int index
-                            property int indexInDisplayedWords: (content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index
+                            property int indexInWordsUi: (content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index
                             property QtObject page: mainPage
 
                             /*property string word: application.displayedWords[indexInDisplayedWords][0]
@@ -154,7 +154,7 @@ Rectangle{
                             property string url: application.displayedWords[indexInDisplayedWords][4]
                             property string frequencyOfUse: application.displayedWords[indexInDisplayedWords][5]*/
 
-                            property WordUi wordUi: application.displayedWords[indexInDisplayedWords]
+                            property WordUi wordUi: application.wordsUi[indexInWordsUi]
                         }
 
                     }
@@ -173,7 +173,7 @@ Rectangle{
         }
 
 
-        onDisplayedWordsSizeChanged: {
+        onWordsUiSizeChanged: {
             page = 1;
         }
 
@@ -217,8 +217,8 @@ Rectangle{
     Connections{
         target: application
 
-        function onDisplayedWordsChanged(){
-            content.displayedWordsSize = application.getDisplayedWordsSize()
+        function onWordsUiChanged(){
+            content.wordsUiSize = application.getWordsUiSize()
         }
     }
 }

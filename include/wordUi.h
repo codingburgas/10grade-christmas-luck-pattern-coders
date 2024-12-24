@@ -29,10 +29,6 @@ public:
     QList<QString> tags = {};
 
     WordUi(Word *word);
-    /*WordUi() {}
-    WordUi(const WordUi &other);
-
-    WordUi &operator=(const WordUi &other);*/
 
     WordUi(const WordUi& other){
         word = other.word;
