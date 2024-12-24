@@ -229,7 +229,6 @@ void Application::increaseWordFrequncyOfUse(int wordIndex) {
 
 void Application::deleteWordTag(int wordIndex, int tagIndex){
     try{
-        std::cout << "Deleting tag with index: " << tagIndex << " on word " << wordIndex;
         // check if tagIndex is valid, because QList doesn't throw 'out of range' exception, but crashes application
         if (tagIndex < 0 || tagIndex >= wordsUi[wordIndex]->tags.size()){
             emit message("Couldn't find the tag", "Couldn't find the tag", "error");
@@ -247,6 +246,41 @@ void Application::deleteWordTag(int wordIndex, int tagIndex){
 
         words[wordIndex]->tags.erase(words[wordIndex]->tags.begin() + tagIndex);
         wordsUi[wordIndex]->tags.erase(wordsUi[wordIndex]->tags.begin() + tagIndex);
+
+        words[wordIndex]->save();
+
+        emit wordsUi[wordIndex]->tagsChanged();
+
+
+    } catch(std::out_of_range&){
+        emit message("Couldn't find the word", "Couldn't find the word", "error");
+    } catch(...){
+        emit message();
+    }
+}
+
+
+
+
+void Application::addWordTag(int wordIndex, int tagIndex){
+    try{
+
+        if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+            emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+            return;
+        }
+
+
+        std::string &tag = tags->customTags[tagIndex];
+
+        if (contains(words[wordIndex]->tags, tag)){
+            emit message("This tag is already added", "Word already has this tag", "warning");
+            return;
+        }
+
+
+        words[wordIndex]->tags.push_back(tag);
+        wordsUi[wordIndex]->tags.append(QString::fromStdString(tag));
 
         words[wordIndex]->save();
 

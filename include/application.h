@@ -199,6 +199,8 @@ public:
 
     Q_INVOKABLE void deleteWordTag(int wordIndex, int tagIndex);
 
+    Q_INVOKABLE void addWordTag(int wordIndex, int tagIndex);
+
     // -----------------------------
 
     /*
