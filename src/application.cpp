@@ -30,7 +30,8 @@ void getAllWords(std::vector<Word*> &arr) {
 
     std::string fileName = "words.json";
     for (json &wordData : getJsonDataFromFile(fileName)) {
-        arr.push_back(convertJsonToWord(wordData));
+        //arr.push_back(convertJsonToWord(wordData));
+        arr.push_back(new Word(wordData));
         /*for (json& tag : wordData["tags"]){
             std::string strTag = tag.get<std::string>();
             if (!contains(tags, strTag)){

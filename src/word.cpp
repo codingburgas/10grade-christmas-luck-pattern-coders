@@ -200,42 +200,41 @@ bool Word::operator!=(Word& objectToCompare){
  * Returns:
  * --Word*: A pointer to a newly created Word object.
  */
-Word* convertJsonToWord(json &jsonData){
-    Word *word = new Word{};
+Word::Word(json &jsonData){
 
     try{
-        word->word = jsonData["word"];
+        word = jsonData["word"];
     }catch(...){}
 
     try{
-        word->definition = jsonData["definition"];
+        definition = jsonData["definition"];
     }catch(...){}
 
     try{
-        word->url = jsonData["url"];
+        url = jsonData["url"];
     }catch(...){}
 
     try{
-        word->partOfSpeech = jsonData["partOfSpeech"];
+        partOfSpeech = jsonData["partOfSpeech"];
     }catch(...){}
 
     try{
-        word->difficulty = jsonData["difficulty"];
+        difficulty = jsonData["difficulty"];
     }catch(...){}
 
     try{
-        word->frequencyOfUse = jsonData["frequencyOfUse"];
+        frequencyOfUse = jsonData["frequencyOfUse"];
     } catch(...){}
 
     try{
         //word->tags = jsonData["tags"];
         for (json& tag : jsonData["tags"]){
             std::string strTag = tag.get<std::string>();
-            word->tags.push_back(strTag);
+            tags.push_back(strTag);
         }
     } catch(...){}
 
-    return word;
+
 }
 
 /*
