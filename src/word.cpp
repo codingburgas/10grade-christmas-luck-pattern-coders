@@ -228,8 +228,12 @@ Word* convertJsonToWord(json &jsonData){
     } catch(...){}
 
     try{
-        word->tags = jsonData["tags"]
-    }
+        //word->tags = jsonData["tags"];
+        for (json& tag : jsonData["tags"]){
+            std::string strTag = tag.get<std::string>();
+            word->tags.push_back(strTag);
+        }
+    } catch(...){}
 
     return word;
 }

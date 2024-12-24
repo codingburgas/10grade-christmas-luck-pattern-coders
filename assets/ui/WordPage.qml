@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import WordUi 1.0
 
 Rectangle{
     id: wordPage
@@ -9,19 +10,38 @@ Rectangle{
 
 
     signal screenChanged(path: string)
-    property int index: application.indexOfClickedWord
+
+    property WordUi word: application.displayedWords[application.indexOfClickedWord]
 
     property int tagsSize: application.getDisplayedTagsSize()
 
+
     Rectangle{
-        anchors.fill: parent
+        id: title
+        width: parent.width
+        height: 50
+        anchors.top: wordPage.top
         Text{
             id: word
             anchors.fill: parent
-            text: application.displayedWords[wordPage.index][0]
-            font.pointSize: 30
+            text: wordPage.word.word
+            font.pointSize: 20
         }
     }
+
+    Repeater{
+        id: tagsRepeater
+        anchors.top: title.bottom
+        model: wordPage.word.getTagsSize()
+
+        Text{
+            y: 100 + index*50
+            height: 50
+            required property int index
+            text: wordPage.word.tags[index]
+        }
+    }
+
 
 
 
@@ -35,11 +55,22 @@ Rectangle{
 
 
 
+
+
     Connections{
         target: application
 
         function onDisplayedTagsChanged(){
             wordPage.tagsSize = application.getDisplayedTagsSize();
+        }
+    }
+
+    Connections{
+        target: wordPage.word
+
+        function onTagsChanged(){
+            //wordPage.tagsSize = application.getDisplayedTagsSize();
+            tagsRepeater.model = wordPage.word.getTagsSize()
         }
     }
 

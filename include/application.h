@@ -9,6 +9,7 @@
 #include <QList>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlListProperty>
 
 #include "json.hpp"
 using json = nlohmann::json;
@@ -16,6 +17,7 @@ using json = nlohmann::json;
 #include "word.h"
 #include "fileManager.h"
 #include "wordAlgorithms.h"
+#include "wordUi.h"
 
 
 /*
@@ -38,96 +40,8 @@ void getAllTags(std::vector<std::string> &arr);
 
 
 
-struct WordUi : public QObject {
-    Q_OBJECT
 
-    Q_PROPERTY(QString word READ getWord WRITE setWord NOTIFY wordChanged)
-    Q_PROPERTY(QString definition READ getDefinition WRITE setDefinition NOTIFY definitionChanged)
-    Q_PROPERTY(QString partOfSpeech READ getPartOfSpeech WRITE setPartOfSpeech NOTIFY partOfSpeechChanged)
-    Q_PROPERTY(QString difficulty READ getDifficulty WRITE setDifficulty NOTIFY difficultyChanged)
-    Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
-    Q_PROPERTY(unsigned long frequencyOfUse READ getFrequencyOfUse WRITE setFrequencyOfUse NOTIFY frequencyOfUseChanged)
-    Q_PROPERTY(QList<QString> tags READ getTags WRITE setTags NOTIFY tagsChanged)
 
-public:
-
-    // Getters
-    QString getWord() const { return word; }
-    QString getDefinition() const { return definition; }
-    QString getPartOfSpeech() const { return partOfSpeech; }
-    QString getDifficulty() const { return difficulty; }
-    QString getUrl() const { return url; }
-    unsigned long getFrequencyOfUse() const { return frequencyOfUse; }
-    QList<QString> getTags() const { return tags; }
-
-    // Setters
-    void setWord(const QString& value) {
-        if (word != value) {
-            word = value;
-            emit wordChanged();
-        }
-    }
-
-    void setDefinition(const QString& value) {
-        if (definition != value) {
-            definition = value;
-            emit definitionChanged();
-        }
-    }
-
-    void setPartOfSpeech(const QString& value) {
-        if (partOfSpeech != value) {
-            partOfSpeech = value;
-            emit partOfSpeechChanged();
-        }
-    }
-
-    void setDifficulty(const QString& value) {
-        if (difficulty != value) {
-            difficulty = value;
-            emit difficultyChanged();
-        }
-    }
-
-    void setUrl(const QString& value) {
-        if (url != value) {
-            url = value;
-            emit urlChanged();
-        }
-    }
-
-    void setFrequencyOfUse(unsigned long value) {
-        if (frequencyOfUse != value) {
-            frequencyOfUse = value;
-            emit frequencyOfUseChanged();
-        }
-    }
-
-    void setTags(const QList<QString>& value) {
-        if (tags != value) {
-            tags = value;
-            emit tagsChanged();
-        }
-    }
-
-signals:
-    void wordChanged();
-    void definitionChanged();
-    void partOfSpeechChanged();
-    void difficultyChanged();
-    void urlChanged();
-    void frequencyOfUseChanged();
-    void tagsChanged();
-
-public:
-    QString word;
-    QString definition;
-    QString partOfSpeech;
-    QString difficulty;
-    QString url;
-    unsigned long frequencyOfUse = 0;
-    QList<QString> tags = {};
-};
 
 
 
@@ -137,7 +51,7 @@ public:
  */
 struct Application : public QObject {
     Q_OBJECT
-    Q_PROPERTY(QList<QList<QString>> displayedWords READ getDisplayedWords WRITE setDisplayedWords NOTIFY displayedWordsChanged FINAL)
+    Q_PROPERTY(QList<WordUi*> displayedWords READ getDisplayedWords WRITE setDisplayedWords NOTIFY displayedWordsChanged FINAL)
     Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
     Q_PROPERTY(QList<QString> displayedTags READ getDisplayedTags WRITE setDisplayedTags NOTIFY displayedTagsChanged FINAL)
 
@@ -146,7 +60,7 @@ public:
     std::vector<Word*> words = {};   // List of words in the application.
     std::vector<std::string> tags = {}; // List of all tags used in application
     size_t indexOfClickedWord;        // Index of the currently clicked word.
-    QList<QList<QString>> displayedWords = {};   // List of words to display.
+    QList<WordUi*> displayedWords = {};   // List of words to display.
     QList<QString> displayedTags = {}; // List of all tags
 
     // Qt methods ----------
@@ -158,7 +72,10 @@ public:
      * Returns:
      * -- displayedWords: List of words currently displayed.
      */
-    QList<QList<QString>> getDisplayedWords() { return displayedWords; }
+    QList<WordUi*> getDisplayedWords() {
+        return displayedWords;
+        //return QQmlListProperty<WordUi>(dynamic_cast<QObject*>(this), &displayedWords);
+    }
 
     /*
      * Gets the list of all tags.
@@ -176,7 +93,7 @@ public:
      * Returns:
      * -- No return value. Sets the displayedWords property.
      */
-    void setDisplayedWords(QList<QList<QString>> &val) { displayedWords = val; emit displayedWordsChanged(); }
+    void setDisplayedWords(QList<WordUi*> &val) { displayedWords = val; emit displayedWordsChanged(); }
 
     /*
      * Sets the list of displayed Tags.

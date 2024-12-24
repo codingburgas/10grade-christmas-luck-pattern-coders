@@ -25,7 +25,7 @@ struct Word {
     std::string difficulty;
     std::string url;
     unsigned long frequencyOfUse = 0;
-    json tags = {};
+    std::vector<std::string> tags = {};
 
 
     /*

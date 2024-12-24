@@ -4,6 +4,8 @@ import QtQuick 2.15
 import QtQuick.Layouts 2.15
 import QtQuick.Controls 2.15
 
+import WordUi 1.0
+
 Rectangle{
     id: mainPage
     anchors.margins: 10
@@ -145,12 +147,14 @@ Rectangle{
                             property int indexInDisplayedWords: (content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index
                             property QtObject page: mainPage
 
-                            property string word: application.displayedWords[indexInDisplayedWords][0]
+                            /*property string word: application.displayedWords[indexInDisplayedWords][0]
                             property string definition: application.displayedWords[indexInDisplayedWords][1]
                             property string partOfSpeech: application.displayedWords[indexInDisplayedWords][2]
                             property string difficulty: application.displayedWords[indexInDisplayedWords][3]
                             property string url: application.displayedWords[indexInDisplayedWords][4]
-                            property string frequencyOfUse: application.displayedWords[indexInDisplayedWords][5]
+                            property string frequencyOfUse: application.displayedWords[indexInDisplayedWords][5]*/
+
+                            property WordUi wordUi: application.displayedWords[indexInDisplayedWords]
                         }
 
                     }

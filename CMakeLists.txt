@@ -58,6 +58,8 @@ set(APP_FILES
     "src/wordAlgorithms.cpp"
     "include/application.h"
     "src/application.cpp"
+    "include/wordUi.h"
+    "src/wordUi.cpp"
     "include/message.h"
     "assets/resources.qrc"
 )

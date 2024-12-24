@@ -71,6 +71,8 @@ int Application::run(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
+    qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
+
 
     // Connect the 'aboutToQuit' signal to a lambda function
     QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
@@ -82,6 +84,10 @@ int Application::run(int argc, char *argv[]) {
 
         std::string fileName = "tags.json";
         writeJsonToFile(tagsJson, fileName);
+
+
+        for (Word* word : words){ delete word; }
+        for (WordUi* wordUi : displayedWords){ delete wordUi; }
     });
 
 
@@ -108,18 +114,10 @@ int Application::run(int argc, char *argv[]) {
  */
 void Application::updateDisplayedWords() {
     try {
-        QList<QList<QString>> result = {};
-        for (Word* word : words) {
-            QList<QString> wordData = {
-                QString::fromStdString(word->word),
-                QString::fromStdString(word->definition),
-                QString::fromStdString(word->partOfSpeech),
-                QString::fromStdString(word->difficulty),
-                QString::fromStdString(word->url),
-                QString::number(word->frequencyOfUse)
-            };
-
-            result.append(wordData);
+        QList<WordUi*> result = {};
+        for (Word *word : words) {
+            auto wordUi = new WordUi(word);
+            result.append(wordUi);
         }
 
         setDisplayedWords(result);
