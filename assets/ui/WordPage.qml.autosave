@@ -14,13 +14,20 @@ Rectangle{
     property int tagsSize: application.getDisplayedTagsSize()
 
     Rectangle{
-        anchors.fill: parent
+        width: parent.width
+        height: 50
+        anchors.top: wordPage.top
         Text{
             id: word
             anchors.fill: parent
             text: application.displayedWords[wordPage.index][0]
-            font.pointSize: 30
+            font.pointSize: 20
         }
+    }
+    
+    Repeater{
+        id: wordTagsRepeater
+        model: wordPage
     }
 
 

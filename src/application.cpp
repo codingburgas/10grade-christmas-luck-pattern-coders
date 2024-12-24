@@ -1,9 +1,21 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QCoreApplication>
 #include <QQmlContext>
 
 #include "application.h"
 #include "message.h"
+
+template<typename T>
+bool contains(std::vector<T> &v, T &val){
+    for (T& el : v){
+        if (el == val){
+            return true;
+        }
+    }
+
+    return false;
+}
 
 /*
  * Retrieves all words from a JSON file and stores them in the provided vector.
@@ -14,12 +26,38 @@
  */
 void getAllWords(std::vector<Word*> &arr) {
     arr = {};
+    //tags = {};
 
     std::string fileName = "words.json";
     for (json &wordData : getJsonDataFromFile(fileName)) {
         arr.push_back(convertJsonToWord(wordData));
+        /*for (json& tag : wordData["tags"]){
+            std::string strTag = tag.get<std::string>();
+            if (!contains(tags, strTag)){
+                tags.push_back(strTag);
+            }
+        }*/
     }
 }
+
+
+
+/*
+ * Retrieves all tags from a JSON file and stores them in the provided vector.
+ * Parameters:
+ * -- arr: vector to store the tags.
+ * Returns:
+ * -- No return value. The words are directly stored in the vector passed by reference.
+ */
+void getAllTags(std::vector<std::string> &arr){
+    arr = {};
+
+    std::string fileName = "tags.json";
+    for (json& tag : getJsonDataFromFile(fileName)){
+        arr.push_back(tag.get<std::string>());
+    }
+}
+
 
 /*
  * Initializes and runs the application.
@@ -32,6 +70,20 @@ void getAllWords(std::vector<Word*> &arr) {
 int Application::run(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+
+
+    // Connect the 'aboutToQuit' signal to a lambda function
+    QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
+        //save tags into json file
+        json tagsJson = json::parse("[]");
+        for (std::string &tag : tags){
+            tagsJson.push_back(tag);
+        }
+
+        std::string fileName = "tags.json";
+        writeJsonToFile(tagsJson, fileName);
+    });
+
 
     getAllWords(words);
     updateDisplayedWords();
@@ -71,6 +123,31 @@ void Application::updateDisplayedWords() {
         }
 
         setDisplayedWords(result);
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
+}
+
+
+/*
+ * Updates the list of displayed Tags.
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- No return value. Updates the displayedTags property.
+ */
+void Application::updateDisplayedTags(){
+    try {
+        QList<QString> result = {};
+        for (std::string strTag : tags) {
+            QString tag = QString::fromStdString(strTag);
+
+            result.append(tag);
+        }
+
+        setDisplayedTags(result);
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -138,7 +215,9 @@ void Application::increaseWordFrequncyOfUse(int wordIndex) {
     try {
         Word* word = words[wordIndex];
 
-        word->increaseFrequencyOfUse();
+        word->frequencyOfUse++;
+
+        word->save();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {

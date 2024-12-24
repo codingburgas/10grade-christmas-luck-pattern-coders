@@ -25,6 +25,7 @@ struct Word {
     std::string difficulty;
     std::string url;
     unsigned long frequencyOfUse = 0;
+    json tags = {};
 
 
     /*
@@ -62,9 +63,35 @@ struct Word {
     bool operator==(Word& objectToCompare);
 
 
+    /*
+     * Converts the Word object to a JSON representation.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- A JSON object representing the word with properties: word, definition, partOfSpeech, difficulty, url, and frequencyOfUse.
+     */
     json toJson();
 
+
+    /*
+     * Increases the frequency of use of the word and updates the word's frequency in the corresponding JSON file.
+     * If the word is found in the JSON file, its frequencyOfUse is incremented by 1.
+     * If the word is not found, an error message is thrown.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- No return value. The frequencyOfUse property is updated, and the JSON file is rewritten.
+     */
     void increaseFrequencyOfUse();
+
+
+    /*Saves changes in Word object to a file
+     *Parameters:
+     *--None
+     *Returns:
+     *--None
+     */
+    void save();
 };
 
 
