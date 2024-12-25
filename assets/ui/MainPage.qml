@@ -17,7 +17,7 @@ Rectangle{
 
     signal screenChanged(path: string)
 
-    /*Rectangle{
+    Rectangle{
         id: toolBar
         height: 50
         width: parent.width
@@ -220,10 +220,11 @@ Rectangle{
 
         function onWordsUiChanged(){
             content.wordsUiSize = application.getWordsUiSize()
+            application.message(content.wordsUiSize + " words found", "There are " + content.wordsUiSize + " words corresponding to your request", "success")
         }
-    }*/
+    }
 
-    ColumnLayout{
+    /*ColumnLayout{
         id: chosenTags
         width: 300
 
@@ -263,13 +264,14 @@ Rectangle{
 
         function onTagsChosenUiChanged(){
             chosenTagsRepeater.model = application.getTagsChosenUiSize()
+            application.message("Title" ,"Detailed description", "error")
 
         }
 
         function onTagsUiChanged(){
             tagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
         }
-    }
+    }*/
 }
 
 

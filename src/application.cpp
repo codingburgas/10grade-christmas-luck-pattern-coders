@@ -122,7 +122,7 @@ void Application::updateWordsUi() {
         QList<WordUi*> result = {};
         for (Word *word : words) {
             auto wordUi = new WordUi(word);
-            result.append(wordUi);
+            result.push_back(wordUi);
         }
 
         setWordsUi(result);
@@ -292,7 +292,7 @@ void Application::addWordTag(int wordIndex, int tagIndex){
 
 
         words[wordIndex]->tags.push_back(tag);
-        wordsUi[wordIndex]->tags.append(QString::fromStdString(tag));
+        wordsUi[wordIndex]->tags.push_back(QString::fromStdString(tag));
 
         words[wordIndex]->save();
 
