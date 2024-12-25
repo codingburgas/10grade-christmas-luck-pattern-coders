@@ -73,7 +73,7 @@ public:
      * Returns:
      * -- bool: whether tag is custom
      */
-    Q_INVOKABLE bool inCustomTags(QString tagToFind);
+    Q_INVOKABLE bool isInCustomTags(QString tagToFind);
 
 signals:
     void difficultyTagsChanged();

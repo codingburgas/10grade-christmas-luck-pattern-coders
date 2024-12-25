@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick 2.15
 import WordUi 1.0
 
@@ -34,15 +36,21 @@ Rectangle{
         //anchors.top: title.bottom
         model: wordPage.word.getTagsSize()
 
-        Text{
+        /*Text{
             required property int index
             y: 100 + index*100
             height: 50
             text: wordPage.word.tags[index]
+        }*/
+        Tag{
+            required property int index
+            property int location: 1
+            property bool chosen: true
+            y: 100 + index*100
         }
     }
 
-    Repeater{
+    /*Repeater{
         id: difficultyTagsRepeater
         //anchors.top: title.bottom
         model: application.tagsUi.getDifficultyTagsSize()
@@ -79,12 +87,12 @@ Rectangle{
             y: 150
             text: application.tagsUi.customTags[index]
         }
-    }
+    }*/
 
 
 
 
-    MouseArea{
+    /*MouseArea{
         anchors.fill: parent
 
         onClicked: {
@@ -95,7 +103,7 @@ Rectangle{
             //add tag to word
             application.addWordTag(application.indexOfClickedWord, 3);
         }
-    }
+    }*/
 
 
 

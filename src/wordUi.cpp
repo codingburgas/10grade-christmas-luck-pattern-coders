@@ -20,3 +20,14 @@ WordUi::WordUi(Word *word){
         this->tags.push_back(QString::fromStdString(tag));
     }
 }
+
+
+bool WordUi::isInTags(QString tagToFind){
+    for (QString& tag : tags){
+        if (tag == tagToFind){
+            return true;
+        }
+    }
+
+    return false;
+}

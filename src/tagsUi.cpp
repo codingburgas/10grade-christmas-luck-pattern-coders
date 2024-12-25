@@ -65,7 +65,7 @@ QString TagsUi::getElementOnIndex(int index){
  * Returns:
  * -- bool: whether tag is custom
  */
-bool TagsUi::inCustomTags(QString tagToFind){
+bool TagsUi::isInCustomTags(QString tagToFind){
     for (QString &tag : customTags){
         if (tag == tagToFind){
             return true;

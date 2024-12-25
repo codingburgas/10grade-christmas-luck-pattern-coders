@@ -222,6 +222,8 @@ public:
 
     Q_INVOKABLE int getTagsSize(){ return tags.size(); }
 
+    Q_INVOKABLE bool isInTags(QString tagToFind);
+
 signals:
     void wordChanged();
     void definitionChanged();
