@@ -95,4 +95,28 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
 
 
 
+template<typename T>
+bool contains(std::vector<T> &v, T &val){
+    for (T& el : v){
+        if (el == val){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+
+void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
+    for (size_t i=0; i<arr.size(); i++){
+
+        for (std::string& tag : tags){
+            if (!contains(arr[i]->tags, tag)){
+                arr.erase(arr.begin() + i);
+            }
+        }
+    }
+}
+
 #endif // WORDALGORITHMS_H
