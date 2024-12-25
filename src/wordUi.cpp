@@ -17,6 +17,6 @@ WordUi::WordUi(Word *word){
     //this->word = QString::fromStdString(word->word);
 
     for (std::string &tag : word->tags){
-        this->tags.append(QString::fromStdString(tag));
+        this->tags.push_back(QString::fromStdString(tag));
     }
 }
