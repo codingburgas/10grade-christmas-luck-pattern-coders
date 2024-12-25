@@ -108,15 +108,6 @@ bool contains(std::vector<T> &v, T &val){
 
 
 
-void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
-    for (size_t i=0; i<arr.size(); i++){
-
-        for (std::string& tag : tags){
-            if (!contains(arr[i]->tags, tag)){
-                arr.erase(arr.begin() + i);
-            }
-        }
-    }
-}
+void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags);
 
 #endif // WORDALGORITHMS_H

@@ -320,12 +320,20 @@ void Application::deleteTag(int tagIndex){
         emit message("Couldn't find the tag", "Couldn't find the tag", "error");
         return;
     }
-    std::string tag = tags->customTags[tags->customTags.begin() + tagIndex];
 
-    tags->customTags.erase(tags->customTags.begin() + tagIndex);
-    tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex);
+    try{
+        std::string tag = tags->customTags[tagIndex];
 
-    emit tagsUiChanged();
+        tags->customTags.erase(tags->customTags.begin() + tagIndex);
+        tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex);
 
-    deleteTagInJsonData(tag);
+        emit tagsUiChanged();
+
+        deleteTagInJsonData(tag);
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
+
 }
