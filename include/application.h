@@ -203,6 +203,8 @@ public:
 
     Q_INVOKABLE void addTag(QString tag);
 
+    Q_INVOKABLE void deleteTag(int tagIndex);
+
     // -----------------------------
 
     /*

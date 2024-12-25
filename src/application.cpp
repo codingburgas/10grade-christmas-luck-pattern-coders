@@ -299,3 +299,33 @@ void Application::addTag(QString tag){
 
     emit tagsUiChanged();
 }
+
+
+
+void deleteTagInJsonData(std::string& tag){
+    std::string fileName = "words.json";
+
+    json data = getJsonDataFromFile(fileName);
+    for (json &wordData : data){
+        wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+    }
+
+    writeJsonToFile(data, fileName);
+}
+
+
+
+void Application::deleteTag(int tagIndex){
+    if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+        emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+        return;
+    }
+    std::string tag = tags->customTags[tags->customTags.begin() + tagIndex];
+
+    tags->customTags.erase(tags->customTags.begin() + tagIndex);
+    tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex);
+
+    emit tagsUiChanged();
+
+    deleteTagInJsonData(tag);
+}
