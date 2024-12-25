@@ -9,6 +9,7 @@
 #include <QList>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlListProperty>
 
 #include "json.hpp"
 using json = nlohmann::json;
@@ -16,6 +17,9 @@ using json = nlohmann::json;
 #include "word.h"
 #include "fileManager.h"
 #include "wordAlgorithms.h"
+#include "wordUi.h"
+#include "tags.h"
+#include "tagsUi.h"
 
 
 /*
@@ -27,6 +31,21 @@ using json = nlohmann::json;
  */
 void getAllWords(std::vector<Word*> &arr);
 
+/*
+ * Retrieves all tags from a JSON file and stores them in the provided vector.
+ * Parameters:
+ * -- arr: vector to store the tags.
+ * Returns:
+ * -- No return value. The words are directly stored in the vector passed by reference.
+ */
+void getAllTags(std::vector<std::string> &arr);
+
+
+
+
+
+
+
 
 /*
  * Application structure, managing the word list, search, sorting, and updates.
@@ -34,14 +53,20 @@ void getAllWords(std::vector<Word*> &arr);
  */
 struct Application : public QObject {
     Q_OBJECT
-    Q_PROPERTY(QList<QList<QString>> displayedWords READ getDisplayedWords WRITE setDisplayedWords NOTIFY displayedWordsChanged FINAL)
+    Q_PROPERTY(QList<WordUi*> wordsUi READ getWordsUi WRITE setWordsUi NOTIFY wordsUiChanged FINAL)
     Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
+    Q_PROPERTY(TagsUi* tagsUi READ getTagsUi WRITE setTagsUi NOTIFY tagsUiChanged FINAL)
+    Q_PROPERTY(QList<QString> tagsChosenUi READ getTagsChosenUi WRITE setTagsChosenUi NOTIFY tagsChosenUiChanged)
 
 public:
     //properties
     std::vector<Word*> words = {};   // List of words in the application.
+    Tags* tags = {}; // Object, containing all tags used in application
+    std::vector<std::string> tagsChosen = {};
+    QList<QString> tagsChosenUi = {};
     size_t indexOfClickedWord;        // Index of the currently clicked word.
-    QList<QList<QString>> displayedWords = {};   // List of words to display.
+    QList<WordUi*> wordsUi = {};   // List of words to display.
+    TagsUi* tagsUi = {}; // List of all tags
 
     // Qt methods ----------
 
@@ -50,18 +75,38 @@ public:
      * Parameters:
      * -- None
      * Returns:
-     * -- displayedWords: List of words currently displayed.
+     * -- wordsUi: List of words currently displayed.
      */
-    QList<QList<QString>> getDisplayedWords() { return displayedWords; }
+    QList<WordUi*> getWordsUi() {
+        return wordsUi;
+    }
+
+    /*
+     * Gets the list of all tags.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- tagsUi: List of tags currently displayed.
+     */
+    TagsUi* getTagsUi() { return tagsUi; }
 
     /*
      * Sets the list of displayed words.
      * Parameters:
      * -- val: New list of displayed words.
      * Returns:
-     * -- No return value. Sets the displayedWords property.
+     * -- No return value. Sets the wordsUi property.
      */
-    void setDisplayedWords(QList<QList<QString>> &val) { displayedWords = val; emit displayedWordsChanged(); }
+    void setWordsUi(QList<WordUi*> &val) { wordsUi = val; emit wordsUiChanged(); }
+
+    /*
+     * Sets the list of displayed Tags.
+     * Parameters:
+     * -- val: New list of displayed Tags.
+     * Returns:
+     * -- No return value. Sets the tagsUi property.
+     */
+    void setTagsUi(TagsUi *val) { delete tagsUi; tagsUi = val; emit tagsUiChanged(); }
 
     /*
      * Gets the index of the currently clicked word.
@@ -81,14 +126,55 @@ public:
      */
     void setIndexOfClickedWord(size_t &val) { indexOfClickedWord = val; emit indexOfClickedWordChanged(); }
 
+
+    /*
+     * Returns tagsChosenUi property
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QList<QString>: tagsChosenUi
+     */
+    QList<QString> getTagsChosenUi() const {
+        return tagsChosenUi;
+    }
+
+    /*
+     * Set tagsChosenUi property and emits correspondent signal
+     * Parameters:
+     * -- QList<QString>: new value of tagsChosenUi
+     * Returns:
+     * -- None
+     */
+    void setTagsChosenUi(const QList<QString> &val) { tagsChosenUi = val; emit tagsChosenUiChanged(); }
+
+
     /*
      * Updates the list of displayed words.
      * Parameters:
      * -- None
      * Returns:
-     * -- No return value. Updates the displayedWords property.
+     * -- No return value. Updates the WordsUi property.
      */
-    Q_INVOKABLE void updateDisplayedWords();
+    Q_INVOKABLE void updateWordsUi();
+
+    /*
+     * Updates the list of displayed Tags.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- No return value. Updates the tagsUi property.
+     */
+    Q_INVOKABLE void updateTagsUi();
+
+
+    /*
+     * Updates the list of tagsChosenUi by copying values from tagsChosen into Qt-like types.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+     */
+    Q_INVOKABLE void updateTagsChosenUi();
 
     /*
      * Gets the size of the displayed words list.
@@ -97,7 +183,19 @@ public:
      * Returns:
      * -- Integer representing the number of displayed words.
      */
-    Q_INVOKABLE int getDisplayedWordsSize() { return displayedWords.size(); }
+    Q_INVOKABLE int getWordsUiSize() { return wordsUi.size(); }
+
+
+
+    /*
+     * Gets the size of the tagsChosenUi.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- Integer representing the size of array.
+     */
+    Q_INVOKABLE int getTagsChosenUiSize() { return tagsChosenUi.size(); }
+
 
     /*
      * Searches for words based on a specified part of a word and property name.
@@ -132,6 +230,74 @@ public:
      */
     Q_INVOKABLE void increaseWordFrequncyOfUse(int wordIndex);
 
+
+    /* Removes a tag from the word and saves changes to a file
+     * Parameters:
+     * --wordIndex: index of the word in 'words' array
+     * --tagIndex: index of the tag in 'customTags' array of tags object
+     * Returns:
+     * --None
+     */
+    Q_INVOKABLE void deleteWordTag(int wordIndex, int tagIndex);
+
+
+    /* Adds a tag to word and saves changes to a file
+     * Parameters:
+     * --wordIndex: index of the word in 'words' array
+     * --tagIndex: index of the tag in 'customTags' array of tags object
+     * Returns:
+     * --None
+     */
+    Q_INVOKABLE void addWordTag(int wordIndex, int tagIndex);
+
+
+    /* Adds a tag, which can be then applied to a word or search filter
+     * Parameters:
+     * --tag: a name of new tag
+     * Returns:
+     * --None
+     */
+    Q_INVOKABLE void addTag(QString tag);
+
+
+    /* Deletes tag by removing it from 'customTags' array and removing all occurences of specified tag in words
+     * Parameters:
+     * --tag: a name of tag to be deleted
+     * Returns:
+     * --None
+     */
+    Q_INVOKABLE void deleteTag(int tagIndex);
+
+
+    /*
+     * Adds tag to chosen(for search)
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+     */
+    Q_INVOKABLE void addTagToChosen(int tagIndex);
+
+
+    /*
+     * Removes tag from chosen(for search)
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+     */
+    Q_INVOKABLE void removeTagFromChosen(int tagIndex);
+
+
+    /*
+     * Checks if tag is in chosen
+     * Parameters:
+     * -- tag: name of the tag
+     * Returns:
+     * -- bool: whether tag is in chosen or not
+     */
+    Q_INVOKABLE bool isInTagsChosen(QString tag);
+
     // -----------------------------
 
     /*
@@ -145,9 +311,11 @@ public:
     int run(int argc, char *argv[]);
 
 signals:
-    void displayedWordsChanged();
+    void wordsUiChanged();
+    void tagsUiChanged();
+    void tagsChosenUiChanged();
     void indexOfClickedWordChanged();
-    void message(QString title = QString::fromStdString("Something went wrong :("), QString description = QString::fromStdString("Unknown error"), QString type = QString::fromStdString("error"));
+    void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
 };
 
 #endif // APPLICATION_H

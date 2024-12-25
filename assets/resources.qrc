@@ -7,5 +7,6 @@
         <file>ui/MainPage.qml</file>
         <file>ui/WordPage.qml</file>
         <file>ui/Message.qml</file>
+        <file>ui/Tag.qml</file>
     </qresource>
 </RCC>

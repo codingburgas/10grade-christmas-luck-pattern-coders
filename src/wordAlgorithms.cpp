@@ -229,3 +229,44 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
     }
 }
 
+
+
+/*
+ * checks if vector contains specified value
+ * Parameters:
+ * --v: vector
+ * --val: value to search for
+ * Returns:
+ * --bool
+ */
+template<typename T>
+bool contains(std::vector<T> &v, T &val){
+    for (T& el : v){
+        if (el == val){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+/*
+ * Erases all words, which don't have any of specified tags
+ * Parameters:
+ * --arr: vector of words
+ * --tags: vector of tags
+ * Returns:
+ * --None
+ */
+void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
+    for (size_t i=0; i<arr.size(); i++){
+
+        for (std::string& tag : tags){
+            if (!contains(arr[i]->tags, tag)){
+                arr.erase(arr.begin() + i);
+            }
+        }
+    }
+}
+

@@ -94,5 +94,26 @@ void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool asc
 void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std::string& propertyName, bool caseSensitive, bool startsWith=false, bool endsWith=false);
 
 
+/*
+ * checks if vector contains specified value
+ * Parameters:
+ * --v: vector
+ * --val: value to search for
+ * Returns:
+ * --bool
+ */
+template<typename T>
+bool contains(std::vector<T> &v, T &val);
+
+
+/*
+ * Erases all words, which don't have any of specified tags
+ * Parameters:
+ * --arr: vector of words
+ * --tags: vector of tags
+ * Returns:
+ * --None
+ */
+void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags);
 
 #endif // WORDALGORITHMS_H

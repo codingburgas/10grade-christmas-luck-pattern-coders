@@ -1,9 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QCoreApplication>
 #include <QQmlContext>
 
 #include "application.h"
 #include "message.h"
+
 
 /*
  * Retrieves all words from a JSON file and stores them in the provided vector.
@@ -15,11 +17,34 @@
 void getAllWords(std::vector<Word*> &arr) {
     arr = {};
 
+
     std::string fileName = "words.json";
+
     for (json &wordData : getJsonDataFromFile(fileName)) {
-        arr.push_back(convertJsonToWord(wordData));
+        arr.push_back(new Word(wordData));
+    }
+
+
+}
+
+
+
+/*
+ * Retrieves all tags from a JSON file and stores them in the provided vector.
+ * Parameters:
+ * -- arr: vector to store the tags.
+ * Returns:
+ * -- No return value. The words are directly stored in the vector passed by reference.
+ */
+void getAllTags(std::vector<std::string> &arr){
+    arr = {};
+
+    std::string fileName = "tags.json";
+    for (json& tag : getJsonDataFromFile(fileName)){
+        arr.push_back(tag.get<std::string>());
     }
 }
+
 
 /*
  * Initializes and runs the application.
@@ -33,8 +58,47 @@ int Application::run(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    getAllWords(words);
-    updateDisplayedWords();
+
+    qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
+    qmlRegisterType<TagsUi>("TagsUi", 1, 0, "TagsUi");
+
+
+
+    // Connect the 'aboutToQuit' signal to a lambda function
+    QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
+        //save tags into json file
+        json tagsJson = tags->toJson();
+
+        std::string fileName = "tags.json";
+        writeJsonToFile(tagsJson, fileName);
+
+
+        for (Word* word : words){ delete word; }
+        for (WordUi* wordUi : wordsUi){ delete wordUi; }
+        delete tagsUi;
+    });
+
+
+    try{
+        getAllWords(words);
+        updateWordsUi();
+    }catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message("Failed to load words", "Application may work incorrectly. Try reloading it", "error");
+    }
+
+
+    try{
+        tags = new Tags();
+        updateTagsUi();
+    } catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message("Failed to load tags", "Application may work incorrectly. Try reloading it", "error");
+    }
+
+
 
     engine.rootContext()->setContextProperty("application", this);
 
@@ -47,30 +111,41 @@ int Application::run(int argc, char *argv[]) {
 }
 
 /*
- * Updates the displayed list of words by converting each word into a list of strings.
- * The data is then assigned to the displayedWords property.
+ * Updates the wordsUi list by copying values from words into Qt-like types
  * Parameters:
  * -- None
  * Returns:
  * -- No return value. Updates the displayedWords property.
  */
-void Application::updateDisplayedWords() {
+void Application::updateWordsUi() {
     try {
-        QList<QList<QString>> result = {};
-        for (Word* word : words) {
-            QList<QString> wordData = {
-                QString::fromStdString(word->word),
-                QString::fromStdString(word->definition),
-                QString::fromStdString(word->partOfSpeech),
-                QString::fromStdString(word->difficulty),
-                QString::fromStdString(word->url),
-                QString::number(word->frequencyOfUse)
-            };
-
-            result.append(wordData);
+        QList<WordUi*> result = {};
+        for (Word *word : words) {
+            auto wordUi = new WordUi(word);
+            result.append(wordUi);
         }
 
-        setDisplayedWords(result);
+        setWordsUi(result);
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
+}
+
+
+/*
+ * Updates the list of tagsUi by copying values from tags into Qt-like types.
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None.
+ */
+void Application::updateTagsUi(){
+    try {
+        TagsUi* result = new TagsUi(tags);
+
+        setTagsUi(result);
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -96,8 +171,9 @@ void Application::searchWords(QString part, QString propertyName, bool caseSensi
         std::string strPart = part.toStdString();
         std::string strPropertyName = propertyName.toStdString();
         leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
+        leaveWordsWithSpecificTags(words, tagsChosen);
 
-        updateDisplayedWords();
+        updateWordsUi();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -119,7 +195,7 @@ void Application::sortWords(QString propertyName, bool ascendingOrder) {
 
         sortByProperty(words, strPropertyName, ascendingOrder);
 
-        updateDisplayedWords();
+        updateWordsUi();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -138,10 +214,255 @@ void Application::increaseWordFrequncyOfUse(int wordIndex) {
     try {
         Word* word = words[wordIndex];
 
-        word->increaseFrequencyOfUse();
+        word->frequencyOfUse++;
+
+        word->save();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
         emit message();
     }
+}
+
+
+
+/* Removes a tag from the word and saves changes to a file
+ * Parameters:
+ * --wordIndex: index of the word in 'words' array
+ * --tagIndex: index of the tag in 'customTags' array of tags object
+ * Returns:
+ * --None
+ */
+void Application::deleteWordTag(int wordIndex, int tagIndex){
+    try{
+        // check if tagIndex is valid, because QList doesn't throw 'out of range' exception, but crashes application
+        if (tagIndex < 0 || tagIndex >= wordsUi[wordIndex]->tags.size()){
+            emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+            return;
+        }
+
+
+        std::string &tag = words[wordIndex]->tags[tagIndex];
+
+        if (!contains(tags->customTags, tag)){
+            emit message("This tag can not be deleted", "Tags, containing difficulty and part of speech are impossible to delete", "warning");
+            return;
+        }
+
+
+        words[wordIndex]->tags.erase(words[wordIndex]->tags.begin() + tagIndex);
+        wordsUi[wordIndex]->tags.erase(wordsUi[wordIndex]->tags.begin() + tagIndex);
+
+        words[wordIndex]->save();
+
+        emit wordsUi[wordIndex]->tagsChanged();
+
+
+    } catch(std::out_of_range&){
+        emit message("Couldn't find the word", "Couldn't find the word", "error");
+    } catch(...){
+        emit message();
+    }
+}
+
+
+
+/* Adds a tag to word and saves changes to a file
+ * Parameters:
+ * --wordIndex: index of the word in 'words' array
+ * --tagIndex: index of the tag in 'customTags' array of tags object
+ * Returns:
+ * --None
+ */
+void Application::addWordTag(int wordIndex, int tagIndex){
+    try{
+
+        if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+            emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+            return;
+        }
+
+
+        std::string &tag = tags->customTags[tagIndex];
+
+        if (contains(words[wordIndex]->tags, tag)){
+            emit message("This tag is already added", "Word already has this tag", "warning");
+            return;
+        }
+
+
+        words[wordIndex]->tags.push_back(tag);
+        wordsUi[wordIndex]->tags.append(QString::fromStdString(tag));
+
+        words[wordIndex]->save();
+
+        emit wordsUi[wordIndex]->tagsChanged();
+
+
+    } catch(std::out_of_range&){
+        emit message("Couldn't find the word", "Couldn't find the word", "error");
+    } catch(...){
+        emit message();
+    }
+}
+
+
+/* Adds a tag, which can be then applied to a word or search filter
+ * Parameters:
+ * --tag: a name of new tag
+ * Returns:
+ * --None
+ */
+void Application::addTag(QString tag){
+    std::string strTag = tag.toStdString();
+    if (contains(tags->customTags, strTag)){
+        emit message("This tag is already added", "Word already has this tag", "warning");
+        return;
+    }
+
+    try{
+        tags->customTags.push_back(strTag);
+        tagsUi->customTags.push_back(tag);
+
+        emit tagsUiChanged();
+    } catch(...){
+        emit message();
+    }
+
+}
+
+
+/* Removes all occurences of specified tag in file with words
+ * Parameters:
+ * --tag: a name of tag to be deleted
+ * Returns:
+ * --None
+ */
+void deleteTagInJsonData(std::string& tag){
+
+    std::string fileName = "words.json";
+
+    json data = getJsonDataFromFile(fileName);
+    for (json &wordData : data){
+        wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+    }
+
+    writeJsonToFile(data, fileName);
+
+
+}
+
+
+/* Deletes tag by removing it from 'customTags' array and removing all occurences of specified tag in words
+ * Parameters:
+ * --tag: a name of tag to be deleted
+ * Returns:
+ * --None
+ */
+void Application::deleteTag(int tagIndex){
+    if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+        emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+        return;
+    }
+
+    try{
+        std::string tag = tags->customTags[tagIndex];
+
+        tags->customTags.erase(tags->customTags.begin() + tagIndex);
+        tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex);
+
+        emit tagsUiChanged();
+
+        deleteTagInJsonData(tag);
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
+
+}
+
+
+/*
+ * Updates the list of tagsChosenUi by copying values from tagsChosen into Qt-like types.
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+ */
+void Application::updateTagsChosenUi(){
+    tagsChosenUi = {};
+
+    for (std::string& tagChosen : tagsChosen){
+        tagsChosenUi.push_back(QString::fromStdString(tagChosen));
+    }
+
+    emit tagsChosenUiChanged();
+}
+
+
+/*
+ * Adds tag to chosen(for search)
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+ */
+void Application::addTagToChosen(int tagIndex){
+    try{
+        std::string tag = tags->getElementOnIndex(tagIndex);
+
+        if (contains(tagsChosen, tag)){
+            emit message("Tag is already added", "Tag is already added", "error");
+            return;
+        }
+
+        tagsChosen.push_back(tag);
+        tagsChosenUi.push_back(QString::fromStdString(tag));
+
+        emit tagsChosenUiChanged();
+
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
+
+}
+
+
+/*
+ * Removes tag from chosen(for search)
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+ */
+void Application::removeTagFromChosen(int tagIndex){
+    try{
+
+        tagsChosen.erase(tagsChosen.begin() + tagIndex);
+        tagsChosenUi.erase(tagsChosenUi.begin() + tagIndex);
+
+        emit tagsChosenUiChanged();
+
+    } catch(std::out_of_range&){
+        emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+    } catch (...) {
+        emit message();
+    }
+}
+
+
+/*
+ * Checks if tag is in chosen
+ * Parameters:
+ * -- tag: name of the tag
+ * Returns:
+ * -- bool: whether tag is in chosen or not
+ */
+bool Application::isInTagsChosen(QString tag){
+    std::string strTag = tag.toStdString();
+
+    return contains(tagsChosen, strTag);
 }
