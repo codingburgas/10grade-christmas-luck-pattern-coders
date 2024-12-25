@@ -58,8 +58,6 @@ int Application::run(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    tags = new Tags();
-    updateTagsUi();
 
     qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
     qmlRegisterType<TagsUi>("TagsUi", 1, 0, "TagsUi");
@@ -83,13 +81,24 @@ int Application::run(int argc, char *argv[]) {
 
     try{
         getAllWords(words);
+        updateWordsUi();
     }catch(Message& m){
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch(...){
-        emit message();
+        emit message("Failed to load words", "Application may work incorrectly. Try reloading it", "error");
     }
 
-    updateWordsUi();
+
+    try{
+        tags = new Tags();
+        updateTagsUi();
+    } catch(Message& m){
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch(...){
+        emit message("Failed to load tags", "Application may work incorrectly. Try reloading it", "error");
+    }
+
+
 
     engine.rootContext()->setContextProperty("application", this);
 
@@ -293,24 +302,36 @@ void Application::addTag(QString tag){
         return;
     }
 
+    try{
+        tags->customTags.push_back(strTag);
+        tagsUi->customTags.push_back(tag);
 
-    tags->customTags.push_back(strTag);
-    tagsUi->customTags.push_back(tag);
+        emit tagsUiChanged();
+    } catch(...){
+        emit message();
+    }
 
-    emit tagsUiChanged();
 }
 
 
 
 void deleteTagInJsonData(std::string& tag){
-    std::string fileName = "words.json";
+    try{
+        std::string fileName = "words.json";
 
-    json data = getJsonDataFromFile(fileName);
-    for (json &wordData : data){
-        wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+        json data = getJsonDataFromFile(fileName);
+        for (json &wordData : data){
+            wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+        }
+
+        writeJsonToFile(data, fileName);
+
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message("Failed to read or write to file.");
     }
 
-    writeJsonToFile(data, fileName);
 }
 
 
