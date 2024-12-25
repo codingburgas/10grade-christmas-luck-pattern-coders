@@ -56,11 +56,14 @@ struct Application : public QObject {
     Q_PROPERTY(QList<WordUi*> wordsUi READ getWordsUi WRITE setWordsUi NOTIFY wordsUiChanged FINAL)
     Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
     Q_PROPERTY(TagsUi* tagsUi READ getTagsUi WRITE setTagsUi NOTIFY tagsUiChanged FINAL)
+    Q_PROPERTY(QList<QString> tagsChosenUi READ getTagsChosenUi WRITE setTagsChosenUi NOTIFY tagsChosenUiChanged)
 
 public:
     //properties
     std::vector<Word*> words = {};   // List of words in the application.
     Tags* tags = {}; // Object, containing all tags used in application
+    std::vector<std::string> tagsChosen = {};
+    QList<QString> tagsChosenUi = {};
     size_t indexOfClickedWord;        // Index of the currently clicked word.
     QList<WordUi*> wordsUi = {};   // List of words to display.
     TagsUi* tagsUi = {}; // List of all tags
@@ -76,7 +79,6 @@ public:
      */
     QList<WordUi*> getWordsUi() {
         return wordsUi;
-        //return QQmlListProperty<WordUi>(dynamic_cast<QObject*>(this), &WordsUi);
     }
 
     /*
@@ -124,6 +126,14 @@ public:
      */
     void setIndexOfClickedWord(size_t &val) { indexOfClickedWord = val; emit indexOfClickedWordChanged(); }
 
+
+    QList<QString> getTagsChosenUi() const {
+        return tagsChosenUi;
+    }
+
+    void setTagsChosenUi(const QList<QString> &val) { tagsChosenUi = val; emit tagsChosenUiChanged(); }
+
+
     /*
      * Updates the list of displayed words.
      * Parameters:
@@ -142,6 +152,8 @@ public:
      */
     Q_INVOKABLE void updateTagsUi();
 
+    Q_INVOKABLE void updateTagsChosenUi();
+
     /*
      * Gets the size of the displayed words list.
      * Parameters:
@@ -150,6 +162,8 @@ public:
      * -- Integer representing the number of displayed words.
      */
     Q_INVOKABLE int getWordsUiSize() { return wordsUi.size(); }
+
+    Q_INVOKABLE int getTagsChosenUiSize() { return tagsChosenUi.size(); }
 
 
     /*
@@ -205,6 +219,12 @@ public:
 
     Q_INVOKABLE void deleteTag(int tagIndex);
 
+    Q_INVOKABLE void addTagToChosen(int tagIndex);
+
+    Q_INVOKABLE void removeTagFromChosen(int tagIndex);
+
+    Q_INVOKABLE bool isInTagsChosen(QString tag);
+
     // -----------------------------
 
     /*
@@ -220,6 +240,7 @@ public:
 signals:
     void wordsUiChanged();
     void tagsUiChanged();
+    void tagsChosenUiChanged();
     void indexOfClickedWordChanged();
     void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
 };

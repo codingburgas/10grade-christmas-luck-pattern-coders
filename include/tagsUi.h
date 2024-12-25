@@ -52,6 +52,11 @@ public:
         emit customTagsChanged();
     }
 
+
+    Q_INVOKABLE QString getElementOnIndex(int index);
+
+    Q_INVOKABLE bool inCustomTags(QString tagToFind);
+
 signals:
     void difficultyTagsChanged();
     void partOfSpeechTagsChanged();

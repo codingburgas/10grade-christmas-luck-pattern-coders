@@ -5,6 +5,7 @@ import QtQuick.Layouts 2.15
 import QtQuick.Controls 2.15
 
 import WordUi 1.0
+import TagsUi 1.0
 
 Rectangle{
     id: mainPage
@@ -16,7 +17,7 @@ Rectangle{
 
     signal screenChanged(path: string)
 
-    Rectangle{
+    /*Rectangle{
         id: toolBar
         height: 50
         width: parent.width
@@ -147,12 +148,12 @@ Rectangle{
                             property int indexInWordsUi: (content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index
                             property QtObject page: mainPage
 
-                            /*property string word: application.displayedWords[indexInDisplayedWords][0]
-                            property string definition: application.displayedWords[indexInDisplayedWords][1]
-                            property string partOfSpeech: application.displayedWords[indexInDisplayedWords][2]
-                            property string difficulty: application.displayedWords[indexInDisplayedWords][3]
-                            property string url: application.displayedWords[indexInDisplayedWords][4]
-                            property string frequencyOfUse: application.displayedWords[indexInDisplayedWords][5]*/
+                            //property string word: application.displayedWords[indexInDisplayedWords][0]
+                            //property string definition: application.displayedWords[indexInDisplayedWords][1]
+                            //property string partOfSpeech: application.displayedWords[indexInDisplayedWords][2]
+                            //property string difficulty: application.displayedWords[indexInDisplayedWords][3]
+                            //property string url: application.displayedWords[indexInDisplayedWords][4]
+                            //property string frequencyOfUse: application.displayedWords[indexInDisplayedWords][5]
 
                             property WordUi wordUi: application.wordsUi[indexInWordsUi]
                         }
@@ -219,6 +220,54 @@ Rectangle{
 
         function onWordsUiChanged(){
             content.wordsUiSize = application.getWordsUiSize()
+        }
+    }*/
+
+    ColumnLayout{
+        id: chosenTags
+        width: 300
+
+        Repeater{
+            id: chosenTagsRepeater
+            model: application.getTagsChosenUiSize()
+
+            Tag{
+                property bool chosen: true
+                required property int index
+            }
+        }
+    }
+
+
+    ColumnLayout{
+        id: tags
+        anchors.left: chosenTags.right
+        width: 300
+
+        Repeater{
+            id: tagsRepeater
+            model: application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
+
+            Tag{
+                property bool chosen: false
+                required property int index
+
+            }
+
+        }
+    }
+
+
+    Connections{
+        target: application
+
+        function onTagsChosenUiChanged(){
+            chosenTagsRepeater.model = application.getTagsChosenUiSize()
+
+        }
+
+        function onTagsUiChanged(){
+            tagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
         }
     }
 }

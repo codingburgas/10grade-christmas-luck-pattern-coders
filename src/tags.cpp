@@ -1,5 +1,6 @@
 #include "tags.h"
 #include "fileManager.h"
+#include "message.h"
 
 
 Tags::Tags(){
@@ -21,4 +22,30 @@ json Tags::toJson(){
     }
 
     return result;
+}
+
+
+
+std::string Tags::getElementOnIndex(size_t index){
+    if (index < 0){
+        throw Message("Unexpected error", "Tag index is invalid.", "error");
+    }
+
+    if (index < difficultyTags.size()){
+        return difficultyTags[index];
+    }
+
+    index -= difficultyTags.size();
+
+    if (index < partOfSpeechTags.size()){
+        return partOfSpeechTags[index];
+    }
+
+    index -= partOfSpeechTags.size();
+
+    if(index < customTags.size()){
+        return customTags[index];
+    }
+
+    throw Message("Couldn't find tag", "Tag index is invalid.", "error");
 }

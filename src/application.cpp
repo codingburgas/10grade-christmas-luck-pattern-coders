@@ -316,21 +316,16 @@ void Application::addTag(QString tag){
 
 
 void deleteTagInJsonData(std::string& tag){
-    try{
-        std::string fileName = "words.json";
 
-        json data = getJsonDataFromFile(fileName);
-        for (json &wordData : data){
-            wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
-        }
+    std::string fileName = "words.json";
 
-        writeJsonToFile(data, fileName);
-
-    } catch (Message& m) {
-        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
-    } catch (...) {
-        emit message("Failed to read or write to file.");
+    json data = getJsonDataFromFile(fileName);
+    for (json &wordData : data){
+        wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
     }
+
+    writeJsonToFile(data, fileName);
+
 
 }
 
@@ -357,4 +352,64 @@ void Application::deleteTag(int tagIndex){
         emit message();
     }
 
+}
+
+
+
+void Application::updateTagsChosenUi(){
+    tagsChosenUi = {};
+
+    for (std::string& tagChosen : tagsChosen){
+        tagsChosenUi.push_back(QString::fromStdString(tagChosen));
+    }
+
+    emit tagsChosenUiChanged();
+}
+
+
+void Application::addTagToChosen(int tagIndex){
+    try{
+        std::string tag = tags->getElementOnIndex(tagIndex);
+
+        if (contains(tagsChosen, tag)){
+            emit message("Tag is already added", "Tag is already added", "error");
+            return;
+        }
+
+        tagsChosen.push_back(tag);
+        tagsChosenUi.push_back(QString::fromStdString(tag));
+
+        emit tagsChosenUiChanged();
+
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
+
+}
+
+
+
+void Application::removeTagFromChosen(int tagIndex){
+    try{
+
+        tagsChosen.erase(tagsChosen.begin() + tagIndex);
+        tagsChosenUi.erase(tagsChosenUi.begin() + tagIndex);
+
+        emit tagsChosenUiChanged();
+
+    } catch(std::out_of_range&){
+        emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+    } catch (...) {
+        emit message();
+    }
+}
+
+
+
+bool Application::isInTagsChosen(QString tag){
+    std::string strTag = tag.toStdString();
+
+    return contains(tagsChosen, strTag);
 }

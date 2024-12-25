@@ -21,6 +21,8 @@ struct Tags{
 
     json toJson();
 
+    std::string getElementOnIndex(size_t index);
+
 
 };
 
