@@ -127,10 +127,24 @@ public:
     void setIndexOfClickedWord(size_t &val) { indexOfClickedWord = val; emit indexOfClickedWordChanged(); }
 
 
+    /*
+     * Returns tagsChosenUi property
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QList<QString>: tagsChosenUi
+     */
     QList<QString> getTagsChosenUi() const {
         return tagsChosenUi;
     }
 
+    /*
+     * Set tagsChosenUi property and emits correspondent signal
+     * Parameters:
+     * -- QList<QString>: new value of tagsChosenUi
+     * Returns:
+     * -- None
+     */
     void setTagsChosenUi(const QList<QString> &val) { tagsChosenUi = val; emit tagsChosenUiChanged(); }
 
 
@@ -152,6 +166,14 @@ public:
      */
     Q_INVOKABLE void updateTagsUi();
 
+
+    /*
+     * Updates the list of tagsChosenUi by copying values from tagsChosen into Qt-like types.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+     */
     Q_INVOKABLE void updateTagsChosenUi();
 
     /*
@@ -163,17 +185,16 @@ public:
      */
     Q_INVOKABLE int getWordsUiSize() { return wordsUi.size(); }
 
-    Q_INVOKABLE int getTagsChosenUiSize() { return tagsChosenUi.size(); }
 
 
     /*
-     * Gets the size of the tagsUi list.
+     * Gets the size of the tagsChosenUi.
      * Parameters:
      * -- None
      * Returns:
-     * -- Integer representing the number of tagsUi.
+     * -- Integer representing the size of array.
      */
-    //Q_INVOKABLE int getTagsUiSize() { return tagsUi.size(); }
+    Q_INVOKABLE int getTagsChosenUiSize() { return tagsChosenUi.size(); }
 
 
     /*
@@ -210,19 +231,71 @@ public:
     Q_INVOKABLE void increaseWordFrequncyOfUse(int wordIndex);
 
 
-
+    /* Removes a tag from the word and saves changes to a file
+     * Parameters:
+     * --wordIndex: index of the word in 'words' array
+     * --tagIndex: index of the tag in 'customTags' array of tags object
+     * Returns:
+     * --None
+     */
     Q_INVOKABLE void deleteWordTag(int wordIndex, int tagIndex);
 
+
+    /* Adds a tag to word and saves changes to a file
+     * Parameters:
+     * --wordIndex: index of the word in 'words' array
+     * --tagIndex: index of the tag in 'customTags' array of tags object
+     * Returns:
+     * --None
+     */
     Q_INVOKABLE void addWordTag(int wordIndex, int tagIndex);
 
+
+    /* Adds a tag, which can be then applied to a word or search filter
+     * Parameters:
+     * --tag: a name of new tag
+     * Returns:
+     * --None
+     */
     Q_INVOKABLE void addTag(QString tag);
 
+
+    /* Deletes tag by removing it from 'customTags' array and removing all occurences of specified tag in words
+     * Parameters:
+     * --tag: a name of tag to be deleted
+     * Returns:
+     * --None
+     */
     Q_INVOKABLE void deleteTag(int tagIndex);
 
+
+    /*
+     * Adds tag to chosen(for search)
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+     */
     Q_INVOKABLE void addTagToChosen(int tagIndex);
 
+
+    /*
+     * Removes tag from chosen(for search)
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+     */
     Q_INVOKABLE void removeTagFromChosen(int tagIndex);
 
+
+    /*
+     * Checks if tag is in chosen
+     * Parameters:
+     * -- tag: name of the tag
+     * Returns:
+     * -- bool: whether tag is in chosen or not
+     */
     Q_INVOKABLE bool isInTagsChosen(QString tag);
 
     // -----------------------------

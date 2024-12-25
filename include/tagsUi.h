@@ -25,6 +25,12 @@ struct TagsUi : public QObject {
 
 public:
 
+    /* Constructor, which copies properies from Tags object into Qt-like types
+     * Parameters:
+     * -- tags: Tags object
+     * Returns:
+     * -- Creates Tags
+     */
     TagsUi(Tags *tags);
 
     QList<QString> difficultyTags = {"A1", "A2", "B1", "B2", "C1", "C2"};
@@ -52,9 +58,21 @@ public:
         emit customTagsChanged();
     }
 
-
+    /* Goes through every array and returns tag on index, if all them were 1 array
+     * Parameters:
+     * -- index: index of tag if all arrays were 1
+     * Returns:
+     * -- QString: name of the tag
+     */
     Q_INVOKABLE QString getElementOnIndex(int index);
 
+
+    /* Checks if tag is custom
+     * Parameters:
+     * -- QString: name of the tag
+     * Returns:
+     * -- bool: whether tag is custom
+     */
     Q_INVOKABLE bool inCustomTags(QString tagToFind);
 
 signals:

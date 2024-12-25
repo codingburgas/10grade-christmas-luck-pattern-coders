@@ -2,7 +2,12 @@
 #include "message.h"
 
 
-
+/* Constructor, which copies properies from Tags object into Qt-like types
+ * Parameters:
+ * -- tags: Tags object
+ * Returns:
+ * -- Creates Tags
+ */
 TagsUi::TagsUi(Tags *tags){
     difficultyTags = {};
     partOfSpeechTags = {};
@@ -22,6 +27,13 @@ TagsUi::TagsUi(Tags *tags){
 }
 
 
+
+/* Goes through every array and returns tag on index, if all them were 1 array
+ * Parameters:
+ * -- index: index of tag if all arrays were 1
+ * Returns:
+ * -- QString: name of the tag
+ */
 QString TagsUi::getElementOnIndex(int index){
     if (index < 0){
         throw Message("Unexpected error", "Tag index is invalid.", "error");
@@ -47,7 +59,12 @@ QString TagsUi::getElementOnIndex(int index){
 }
 
 
-
+/* Checks if tag is custom
+ * Parameters:
+ * -- QString: name of the tag
+ * Returns:
+ * -- bool: whether tag is custom
+ */
 bool TagsUi::inCustomTags(QString tagToFind){
     for (QString &tag : customTags){
         if (tag == tagToFind){

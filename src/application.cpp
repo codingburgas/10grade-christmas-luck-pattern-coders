@@ -111,8 +111,7 @@ int Application::run(int argc, char *argv[]) {
 }
 
 /*
- * Updates the displayed list of words by converting each word into a list of strings.
- * The data is then assigned to the displayedWords property.
+ * Updates the wordsUi list by copying values from words into Qt-like types
  * Parameters:
  * -- None
  * Returns:
@@ -136,11 +135,11 @@ void Application::updateWordsUi() {
 
 
 /*
- * Updates the list of displayed Tags.
+ * Updates the list of tagsUi by copying values from tags into Qt-like types.
  * Parameters:
  * -- None
  * Returns:
- * -- No return value. Updates the displayedTags property.
+ * -- None.
  */
 void Application::updateTagsUi(){
     try {
@@ -172,6 +171,7 @@ void Application::searchWords(QString part, QString propertyName, bool caseSensi
         std::string strPart = part.toStdString();
         std::string strPropertyName = propertyName.toStdString();
         leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
+        leaveWordsWithSpecificTags(words, tagsChosen);
 
         updateWordsUi();
     } catch (Message& m) {
@@ -226,6 +226,13 @@ void Application::increaseWordFrequncyOfUse(int wordIndex) {
 
 
 
+/* Removes a tag from the word and saves changes to a file
+ * Parameters:
+ * --wordIndex: index of the word in 'words' array
+ * --tagIndex: index of the tag in 'customTags' array of tags object
+ * Returns:
+ * --None
+ */
 void Application::deleteWordTag(int wordIndex, int tagIndex){
     try{
         // check if tagIndex is valid, because QList doesn't throw 'out of range' exception, but crashes application
@@ -260,7 +267,13 @@ void Application::deleteWordTag(int wordIndex, int tagIndex){
 
 
 
-
+/* Adds a tag to word and saves changes to a file
+ * Parameters:
+ * --wordIndex: index of the word in 'words' array
+ * --tagIndex: index of the tag in 'customTags' array of tags object
+ * Returns:
+ * --None
+ */
 void Application::addWordTag(int wordIndex, int tagIndex){
     try{
 
@@ -294,7 +307,12 @@ void Application::addWordTag(int wordIndex, int tagIndex){
 }
 
 
-
+/* Adds a tag, which can be then applied to a word or search filter
+ * Parameters:
+ * --tag: a name of new tag
+ * Returns:
+ * --None
+ */
 void Application::addTag(QString tag){
     std::string strTag = tag.toStdString();
     if (contains(tags->customTags, strTag)){
@@ -314,7 +332,12 @@ void Application::addTag(QString tag){
 }
 
 
-
+/* Removes all occurences of specified tag in file with words
+ * Parameters:
+ * --tag: a name of tag to be deleted
+ * Returns:
+ * --None
+ */
 void deleteTagInJsonData(std::string& tag){
 
     std::string fileName = "words.json";
@@ -330,7 +353,12 @@ void deleteTagInJsonData(std::string& tag){
 }
 
 
-
+/* Deletes tag by removing it from 'customTags' array and removing all occurences of specified tag in words
+ * Parameters:
+ * --tag: a name of tag to be deleted
+ * Returns:
+ * --None
+ */
 void Application::deleteTag(int tagIndex){
     if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
         emit message("Couldn't find the tag", "Couldn't find the tag", "error");
@@ -355,7 +383,13 @@ void Application::deleteTag(int tagIndex){
 }
 
 
-
+/*
+ * Updates the list of tagsChosenUi by copying values from tagsChosen into Qt-like types.
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+ */
 void Application::updateTagsChosenUi(){
     tagsChosenUi = {};
 
@@ -367,6 +401,13 @@ void Application::updateTagsChosenUi(){
 }
 
 
+/*
+ * Adds tag to chosen(for search)
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+ */
 void Application::addTagToChosen(int tagIndex){
     try{
         std::string tag = tags->getElementOnIndex(tagIndex);
@@ -390,7 +431,13 @@ void Application::addTagToChosen(int tagIndex){
 }
 
 
-
+/*
+ * Removes tag from chosen(for search)
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+ */
 void Application::removeTagFromChosen(int tagIndex){
     try{
 
@@ -407,7 +454,13 @@ void Application::removeTagFromChosen(int tagIndex){
 }
 
 
-
+/*
+ * Checks if tag is in chosen
+ * Parameters:
+ * -- tag: name of the tag
+ * Returns:
+ * -- bool: whether tag is in chosen or not
+ */
 bool Application::isInTagsChosen(QString tag){
     std::string strTag = tag.toStdString();
 

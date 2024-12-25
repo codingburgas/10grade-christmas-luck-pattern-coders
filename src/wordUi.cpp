@@ -1,5 +1,12 @@
 #include "wordUi.h"
 
+
+/* Constructor, which copies properies from Word object into Qt-like types
+ * Parameters:
+ * -- word: Word object
+ * Returns:
+ * -- None
+ */
 WordUi::WordUi(Word *word){
     this->word = QString::fromStdString(word->word);
     this->definition = QString::fromStdString(word->definition);
