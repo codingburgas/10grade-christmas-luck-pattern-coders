@@ -65,7 +65,12 @@ int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int
  */
 void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, int end);
 
-
+/* Reverses vector
+ * Parameters:
+ * --v: vector
+ * Returns:
+ * --None
+ */
 template<typename T>
 void reverseVector(std::vector<T>& v);
 

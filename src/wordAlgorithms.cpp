@@ -13,6 +13,13 @@
 
 #include "word.h"
 
+
+/* Reverses vector
+ * Parameters:
+ * --v: vector
+ * Returns:
+ * --None
+ */
 template<typename T>
 void reverseVector(std::vector<T>& v){
     std::reverse(v.begin(), v.end());
