@@ -221,7 +221,7 @@ signals:
     void wordsUiChanged();
     void tagsUiChanged();
     void indexOfClickedWordChanged();
-    void message(QString title = QString::fromStdString("Something went wrong :("), QString description = QString::fromStdString("Unknown error"), QString type = QString::fromStdString("error"));
+    void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
 };
 
 #endif // APPLICATION_H
