@@ -268,11 +268,16 @@ bool contains(std::vector<T> &v, T &val){
  */
 void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
     for (size_t i=0; i<arr.size(); i++){
-
+        bool containsTag = false;
         for (std::string& tag : tags){
-            if (!contains(arr[i]->tags, tag)){
-                arr.erase(arr.begin() + i);
+            if (contains(arr[i]->tags, tag)){
+                containsTag = true;
+                break;
             }
+        }
+
+        if (!containsTag){
+            arr.erase(arr.begin() + i);
         }
     }
 }
