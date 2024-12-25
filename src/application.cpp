@@ -6,16 +6,6 @@
 #include "application.h"
 #include "message.h"
 
-template<typename T>
-bool contains(std::vector<T> &v, T &val){
-    for (T& el : v){
-        if (el == val){
-            return true;
-        }
-    }
-
-    return false;
-}
 
 /*
  * Retrieves all words from a JSON file and stores them in the provided vector.
@@ -292,4 +282,20 @@ void Application::addWordTag(int wordIndex, int tagIndex){
     } catch(...){
         emit message();
     }
+}
+
+
+
+void Application::addTag(QString tag){
+    std::string strTag = tag.toStdString();
+    if (contains(tags->customTags, strTag)){
+        emit message("This tag is already added", "Word already has this tag", "warning");
+        return;
+    }
+
+
+    tags->customTags.push_back(strTag);
+    tagsUi->customTags.push_back(tag);
+
+    emit tagsUiChanged();
 }
