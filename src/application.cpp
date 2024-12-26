@@ -4,6 +4,7 @@
 #include <QQmlContext>
 
 #include "application.h"
+#include "wordAlgorithms.h"
 #include "message.h"
 
 

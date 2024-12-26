@@ -74,7 +74,7 @@ Rectangle{
         anchors.bottom: message.bottom
 
 
-        text: message.title
+        text: message.description
         color: (typeId == 0) ? ("#068722") : ((typeId == 1) ? ("#E37200") : ("#CD0000"))
 
         font.family: "Inter"

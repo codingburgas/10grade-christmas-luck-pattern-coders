@@ -53,7 +53,7 @@ Window {
                     }else if (newComponent.status === Component.Loading) {
                         newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
                     } else if (newComponent.status === Component.Error) {
-                        application.message("Failed to load new page", `Failed to go to the ${page}`, "error");
+                        application.message("Failed to load new page", `Failed to go to the ${path}`, "error");
                     }
                 }
 

@@ -54,7 +54,7 @@ Rectangle {
         }
         Repeater{
             id: tagsRepeater
-            model: wordUi.getTagsSize()
+            model: word.wordUi.getTagsSize()
 
             Text{
                 required property int index
@@ -69,7 +69,8 @@ Rectangle {
         anchors.fill: parent
 
         onClicked: {
-            application.increaseWordFrequncyOfUse(word.indexInDisplayedWords);
+            //console.log(word.indexInWordsUi)
+            application.increaseWordFrequncyOfUse(word.indexInWordsUi);
             application.indexOfClickedWord = word.indexInWordsUi;
             word.page.screenChanged("WordPage.qml");
         }
