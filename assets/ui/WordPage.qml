@@ -52,15 +52,15 @@ Rectangle{
         anchors.top: title.bottom
         anchors.bottom: wordPage.bottom
 
-        anchors.margins: 10
+        anchors.margins: parent.height * 0.016
         color: "#D9D9D9"
         radius: 45
 
         Text{
             id: definitionLabel
             text: "Definition:"
-            anchors.margins: 10
-            anchors.leftMargin: 15
+            anchors.margins: wordPage.height * 0.016
+            anchors.leftMargin: wordPage.height * 0.025
             anchors.top: definition.top
             anchors.left: definition.left
             anchors.right: definition.right
@@ -82,7 +82,7 @@ Rectangle{
             anchors.bottom: definition.bottom
             anchors.right: definition.right
 
-            anchors.margins: 10
+            anchors.margins: wordPage.height * 0.016
             color: "#848484"
             radius: 35
 
@@ -91,7 +91,7 @@ Rectangle{
 
                 text: wordPage.word.definition + "\n\nLearn more at " + wordPage.word.url
                 anchors.fill: parent
-                anchors.margins: 10
+                anchors.margins: wordPage.height * 0.016
 
                 color: "#000000"
                 font.family: "Inter"
@@ -108,21 +108,20 @@ Rectangle{
     Rectangle{
         id: partOfSpeech
         anchors.left: definition.right
-        anchors.right: wordPage.right
         anchors.top: title.bottom
+        width: parent.width * 0.22
         height: parent.width * 0.13
 
 
-        anchors.margins: 10
-        anchors.leftMargin: 10
+        anchors.margins: wordPage.height * 0.016
         color: "#D9D9D9"
         radius: 35
 
         Text{
             id: partOfSpeechLabel
             text: "Part of speech:"
-            anchors.margins: 6
-            anchors.leftMargin: 25
+            anchors.margins: wordPage.height * 0.01
+            anchors.leftMargin: wordPage.height * 0.041
             anchors.top: partOfSpeech.top
             anchors.left: partOfSpeech.left
             anchors.right: partOfSpeech.right
@@ -144,7 +143,7 @@ Rectangle{
             anchors.bottom: partOfSpeech.bottom
             anchors.right: partOfSpeech.right
 
-            anchors.margins: 8
+            anchors.margins: wordPage.height * 0.013
             color: "#848484"
             radius: 27
 
@@ -153,7 +152,68 @@ Rectangle{
 
                 text: wordPage.word.partOfSpeech
                 anchors.fill: parent
-                anchors.leftMargin: 5
+                anchors.leftMargin: wordPage.height * 0.0083
+
+                color: "#000000"
+                font.family: "Inter"
+                font.weight: 400
+                font.pixelSize: wordPage.height * 0.027
+                verticalAlignment: Text.AlignVCenter
+
+            }
+        }
+    }
+
+
+
+    Rectangle{
+        id: frequencyOfUse
+        anchors.left: partOfSpeech.right
+        anchors.top: title.bottom
+        anchors.right: wordPage.right
+        height: parent.width * 0.13
+
+
+        anchors.margins: wordPage.height * 0.016
+        color: "#D9D9D9"
+        radius: 35
+
+        Text{
+            id: frequencyOfUseLabel
+            text: "Frequency of use:"
+            anchors.margins: wordPage.height * 0.01
+            anchors.leftMargin: wordPage.height * 0.041
+            anchors.top: frequencyOfUse.top
+            anchors.left: frequencyOfUse.left
+            anchors.right: frequencyOfUse.right
+
+            height: wordPage.height * 0.037
+
+            color: "#000000"
+            font.family: "Inter"
+            font.weight: 400
+            font.pixelSize: wordPage.height * 0.027
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Rectangle{
+            id: innerRectangleFrequencyOfUse
+
+            anchors.left: frequencyOfUse.left
+            anchors.top: frequencyOfUseLabel.bottom
+            anchors.bottom: frequencyOfUse.bottom
+            anchors.right: frequencyOfUse.right
+
+            anchors.margins: wordPage.height * 0.013
+            color: "#848484"
+            radius: 27
+
+            Text{
+                id: frequencyOfUseText
+
+                text: wordPage.word.frequencyOfUse
+                anchors.fill: parent
+                anchors.leftMargin: wordPage.height * 0.0083
 
                 color: "#000000"
                 font.family: "Inter"
@@ -169,21 +229,22 @@ Rectangle{
     Rectangle{
         id: difficulty
         anchors.left: definition.right
-        anchors.right: wordPage.right
         anchors.top: partOfSpeech.bottom
+
+        width: parent.width * 0.22
         height: parent.width * 0.13
 
 
-        anchors.margins: 10
-        anchors.leftMargin: 10
+
+        anchors.margins: wordPage.height * 0.016
         color: "#D9D9D9"
         radius: 35
 
         Text{
             id: difficultyLabel
             text: "Difficulty:"
-            anchors.margins: 6
-            anchors.leftMargin: 25
+            anchors.margins: wordPage.height * 0.01
+            anchors.leftMargin: wordPage.height * 0.041
             anchors.top: difficulty.top
             anchors.left: difficulty.left
             anchors.right: difficulty.right
@@ -205,7 +266,7 @@ Rectangle{
             anchors.bottom: difficulty.bottom
             anchors.right: difficulty.right
 
-            anchors.margins: 8
+            anchors.margins: wordPage.height * 0.013
             color: "#848484"
             radius: 27
 
@@ -214,7 +275,7 @@ Rectangle{
 
                 text: wordPage.word.difficulty
                 anchors.fill: parent
-                anchors.leftMargin: 5
+                anchors.leftMargin: wordPage.height * 0.0083
 
                 color: "#000000"
                 font.family: "Inter"
@@ -228,6 +289,67 @@ Rectangle{
 
 
     Rectangle{
+        id: syllablesCount
+        anchors.left: difficulty.right
+        anchors.top: frequencyOfUse.bottom
+        anchors.right: wordPage.right
+        height: parent.width * 0.13
+
+
+        anchors.margins: wordPage.height * 0.016
+        color: "#D9D9D9"
+        radius: 35
+
+        Text{
+            id: syllablesCountLabel
+            text: "Syllables count"
+            anchors.margins: wordPage.height * 0.01
+            anchors.leftMargin: wordPage.height * 0.043
+            anchors.top: syllablesCount.top
+            anchors.left: syllablesCount.left
+            anchors.right: syllablesCount.right
+
+            height: wordPage.height * 0.037
+
+            color: "#000000"
+            font.family: "Inter"
+            font.weight: 400
+            font.pixelSize: wordPage.height * 0.027
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Rectangle{
+            id: innerRectangleSyllablesCount
+
+            anchors.left: syllablesCount.left
+            anchors.top: syllablesCountLabel.bottom
+            anchors.bottom: syllablesCount.bottom
+            anchors.right: syllablesCount.right
+
+            anchors.margins: wordPage.height * 0.013
+            color: "#848484"
+            radius: 27
+
+            Text{
+                id: syllablesCountText
+
+                text: application.countSyllablesOfWord(application.indexOfWordClicked)
+                anchors.fill: parent
+                anchors.leftMargin: wordPage.height * 0.0083
+
+                color: "#000000"
+                font.family: "Inter"
+                font.weight: 400
+                font.pixelSize: wordPage.height * 0.027
+                verticalAlignment: Text.AlignVCenter
+
+            }
+        }
+    }
+
+
+
+    Rectangle{
         id: tags
         anchors.left: definition.right
         anchors.right: wordPage.right
@@ -235,8 +357,7 @@ Rectangle{
         anchors.bottom: wordPage.bottom
 
 
-        anchors.margins: 10
-        anchors.leftMargin: 10
+        anchors.margins: wordPage.height * 0.016
         color: "#D9D9D9"
         radius: 35
 
@@ -249,7 +370,7 @@ Rectangle{
             width: wordPage.width * 0.195
             height: wordPage.height * 0.046
 
-            anchors.margins: 8
+            anchors.margins: wordPage.height * 0.013
             color: "#848484"
             radius: 27
 
@@ -258,7 +379,7 @@ Rectangle{
 
                 text: "Edit tags"
                 anchors.fill: parent
-                anchors.leftMargin: 5
+                anchors.leftMargin: wordPage.height * 0.0083
 
                 color: "#000000"
                 font.family: "Inter"
@@ -282,8 +403,8 @@ Rectangle{
         Text{
             id: tagsLabel
             text: "Tags:"
-            anchors.margins: 6
-            anchors.leftMargin: 25
+            anchors.margins: wordPage.height * 0.01
+            anchors.leftMargin: wordPage.height * 0.043
             anchors.top: tags.top
             anchors.left: tags.left
             anchors.right: tags.right
@@ -304,15 +425,15 @@ Rectangle{
             anchors.top: tagsLabel.bottom
             anchors.bottom: editTags.top
             anchors.right: tags.right
-            anchors.margins: 8
+            anchors.margins: wordPage.height * 0.013
             color: "#848484"
             radius: 27
 
 
             Grid{
-                spacing: 5
+                spacing: wordPage.height * 0.0083
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: wordPage.height * 0.013
                 Repeater{
                     id: wordTagsRepeater
                     model: (wordPage.word.getTagsSize() < 6) ? (wordPage.word.getTagsSize()) : (6)

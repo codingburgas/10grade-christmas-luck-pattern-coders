@@ -467,3 +467,9 @@ bool Application::isInTagsChosen(QString tag){
 
     return contains(tagsChosen, strTag);
 }
+
+
+
+QString Application::countSyllablesOfWord(int wordIndex){
+    return QString::number(countSyllables(words[wordIndex]->word));
+}

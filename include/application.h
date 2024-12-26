@@ -298,6 +298,9 @@ public:
      */
     Q_INVOKABLE bool isInTagsChosen(QString tag);
 
+
+    Q_INVOKABLE QString countSyllablesOfWord(int wordIndex);
+
     // -----------------------------
 
     /*

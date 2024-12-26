@@ -1,4 +1,5 @@
 #include "wordUi.h"
+#include "wordAlgorithms.h"
 
 
 /* Constructor, which copies properies from Word object into Qt-like types
