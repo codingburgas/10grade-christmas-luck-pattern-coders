@@ -729,8 +729,9 @@ Rectangle{
                     Tag{
                         required property int index
 
-                        property int location: 1
-                        property bool chosen: true
+                        property string tagName: wordPage.word.tags[index]
+                        property int removeFrom: 0
+                        property int addTo: 0
                     }
                 }
             }
