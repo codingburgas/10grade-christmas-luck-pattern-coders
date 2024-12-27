@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 import WordUi 1.0
 
 Rectangle{
@@ -30,7 +31,7 @@ Rectangle{
         radius: 45
         color: "#D9D9D9"
 
-        Text{
+        TextEdit{
             id: word
             anchors.fill: parent
             text: wordPage.word.word
@@ -38,10 +39,48 @@ Rectangle{
             font.family: "Inter"
             font.weight: 700
             font.pixelSize: wordPage.height * 0.046
-            elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#ffffff"
+            selectionColor: "#5969c9"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
+
         }
+
     }
 
 
@@ -58,7 +97,7 @@ Rectangle{
 
         Text{
             id: definitionLabel
-            text: "Definition:"
+            text: "Definition"
             anchors.margins: wordPage.height * 0.016
             anchors.leftMargin: wordPage.height * 0.025
             anchors.top: definition.top
@@ -83,14 +122,17 @@ Rectangle{
             anchors.right: definition.right
 
             anchors.margins: wordPage.height * 0.016
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 35
 
-            Text{
+            TextEdit{
                 id: definitionText
 
-                text: wordPage.word.definition + "\n\nLearn more at " + wordPage.word.url
-                anchors.fill: parent
+                text: wordPage.word.definition
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: parent.height * 0.75
                 anchors.margins: wordPage.height * 0.016
 
                 color: "#000000"
@@ -100,6 +142,102 @@ Rectangle{
                 verticalAlignment: Text.AlignTop
                 wrapMode: Text.WordWrap
 
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#ffffff"
+                selectionColor: "#5969c9"
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
+            }
+
+
+            TextEdit{
+                id: urlText
+
+                text: "Learn more at\n<a href='" + wordPage.word.url + "'>" + wordPage.word.url + "</a>"
+                anchors.top: definitionText.bottom
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: wordPage.height * 0.016
+                anchors.rightMargin: wordPage.height * 0.016
+
+                color: "#000000"
+                font.family: "Inter"
+                font.weight: 400
+                font.pixelSize: wordPage.height * 0.027
+                verticalAlignment: Text.AlignTop
+                wrapMode: Text.WordWrap
+
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#ffffff"
+                selectionColor: "#5969c9"
+
+                textFormat: TextEdit.RichText
+                onLinkActivated: (link) => {console.log(link); Qt.openUrlExternally(link) }
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
             }
         }
     }
@@ -119,7 +257,7 @@ Rectangle{
 
         Text{
             id: partOfSpeechLabel
-            text: "Part of speech:"
+            text: "Part of speech"
             anchors.margins: wordPage.height * 0.01
             anchors.leftMargin: wordPage.height * 0.041
             anchors.top: partOfSpeech.top
@@ -144,10 +282,10 @@ Rectangle{
             anchors.right: partOfSpeech.right
 
             anchors.margins: wordPage.height * 0.013
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 27
 
-            Text{
+            TextEdit{
                 id: partOfSpeechText
 
                 text: wordPage.word.partOfSpeech
@@ -159,6 +297,43 @@ Rectangle{
                 font.weight: 400
                 font.pixelSize: wordPage.height * 0.027
                 verticalAlignment: Text.AlignVCenter
+
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#ffffff"
+                selectionColor: "#5969c9"
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
 
             }
         }
@@ -180,7 +355,7 @@ Rectangle{
 
         Text{
             id: frequencyOfUseLabel
-            text: "Frequency of use:"
+            text: "Frequency of use"
             anchors.margins: wordPage.height * 0.01
             anchors.leftMargin: wordPage.height * 0.041
             anchors.top: frequencyOfUse.top
@@ -205,10 +380,10 @@ Rectangle{
             anchors.right: frequencyOfUse.right
 
             anchors.margins: wordPage.height * 0.013
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 27
 
-            Text{
+            TextEdit{
                 id: frequencyOfUseText
 
                 text: wordPage.word.frequencyOfUse
@@ -220,6 +395,44 @@ Rectangle{
                 font.weight: 400
                 font.pixelSize: wordPage.height * 0.027
                 verticalAlignment: Text.AlignVCenter
+
+
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#ffffff"
+                selectionColor: "#5969c9"
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
 
             }
         }
@@ -242,7 +455,7 @@ Rectangle{
 
         Text{
             id: difficultyLabel
-            text: "Difficulty:"
+            text: "Difficulty"
             anchors.margins: wordPage.height * 0.01
             anchors.leftMargin: wordPage.height * 0.041
             anchors.top: difficulty.top
@@ -267,10 +480,10 @@ Rectangle{
             anchors.right: difficulty.right
 
             anchors.margins: wordPage.height * 0.013
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 27
 
-            Text{
+            TextEdit{
                 id: difficultyText
 
                 text: wordPage.word.difficulty
@@ -282,6 +495,44 @@ Rectangle{
                 font.weight: 400
                 font.pixelSize: wordPage.height * 0.027
                 verticalAlignment: Text.AlignVCenter
+
+
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#ffffff"
+                selectionColor: "#5969c9"
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
 
             }
         }
@@ -327,10 +578,10 @@ Rectangle{
             anchors.right: syllablesCount.right
 
             anchors.margins: wordPage.height * 0.013
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 27
 
-            Text{
+            TextEdit{
                 id: syllablesCountText
 
                 text: application.countSyllablesOfWord(application.indexOfWordClicked)
@@ -342,6 +593,43 @@ Rectangle{
                 font.weight: 400
                 font.pixelSize: wordPage.height * 0.027
                 verticalAlignment: Text.AlignVCenter
+
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#ffffff"
+                selectionColor: "#5969c9"
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
 
             }
         }
@@ -371,7 +659,7 @@ Rectangle{
             height: wordPage.height * 0.046
 
             anchors.margins: wordPage.height * 0.013
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 27
 
             Text{
@@ -426,7 +714,7 @@ Rectangle{
             anchors.bottom: editTags.top
             anchors.right: tags.right
             anchors.margins: wordPage.height * 0.013
-            color: "#848484"
+            color: "#FFFFFF"
             radius: 27
 
 

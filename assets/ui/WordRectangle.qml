@@ -22,45 +22,304 @@ Rectangle {
                 text: word.data[index]
             }
         }*/
-        Text{
+        TextEdit{
             color: "#fffb00"
             //text: word.word
             text: word.wordUi.word
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#2F2F2F"
+            selectionColor: "#E0E0E0"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
         }
-        Text{
+        TextEdit{
             color: "#fffb00"
             //text: word.definition
             text: word.wordUi.definition
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#2F2F2F"
+            selectionColor: "#E0E0E0"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
         }
-        Text{
+        TextEdit{
             color: "#fffb00"
             //text: word.partOfSpeech
             text: word.wordUi.partOfSpeech
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#2F2F2F"
+            selectionColor: "#E0E0E0"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
         }
-        Text{
+        TextEdit{
             color: "#fffb00"
             //text: word.difficulty
             text: word.wordUi.difficulty
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#2F2F2F"
+            selectionColor: "#E0E0E0"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
         }
-        Text{
+        TextEdit{
             color: "#fffb00"
             //text: word.url
             text: word.wordUi.url
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#2F2F2F"
+            selectionColor: "#E0E0E0"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
         }
-        Text{
+        TextEdit{
             color: "#fffb00"
             //text: word.frequencyOfUse
             text: word.wordUi.frequencyOfUse
+
+            readOnly: true
+            selectByMouse: true
+            selectedTextColor: "#2F2F2F"
+            selectionColor: "#E0E0E0"
+
+            Component.onCompleted: {
+                this.text = elidedText()
+            }
+
+            function elidedText(){
+                let position = 0
+                let elide = true;
+
+                while(true){
+                    let rect = this.positionToRectangle(position)
+                    let text = this.text.substring(position, 1)
+                    if (rect.x > this.width || rect.y > this.height){
+                        break;
+                    }
+
+                    if (position >= this.text.length){
+                        elide = false;
+                        break;
+                    }
+
+                    position++;
+                }
+
+                if (elide){
+                    return this.text.substring(0, position-3) + "..."
+                } else{
+                    return this.text
+                }
+
+
+            }
         }
         Repeater{
             id: tagsRepeater
             model: word.wordUi.getTagsSize()
 
-            Text{
+            TextEdit{
                 required property int index
                 color: "#fffb00"
                 //text: word.frequencyOfUse
                 text: word.wordUi.tags[index]
+
+                readOnly: true
+                selectByMouse: true
+                selectedTextColor: "#2F2F2F"
+                selectionColor: "#E0E0E0"
+
+                Component.onCompleted: {
+                    this.text = elidedText()
+                }
+
+                function elidedText(){
+                    let position = 0
+                    let elide = true;
+
+                    while(true){
+                        let rect = this.positionToRectangle(position)
+                        let text = this.text.substring(position, 1)
+                        if (rect.x > this.width || rect.y > this.height){
+                            break;
+                        }
+
+                        if (position >= this.text.length){
+                            elide = false;
+                            break;
+                        }
+
+                        position++;
+                    }
+
+                    if (elide){
+                        return this.text.substring(0, position-3) + "..."
+                    } else{
+                        return this.text
+                    }
+
+
+                }
             }
         }
     }
