@@ -6,6 +6,13 @@ import QtQuick.Effects
 
 
 Rectangle{
+    /*
+    Properties to be set:
+        string tagName: name to be displayed
+        int removeFrom: 0 - no remove button; 1 - from chosen tags; 2 - from word
+        int addTo: 0 - no ability to add; 1 -to chosen tags; 2 - to word
+    */
+
     id: tag
     width: 80
     height: 30
@@ -13,14 +20,9 @@ Rectangle{
     color: "#0099D1"
 
 
-    //property int index
 
-    //property bool chosen
 
-    //property int location 0-main page 1-word page
-    // property bool chosen
-
-    property string tagText: (() => {
+    /*property string tagText: (() => {
                                  if (!chosen){
                                      return application.tagsUi.getElementOnIndex(index);
                                  }
@@ -33,10 +35,10 @@ Rectangle{
                                      application.message("Unexpected type of tag");
                                  }
 
-                             })()
+                             })()*/
 
 
-    function defineVisible() {
+    /*function defineVisible() {
         if (chosen){
             return true;
         }
@@ -47,7 +49,7 @@ Rectangle{
         }
     }
 
-    visible: defineVisible()
+    visible: defineVisible()*/
 
 
     TextEdit{
@@ -58,7 +60,8 @@ Rectangle{
         anchors.left: tag.left
         anchors.leftMargin: 3
 
-        text: tag.tagText
+        //text: tag.tagText
+        text: tag.tagName
         color: "#FFFFFF"
         font.family: "Inter"
         font.weight: 300
@@ -127,7 +130,7 @@ Rectangle{
         clip: true
         //z: 1000
 
-        function defineVisible(){
+        /*function defineVisible(){
             if (!tag.chosen){
                 return false;
             }
@@ -137,7 +140,8 @@ Rectangle{
             return application.tagsUi.isInCustomTags(tag.tagText);
         }
 
-        visible: removeButton.defineVisible()
+        visible: removeButton.defineVisible()*/
+        visible: (tag.removeFrom != 0)
 
         Image{
             id: crossImg
@@ -146,45 +150,14 @@ Rectangle{
             anchors.margins: 6
             fillMode: Image.PreserveAspectCrop
             clip: true
-
-            /*layer.enabled: true
-            layer.effect: MultiEffect{
-                maskSource: crossImg
-                source: Rectangle{
-                    radius: 45
-                    width: crossImg.width
-                    height: crossImg.height
-                }
-            }*/
         }
-
-        /*MultiEffect{
-            id: imageEffect
-            anchors.fill: parent
-
-            source: Image{
-                anchors.fill: parent
-                source: "qrc:/crossToClose.png"
-                //fillMode: Image.PreserveAspectCrop
-                fillMode: Image.PreserveAspectFit
-                clip: true
-            }
-
-            maskSource: Rectangle{
-                width: removeButton.width
-                height: removeButton.height
-                radius: 44
-                color: "black"
-                clip: true
-            }
-        }*/
 
         MouseArea{
             anchors.fill: parent
 
             onClicked: {
 
-                if (tag.location == 0){
+                if (tag.removeFrom == 1){
                     application.removeTagFromChosen(tag.index);
                 } else{
                     application.deleteWordTag(application.indexOfClickedWord, tag.index);
@@ -197,11 +170,11 @@ Rectangle{
     }
 
     MouseArea{
-        visible: !tag.chosen
+        visible: (tag.addTo != 0)
         anchors.fill: parent
 
         onClicked: {
-            if (tag.location == 0){
+            if (tag.addTo == 1){
                 application.addTagToChosen(tag.index)
             } else{
                 application.addWordTag(application.indexOfClickedWord, tag.index)
@@ -213,7 +186,7 @@ Rectangle{
 
 
 
-    Connections{
+    /*Connections{
         target: application
 
         function onTagsChosenUiChanged(){
@@ -221,14 +194,14 @@ Rectangle{
             removeButton.visible = removeButton.defineVisible()
         }
 
-    }
+    }*/
 
-    Connections{
+    /*Connections{
         target: application.wordsUi[application.indexOfClickedWord]
 
         function onTagsChanged(){
             tag.visible = tag.defineVisible()
             removeButton.visible = removeButton.defineVisible()
         }
-    }
+    }*/
 }

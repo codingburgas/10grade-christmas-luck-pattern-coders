@@ -97,8 +97,8 @@ Rectangle{
 
         //anchors.centerIn: parent
 
-        property int wordRectWidth: 305
-        property int wordRectHeight: 155
+        property int wordRectWidth: mainPage.width * 0.28
+        property int wordRectHeight: mainPage.height * 0.28
 
 
         property int wordsUiSize: application.getWordsUiSize()
@@ -173,9 +173,9 @@ Rectangle{
         }
 
         function calculateNewPage(){
-            var firstElementOnOldPageIndex = (page-1) * previousRowsPerPage * previousWordsPerRow;
+            let firstElementOnOldPageIndex = (page-1) * previousRowsPerPage * previousWordsPerRow;
 
-            var newPageNumber = firstElementOnOldPageIndex / rowsPerPage / wordsPerRow;
+            let newPageNumber = firstElementOnOldPageIndex / rowsPerPage / wordsPerRow;
 
 
             return Math.ceil(newPageNumber);

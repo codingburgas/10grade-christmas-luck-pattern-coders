@@ -2,11 +2,13 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 120,
+        "frequencyOfUse": 123,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "B2"
+            "B2",
+            "test1",
+            "test2"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/programming",
         "word": "programming"
@@ -26,7 +28,7 @@
     {
         "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
         "difficulty": "B1",
-        "frequencyOfUse": 11,
+        "frequencyOfUse": 12,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
