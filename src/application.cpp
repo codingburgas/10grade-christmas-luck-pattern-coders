@@ -172,7 +172,7 @@ void Application::searchWords(QString part, QString propertyName, bool caseSensi
         std::string strPart = part.toStdString();
         std::string strPropertyName = propertyName.toStdString();
         leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
-        leaveWordsWithSpecificTags(words, tagsChosen);
+        //leaveWordsWithSpecificTags(words, tagsChosen);
 
         updateWordsUi();
     } catch (Message& m) {

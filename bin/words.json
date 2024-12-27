@@ -88,7 +88,7 @@
     {
         "definition": "normal; happening, done, or used most often",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -100,7 +100,7 @@
     {
         "definition": "ordinary or usual; the same as would be expected",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -112,7 +112,7 @@
     {
         "definition": "not different or special or unexpected in any way; usual",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -532,7 +532,7 @@
     {
         "definition": "a person or animal that has grown to full size and strength",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -592,7 +592,7 @@
     {
         "definition": "the act or process of measuring",
         "difficulty": "C2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",

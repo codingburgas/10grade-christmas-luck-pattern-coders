@@ -91,115 +91,52 @@ Rectangle{
         width: parent.width
         anchors.bottom: mainPage.bottom
         anchors.topMargin: 10
-        //Layout.fillHeight: true
-        //width: mainWindow.width - 2*anchors.margins
-        //height: mainWindow.height - 2*anchors.margins
-
-        //anchors.centerIn: parent
-
-        property int wordRectWidth: mainPage.width * 0.28
-        property int wordRectHeight: mainPage.height * 0.28
 
 
         property int wordsUiSize: application.getWordsUiSize()
-
-        property int rowsPerPage: content.height / wordRectHeight
-        property int previousRowsPerPage: rowsPerPage
-        // for calculating page number when resizing the window
-
-        property int wordsPerRow: content.width / content.wordRectWidth
-        property int previousWordsPerRow: wordsPerRow
-
-        property int rowsAmount: (wordsUiSize % wordsPerRow == 0) ? (wordsUiSize / wordsPerRow) : ((wordsUiSize / wordsPerRow) + 1)
-
-
         property int page: 1
-        property int pagesTotal: (rowsAmount % rowsPerPage == 0) ? (rowsAmount / rowsPerPage) : ((rowsAmount / rowsPerPage) + 1)
+        property int pagesTotal: Math.ceil(wordsUiSize / wordsGrid.itemsPerPage)
 
+        Grid{
+            id: wordsGrid
 
-        ColumnLayout{
-            id: columnLayout
             anchors.fill: parent
-            spacing: 5
+            columnSpacing: mainPage.width * 0.01
+            rowSpacing: mainPage.height * 0.01
+
+
+            columns: width / (mainPage.width * 0.28 + columnSpacing)
+            rows: height / (mainPage.height * 0.28 + rowSpacing)
+
+
+            property int itemsPerPage: columns * rows
+
 
             Repeater{
-                id: rowRepeater
+                id: wordsRepeater
+                model: ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
 
-                model: (content.page * content.rowsPerPage <= content.rowsAmount) ? (content.rowsPerPage) : (content.rowsAmount - (content.page-1) * content.rowsPerPage)
-                //model: 3
-
-                RowLayout {
-                    id: rowOfWords
-                    Layout.fillWidth: true
+                WordRectangle{
+                    //Layout.fillWidth: true
                     required property int index
-                    spacing: 5
-
-                    //Spacer{}
-
-                    Repeater{
-                        id: wordRepeater
-
-                        model: (((content.page-1) * content.rowsPerPage * content.wordsPerRow + (rowOfWords.index+1) * content.wordsPerRow) <= content.wordsUiSize) ? (content.wordsPerRow) : (content.wordsUiSize - ((content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow))
+                    property int indexInWordsUi: (content.page-1) * wordsGrid.itemsPerPage + index
+                    property QtObject page: mainPage
 
 
-                        WordRectangle{
-                            //Layout.fillWidth: true
-                            required property int index
-                            property int indexInWordsUi: (content.page-1) * content.rowsPerPage * content.wordsPerRow + rowOfWords.index * content.wordsPerRow + index
-                            property QtObject page: mainPage
+                    property WordUi wordUi: application.wordsUi[indexInWordsUi]
 
 
-                            property WordUi wordUi: application.wordsUi[indexInWordsUi]
-                        }
-
-                    }
-
-                    Spacer{}
                 }
-
-
-            }
-
-            Spacer{}
-
-
-
-
-        }
-
-
-        onWordsUiSizeChanged: {
-            page = 1;
-        }
-
-        function calculateNewPage(){
-            let firstElementOnOldPageIndex = (page-1) * previousRowsPerPage * previousWordsPerRow;
-
-            let newPageNumber = firstElementOnOldPageIndex / rowsPerPage / wordsPerRow;
-
-
-            return Math.ceil(newPageNumber);
-        }
-
-        onRowsPerPageChanged: {
-            var newPageNumber = calculateNewPage();
-            previousRowsPerPage = rowsPerPage
-            if (newPageNumber < 1){
-                page = 1;
-            }else{
-                page = newPageNumber;
             }
         }
 
-        onWordsPerRowChanged: {
-            var newPageNumber = calculateNewPage();
-            previousWordsPerRow = wordsPerRow
-            if (newPageNumber < 1){
-                page = 1;
-            }else{
-                page = newPageNumber;
-            }
+        onPageChanged: {
+            wordsRepeater.model = null
+            wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
+
         }
+
+
 
     }
 
@@ -214,7 +151,13 @@ Rectangle{
 
         function onWordsUiChanged(){
             content.wordsUiSize = application.getWordsUiSize()
-            application.message(content.wordsUiSize + " words found", "There are " + content.wordsUiSize + " words corresponding to your request", "success")
+            if (content.page != 1){
+                content.page = 1
+            } else{
+                content.pageChanged()
+            }
+
+            //application.message(content.wordsUiSize + " words found", "There are " + content.wordsUiSize + " words corresponding to your request", "success")
         }
     }
 

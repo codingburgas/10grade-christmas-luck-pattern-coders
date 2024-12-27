@@ -7,8 +7,16 @@ import QtQuick.Controls 2.15
 Window {
     id: mainWindow
     visible: true
-    width: 800
-    height: 600
+    /*width: 1536
+    height: 801
+
+    onWidthChanged: {
+        console.log(`${width}x${height}`)
+    }*/
+    visibility: Qt.WindowFullScreen
+    minimumWidth: width
+    minimumHeight: height
+
     title: "LEXIFY"
 
 

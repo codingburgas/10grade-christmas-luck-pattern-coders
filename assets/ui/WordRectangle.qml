@@ -77,6 +77,7 @@ Rectangle {
 
 
         }
+
     }
 
     TextEdit{
@@ -134,6 +135,7 @@ Rectangle {
 
 
         }
+
     }
 
 
@@ -235,6 +237,7 @@ Rectangle {
 
 
         }
+
     }
 
     Grid{
@@ -270,14 +273,6 @@ Rectangle {
             }
         }
 
-        onWidthChanged: {
-            tagsGrid.columns = word.width / (tagSize.width + tagsGrid.columnSpacing)
-            tagsRepeater.model = (tagsRepeater.tagsSize < tagsGrid.rows * tagsGrid.columns) ? (tagsRepeater.tagsSize) : (tagsGrid.rows * tagsGrid.columns)
-        }
-        onHeightChanged: {
-            tagsGrid.rows = word.height / (tagSize.width + tagsGrid.rowSpacing)
-            tagsRepeater.model = (tagsRepeater.tagsSize < tagsGrid.rows * tagsGrid.columns) ? (tagsRepeater.tagsSize) : (tagsGrid.rows * tagsGrid.columns)
-        }
     }
 
 
