@@ -19,6 +19,7 @@ Window {
 
     title: "LEXIFY"
 
+    property int userWasOnPage: 1
 
     property string currentPath: "MainPage.qml"
     property Rectangle currentPage: MainPage{}

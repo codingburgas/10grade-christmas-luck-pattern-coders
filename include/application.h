@@ -70,6 +70,9 @@ public:
 
     // Qt methods ----------
 
+
+
+
     /*
      * Gets the list of displayed words.
      * Parameters:
@@ -116,6 +119,7 @@ public:
      * -- indexOfClickedWord: Index of the clicked word.
      */
     size_t getIndexOfClickedWord() { return indexOfClickedWord; }
+
 
     /*
      * Sets the index of the currently clicked word.

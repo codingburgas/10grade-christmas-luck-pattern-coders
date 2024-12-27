@@ -9,5 +9,6 @@
         <file>ui/Message.qml</file>
         <file>ui/Tag.qml</file>
         <file>crossToClose.png</file>
+        <file>arrowBack.png</file>
     </qresource>
 </RCC>

@@ -94,8 +94,13 @@ Rectangle{
 
 
         property int wordsUiSize: application.getWordsUiSize()
-        property int page: 1
+        property int page: mainWindow.userWasOnPage
         property int pagesTotal: Math.ceil(wordsUiSize / wordsGrid.itemsPerPage)
+
+        Component.onCompleted: {
+            page = page + 1 - 1;
+            pageChanged()
+        }
 
         Grid{
             id: wordsGrid
@@ -131,6 +136,8 @@ Rectangle{
         }
 
         onPageChanged: {
+            if (page < 1){ page = 1; }
+            mainWindow.userWasOnPage = page
             wordsRepeater.model = null
             wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
 

@@ -2,7 +2,7 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 123,
+        "frequencyOfUse": 126,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -16,7 +16,7 @@
     {
         "definition": "the situation in which a lot of things are happening or people are moving around",
         "difficulty": "B2",
-        "frequencyOfUse": 6,
+        "frequencyOfUse": 10,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -28,7 +28,7 @@
     {
         "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
         "difficulty": "B1",
-        "frequencyOfUse": 12,
+        "frequencyOfUse": 14,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -40,7 +40,7 @@
     {
         "definition": "something that has happened",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 13,
+        "frequencyOfUse": 14,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -52,7 +52,7 @@
     {
         "definition": "(of a situation or an event) to have existence or come into existence",
         "difficulty": "A2",
-        "frequencyOfUse": 9,
+        "frequencyOfUse": 14,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -64,7 +64,7 @@
     {
         "definition": "anything that happens, especially something important or unusual",
         "difficulty": "B1",
-        "frequencyOfUse": 6,
+        "frequencyOfUse": 8,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -76,7 +76,7 @@
     {
         "definition": "very much; more than usual or more than other people or things",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adverb",
         "tags": [
             "adverb",
@@ -88,7 +88,7 @@
     {
         "definition": "normal; happening, done, or used most often",
         "difficulty": "A2",
-        "frequencyOfUse": 1,
+        "frequencyOfUse": 5,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -304,7 +304,7 @@
     {
         "definition": "easy to understand or do; not difficult",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 3,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -628,7 +628,7 @@
     {
         "definition": "in a severe and harmful way",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adverb",
         "tags": [
             "adverb",

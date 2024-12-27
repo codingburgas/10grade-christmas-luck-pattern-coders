@@ -23,6 +23,40 @@ Rectangle{
 
 
     Rectangle{
+        id: backButton
+
+        anchors.top: wordPage.top
+        anchors.left: wordPage.left
+        anchors.leftMargin: parent.height * 0.016
+        color: "transparent"
+        border.width: 10
+        border.color: "#8BAD88"
+
+        width: parent.height * 0.11
+        height: parent.height * 0.11
+
+        radius: 50
+
+        Image{
+            anchors.centerIn: parent
+            width: parent.width * 0.7
+            height: parent.height * 0.7
+
+            source: "qrc:/arrowBack.png"
+        }
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: {
+                wordPage.screenChanged("MainPage.qml");
+            }
+        }
+    }
+
+
+
+    Rectangle{
         id: title
         width: parent.width * 0.42
         height: parent.height * 0.11
