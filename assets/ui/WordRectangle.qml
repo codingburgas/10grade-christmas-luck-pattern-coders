@@ -6,8 +6,10 @@ import QtQuick.Layouts
 Rectangle {
     id: word
     //property Rectangle page: Rectangle{ width: 800; height: 600 }
-    width: page.width * 0.28
-    height: page.height * 0.28
+    /*width: page.width * 0.28
+    height: page.height * 0.28*/
+    width: 300
+    height: 200
 
 
     color: "#D9D9D9"
@@ -16,18 +18,18 @@ Rectangle {
 
     /*ColumnLayout{
         anchors.fill: parent
-        anchors.margins: word.page.height * 0.01*/
+        anchors.margins: 10*/
 
     TextEdit{
         id: wordText
 
         anchors.top: word.top
-        anchors.topMargin: word.page.height * 0.01
+        anchors.topMargin: 5
         anchors.left: word.left
-        anchors.leftMargin: word.page.height * 0.01
+        anchors.leftMargin: 10
         anchors.right: word.right
-        anchors.rightMargin: word.page.height * 0.01
-        height: word.page.height * 0.04
+        anchors.rightMargin: 10
+        height: 40
         /*Layout.fillWidth: true
         Layout.fillHeight: true
         Layout.verticalStretchFactor: 25
@@ -39,7 +41,7 @@ Rectangle {
         text: word.wordUi.word
         font.bold: true
         font.italic: true
-        font.pixelSize: word.page.height * 0.027
+        font.pixelSize: 30
 
         readOnly: true
         selectByMouse: true
@@ -84,12 +86,12 @@ Rectangle {
         id: definitionText
 
         anchors.top: wordText.bottom
-        anchors.topMargin: word.page.height * 0.01
+        anchors.topMargin: 5
         anchors.left: word.left
-        anchors.leftMargin: word.page.height * 0.01
+        anchors.leftMargin: 10
         anchors.right: word.right
-        anchors.rightMargin: word.page.height * 0.01
-        height: word.page.height * 0.03
+        anchors.rightMargin: 10
+        height: 20
         //Layout.fillWidth: true
         /*Layout.fillWidth: true
         Layout.fillHeight: true
@@ -186,12 +188,12 @@ Rectangle {
         id: frequencyOfUseText
 
         anchors.top: definitionText.bottom
-        anchors.topMargin: word.page.height * 0.01
+        anchors.topMargin: 5
         anchors.left: word.left
-        anchors.leftMargin: word.page.height * 0.01
+        anchors.leftMargin: 10
         anchors.right: word.right
-        anchors.rightMargin: word.page.height * 0.01
-        height: word.page.height * 0.03
+        anchors.rightMargin: 10
+        height: 20
         /*Layout.fillWidth: true
         Layout.fillHeight: true
         Layout.verticalStretchFactor: 15
@@ -246,10 +248,10 @@ Rectangle {
         anchors.left: word.left
         anchors.right: word.right
         anchors.bottom: word.bottom
-        anchors.margins: word.page.height * 0.01
+        anchors.margins: 10
 
-        rowSpacing: word.page.height * 0.01
-        columnSpacing: word.page.height * 0.01
+        rowSpacing: 10
+        columnSpacing: 10
 
         property rect tagSize: Qt.rect(0, 0, 80, 30)
         columns: parent.width / (tagSize.width + columnSpacing)

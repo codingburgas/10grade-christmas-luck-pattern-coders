@@ -42,7 +42,7 @@ Rectangle{
             width: parent.width * 0.7
             height: parent.height * 0.7
 
-            source: "qrc:/arrowBack.png"
+            source: "qrc:/arrowLeftGreen.png"
         }
 
         MouseArea{

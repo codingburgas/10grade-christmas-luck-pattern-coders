@@ -7,15 +7,20 @@ import QtQuick.Controls 2.15
 Window {
     id: mainWindow
     visible: true
+    width: 800
+    height: 600
+
+    minimumWidth: 700
+    minimumHeight: 600
     /*width: 1536
     height: 801
 
     onWidthChanged: {
         console.log(`${width}x${height}`)
     }*/
-    visibility: Qt.WindowFullScreen
-    minimumWidth: width
-    minimumHeight: height
+    //visibility: Qt.WindowFullScreen
+    //minimumWidth: width
+    //minimumHeight: height
 
     title: "LEXIFY"
 
@@ -24,6 +29,10 @@ Window {
     property string currentPath: "MainPage.qml"
     property Rectangle currentPage: MainPage{}
 
+
+    Component.onDestruction: {
+        console.log(`${width}x${height}`)
+    }
 
 
     Component.onCompleted: {
