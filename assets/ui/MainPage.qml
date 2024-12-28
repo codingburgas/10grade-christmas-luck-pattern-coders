@@ -33,15 +33,39 @@ Rectangle{
 
         Image {
             id: openCloseButton
-            //source: (menu.closed) ? "qrc:/arrowRightBlack.png" : "qrc:/arrowLeftBlack.png"
-            source: "qrc:/arrowLeftBlack.png"
-            transform: Rotation{
+            source: (menu.closed) ? "qrc:/arrowRightBlack.png" : "qrc:/arrowLeftBlack.png"
+            //source: "qrc:/arrowLeftBlack.png"
+            /*transform: Rotation{
                 angle: (menu.closed) ? (180) : (0)
+            }*/
+
+            //y: (menu.closed) ? (35) : (15)
+            anchors.top: parent.top
+            anchors.topMargin: 15
+
+            Component.onCompleted: {
+                if (menu.closed){
+                    anchors.horizontalCenter = menu.horizontalCenter
+                } else{
+                    anchors.right = menu.right
+                }
             }
 
-            y: (menu.closed) ? (35) : (15)
-            anchors.right: parent.right
-            anchors.rightMargin: (menu.closed) ? (2) : (15)
+            Connections{
+                target: menu
+
+                function onClosedChanged(){
+                    openCloseButton.anchors.horizontalCenter = undefined
+                    openCloseButton.anchors.right = undefined
+                    openCloseButton.anchors.rightMargin = 0
+                    if (menu.closed){
+                        openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
+                    } else{
+                        openCloseButton.anchors.right = menu.right
+                        openCloseButton.anchors.rightMargin = 20
+                    }
+                }
+            }
 
 
 
