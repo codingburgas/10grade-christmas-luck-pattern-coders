@@ -20,6 +20,7 @@ using json = nlohmann::json;
 #include "wordUi.h"
 #include "tags.h"
 #include "tagsUi.h"
+#include "cache.h"
 
 
 /*
@@ -57,6 +58,7 @@ struct Application : public QObject {
     Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
     Q_PROPERTY(TagsUi* tagsUi READ getTagsUi WRITE setTagsUi NOTIFY tagsUiChanged FINAL)
     Q_PROPERTY(QList<QString> tagsChosenUi READ getTagsChosenUi WRITE setTagsChosenUi NOTIFY tagsChosenUiChanged)
+    Q_PROPERTY(Cache* cache READ getCache WRITE setCache NOTIFY cacheChanged FINAL)
 
 public:
     //properties
@@ -67,6 +69,7 @@ public:
     size_t indexOfClickedWord;        // Index of the currently clicked word.
     QList<WordUi*> wordsUi = {};   // List of words to display.
     TagsUi* tagsUi = {}; // List of all tags
+    Cache* cache = new Cache{};
 
     // Qt methods ----------
 
@@ -141,6 +144,10 @@ public:
     QList<QString> getTagsChosenUi() const {
         return tagsChosenUi;
     }
+
+    Cache *getCache(){ return cache; }
+
+    void setCache(Cache *val){ cache = val; emit cacheChanged(); }
 
     /*
      * Set tagsChosenUi property and emits correspondent signal
@@ -322,6 +329,7 @@ signals:
     void tagsUiChanged();
     void tagsChosenUiChanged();
     void indexOfClickedWordChanged();
+    void cacheChanged();
     void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
 };
 

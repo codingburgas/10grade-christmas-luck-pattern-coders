@@ -30,10 +30,6 @@ Window {
     property Rectangle currentPage: MainPage{}
 
 
-    Component.onDestruction: {
-        console.log(`${width}x${height}`)
-    }
-
 
     Component.onCompleted: {
         currentPage = Qt.createComponent( Qt.resolvedUrl(currentPath) ).createObject(mainWindow, {x:0, y:0})

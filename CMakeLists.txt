@@ -67,6 +67,8 @@ set(APP_FILES
     "src/tagsUi.cpp"
     "include/message.h"
     "assets/resources.qrc"
+    "include/cache.h"
+
 )
 
 

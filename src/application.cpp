@@ -6,6 +6,8 @@
 #include "application.h"
 #include "wordAlgorithms.h"
 #include "message.h"
+#include "cache.h"
+#include <QDebug>
 
 
 /*
@@ -62,6 +64,7 @@ int Application::run(int argc, char *argv[]) {
 
     qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
     qmlRegisterType<TagsUi>("TagsUi", 1, 0, "TagsUi");
+    qmlRegisterType<Cache>("Cache", 1, 0, "Cache");
 
 
 
@@ -77,6 +80,11 @@ int Application::run(int argc, char *argv[]) {
         for (Word* word : words){ delete word; }
         for (WordUi* wordUi : wordsUi){ delete wordUi; }
         delete tagsUi;
+        delete cache;
+    });
+
+    QObject::connect(this->cache, &Cache::pageChanged, [&](){
+        qDebug() << "Page in cache changed to " << cache->page << "\n";
     });
 
 

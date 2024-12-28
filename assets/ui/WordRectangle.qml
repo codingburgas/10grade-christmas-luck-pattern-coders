@@ -286,6 +286,7 @@ Rectangle {
             //console.log(word.indexInWordsUi)
             application.increaseWordFrequncyOfUse(word.indexInWordsUi);
             application.indexOfClickedWord = word.indexInWordsUi;
+            word.page.updateCache();
             word.page.screenChanged("WordPage.qml");
         }
     }

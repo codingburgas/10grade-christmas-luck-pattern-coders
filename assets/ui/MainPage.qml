@@ -6,6 +6,7 @@ import QtQuick.Controls 2.15
 
 import WordUi 1.0
 import TagsUi 1.0
+import Cache 1.0
 
 Rectangle{
     id: mainPage
@@ -24,7 +25,7 @@ Rectangle{
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        property bool closed: true
+        property bool closed: application.cache.menuClosed
 
         color: "#697795"
         radius: 50
@@ -44,10 +45,14 @@ Rectangle{
             anchors.topMargin: 15
 
             Component.onCompleted: {
+                openCloseButton.anchors.horizontalCenter = undefined
+                openCloseButton.anchors.right = undefined
+                openCloseButton.anchors.rightMargin = 0
                 if (menu.closed){
-                    anchors.horizontalCenter = menu.horizontalCenter
+                    openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
                 } else{
-                    anchors.right = menu.right
+                    openCloseButton.anchors.right = menu.right
+                    openCloseButton.anchors.rightMargin = 20
                 }
             }
 
@@ -128,6 +133,8 @@ Rectangle{
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.margins: 15
+
+                checked: application.cache.descendingOrderChecked
             }
         }
 
@@ -165,6 +172,7 @@ Rectangle{
                 anchors.margins: 10
 
                 model: ["Word", "Definition", "Part of speech", "Difficulty", "Frequency of use"]
+                currentIndex: application.cache.propertyIndex
 
                 function getProperty(){
                     switch (currentIndex){
@@ -243,6 +251,8 @@ Rectangle{
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.margins: 15
+
+                checked: application.cache.caseSensitiveChecked
             }
         }
 
@@ -281,6 +291,7 @@ Rectangle{
                 anchors.margins: 10
 
                 model: ["Word", "Definition", "Part of speech", "Difficulty"]
+                currentIndex: application.cache.property2Index
 
                 function getProperty(){
                     switch (currentIndex){
@@ -336,6 +347,7 @@ Rectangle{
                 anchors.margins: 10
 
                 model: ["Contain", "Start with", "End with"]
+                currentIndex: application.cache.propertyHasToIndex
 
             }
 
@@ -374,7 +386,7 @@ Rectangle{
                     background: Rectangle{ color: "transparent" }
                     anchors.fill: parent
                     font.pointSize: 18
-                    text: ""
+                    text: application.cache.userInput
                     placeholderText: "Leave blank to get all words"
                     placeholderTextColor: "#FFFFFF"
                     clip: true
@@ -470,11 +482,10 @@ Rectangle{
         property int wordsUiSize: application.getWordsUiSize()
         property int pagesTotal: Math.ceil(wordsUiSize / wordsGrid.itemsPerPage)
 
-        property int page: (mainWindow.userWasOnPage < pagesTotal) ? (mainWindow.userWasOnPage) : (pagesTotal)
+        property int page: (application.cache.page < pagesTotal) ? (application.cache.page) : (pagesTotal)
 
         Component.onCompleted: {
-            page = page + 1 - 1;
-            pageChanged()
+            page = (application.cache.page < pagesTotal) ? (application.cache.page) : (pagesTotal)
         }
 
         Grid{
@@ -519,7 +530,7 @@ Rectangle{
 
         onPageChanged: {
             if (page < 1){ page = 1; }
-            mainWindow.userWasOnPage = page
+            //mainWindow.userWasOnPage = page
 
             wordsRepeater.model = null
             wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
@@ -559,6 +570,17 @@ Rectangle{
 
             //application.message(content.wordsUiSize + " words found", "There are " + content.wordsUiSize + " words corresponding to your request", "success")
         }
+    }
+
+    function updateCache(){
+        application.cache.page = content.page
+        application.cache.userInput = searchInput.text
+        application.cache.menuClosed = menu.closed
+        application.cache.descendingOrderChecked = descendingOrderCheckBox.checked
+        application.cache.propertyIndex = propertyComboBox.currentIndex
+        application.cache.caseSensitiveChecked = caseSensitiveCheckBox.checked
+        application.cache.property2Index = property2ComboBox.currentIndex
+        application.cache.propertyHasToIndex = propertyHasToComboBox.currentIndex
     }
 
     /*ColumnLayout{
