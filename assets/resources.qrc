@@ -14,5 +14,6 @@
         <file>magnifyingGlass.png</file>
         <file>sortingIcon.png</file>
         <file>arrowRightBlack.png</file>
+        <file>ui/StartingPage.qml</file>
     </qresource>
 </RCC>

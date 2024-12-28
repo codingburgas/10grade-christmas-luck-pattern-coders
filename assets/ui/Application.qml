@@ -26,8 +26,11 @@ Window {
 
     property int userWasOnPage: 1
 
-    property string currentPath: "MainPage.qml"
-    property Rectangle currentPage: MainPage{}
+    //property string currentPath: "MainPage.qml"
+    //property Rectangle currentPage: MainPage{}
+    property string currentPath: "StartingPage.qml"
+    property Rectangle currentPage: StartingPage{}
+
 
 
     Component.onDestruction: {
