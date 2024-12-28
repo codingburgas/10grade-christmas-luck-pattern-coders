@@ -13,5 +13,6 @@
         <file>arrowLeftBlack.png</file>
         <file>magnifyingGlass.png</file>
         <file>sortingIcon.png</file>
+        <file>arrowRightBlack.png</file>
     </qresource>
 </RCC>
