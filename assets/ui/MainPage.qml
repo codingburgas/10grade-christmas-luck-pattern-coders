@@ -16,9 +16,16 @@ Rectangle{
     height: mainWindow.height// - 2*anchors.margins
 
     color: "#ADADAD"
+    focus: true
 
 
     signal screenChanged(path: string)
+
+    MouseArea{
+        anchors.fill: parent
+
+        onClicked: { mainPage.focus = true }
+    }
 
     Rectangle{
         id: menu
@@ -31,6 +38,13 @@ Rectangle{
         radius: 50
 
         width: (closed) ? (70) : (parent.width*0.35)
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: { mainPage.focus = true }
+        }
+
 
         Image {
             id: openCloseButton
@@ -366,6 +380,12 @@ Rectangle{
         color: "#D9D9D9"
         radius: 50
 
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: { mainPage.focus = true }
+        }
+
 
         RowLayout{
             anchors.fill: parent
@@ -393,6 +413,7 @@ Rectangle{
                     leftPadding: 15
                     rightPadding: 15
                     verticalAlignment: Text.AlignVCenter
+
                 }
             }
 
@@ -420,6 +441,7 @@ Rectangle{
                 }
 
                 MouseArea{
+                    id: searchButtonMouseArea
                     anchors.fill: parent
 
                     onClicked: {
@@ -486,6 +508,12 @@ Rectangle{
 
         Component.onCompleted: {
             page = (application.cache.page < pagesTotal) ? (application.cache.page) : (pagesTotal)
+        }
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: { mainPage.focus = true }
         }
 
         Grid{
@@ -582,6 +610,50 @@ Rectangle{
         application.cache.property2Index = property2ComboBox.currentIndex
         application.cache.propertyHasToIndex = propertyHasToComboBox.currentIndex
     }
+
+    Keys.onPressed: (event) => {
+
+        if (searchInput.focus && (event.key == Qt.Key_Return)){
+            application.searchWords(searchInput.text, property2ComboBox.getProperty(), caseSensitiveCheckBox.checked, (propertyHasToComboBox.currentIndex==1), (propertyHasToComboBox.currentIndex==2));
+            mainPage.focus = true
+            return;
+        }
+        if (event.key == Qt.Key_M && (event.modifiers & Qt.ControlModifier)){
+            menu.closed = !menu.closed
+            return;
+        }
+        if (!searchInput.focus && event.key == Qt.Key_Slash){
+            searchInput.focus = true
+            return;
+        }
+        if (!searchInput.focus && !(event.modifiers & Qt.ShiftModifier) && !(event.modifiers & Qt.ControlModifier) && !(event.modifiers & Qt.AltModifier) && !(event.key == Qt.Key_CapsLock)){
+            application.message("Press \"/\" to enter search field", "Just so you know :)", "warning")
+        }
+
+
+    }
+    /*Connections{
+        //target: mainPage.activeFocusItem.Keys
+        target: mainPage.parent.activeFocusItem.Keys
+
+        function onPressed(event){
+            console.log("Key pressed!")
+            if (searchInput.focus && event.key == Qt.Key_Enter){
+                searchButtonMouseArea.clicked()
+                return;
+            }
+            if (event.key == Qt.Key_M && (event.modifiers & Qt.ShiftModifier)){
+                menu.closed = !menu.closed
+                return;
+            }
+            if (!searchInput.focus && event.key == Qt.Key_Slash){
+                searchInput.focus = true
+                return;
+            }
+            application.message("Press \"/\" to enter search field", "Just so you know :)", "warning")
+        }
+    }*/
+
 
     /*ColumnLayout{
         id: chosenTags

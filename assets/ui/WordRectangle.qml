@@ -15,6 +15,7 @@ Rectangle {
     color: "#D9D9D9"
     radius: 45
 
+    clip: true
 
     /*ColumnLayout{
         anchors.fill: parent
@@ -281,6 +282,7 @@ Rectangle {
 
     MouseArea{
         anchors.fill: parent
+        clip: true
 
         onClicked: {
             //console.log(word.indexInWordsUi)

@@ -27,7 +27,7 @@ Window {
     property int userWasOnPage: 1
 
     property string currentPath: "MainPage.qml"
-    property Rectangle currentPage: MainPage{}
+    property Rectangle currentPage
 
 
 
