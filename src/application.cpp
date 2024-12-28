@@ -218,6 +218,8 @@ void Application::increaseWordFrequncyOfUse(int wordIndex) {
         word->frequencyOfUse++;
 
         word->save();
+
+        wordsUi[wordIndex]->frequencyOfUse++;
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
