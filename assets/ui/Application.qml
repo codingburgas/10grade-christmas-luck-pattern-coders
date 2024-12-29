@@ -116,4 +116,28 @@ Window {
     }
 
 
+    function openEditTagsWindow(index){
+        let editTagsWindowComponent = Qt.createComponent( Qt.resolvedUrl("TagEditPopup.qml") )
+
+        let waitFunction = () => {
+            if (editTagsWindowComponent.status == Component.Ready){
+                let editTagsWindow = editTagsWindowComponent.createObject(
+                    mainWindow,
+                    {
+                        index: index
+                    });
+
+            }else if (editTagsWindowComponent.status === Component.Loading) {
+                editTagsWindowComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+            } else if (editTagsWindowComponent.status === Component.Error) {
+                //console.error("Error loading component:", newComponent.errorString()); // Handle error case
+                application.message("Failed to create window for editing tags", `Failed to create window for editing tags`, "error");
+            }
+        }
+
+
+        waitFunction();
+    }
+
+
 }

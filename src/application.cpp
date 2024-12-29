@@ -179,8 +179,10 @@ void Application::searchWords(QString part, QString propertyName, bool caseSensi
         getAllWords(words);
         std::string strPart = part.toStdString();
         std::string strPropertyName = propertyName.toStdString();
-        leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
-        //leaveWordsWithSpecificTags(words, tagsChosen);
+        if (strPart.size() != 0){
+            leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
+        }
+        leaveWordsWithSpecificTags(words, tagsChosen);
 
         updateWordsUi();
     } catch (Message& m) {

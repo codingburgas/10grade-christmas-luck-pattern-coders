@@ -436,6 +436,10 @@ Rectangle{
                         property int removeFrom: 1
                         property int addTo: 0
                     }
+
+                    onModelChanged: {
+                        chosenTagsRepeater.model = (application.getTagsChosenUiSize() < tagsLayout.itemsPerPage) ? (application.getTagsChosenUiSize()) : (tagsLayout.itemsPerPage)
+                    }
                 }
 
                 Text{
@@ -453,7 +457,8 @@ Rectangle{
                 }
 
                 onItemsPerPageChanged: {
-                    wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
+                    chosenTagsRepeater.model = (application.getTagsChosenUiSize() < tagsLayout.itemsPerPage) ? (application.getTagsChosenUiSize()) : (tagsLayout.itemsPerPage)
+                    //wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
                 }
 
             }
@@ -484,6 +489,7 @@ Rectangle{
                     anchors.fill: parent
                     onClicked: {
                         // open window with tags
+                        mainWindow.openEditTagsWindow(0);
                     }
                 }
             }

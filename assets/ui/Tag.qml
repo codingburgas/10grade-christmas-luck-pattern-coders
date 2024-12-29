@@ -88,7 +88,6 @@ Rectangle{
             onClicked: {
 
                 if (tag.removeFrom == 1){
-                    console.log(tag.index)
                     application.removeTagFromChosen(tag.index);
                 } else{
                     application.deleteWordTag(application.indexOfClickedWord, tag.index);

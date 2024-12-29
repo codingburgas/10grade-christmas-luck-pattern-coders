@@ -64,8 +64,8 @@ public:
     //properties
     std::vector<Word*> words = {};   // List of words in the application.
     Tags* tags = {}; // Object, containing all tags used in application
-    std::vector<std::string> tagsChosen = {"test1", "programming", "long", "test2", "test3", "test4", "test5", "test6", "test7", "test8"};
-    QList<QString> tagsChosenUi = {"test1", "programming", "long", "test2", "test3", "test4", "test5", "test6", "test7", "test8"};
+    std::vector<std::string> tagsChosen = {};
+    QList<QString> tagsChosenUi = {};
     size_t indexOfClickedWord;        // Index of the currently clicked word.
     QList<WordUi*> wordsUi = {};   // List of words to display.
     TagsUi* tagsUi = {}; // List of all tags
