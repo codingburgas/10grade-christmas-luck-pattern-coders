@@ -22,6 +22,8 @@ Rectangle{
 
 
 
+
+
     /*property string tagText: (() => {
                                  if (!chosen){
                                      return application.tagsUi.getElementOnIndex(index);
@@ -51,6 +53,54 @@ Rectangle{
 
     visible: defineVisible()*/
 
+    Rectangle{
+        id: removeButton
+        //anchors.verticalCenter: tag.verticalCenter
+        anchors.right: tag.right
+        anchors.rightMargin: 2
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+        anchors.top: tag.top
+        anchors.bottom: tag.bottom
+
+        width: height
+        radius: 44
+        color: "white"
+        clip: true
+
+
+
+        visible: (tag.removeFrom != 0)
+
+
+        Image{
+            id: crossImg
+            source: "qrc:/crossToClose.png"
+            anchors.fill: parent
+            anchors.margins: 6
+            fillMode: Image.PreserveAspectCrop
+            clip: true
+        }
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: {
+
+                if (tag.removeFrom == 1){
+                    console.log(tag.index)
+                    application.removeTagFromChosen(tag.index);
+                } else{
+                    application.deleteWordTag(application.indexOfClickedWord, tag.index);
+                }
+
+
+            }
+        }
+
+    }
+
+
 
     TextEdit{
         id: textField
@@ -70,7 +120,8 @@ Rectangle{
         verticalAlignment: Text.AlignVCenter
 
         Component.onCompleted: {
-            if (removeButton.visible){
+            anchors.right = undefined
+            if (tag.removeFrom != 0){
                 anchors.right = removeButton.left
             } else{
                 anchors.right = tag.right
@@ -115,59 +166,6 @@ Rectangle{
     }
 
 
-    Rectangle{
-        id: removeButton
-        anchors.left: textField.right
-        //anchors.verticalCenter: tag.verticalCenter
-        anchors.right: tag.right
-        anchors.rightMargin: 2
-        anchors.topMargin: 2
-        anchors.bottomMargin: 2
-        anchors.top: tag.top
-        anchors.bottom: tag.bottom
-        radius: 44
-        color: "white"
-        clip: true
-        //z: 1000
-
-        /*function defineVisible(){
-            if (!tag.chosen){
-                return false;
-            }
-            if (tag.location == 0){
-                return true;
-            }
-            return application.tagsUi.isInCustomTags(tag.tagText);
-        }
-
-        visible: removeButton.defineVisible()*/
-        visible: (tag.removeFrom != 0)
-
-        Image{
-            id: crossImg
-            source: "qrc:/crossToClose.png"
-            anchors.fill: parent
-            anchors.margins: 6
-            fillMode: Image.PreserveAspectCrop
-            clip: true
-        }
-
-        MouseArea{
-            anchors.fill: parent
-
-            onClicked: {
-
-                if (tag.removeFrom == 1){
-                    application.removeTagFromChosen(tag.index);
-                } else{
-                    application.deleteWordTag(application.indexOfClickedWord, tag.index);
-                }
-
-
-            }
-        }
-
-    }
 
     MouseArea{
         visible: (tag.addTo != 0)

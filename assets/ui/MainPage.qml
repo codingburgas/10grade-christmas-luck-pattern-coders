@@ -101,8 +101,8 @@ Rectangle{
             id: sortingLabel
             anchors.margins: 10
             visible: !menu.closed
-            width: parent.width * 0.4
-            height: parent.height * 0.1
+            width: parent.width * 0.5
+            height: parent.height * 0.08
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
 
@@ -112,7 +112,7 @@ Rectangle{
             Text{
                 text: "Sorting"
                 anchors.centerIn: parent
-                font.pointSize: parent.height * 0.2
+                font.pointSize: parent.height * 0.4
                 font.bold: true
             }
         }
@@ -122,7 +122,7 @@ Rectangle{
             anchors.top: sortingLabel.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -158,7 +158,7 @@ Rectangle{
             anchors.top: descendingOrderLine.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -214,10 +214,10 @@ Rectangle{
 
         Rectangle{
             id: searchingLabel
-            anchors.margins: 10
+            anchors.margins: 7
             visible: !menu.closed
-            width: parent.width * 0.4
-            height: parent.height * 0.1
+            width: parent.width * 0.5
+            height: parent.height * 0.08
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: propertyLine.bottom
 
@@ -227,7 +227,7 @@ Rectangle{
             Text{
                 text: "Searching"
                 anchors.centerIn: parent
-                font.pointSize: parent.height * 0.2
+                font.pointSize: parent.height * 0.4
                 font.bold: true
 
                 verticalAlignment: Text.AlignVCenter
@@ -240,7 +240,7 @@ Rectangle{
             anchors.top: searchingLabel.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -277,7 +277,7 @@ Rectangle{
             anchors.top: caseSensitiveLine.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -333,7 +333,7 @@ Rectangle{
             anchors.top: property2Line.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             color: "transparent"
@@ -365,6 +365,170 @@ Rectangle{
 
             }
 
+        }
+
+
+        Rectangle{
+            id: tagsLabel
+            anchors.margins: 10
+            visible: !menu.closed
+            width: parent.width * 0.5
+            height: parent.height * 0.08
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: propertyHasToLine.bottom
+
+            color: "#D9D9D9"
+            radius: 50
+
+            Text{
+                text: "Tags"
+                anchors.centerIn: parent
+                font.pointSize: parent.height * 0.4
+                font.bold: true
+
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+
+
+
+        Rectangle{
+            id: tagsRect
+            visible: !menu.closed
+
+            anchors.top: tagsLabel.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: parent.height * 0.2
+
+            color: "transparent"
+
+            anchors.margins: 7
+
+
+            GridLayout{
+                id: tagsLayout
+
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: parent.height * 0.75
+
+                columnSpacing: 5
+                rowSpacing: 3
+
+
+                columns: width / (80 + columnSpacing)
+                rows: height / (30 + rowSpacing)
+
+
+                property int itemsPerPage: columns * rows
+
+
+                Repeater{
+                    id: chosenTagsRepeater
+                    model: (application.getTagsChosenUiSize() < tagsLayout.itemsPerPage) ? (application.getTagsChosenUiSize()) : (tagsLayout.itemsPerPage)
+
+                    Tag{
+                        required property int index
+
+                        property string tagName: application.tagsChosenUi[index]
+                        property int removeFrom: 1
+                        property int addTo: 0
+                    }
+                }
+
+                Text{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    visible: (chosenTagsRepeater.model == 0)
+
+                    text: "No tags chosen"
+                    font.bold: true
+                    font.pixelSize: width * 0.09
+
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                onItemsPerPageChanged: {
+                    wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
+                }
+
+            }
+
+            Rectangle{
+                anchors.top: tagsLayout.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                width: parent.width * 0.4
+
+                color: "#848484"
+
+                radius: 45
+
+                Text{
+                    anchors.fill: parent
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
+                    text: "Edit tags"
+                    color: "#000000"
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                    font.pointSize: parent.height * 0.375
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        // open window with tags
+                    }
+                }
+            }
+        }
+
+        Rectangle{
+            id: resetSettingsButton
+            anchors.top: tagsRect.bottom
+            anchors.left: menu.left
+            anchors.right: menu.right
+            anchors.bottom: menu.bottom
+            anchors.margins: 10
+            anchors.rightMargin: 20
+            anchors.leftMargin: 20
+
+            visible: !menu.closed
+
+            color: "#D9D9D9"
+            radius: 20
+
+            Text{
+                text: "Clear settings"
+                anchors.fill: parent
+                color: "#000000"
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.bold: true
+                font.pointSize: parent.height * 0.375
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
+            }
+
+
+            MouseArea{
+                anchors.fill: parent
+
+                onClicked: {
+                    descendingOrderCheckBox.checked = false
+                    propertyComboBox.currentIndex = 0
+                    caseSensitiveCheckBox.checked = false
+                    property2ComboBox.currentIndex = 0
+                    propertyHasToComboBox.currentIndex = 0
+                    application.resetTagsChosen()
+                }
+            }
         }
 
 
@@ -485,14 +649,20 @@ Rectangle{
     }
 
 
-
+    Pagination{
+        id: pagination
+        anchors.bottom: mainPage.bottom
+        anchors.horizontalCenter: content.horizontalCenter
+        property QtObject contentRect: content
+    }
 
 
 
     Rectangle{
         id: content
         anchors.top: toolBar.bottom
-        anchors.bottom: mainPage.bottom
+        anchors.bottom: pagination.top
+
         anchors.left: menu.right
         anchors.right: mainPage.right
         anchors.topMargin: 10
@@ -516,7 +686,7 @@ Rectangle{
             onClicked: { mainPage.focus = true }
         }
 
-        Grid{
+        GridLayout{
             id: wordsGrid
 
             anchors.fill: parent
@@ -547,7 +717,25 @@ Rectangle{
 
 
                 }
+
+
             }
+
+
+            Text{
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                visible: (wordsRepeater.model == 0)
+
+                text: "No words found"
+                font.bold: true
+                font.pixelSize: width * 0.08
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+
 
             onItemsPerPageChanged: {
                 content.page = content.calculateNewPage()
@@ -579,11 +767,6 @@ Rectangle{
 
     }
 
-    Pagination{
-        anchors.bottom: content.bottom
-        anchors.horizontalCenter: content.horizontalCenter
-        property QtObject contentRect: content
-    }
 
     Connections{
         target: application
@@ -632,6 +815,16 @@ Rectangle{
 
 
     }
+
+    Connections{
+        target: application
+
+        function onTagsChosenUiChanged(){
+            chosenTagsRepeater.model = null
+            chosenTagsRepeater.model = application.getTagsChosenUiSize();
+        }
+    }
+
     /*Connections{
         //target: mainPage.activeFocusItem.Keys
         target: mainPage.parent.activeFocusItem.Keys

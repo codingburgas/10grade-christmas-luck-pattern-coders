@@ -451,6 +451,10 @@ void Application::addTagToChosen(int tagIndex){
  */
 void Application::removeTagFromChosen(int tagIndex){
     try{
+        if (tagIndex >= tagsChosen.size()) {
+            emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+            return;
+        }
 
         tagsChosen.erase(tagsChosen.begin() + tagIndex);
         tagsChosenUi.erase(tagsChosenUi.begin() + tagIndex);
@@ -482,4 +486,17 @@ bool Application::isInTagsChosen(QString tag){
 
 QString Application::countSyllablesOfWord(int wordIndex){
     return QString::number(countSyllables(words[wordIndex]->word));
+}
+
+
+
+void Application::resetTagsChosen(){
+    try{
+        tagsChosen.clear();
+        tagsChosenUi.clear();
+
+        emit tagsChosenUiChanged();
+    }catch(...){
+        emit message();
+    }
 }
