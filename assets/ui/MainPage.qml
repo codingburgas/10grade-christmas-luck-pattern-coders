@@ -56,33 +56,48 @@ Rectangle{
 
             //y: (menu.closed) ? (35) : (15)
             anchors.top: parent.top
-            anchors.topMargin: 15
+            anchors.topMargin: 10
 
-            Component.onCompleted: {
+            function resize(){
                 openCloseButton.anchors.horizontalCenter = undefined
                 openCloseButton.anchors.right = undefined
                 openCloseButton.anchors.rightMargin = 0
+                //openCloseButton.height = 0
+
                 if (menu.closed){
                     openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
+                    openCloseButton.width = menu.width - 25
+                    openCloseButton.height = openCloseButton.width
                 } else{
                     openCloseButton.anchors.right = menu.right
                     openCloseButton.anchors.rightMargin = 20
+
+                    openCloseButton.height = menu.height * 0.08 - 5
+                    openCloseButton.width = openCloseButton.height
                 }
+            }
+
+            Component.onCompleted: {
+                resize()
             }
 
             Connections{
                 target: menu
 
                 function onClosedChanged(){
-                    openCloseButton.anchors.horizontalCenter = undefined
-                    openCloseButton.anchors.right = undefined
-                    openCloseButton.anchors.rightMargin = 0
-                    if (menu.closed){
-                        openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
-                    } else{
-                        openCloseButton.anchors.right = menu.right
-                        openCloseButton.anchors.rightMargin = 20
-                    }
+                    openCloseButton.resize()
+                }
+            }
+
+            Connections{
+                target: mainPage
+
+                function onHeightChanged(){
+                    openCloseButton.resize()
+                }
+
+                function onWidthChanged(){
+                    openCloseButton.resize()
                 }
             }
 
