@@ -29,8 +29,11 @@ json getJsonDataFromFile(const std::string &fileName){
 
     try{
         file >> result;
+
+
+
     } catch(...){
-        std::string title = "File with data is blank";
+        std::string title = "File with data is blank or incorrect";
         std::string description =  "Json data is either incorrect or blank. It will be replaced with blank array.";
         std::string type = "warning";
 
@@ -39,7 +42,10 @@ json getJsonDataFromFile(const std::string &fileName){
 
     file.close();
 
-    if (result.empty()) result = json::parse("[]");
+    if (result.empty()){
+        result = json::parse("[]");
+        throw Message("File with data is blank or incorrect", "Json data is either incorrect or blank. It will be replaced with blank array.", "warning");
+    }
 
     return result;
 }

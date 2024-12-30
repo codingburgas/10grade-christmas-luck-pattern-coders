@@ -4,6 +4,9 @@ import QtQuick 2.15
 import QtQuick.Layouts 2.15
 import QtQuick.Controls 2.15
 
+import Message 1.0
+
+
 Window {
     id: mainWindow
     visible: true
@@ -33,6 +36,14 @@ Window {
 
     Component.onCompleted: {
         currentPage = Qt.createComponent( Qt.resolvedUrl(currentPath) ).createObject(mainWindow, {x:0, y:0})
+
+
+        let size = application.getMessagesBeforeStartSize();
+        for (let i = 0; i < size; i++){
+            console.log(typeof application.messagesBeforeStart)
+            let message = application.messagesBeforeStart[i]
+            application.message(message.titleUi, message.descriptionUi, message.typeUi);
+        }
     }
 
 
@@ -138,6 +149,7 @@ Window {
 
         waitFunction();
     }
+
 
 
 }

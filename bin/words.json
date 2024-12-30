@@ -2,13 +2,12 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 133,
+        "frequencyOfUse": 155,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
             "B2",
-            "test1",
-            "test2"
+            "phrasal verbs"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/programming",
         "word": "programming"
@@ -3220,7 +3219,7 @@
     {
         "definition": "A learned person has studied for a long time and has a lot of knowledge",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -15832,7 +15831,7 @@
     {
         "definition": "in or related to industry, or having a lot of industry and factories, etc.",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",

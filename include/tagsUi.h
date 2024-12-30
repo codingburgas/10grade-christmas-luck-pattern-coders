@@ -34,7 +34,7 @@ public:
     TagsUi(Tags *tags);
 
     QList<QString> difficultyTags = {"A1", "A2", "B1", "B2", "C1", "C2"};
-    QList<QString> partOfSpeechTags = {"noun", "verb", "adjective", "adverb"};
+    QList<QString> partOfSpeechTags = {"noun", "verb", "adjective", "adverb", "suffix"};
     QList<QString> customTags;
 
 

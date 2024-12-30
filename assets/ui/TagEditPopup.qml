@@ -38,27 +38,23 @@ Rectangle{
             anchors.margins: 8
             height: parent.height * 0.5
 
-            GridLayout {
+            Grid {
                 id: tagsSelectedLayout
 
-                anchors.fill: parent
+                width: tagsSelectedScrollView.width
                 columnSpacing: 5
                 rowSpacing: 5
 
 
-                /*columns: {
-                    let cols = Math.floor(width / (80 + columnSpacing));
-                    console.log(cols)
-                    return Math.max(cols, 1); // Ensure at least 1 column
-                }*/
-                columns: 7
-                //rows: Math.ceil(tagsSelectedRepeater.model / columns)
+                columns: 6
 
                 Repeater{
                     id: tagsSelectedRepeater
                     model: (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
 
                     Tag{
+                        //Layout.alignment: Qt.AlignLeft
+
                         required property int index
 
                         property string tagName: (tagsEditWindow.index == 0) ? (application.tagsChosenUi[index]) : (application.wordsUi[application.indexOfClickedWord].tags[index])
@@ -71,14 +67,18 @@ Rectangle{
                                 }
 
                                 if (application.tagsUi.isInCustomTags(tagName)){
-                                    return true;
+                                    return 2;
                                 }
 
-                                return false;
+                                return 0;
                             }
                         )()
 
                         property int addTo: 0
+                    }
+
+                    onModelChanged: {
+                        tagsSelectedLayout.columns = (tagsSelectedRepeater.model < 6) ? (tagsSelectedRepeater.model):(6)
                     }
 
                 }
@@ -100,6 +100,7 @@ Rectangle{
 
 
         ScrollView{
+            id: allTagsScrollView
             anchors.top: line.bottom
             anchors.left: parent.left
             anchors.right: parent.right
@@ -107,10 +108,13 @@ Rectangle{
             anchors.margins: 8
             anchors.topMargin: 2
 
-            GridLayout {
+
+
+
+            Grid {
                 id: allTagsLayout
 
-                anchors.fill: parent
+                width: allTagsScrollView.width
                 columnSpacing: 5
                 rowSpacing: 5
 
@@ -119,7 +123,7 @@ Rectangle{
                     let cols = Math.floor(width / (80 + columnSpacing));
                     return Math.max(cols, 1); // Ensure at least 1 column
                 }*/
-                columns: 7
+                columns: 6
                 //rows: Math.ceil(allTagsRepeater.model / columns)
 
                 Repeater{

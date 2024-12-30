@@ -21,6 +21,7 @@ using json = nlohmann::json;
 #include "tags.h"
 #include "tagsUi.h"
 #include "cache.h"
+#include "message.h"
 
 
 /*
@@ -59,6 +60,7 @@ struct Application : public QObject {
     Q_PROPERTY(TagsUi* tagsUi READ getTagsUi WRITE setTagsUi NOTIFY tagsUiChanged FINAL)
     Q_PROPERTY(QList<QString> tagsChosenUi READ getTagsChosenUi WRITE setTagsChosenUi NOTIFY tagsChosenUiChanged)
     Q_PROPERTY(Cache* cache READ getCache WRITE setCache NOTIFY cacheChanged FINAL)
+    Q_PROPERTY(QList<Message*> messagesBeforeStart READ getMessagesBeforeStart WRITE setMessagesBeforeStart NOTIFY messagesBeforeStartChanged FINAL)
 
 public:
     //properties
@@ -70,10 +72,14 @@ public:
     QList<WordUi*> wordsUi = {};   // List of words to display.
     TagsUi* tagsUi = {}; // List of all tags
     Cache* cache = new Cache{};
+    QList<Message*> messagesBeforeStart = {};
 
     // Qt methods ----------
 
 
+    QList<Message*> getMessagesBeforeStart(){
+        return messagesBeforeStart;
+    }
 
 
     /*
@@ -95,6 +101,13 @@ public:
      * -- tagsUi: List of tags currently displayed.
      */
     TagsUi* getTagsUi() { return tagsUi; }
+
+
+    void setMessagesBeforeStart(QList<Message*> &value){
+        messagesBeforeStart = value;
+        messagesBeforeStartChanged();
+    }
+
 
     /*
      * Sets the list of displayed words.
@@ -314,6 +327,8 @@ public:
 
     Q_INVOKABLE void resetTagsChosen();
 
+    Q_INVOKABLE int getMessagesBeforeStartSize(){ return messagesBeforeStart.size(); }
+
     // -----------------------------
 
     /*
@@ -332,6 +347,7 @@ signals:
     void tagsChosenUiChanged();
     void indexOfClickedWordChanged();
     void cacheChanged();
+    void messagesBeforeStartChanged();
     void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
 };
 

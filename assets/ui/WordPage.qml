@@ -282,7 +282,7 @@ Rectangle{
         anchors.left: definition.right
         anchors.top: title.bottom
         width: parent.width * 0.22
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
         anchors.margins: wordPage.height * 0.016
@@ -380,7 +380,7 @@ Rectangle{
         anchors.left: partOfSpeech.right
         anchors.top: title.bottom
         anchors.right: wordPage.right
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
         anchors.margins: wordPage.height * 0.016
@@ -479,7 +479,7 @@ Rectangle{
         anchors.top: partOfSpeech.bottom
 
         width: parent.width * 0.22
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
 
@@ -578,7 +578,7 @@ Rectangle{
         anchors.left: difficulty.right
         anchors.top: frequencyOfUse.bottom
         anchors.right: wordPage.right
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
         anchors.margins: wordPage.height * 0.016
@@ -716,6 +716,7 @@ Rectangle{
 
                 onClicked: {
                     // open window with tags
+                    mainWindow.openEditTagsWindow(1);
                 }
             }
         }
@@ -753,12 +754,17 @@ Rectangle{
 
 
             Grid{
+                id: tagsGrid
                 spacing: wordPage.height * 0.0083
                 anchors.fill: parent
                 anchors.margins: wordPage.height * 0.013
+
+                columns: Math.max(1, Math.floor(width / (80 + spacing)))
+                rows: height / (30 + spacing)
+
                 Repeater{
                     id: wordTagsRepeater
-                    model: (wordPage.word.getTagsSize() < 6) ? (wordPage.word.getTagsSize()) : (6)
+                    model: (wordPage.word.getTagsSize() < tagsGrid.columns * tagsGrid.rows) ? (wordPage.word.getTagsSize()) : (tagsGrid.columns * tagsGrid.rows)
 
                     Tag{
                         required property int index
@@ -766,6 +772,10 @@ Rectangle{
                         property string tagName: wordPage.word.tags[index]
                         property int removeFrom: 0
                         property int addTo: 0
+                    }
+
+                    onModelChanged: {
+                        tagsGrid.forceLayout()
                     }
                 }
             }

@@ -65,6 +65,11 @@ int Application::run(int argc, char *argv[]) {
     qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
     qmlRegisterType<TagsUi>("TagsUi", 1, 0, "TagsUi");
     qmlRegisterType<Cache>("Cache", 1, 0, "Cache");
+    qmlRegisterType<Message>("Message", 1, 0, "Message");
+
+    qRegisterMetaType<QList<Message>>("QList<Message>");
+
+
 
 
 
@@ -79,6 +84,7 @@ int Application::run(int argc, char *argv[]) {
 
         for (Word* word : words){ delete word; }
         for (WordUi* wordUi : wordsUi){ delete wordUi; }
+        for (Message* message : messagesBeforeStart){ delete message; }
         delete tagsUi;
         delete cache;
     });
@@ -88,13 +94,16 @@ int Application::run(int argc, char *argv[]) {
     });
 
 
+
     try{
         getAllWords(words);
         updateWordsUi();
     }catch(Message& m){
-        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        //emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        messagesBeforeStart.push_back(new Message(m));
     } catch(...){
-        emit message("Failed to load words", "Application may work incorrectly. Try reloading it", "error");
+        //emit message("Failed to load words", "Application may work incorrectly. Try reloading it", "error");
+        messagesBeforeStart.push_back(new Message("Failed to load words", "Application may work incorrectly. Try reloading it", "error"));
     }
 
 
@@ -102,9 +111,12 @@ int Application::run(int argc, char *argv[]) {
         tags = new Tags();
         updateTagsUi();
     } catch(Message& m){
-        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        //emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        messagesBeforeStart.push_back(new Message(m));
+
     } catch(...){
-        emit message("Failed to load tags", "Application may work incorrectly. Try reloading it", "error");
+        messagesBeforeStart.push_back(new Message("Failed to load words", "Application may work incorrectly. Try reloading it", "error"));
+        //emit message("Failed to load tags", "Application may work incorrectly. Try reloading it", "error");
     }
 
 
@@ -290,13 +302,14 @@ void Application::deleteWordTag(int wordIndex, int tagIndex){
 void Application::addWordTag(int wordIndex, int tagIndex){
     try{
 
-        if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+        if (tagIndex < 0 || tagIndex >= (tags->partOfSpeechTags.size() + tags->difficultyTags.size() + tags->customTags.size())){
             emit message("Couldn't find the tag", "Couldn't find the tag", "error");
             return;
         }
 
 
-        std::string &tag = tags->customTags[tagIndex];
+        //std::string &tag = tags->customTags[tagIndex];
+        std::string tag = tags->getElementOnIndex(tagIndex);
 
         if (contains(words[wordIndex]->tags, tag)){
             emit message("This tag is already added", "Word already has this tag", "warning");
