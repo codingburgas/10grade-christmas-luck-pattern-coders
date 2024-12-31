@@ -273,6 +273,7 @@ Rectangle {
                 property string tagName: word.wordUi.tags[index]
                 property int removeFrom: 0
                 property int addTo: 0
+                property bool deleteButton: false
             }
         }
 

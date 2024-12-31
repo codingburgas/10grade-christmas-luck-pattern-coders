@@ -7,6 +7,9 @@ libcurl/docs/
 libcurl/dep/
 libcurl/bin/
 
+bin/
+lexify.zip
+
 
 # Prerequisites
 *.d

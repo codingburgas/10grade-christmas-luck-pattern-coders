@@ -15,5 +15,6 @@
         <file>sortingIcon.png</file>
         <file>arrowRightBlack.png</file>
         <file>ui/TagEditPopup.qml</file>
+        <file>checkMark.png</file>
     </qresource>
 </RCC>

@@ -77,6 +77,12 @@ public:
     // Qt methods ----------
 
 
+    /* Returns messagesBeforeStart property
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QList<Message*>: messagesBeforeStart
+     */
     QList<Message*> getMessagesBeforeStart(){
         return messagesBeforeStart;
     }
@@ -340,6 +346,15 @@ public:
      * -- Integer representing the application's exit code.
      */
     int run(int argc, char *argv[]);
+
+
+    /* Removes all occurences of specified tag in file with words
+     * Parameters:
+     * --tag: a name of tag to be deleted
+     * Returns:
+     * --None
+     */
+    void deleteTagInData(std::string& tag);
 
 signals:
     void wordsUiChanged();

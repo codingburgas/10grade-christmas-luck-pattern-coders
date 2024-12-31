@@ -2,12 +2,11 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 155,
+        "frequencyOfUse": 192,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "B2",
-            "phrasal verbs"
+            "B2"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/programming",
         "word": "programming"
@@ -15,7 +14,7 @@
     {
         "definition": "the situation in which a lot of things are happening or people are moving around",
         "difficulty": "B2",
-        "frequencyOfUse": 14,
+        "frequencyOfUse": 24,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -11499,7 +11498,7 @@
     {
         "definition": "a series of instructions that can be put into a computer in order to make it perform an operation",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",

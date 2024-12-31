@@ -350,7 +350,8 @@ void Application::addTag(QString tag){
         tags->customTags.push_back(strTag);
         tagsUi->customTags.push_back(tag);
 
-        emit tagsUiChanged();
+        //emit tagsUiChanged();
+        tagsUi->customTagsChanged();
     } catch(...){
         emit message();
     }
@@ -364,17 +365,46 @@ void Application::addTag(QString tag){
  * Returns:
  * --None
  */
-void deleteTagInJsonData(std::string& tag){
+void Application::deleteTagInData(std::string& tag){
 
     std::string fileName = "words.json";
 
+
     json data = getJsonDataFromFile(fileName);
     for (json &wordData : data){
-        wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+        //wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+        for (size_t i=wordData["tags"].size()-1; i > 1; i--){
+            if (wordData["tags"][i] == tag){
+                wordData["tags"].erase(i);
+            }
+        }
+        //wordData["tags"].erase(tag);
     }
 
     writeJsonToFile(data, fileName);
 
+    for (Word* word: words){
+        for (size_t i=word->tags.size(); i>1; i--){
+            if (word->tags[i] == tag){
+                word->tags.erase(word->tags.begin() + i);
+            }
+        }
+    }
+
+
+    try {
+        QList<WordUi*> result = {};
+        for (Word *word : words) {
+            auto wordUi = new WordUi(word);
+            result.push_back(wordUi);
+        }
+
+        wordsUi = result;
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
 
 }
 
@@ -386,20 +416,30 @@ void deleteTagInJsonData(std::string& tag){
  * --None
  */
 void Application::deleteTag(int tagIndex){
-    if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+    int notCustomTagsSize = tags->partOfSpeechTags.size() + tags->difficultyTags.size();
+
+    if (tagIndex >= (tags->customTags.size() + notCustomTagsSize)){
         emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+        return;
+    }
+    if (tagIndex < notCustomTagsSize){
+        emit message("Cannot delete part of speech and difficulty tags", "Cannot delete part of speech and difficulty tags", "error");
         return;
     }
 
     try{
-        std::string tag = tags->customTags[tagIndex];
+        std::string tag = tags->getElementOnIndex(tagIndex);
 
-        tags->customTags.erase(tags->customTags.begin() + tagIndex);
-        tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex);
 
-        emit tagsUiChanged();
+        tags->customTags.erase(tags->customTags.begin() + tagIndex - notCustomTagsSize);
+        tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex - notCustomTagsSize);
 
-        deleteTagInJsonData(tag);
+        //emit tagsUiChanged();
+
+
+        deleteTagInData(tag);
+
+        emit tagsUi->customTagsChanged();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {

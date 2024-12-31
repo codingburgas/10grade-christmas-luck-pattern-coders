@@ -450,6 +450,7 @@ Rectangle{
                         property string tagName: application.tagsChosenUi[index]
                         property int removeFrom: 1
                         property int addTo: 0
+                        property bool deleteButton: false
                     }
 
                     onModelChanged: {

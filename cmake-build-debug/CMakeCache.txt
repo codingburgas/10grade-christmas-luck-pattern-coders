@@ -200,14 +200,14 @@ QT_ADDITIONAL_HOST_PACKAGES_PREFIX_PATH:STRING=
 //Additional directories where find(Qt6 ...) components are searched
 QT_ADDITIONAL_PACKAGES_PREFIX_PATH:STRING=
 
-//The directory containing a CMake configuration file for Qt6CoreTools.
-Qt6CoreTools_DIR:PATH=Qt6CoreTools_DIR-NOTFOUND
+//The directory containing a CMake configuration file for Qt6QmlTools.
+Qt6QmlTools_DIR:PATH=Qt6QmlTools_DIR-NOTFOUND
 
-//The directory containing a CMake configuration file for Qt6WidgetsTools.
-Qt6WidgetsTools_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6WidgetsTools
+//The directory containing a CMake configuration file for Qt6QuickTools.
+Qt6QuickTools_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6QuickTools
 
-//The directory containing a CMake configuration file for Qt6Widgets.
-Qt6Widgets_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets
+//The directory containing a CMake configuration file for Qt6Quick.
+Qt6Quick_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Quick
 
 //The directory containing a CMake configuration file for Qt6.
 Qt6_DIR:PATH=D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6

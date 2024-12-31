@@ -11,6 +11,7 @@ Rectangle{
         string tagName: name to be displayed
         int removeFrom: 0 - no remove button; 1 - from chosen tags; 2 - from word
         int addTo: 0 - no ability to add; 1 -to chosen tags; 2 - to word
+        bool deleteButton: false - delete icon is not shown; true - shown
     */
 
     id: tag
@@ -101,6 +102,10 @@ Rectangle{
 
 
 
+
+
+
+
     TextEdit{
         id: textField
         width: 50
@@ -122,7 +127,9 @@ Rectangle{
             anchors.right = undefined
             if (tag.removeFrom != 0){
                 anchors.right = removeButton.left
-            } else{
+            } else if (tag.deleteButton) {
+                anchors.right = deleteButton.left
+            }else{
                 anchors.right = tag.right
             }
 
@@ -181,6 +188,45 @@ Rectangle{
         }
     }
 
+
+    Rectangle{
+        id: deleteButton
+        //anchors.verticalCenter: tag.verticalCenter
+        anchors.right: tag.right
+        anchors.rightMargin: 2
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+        anchors.top: tag.top
+        anchors.bottom: tag.bottom
+
+        width: height
+        radius: 44
+        color: "white"
+        clip: true
+
+
+
+        visible: tag.deleteButton
+
+
+        Image{
+            id: deleteImg
+            source: "qrc:/trashCan.png"
+            anchors.fill: parent
+            anchors.margins: 6
+            fillMode: Image.PreserveAspectCrop
+            clip: true
+        }
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: {
+                application.deleteTag(tag.index)
+            }
+        }
+
+    }
 
 
     /*Connections{

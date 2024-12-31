@@ -74,6 +74,8 @@ Rectangle{
                             }
                         )()
 
+                        property bool deleteButton: false
+
                         property int addTo: 0
                     }
 
@@ -139,6 +141,8 @@ Rectangle{
 
                         property int addTo: tagsEditWindow.index + 1
 
+                        property bool deleteButton: true
+
                         visible:
                             (() => {
                                 if (tagsEditWindow.index == 0){
@@ -150,6 +154,37 @@ Rectangle{
                             )()
                     }
 
+                }
+            }
+        }
+    }
+
+    Rectangle{
+        width: 200
+        height: 40
+        anchors.bottom: mainRect.top
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        anchors.bottomMargin: 30
+
+        TextEdit{
+            id: newTagInput
+            height: parent.height
+            width: parent.width - parent.height
+            anchors.left: parent.left
+
+        }
+
+        Image{
+            source: "qrc:/checkMark.png"
+            width: parent.height
+            height: width
+            anchors.left: newTagInput.right
+
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    application.addTag(newTagInput.text)
                 }
             }
         }
@@ -204,6 +239,16 @@ Rectangle{
 
         }
 
+
+        /*function onTagsUiChanged(){
+            tagsSelectedRepeater.model = null
+            tagsSelectedRepeater.model = (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
+
+            allTagsRepeater.model = null
+            allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
+
+        }*/
+
     }
 
     Connections{
@@ -216,6 +261,19 @@ Rectangle{
             allTagsRepeater.model = null
             allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
 
+
+        }
+    }
+
+    Connections{
+        target: application.tagsUi
+
+        function onCustomTagsChanged(){
+            tagsSelectedRepeater.model = null
+            tagsSelectedRepeater.model = (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
+
+            allTagsRepeater.model = null
+            allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
 
         }
     }
