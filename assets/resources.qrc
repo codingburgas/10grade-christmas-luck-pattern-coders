@@ -16,5 +16,6 @@
         <file>arrowRightBlack.png</file>
         <file>ui/TagEditPopup.qml</file>
         <file>checkMark.png</file>
+        <file>trashCan.png</file>
     </qresource>
 </RCC>

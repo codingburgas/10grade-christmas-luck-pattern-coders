@@ -167,6 +167,9 @@ Rectangle{
 
         anchors.bottomMargin: 30
 
+        radius: 5
+        clip: true
+
         TextInput{
             id: newTagInput
             height: parent.height

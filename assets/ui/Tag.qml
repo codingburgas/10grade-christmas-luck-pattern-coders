@@ -213,7 +213,7 @@ Rectangle{
             id: deleteImg
             source: "qrc:/trashCan.png"
             anchors.fill: parent
-            anchors.margins: 6
+            anchors.margins: 2
             fillMode: Image.PreserveAspectCrop
             clip: true
         }
