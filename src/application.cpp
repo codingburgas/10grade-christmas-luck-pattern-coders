@@ -32,22 +32,6 @@ void getAllWords(std::vector<Word*> &arr) {
 
 
 
-/*
- * Retrieves all tags from a JSON file and stores them in the provided vector.
- * Parameters:
- * -- arr: vector to store the tags.
- * Returns:
- * -- No return value. The words are directly stored in the vector passed by reference.
- */
-void getAllTags(std::vector<std::string> &arr){
-    arr = {};
-
-    std::string fileName = "tags.json";
-    for (json& tag : getJsonDataFromFile(fileName)){
-        arr.push_back(tag.get<std::string>());
-    }
-}
-
 
 /*
  * Initializes and runs the application.
@@ -344,7 +328,12 @@ void Application::addWordTag(int wordIndex, int tagIndex){
 void Application::addTag(QString tag){
     std::string strTag = tag.toStdString();
     if (contains(tags->customTags, strTag)){
-        emit message("This tag is already added", "Word already has this tag", "warning");
+        emit message("This tag is already added", "This tag is already added", "error");
+        return;
+    }
+
+    if (tag.isEmpty()){
+        emit message("Tag cannot be blank.", "Tag cannot be blank.", "error");
         return;
     }
 
