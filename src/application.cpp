@@ -529,13 +529,23 @@ bool Application::isInTagsChosen(QString tag){
 }
 
 
-
+/*Function that can be invoked from qml and returns amount of syllables in word
+ * Parameters:
+ * --wordIndex - index of the word
+ * Returns:
+ * --amount of its syllables as a string
+*/
 QString Application::countSyllablesOfWord(int wordIndex){
     return QString::number(countSyllables(words[wordIndex]->word));
 }
 
 
-
+/*Resets chosen tags
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+*/
 void Application::resetTagsChosen(){
     try{
         tagsChosen.clear();

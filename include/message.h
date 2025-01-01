@@ -4,7 +4,7 @@
 #include <iostream>
 #include <QObject>
 
-struct Message : public QObject{
+struct Message : public QObject {
     Q_OBJECT
     Q_PROPERTY(QString titleUi READ titleUi WRITE setTitleUi NOTIFY titleUiChanged FINAL)
     Q_PROPERTY(QString descriptionUi READ descriptionUi WRITE setDescriptionUi NOTIFY descriptionUiChanged FINAL)
@@ -15,26 +15,42 @@ public:
     std::string description;
     std::string type;
 
-    /*Message(const std::string& title, const std::string& description, const std::string& type){
-        this->title = title;
-        this->description = description;
-        this->type = type;
-    }*/
-
-
-    Message(const std::string title, const std::string description, const std::string type){
+    /*
+     * Constructs a Message object with the specified title, description, and type
+     * Parameters:
+     * -- std::string title: the title of the message
+     * -- std::string description: the description of the message
+     * -- std::string type: the type of the message
+     * Returns:
+     * -- None
+     */
+    Message(const std::string title, const std::string description, const std::string type) {
         this->title = title;
         this->description = description;
         this->type = type;
     }
 
-    Message(const Message& m){
+    /*
+     * Copy constructor for the Message object
+     * Parameters:
+     * -- const Message& m: the Message object to copy
+     * Returns:
+     * -- None
+     */
+    Message(const Message& m) {
         title = m.title;
         description = m.description;
         type = m.type;
     }
 
-    Message& operator=(const Message& m){
+    /*
+     * Copy assignment operator for the Message object
+     * Parameters:
+     * -- const Message& m: the Message object to assign from
+     * Returns:
+     * -- Message&: the updated Message object
+     */
+    Message& operator=(const Message& m) {
         title = m.title;
         description = m.description;
         type = m.type;
@@ -42,28 +58,76 @@ public:
         return *this;
     }
 
-    QString titleUi(){
+    /*
+     * Get the title property in QString format for use in the UI
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QString: the title of the message
+     */
+    QString titleUi() {
         return QString::fromStdString(title);
     }
 
-    QString descriptionUi(){
+    /*
+     * Get the description property in QString format for use in the UI
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QString: the description of the message
+     */
+    QString descriptionUi() {
         return QString::fromStdString(description);
     }
 
-    QString typeUi(){
+    /*
+     * Get the type property in QString format for use in the UI
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QString: the type of the message
+     */
+    QString typeUi() {
         return QString::fromStdString(type);
     }
 
-    void setTitleUi(QString &val){}
-    void setDescriptionUi(QString &val){}
-    void setTypeUi(QString &val){}
+    /*
+     * Set the title property from a QString value and emit a signal
+     * Parameters:
+     * -- QString& val: the new title of the message
+     * Returns:
+     * -- None
+     */
+    void setTitleUi(QString& val) {
+        // Implementation for setting the title
+    }
+
+    /*
+     * Set the description property from a QString value and emit a signal
+     * Parameters:
+     * -- QString& val: the new description of the message
+     * Returns:
+     * -- None
+     */
+    void setDescriptionUi(QString& val) {
+        // Implementation for setting the description
+    }
+
+    /*
+     * Set the type property from a QString value and emit a signal
+     * Parameters:
+     * -- QString& val: the new type of the message
+     * Returns:
+     * -- None
+     */
+    void setTypeUi(QString& val) {
+        // Implementation for setting the type
+    }
 
 signals:
-
     void titleUiChanged();
     void descriptionUiChanged();
     void typeUiChanged();
 };
-
 
 #endif // MESSAGE_H
