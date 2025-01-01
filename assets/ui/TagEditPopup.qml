@@ -141,7 +141,7 @@ Rectangle{
 
                         property int addTo: tagsEditWindow.index + 1
 
-                        property bool deleteButton: true
+                        property bool deleteButton: (tagsEditWindow.index != 0) ? (true) : (application.tagsUi.isInCustomTags(tagName))
 
                         visible:
                             (() => {
@@ -167,12 +167,24 @@ Rectangle{
 
         anchors.bottomMargin: 30
 
-        TextEdit{
+        TextInput{
             id: newTagInput
             height: parent.height
             width: parent.width - parent.height
             anchors.left: parent.left
+            clip: true
 
+            font.pixelSize: 16
+
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+
+            maximumLength: 40
+
+            Keys.onReturnPressed: {
+                application.addTag(text)
+                text = ""
+            }
         }
 
         Image{
@@ -185,6 +197,7 @@ Rectangle{
                 anchors.fill: parent
                 onClicked: {
                     application.addTag(newTagInput.text)
+                    text = ""
                 }
             }
         }
@@ -251,7 +264,7 @@ Rectangle{
 
     }
 
-    Connections{
+    /*Connections{
         target: application.wordsUi[application.indexOfClickedWord]
 
         function onTagsChanged(){
@@ -261,6 +274,18 @@ Rectangle{
             allTagsRepeater.model = null
             allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
 
+
+        }
+    }*/
+    Connections{
+        target: application
+
+        function onWordTagsChanged(){
+            tagsSelectedRepeater.model = null
+            tagsSelectedRepeater.model = (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
+
+            allTagsRepeater.model = null
+            allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
 
         }
     }

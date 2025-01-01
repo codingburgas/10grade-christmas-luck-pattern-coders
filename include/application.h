@@ -364,6 +364,8 @@ signals:
     void cacheChanged();
     void messagesBeforeStartChanged();
     void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
+
+    void wordTagsChanged();
 };
 
 #endif // APPLICATION_H

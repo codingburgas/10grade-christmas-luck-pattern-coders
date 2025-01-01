@@ -280,7 +280,8 @@ void Application::deleteWordTag(int wordIndex, int tagIndex){
 
         words[wordIndex]->save();
 
-        emit wordsUi[wordIndex]->tagsChanged();
+        //emit wordsUi[wordIndex]->tagsChanged();
+        emit wordTagsChanged();
 
 
     } catch(std::out_of_range&){
@@ -322,7 +323,8 @@ void Application::addWordTag(int wordIndex, int tagIndex){
 
         words[wordIndex]->save();
 
-        emit wordsUi[wordIndex]->tagsChanged();
+        //emit wordsUi[indexOfClickedWord]->tagsChanged();
+        emit wordTagsChanged();
 
 
     } catch(std::out_of_range&){
@@ -384,7 +386,7 @@ void Application::deleteTagInData(std::string& tag){
     writeJsonToFile(data, fileName);
 
     for (Word* word: words){
-        for (size_t i=word->tags.size(); i>1; i--){
+        for (size_t i=word->tags.size()-1; i>1; i--){
             if (word->tags[i] == tag){
                 word->tags.erase(word->tags.begin() + i);
             }

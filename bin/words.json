@@ -2,7 +2,7 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 192,
+        "frequencyOfUse": 208,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -14,7 +14,7 @@
     {
         "definition": "the situation in which a lot of things are happening or people are moving around",
         "difficulty": "B2",
-        "frequencyOfUse": 24,
+        "frequencyOfUse": 38,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -26,7 +26,7 @@
     {
         "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
         "difficulty": "B1",
-        "frequencyOfUse": 17,
+        "frequencyOfUse": 21,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -38,11 +38,12 @@
     {
         "definition": "something that has happened",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 15,
+        "frequencyOfUse": 18,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "Undefined value."
+            "Undefined value.",
+            "testing"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/happening",
         "word": "happening"

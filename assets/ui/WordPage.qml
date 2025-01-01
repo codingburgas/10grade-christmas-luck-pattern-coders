@@ -869,11 +869,18 @@ Rectangle{
     }
     */
 
-    Connections{
+    /*Connections{
         target: wordPage.word
 
         function onTagsChanged(){
             //wordPage.tagsSize = application.getDisplayedTagsSize();
+            wordTagsRepeater.model = wordPage.word.getTagsSize()
+        }
+    }*/
+    Connections{
+        target: application
+
+        function onWordTagsChanged(){
             wordTagsRepeater.model = wordPage.word.getTagsSize()
         }
     }
