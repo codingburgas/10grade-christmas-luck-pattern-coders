@@ -5,85 +5,305 @@ import QtQuick.Layouts
 
 Rectangle {
     id: word
+    //property Rectangle page: Rectangle{ width: 800; height: 600 }
+    /*width: page.width * 0.28
+    height: page.height * 0.28*/
     width: 300
-    height: 150
+    height: 200
 
 
-    color: "#00dfff"
+    color: "#D9D9D9"
+    radius: 45
+
+    clip: true
+
+    /*ColumnLayout{
+        anchors.fill: parent
+        anchors.margins: 10*/
+
+    TextEdit{
+        id: wordText
+
+        anchors.top: word.top
+        anchors.topMargin: 5
+        anchors.left: word.left
+        anchors.leftMargin: 10
+        anchors.right: word.right
+        anchors.rightMargin: 10
+        height: 40
+        /*Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.verticalStretchFactor: 25
+        Layout.alignment: Qt.AlignTop*/
 
 
-    ColumnLayout{
-        /*Repeater{
-            model: 6
-            Text{
+        horizontalAlignment: Text.AlignHCenter
+        color: "#000000"
+        text: word.wordUi.word
+        font.bold: true
+        font.italic: true
+        font.pixelSize: 30
 
-                required property int index
-                color: "#fffb00"
-                text: word.data[index]
+        readOnly: true
+        selectByMouse: true
+        selectedTextColor: "#2F2F2F"
+        selectionColor: "#E0E0E0"
+
+        Component.onCompleted: {
+            this.text = elidedText()
+        }
+
+        function elidedText(){
+            let position = 0
+            let elide = true;
+
+            while(true){
+                let rect = this.positionToRectangle(position)
+                let text = this.text.substring(position, 1)
+                if (rect.x > this.width || rect.y > this.height){
+                    break;
+                }
+
+                if (position >= this.text.length){
+                    elide = false;
+                    break;
+                }
+
+                position++;
             }
-        }*/
-        Text{
-            color: "#fffb00"
-            //text: word.word
-            text: word.wordUi.word
+
+            if (elide){
+                return this.text.substring(0, position-3) + "..."
+            } else{
+                return this.text
+            }
+
+
         }
-        Text{
-            color: "#fffb00"
-            //text: word.definition
-            text: word.wordUi.definition
+
+    }
+
+    TextEdit{
+        id: definitionText
+
+        anchors.top: wordText.bottom
+        anchors.topMargin: 5
+        anchors.left: word.left
+        anchors.leftMargin: 10
+        anchors.right: word.right
+        anchors.rightMargin: 10
+        height: 20
+        //Layout.fillWidth: true
+        /*Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.verticalStretchFactor: 15
+        Layout.alignment: Qt.AlignTop*/
+
+        color: "#000000"
+        text: word.wordUi.definition
+
+        readOnly: true
+        selectByMouse: true
+        selectedTextColor: "#2F2F2F"
+        selectionColor: "#E0E0E0"
+
+        Component.onCompleted: {
+            this.text = elidedText()
         }
-        Text{
-            color: "#fffb00"
-            //text: word.partOfSpeech
-            text: word.wordUi.partOfSpeech
+
+        function elidedText(){
+            let position = 0
+            let elide = true;
+
+            while(true){
+                let rect = this.positionToRectangle(position)
+                let text = this.text.substring(position, 1)
+                if (rect.x > this.width || rect.y > this.height){
+                    break;
+                }
+
+                if (position >= this.text.length){
+                    elide = false;
+                    break;
+                }
+
+                position++;
+            }
+
+            if (elide){
+                return this.text.substring(0, position-3) + "..."
+            } else{
+                return this.text
+            }
+
+
         }
-        Text{
-            color: "#fffb00"
-            //text: word.difficulty
-            text: word.wordUi.difficulty
+
+    }
+
+
+    /*TextEdit{
+        color: "#000000"
+        //text: word.url
+        text: word.wordUi.url
+
+        readOnly: true
+        selectByMouse: true
+        selectedTextColor: "#2F2F2F"
+        selectionColor: "#E0E0E0"
+
+        Component.onCompleted: {
+            this.text = elidedText()
         }
-        Text{
-            color: "#fffb00"
-            //text: word.url
-            text: word.wordUi.url
+
+        function elidedText(){
+            let position = 0
+            let elide = true;
+
+            while(true){
+                let rect = this.positionToRectangle(position)
+                let text = this.text.substring(position, 1)
+                if (rect.x > this.width || rect.y > this.height){
+                    break;
+                }
+
+                if (position >= this.text.length){
+                    elide = false;
+                    break;
+                }
+
+                position++;
+            }
+
+            if (elide){
+                return this.text.substring(0, position-3) + "..."
+            } else{
+                return this.text
+            }
+
+
         }
-        Text{
-            color: "#fffb00"
-            //text: word.frequencyOfUse
-            text: word.wordUi.frequencyOfUse
+    }*/
+
+    TextEdit{
+        id: frequencyOfUseText
+
+        anchors.top: definitionText.bottom
+        anchors.topMargin: 5
+        anchors.left: word.left
+        anchors.leftMargin: 10
+        anchors.right: word.right
+        anchors.rightMargin: 10
+        height: 20
+        /*Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.verticalStretchFactor: 15
+        Layout.alignment: Qt.AlignTop*/
+
+        color: "#000000"
+        //text: word.frequencyOfUse
+        text: "Viewed :" + word.wordUi.frequencyOfUse + " times"
+
+        readOnly: true
+        selectByMouse: true
+        selectedTextColor: "#2F2F2F"
+        selectionColor: "#E0E0E0"
+
+        Component.onCompleted: {
+            this.text = elidedText()
         }
+
+        function elidedText(){
+            let position = 0
+            let elide = true;
+
+            while(true){
+                let rect = this.positionToRectangle(position)
+                let text = this.text.substring(position, 1)
+                if (rect.x > this.width || rect.y > this.height){
+                    break;
+                }
+
+                if (position >= this.text.length){
+                    elide = false;
+                    break;
+                }
+
+                position++;
+            }
+
+            if (elide){
+                return this.text.substring(0, position-3) + "..."
+            } else{
+                return this.text
+            }
+
+
+        }
+
+    }
+
+    Grid{
+        id: tagsGrid
+        anchors.top: frequencyOfUseText.bottom
+        anchors.left: word.left
+        anchors.right: word.right
+        anchors.bottom: word.bottom
+        anchors.margins: 10
+
+        rowSpacing: 10
+        columnSpacing: 10
+
+        property rect tagSize: Qt.rect(0, 0, 80, 30)
+        columns: parent.width / (tagSize.width + columnSpacing)
+        rows: parent.height / (tagSize.width + rowSpacing)
+        /*Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.verticalStretchFactor: 45
+        Layout.alignment: Qt.AlignBottom*/
+
         Repeater{
             id: tagsRepeater
-            model: wordUi.getTagsSize()
+            property int tagsSize: word.wordUi.getTagsSize()
+            model: (tagsSize < tagsGrid.rows * tagsGrid.columns) ? (tagsSize) : (tagsGrid.rows * tagsGrid.columns)
+            //anchors.fill: parent
 
-            Text{
+            Tag{
                 required property int index
-                color: "#fffb00"
-                //text: word.frequencyOfUse
-                text: word.wordUi.tags[index]
+                property string tagName: word.wordUi.tags[index]
+                property int removeFrom: 0
+                property int addTo: 0
+                property bool deleteButton: false
             }
         }
+
     }
+
+
 
     MouseArea{
         anchors.fill: parent
+        clip: true
 
         onClicked: {
-            application.increaseWordFrequncyOfUse(word.indexInDisplayedWords);
+            //console.log(word.indexInWordsUi)
+            application.increaseWordFrequncyOfUse(word.indexInWordsUi);
             application.indexOfClickedWord = word.indexInWordsUi;
+            word.page.updateCache();
             word.page.screenChanged("WordPage.qml");
         }
     }
 
 
 
-    Connections{
+    /*Connections{
         target: word.wordUi
 
         function onTagsChanged(){
-            tagsRepeater.model = word.wordUi.getTagsSize();
+            let size = word.wordUi.getTagsSize();
+            tagsRepeater.model = (size < tagsGrid.rows * tagsGrid.columns) ? (size) : (tagsGrid.rows * tagsGrid.columns)
         }
-    }
+    }*/
 
 
 

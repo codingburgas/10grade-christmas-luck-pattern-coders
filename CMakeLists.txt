@@ -11,6 +11,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Quick
 )
 
+
 # Specify the path to libcurl
 set(CURL_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/libcurl/include")
 set(CURL_LIBRARY "${CMAKE_SOURCE_DIR}/libcurl/lib")
@@ -66,6 +67,8 @@ set(APP_FILES
     "src/tagsUi.cpp"
     "include/message.h"
     "assets/resources.qrc"
+    "include/cache.h"
+
 )
 
 

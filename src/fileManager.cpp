@@ -26,22 +26,36 @@ json getJsonDataFromFile(const std::string &fileName){
 
     std::ifstream file(fileName);
 
+    if (!file){
+        throw Message("Error while opening file", "Error while opening file", "error");
+    }
+
+    if (file.peek() == std::ifstream::traits_type::eof()){
+        file.close();
+        throw Message("File with data is blank", "Json data is absent. Application will not work correctly.", "error");
+    }
+
 
     try{
         file >> result;
-    } catch(...){
-        std::string title = "File with data is blank";
-        std::string description =  "Json data is either incorrect or blank. It will be replaced with blank array.";
-        std::string type = "warning";
 
-        throw Message(title, description, type);
+    } catch(...){
+        file.close();
+        return json::parse("[]");
     }
 
     file.close();
+    return result;
 
-    if (result.empty()) result = json::parse("[]");
+
+    /*
+    if (result.empty()){
+        result = json::parse("[]");
+        //throw Message("File with data is blank or incorrect", "Json data is either incorrect or blank. Application will not word correctly.", "error");
+    }
 
     return result;
+    */
 }
 
 

@@ -8,5 +8,14 @@
         <file>ui/WordPage.qml</file>
         <file>ui/Message.qml</file>
         <file>ui/Tag.qml</file>
+        <file>crossToClose.png</file>
+        <file>arrowLeftGreen.png</file>
+        <file>arrowLeftBlack.png</file>
+        <file>magnifyingGlass.png</file>
+        <file>sortingIcon.png</file>
+        <file>arrowRightBlack.png</file>
+        <file>ui/TagEditPopup.qml</file>
+        <file>checkMark.png</file>
+        <file>trashCan.png</file>
     </qresource>
 </RCC>

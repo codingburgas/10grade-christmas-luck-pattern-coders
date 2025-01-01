@@ -2,14 +2,11 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 7,
+        "frequencyOfUse": 212,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "B2",
-            "testCustomTag2",
-            "customTagForOleksandrVinichenko",
-            "test"
+            "B2"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/programming",
         "word": "programming"
@@ -17,7 +14,7 @@
     {
         "definition": "the situation in which a lot of things are happening or people are moving around",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 42,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -29,7 +26,7 @@
     {
         "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 24,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -41,7 +38,7 @@
     {
         "definition": "something that has happened",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 21,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -53,7 +50,7 @@
     {
         "definition": "(of a situation or an event) to have existence or come into existence",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 14,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -65,7 +62,7 @@
     {
         "definition": "anything that happens, especially something important or unusual",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 10,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -77,7 +74,7 @@
     {
         "definition": "very much; more than usual or more than other people or things",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adverb",
         "tags": [
             "adverb",
@@ -89,7 +86,7 @@
     {
         "definition": "normal; happening, done, or used most often",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 7,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -101,7 +98,7 @@
     {
         "definition": "ordinary or usual; the same as would be expected",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -113,7 +110,7 @@
     {
         "definition": "not different or special or unexpected in any way; usual",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -137,7 +134,7 @@
     {
         "definition": "a road vehicle with an engine, four wheels, and seats for a small number of people",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -185,7 +182,7 @@
     {
         "definition": "used to refer to something that exists now",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -233,7 +230,7 @@
     {
         "definition": "used to refer to something or someone that is familiar to or understood by people",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 2,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -281,7 +278,7 @@
     {
         "definition": "to wish for a particular thing or plan of action. \"Want\" is not used in polite requests",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 2,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -305,7 +302,7 @@
     {
         "definition": "easy to understand or do; not difficult",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 3,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -329,7 +326,7 @@
     {
         "definition": "to have information in your mind",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -413,7 +410,7 @@
     {
         "definition": "the fact of feeling something physical",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -425,7 +422,7 @@
     {
         "definition": "relating to the body",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -521,7 +518,7 @@
     {
         "definition": "to like another adult very much and be romantically and sexually attracted to them, or to have strong feelings of liking a friend or person in your family",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -533,7 +530,7 @@
     {
         "definition": "a person or animal that has grown to full size and strength",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -593,7 +590,7 @@
     {
         "definition": "the act or process of measuring",
         "difficulty": "C2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -605,7 +602,7 @@
     {
         "definition": "to behave in the stated way",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -617,7 +614,7 @@
     {
         "definition": "to act in a particular way",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -629,7 +626,7 @@
     {
         "definition": "in a severe and harmful way",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adverb",
         "tags": [
             "adverb",
@@ -749,7 +746,7 @@
     {
         "definition": "large in size or amount",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -809,7 +806,7 @@
     {
         "definition": "to write your name, usually on a written or printed document, to show that you agree with its contents or have written or created it yourself",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -857,7 +854,7 @@
     {
         "definition": "the whole physical structure that forms a person or animal",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -2249,7 +2246,7 @@
     {
         "definition": "(especially of things that are not living) being a large distance from top to bottom or a long way above the ground, or having the stated distance from top to bottom",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -3221,7 +3218,7 @@
     {
         "definition": "A learned person has studied for a long time and has a lot of knowledge",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -4709,7 +4706,7 @@
     {
         "definition": "using force to hurt or attack",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -4817,7 +4814,7 @@
     {
         "definition": "worth a lot of money",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -10349,7 +10346,7 @@
     {
         "definition": "(especially of liquids, gases, or electricity) to move in one direction, especially continuously and easily",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -11501,7 +11498,7 @@
     {
         "definition": "a series of instructions that can be put into a computer in order to make it perform an operation",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -14165,7 +14162,7 @@
     {
         "definition": "a long, narrow strip of material used to tie things together or as a decoration",
         "difficulty": "C2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -15833,7 +15830,7 @@
     {
         "definition": "in or related to industry, or having a lot of industry and factories, etc.",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -17597,7 +17594,7 @@
     {
         "definition": "past simple and past participle ofclass=\"usage dusage\">past simple and past participle of\n        \n         winclass=\"x-h dx-h\">win  Undefined value.n>  Undefined value.n>\n        \n         winclass=\"x-h dx-h\">win  Undefined value.n>  Undefined value.n>",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -17609,7 +17606,7 @@
     {
         "definition": "the activity of making musical sounds with the voice, usually a tune with words",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -17957,7 +17954,7 @@
     {
         "definition": "→ \n        \n         travellingclass=\"x-h dx-h\">travelling noun Undefined value.> noun Undefined value.>",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -17969,7 +17966,7 @@
     {
         "definition": "written abbreviationclass=\"usage dusage\">written abbreviation for\n        \n         especiallyclass=\"x-h dx-h\">especially  Undefined value.n>  Undefined value.n>pan>\n        \n         especiallyclass=\"x-h dx-h\">especially  Undefined value.n>  Undefined value.n>",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adverb",
         "tags": [
             "adverb",
@@ -17993,7 +17990,7 @@
     {
         "definition": "an extremely small piece of organic material that causes disease in humans, animals, and plants",
         "difficulty": "B2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",

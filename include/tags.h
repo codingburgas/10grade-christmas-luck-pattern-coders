@@ -13,7 +13,7 @@ using json=nlohmann::json;
 
 struct Tags{
     const std::vector<std::string> difficultyTags = {"A1", "A2", "B1", "B2", "C1", "C2"};
-    const std::vector<std::string> partOfSpeechTags = {"noun", "verb", "adjective", "adverb"};
+    const std::vector<std::string> partOfSpeechTags = {"noun", "verb", "adjective", "adverb", "suffix"};
     std::vector<std::string> customTags = {};
 
 

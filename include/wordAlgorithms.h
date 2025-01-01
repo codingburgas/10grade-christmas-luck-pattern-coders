@@ -108,7 +108,15 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
  * --bool
  */
 template<typename T>
-bool contains(std::vector<T> &v, T &val);
+bool contains(std::vector<T> &v, T &val){
+    for (T& el : v){
+        if (el == val){
+            return true;
+        }
+    }
+
+    return false;
+}
 
 
 /*

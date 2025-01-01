@@ -25,6 +25,20 @@ void reverseVector(std::vector<T>& v){
     std::reverse(v.begin(), v.end());
 }
 
+/*
+ * Converts all characters in the given string to lowercase.
+ * Parameters:
+ * --str: The string to convert to lowercase.
+ * Returns:
+ * --std::string: The converted lowercase string.
+ */
+std::string toLower(std::string str) {
+    for (auto& c : str) {
+        c = tolower(c);
+    }
+    return str;
+}
+
 
 
 /*
@@ -49,7 +63,8 @@ void insertionSort(std::vector<Word*>& arr, std::string &propertyName, int begin
                 --j;
             }
         } else{
-            while (j >= begin && arr[j]->getProperty(propertyName) > key->getProperty(propertyName)) {
+            std::string keyProperty = toLower(key->getProperty(propertyName));
+            while (j >= begin && toLower(arr[j]->getProperty(propertyName)) > keyProperty) {
                 arr[j + 1] = arr[j];
                 --j;
             }
@@ -87,12 +102,12 @@ int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int
 
 
     } else{
-        std::string pivot = arr[end]->getProperty(propertyName);
+        std::string pivot = toLower(arr[end]->getProperty(propertyName));
 
         int i = begin - 1;
 
         for (int j = begin; j < end; ++j) {
-            if (arr[j]->getProperty(propertyName) <= pivot) {
+            if (toLower(arr[j]->getProperty(propertyName)) <= pivot) {
                 ++i;
                 std::swap(arr[i], arr[j]);
             }
@@ -166,19 +181,7 @@ void sortByProperty(std::vector<Word*>& arr, std::string &propertyName, bool asc
     }
 }
 
-/*
- * Converts all characters in the given string to lowercase.
- * Parameters:
- * --str: The string to convert to lowercase.
- * Returns:
- * --std::string: The converted lowercase string.
- */
-std::string toLower(std::string str) {
-    for (auto& c : str) {
-        c = tolower(c);
-    }
-    return str;
-}
+
 
 /*
  * Checks if a string (part) is found within another string (fullString).
@@ -212,22 +215,13 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
     for (auto it = arr.begin(); it != arr.end(); ) {
         std::string wordProperty = (*it)->getProperty(propertyName);
         bool erased = false;
-        if (startsWith){
-            if (findIndex(part, wordProperty, caseSensitive) != 0) {
-                it = arr.erase(it);
-                erased = true;
-            }
-        } else if (endsWith){
-            if (findIndex(part, wordProperty, caseSensitive) != (wordProperty.size() - part.size())) {
-                it = arr.erase(it);
-                erased = true;
-            }
-        }else{
-            if (findIndex(part, wordProperty, caseSensitive) == std::string::npos) {
-                it = arr.erase(it);
-                erased = true;
-            }
+
+        size_t index = findIndex(part, wordProperty, caseSensitive);
+        if ((index == std::string::npos) || (startsWith && index != 0) || (endsWith && index != (wordProperty.size() - part.size()))){
+            it = arr.erase(it);
+            erased = true;
         }
+
 
         if (!erased){
             it++;
@@ -237,25 +231,6 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
 }
 
 
-
-/*
- * checks if vector contains specified value
- * Parameters:
- * --v: vector
- * --val: value to search for
- * Returns:
- * --bool
- */
-template<typename T>
-bool contains(std::vector<T> &v, T &val){
-    for (T& el : v){
-        if (el == val){
-            return true;
-        }
-    }
-
-    return false;
-}
 
 
 /*
@@ -267,18 +242,27 @@ bool contains(std::vector<T> &v, T &val){
  * --None
  */
 void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
-    for (size_t i=0; i<arr.size(); i++){
+    if (tags.size() == 0){
+        return;
+    }
+
+    for (auto i = arr.begin(); i != arr.end(); ){
         bool containsTag = false;
+
         for (std::string& tag : tags){
-            if (contains(arr[i]->tags, tag)){
+            if (contains((*i)->tags, tag)){
                 containsTag = true;
                 break;
             }
         }
 
         if (!containsTag){
-            arr.erase(arr.begin() + i);
+            i = arr.erase(i);
+        } else{
+            i++;
         }
+
+
     }
 }
 

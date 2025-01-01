@@ -20,6 +20,8 @@ using json = nlohmann::json;
 #include "wordUi.h"
 #include "tags.h"
 #include "tagsUi.h"
+#include "cache.h"
+#include "message.h"
 
 
 /*
@@ -57,6 +59,8 @@ struct Application : public QObject {
     Q_PROPERTY(size_t indexOfClickedWord READ getIndexOfClickedWord WRITE setIndexOfClickedWord NOTIFY indexOfClickedWordChanged FINAL)
     Q_PROPERTY(TagsUi* tagsUi READ getTagsUi WRITE setTagsUi NOTIFY tagsUiChanged FINAL)
     Q_PROPERTY(QList<QString> tagsChosenUi READ getTagsChosenUi WRITE setTagsChosenUi NOTIFY tagsChosenUiChanged)
+    Q_PROPERTY(Cache* cache READ getCache WRITE setCache NOTIFY cacheChanged FINAL)
+    Q_PROPERTY(QList<Message*> messagesBeforeStart READ getMessagesBeforeStart WRITE setMessagesBeforeStart NOTIFY messagesBeforeStartChanged FINAL)
 
 public:
     //properties
@@ -67,8 +71,22 @@ public:
     size_t indexOfClickedWord;        // Index of the currently clicked word.
     QList<WordUi*> wordsUi = {};   // List of words to display.
     TagsUi* tagsUi = {}; // List of all tags
+    Cache* cache = new Cache{};
+    QList<Message*> messagesBeforeStart = {};
 
     // Qt methods ----------
+
+
+    /* Returns messagesBeforeStart property
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- QList<Message*>: messagesBeforeStart
+     */
+    QList<Message*> getMessagesBeforeStart(){
+        return messagesBeforeStart;
+    }
+
 
     /*
      * Gets the list of displayed words.
@@ -89,6 +107,20 @@ public:
      * -- tagsUi: List of tags currently displayed.
      */
     TagsUi* getTagsUi() { return tagsUi; }
+
+
+    /*
+     * Set messagesBeforeStart property and emits correspondent signal
+     * Parameters:
+     * -- QList<Message*>: new value of messagesBeforeStart
+     * Returns:
+     * -- None
+     */
+    void setMessagesBeforeStart(QList<Message*> &value){
+        messagesBeforeStart = value;
+        messagesBeforeStartChanged();
+    }
+
 
     /*
      * Sets the list of displayed words.
@@ -117,6 +149,7 @@ public:
      */
     size_t getIndexOfClickedWord() { return indexOfClickedWord; }
 
+
     /*
      * Sets the index of the currently clicked word.
      * Parameters:
@@ -137,6 +170,25 @@ public:
     QList<QString> getTagsChosenUi() const {
         return tagsChosenUi;
     }
+
+    /*
+     * Returns cache property
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- Cache*: cache object
+     */
+    Cache *getCache(){ return cache; }
+
+
+    /*
+     * Set cache property and emits correspondent signal
+     * Parameters:
+     * -- Cache*: new value of cache
+     * Returns:
+     * -- None
+     */
+    void setCache(Cache *val){ cache = val; emit cacheChanged(); }
 
     /*
      * Set tagsChosenUi property and emits correspondent signal
@@ -298,6 +350,32 @@ public:
      */
     Q_INVOKABLE bool isInTagsChosen(QString tag);
 
+
+    /*Function that can be invoked from qml and returns amount of syllables in word
+     * Parameters:
+     * --wordIndex - index of the word
+     * Returns:
+     * --amount of its syllables as a string
+    */
+    Q_INVOKABLE QString countSyllablesOfWord(int wordIndex);
+
+    /*Resets chosen tags
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- None
+    */
+    Q_INVOKABLE void resetTagsChosen();
+
+
+    /*Returns size of MessagesBeforeStart property
+     * Parameters:
+     * -- None
+     * Returns:
+     * --int: size
+    */
+    Q_INVOKABLE int getMessagesBeforeStartSize(){ return messagesBeforeStart.size(); }
+
     // -----------------------------
 
     /*
@@ -310,12 +388,25 @@ public:
      */
     int run(int argc, char *argv[]);
 
+
+    /* Removes all occurences of specified tag in file with words
+     * Parameters:
+     * --tag: a name of tag to be deleted
+     * Returns:
+     * --None
+     */
+    void deleteTagInData(std::string& tag);
+
 signals:
     void wordsUiChanged();
     void tagsUiChanged();
     void tagsChosenUiChanged();
     void indexOfClickedWordChanged();
+    void cacheChanged();
+    void messagesBeforeStartChanged();
     void message(QString title = "Something went wrong :(", QString description = "Unknown error", QString type = "error");
+
+    void wordTagsChanged();
 };
 
 #endif // APPLICATION_H

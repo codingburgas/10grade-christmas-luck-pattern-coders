@@ -14,15 +14,15 @@ TagsUi::TagsUi(Tags *tags){
     customTags = {};
 
     for (const std::string& difficultyTag : tags->difficultyTags){
-        difficultyTags.append(QString::fromStdString(difficultyTag));
+        difficultyTags.push_back(QString::fromStdString(difficultyTag));
     }
 
     for (const std::string& partOfSpeechTag : tags->partOfSpeechTags){
-        partOfSpeechTags.append(QString::fromStdString(partOfSpeechTag));
+        partOfSpeechTags.push_back(QString::fromStdString(partOfSpeechTag));
     }
 
     for (std::string& customTag : tags->customTags){
-        customTags.append(QString::fromStdString(customTag));
+        customTags.push_back(QString::fromStdString(customTag));
     }
 }
 
@@ -65,7 +65,7 @@ QString TagsUi::getElementOnIndex(int index){
  * Returns:
  * -- bool: whether tag is custom
  */
-bool TagsUi::inCustomTags(QString tagToFind){
+bool TagsUi::isInCustomTags(QString tagToFind){
     for (QString &tag : customTags){
         if (tag == tagToFind){
             return true;
