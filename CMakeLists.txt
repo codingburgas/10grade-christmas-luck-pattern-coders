@@ -88,11 +88,11 @@ qt_add_executable(application
 
         #----- scrapping -----
         ${SCRAPPING}
-        #src/scrapping/main.cpp
+        src/scrapping/main.cpp
 
         #------ application ------
         ${APP_FILES}
-        src/main.cpp
+        #src/main.cpp
 
         #----- testing -----------
         #${TESTING_FILES}
