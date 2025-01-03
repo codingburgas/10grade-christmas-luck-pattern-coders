@@ -15,5 +15,6 @@
         <file>sortingIcon.png</file>
         <file>arrowRightBlack.png</file>
         <file>ui/StartingPage.qml</file>
+        <file>VocabBook.png</file>
     </qresource>
 </RCC>
