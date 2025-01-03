@@ -14,6 +14,11 @@ int main(int argc, char *argv[]){
     //createWordsFile("https://dictionary.cambridge.org/dictionary/english/lives", 3);
     createWordsFile("https://dictionary.cambridge.org/dictionary/english/master", 1501);
 
+    createWordsFile("https://dictionary.cambridge.org/dictionary/english/creation", 2000);
+
+    createWordsFile("https://dictionary.cambridge.org/dictionary/english/history", 2500);
+
+    createWordsFile("https://dictionary.cambridge.org/dictionary/english/slave", 3000);
 
     std::cout << "End\n";
 }

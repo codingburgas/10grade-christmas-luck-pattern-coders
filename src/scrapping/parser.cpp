@@ -190,11 +190,7 @@ json getWordData(std::string &htmlCode){
             return json({});
         }
 
-<<<<<<< Updated upstream
-        if (visibleText.find("ofclass=\"usage dusage\"") != std::string::npos){
-=======
         if (visibleText.find("class=\"usage dusage\"") != std::string::npos){
->>>>>>> Stashed changes
             return json({});
         }
 
