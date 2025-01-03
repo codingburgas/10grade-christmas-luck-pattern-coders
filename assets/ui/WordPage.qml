@@ -6,10 +6,7 @@ import WordUi 1.0
 
 Rectangle{
     id: wordPage
-    //anchors.margins: 10
     anchors.centerIn: parent
-    //width: mainWindow.width - 2*anchors.margins
-    //height: mainWindow.height - 2*anchors.margins
     width: mainWindow.width
     height: mainWindow.height
     color: "#ADADADB2"
@@ -18,9 +15,6 @@ Rectangle{
     signal screenChanged(path: string)
 
     property WordUi word: application.wordsUi[application.indexOfClickedWord]
-
-    //property int tagsSize: application.getTagsUiSize()
-
 
     Rectangle{
         id: backButton
@@ -787,96 +781,6 @@ Rectangle{
     }
 
 
-    /*Repeater{
-        id: wordTagsRepeater
-        //anchors.top: title.bottom
-        model: wordPage.word.getTagsSize()
-
-
-        Tag{
-            required property int index
-            property int location: 1
-            property bool chosen: true
-            y: 100 + index*100
-        }
-    }*/
-
-    /*Repeater{
-        id: difficultyTagsRepeater
-        //anchors.top: title.bottom
-        model: application.tagsUi.getDifficultyTagsSize()
-
-        Text{
-            required property int index
-            x: 100 + index*100
-            y: 50
-            text: application.tagsUi.difficultyTags[index]
-        }
-    }
-
-    Repeater{
-        id: partOfSpeechTagsRepeater
-        //anchors.top: title.bottom
-        model: application.tagsUi.getPartOfSpeechTagsSize()
-
-        Text{
-            required property int index
-            x: 100 + index*100
-            y: 100
-            text: application.tagsUi.partOfSpeechTags[index]
-        }
-    }
-
-    Repeater{
-        id: customTagsRepeater
-        //anchors.top: title.bottom
-        model: application.tagsUi.getCustomTagsSize()
-
-        Text{
-            required property int index
-            x: 100 + index*100
-            y: 150
-            text: application.tagsUi.customTags[index]
-        }
-    }*/
-
-
-
-
-    /*MouseArea{
-        anchors.fill: parent
-
-        onClicked: {
-            // send message
-            //application.message(word.text, "description of the message", "type");
-            // delete tag of word
-            //application.deleteWordTag(application.indexOfClickedWord, 2);
-            //add tag to word
-            application.addWordTag(application.indexOfClickedWord, 3);
-        }
-    }*/
-
-
-
-
-    /*
-    Connections{
-        target: application
-
-        function onTagsUiChanged(){
-            wordPage.tagsSize = application.getDisplayedTagsSize();
-        }
-    }
-    */
-
-    /*Connections{
-        target: wordPage.word
-
-        function onTagsChanged(){
-            //wordPage.tagsSize = application.getDisplayedTagsSize();
-            wordTagsRepeater.model = wordPage.word.getTagsSize()
-        }
-    }*/
     Connections{
         target: application
 

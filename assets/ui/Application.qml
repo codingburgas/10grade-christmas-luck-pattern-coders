@@ -15,15 +15,6 @@ Window {
 
     minimumWidth: 700
     minimumHeight: 600
-    /*width: 1536
-    height: 801
-
-    onWidthChanged: {
-        console.log(`${width}x${height}`)
-    }*/
-    //visibility: Qt.WindowFullScreen
-    //minimumWidth: width
-    //minimumHeight: height
 
     title: "LEXIFY"
 
@@ -115,9 +106,6 @@ Window {
                     message.destroy(2000)
                 }else if (newComponent.status === Component.Loading) {
                     newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
-                } else if (newComponent.status === Component.Error) {
-                    //console.error("Error loading component:", newComponent.errorString()); // Handle error case
-                    //application.message("Failed to create message", `Failed to go to the ${page}`, "error");
                 }
             }
 

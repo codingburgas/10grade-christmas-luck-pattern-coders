@@ -49,12 +49,6 @@ Rectangle{
         Image {
             id: openCloseButton
             source: (menu.closed) ? "qrc:/arrowRightBlack.png" : "qrc:/arrowLeftBlack.png"
-            //source: "qrc:/arrowLeftBlack.png"
-            /*transform: Rotation{
-                angle: (menu.closed) ? (180) : (0)
-            }*/
-
-            //y: (menu.closed) ? (35) : (15)
             anchors.top: parent.top
             anchors.topMargin: 10
 
@@ -62,7 +56,6 @@ Rectangle{
                 openCloseButton.anchors.horizontalCenter = undefined
                 openCloseButton.anchors.right = undefined
                 openCloseButton.anchors.rightMargin = 0
-                //openCloseButton.height = 0
 
                 if (menu.closed){
                     openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
@@ -846,78 +839,6 @@ Rectangle{
             chosenTagsRepeater.model = application.getTagsChosenUiSize();
         }
     }
-
-    /*Connections{
-        //target: mainPage.activeFocusItem.Keys
-        target: mainPage.parent.activeFocusItem.Keys
-
-        function onPressed(event){
-            console.log("Key pressed!")
-            if (searchInput.focus && event.key == Qt.Key_Enter){
-                searchButtonMouseArea.clicked()
-                return;
-            }
-            if (event.key == Qt.Key_M && (event.modifiers & Qt.ShiftModifier)){
-                menu.closed = !menu.closed
-                return;
-            }
-            if (!searchInput.focus && event.key == Qt.Key_Slash){
-                searchInput.focus = true
-                return;
-            }
-            application.message("Press \"/\" to enter search field", "Just so you know :)", "warning")
-        }
-    }*/
-
-
-    /*ColumnLayout{
-        id: chosenTags
-        width: 300
-
-        Repeater{
-            id: chosenTagsRepeater
-            model: application.getTagsChosenUiSize()
-
-            Tag{
-                property bool chosen: true
-                required property int index
-            }
-        }
-    }
-
-
-    ColumnLayout{
-        id: tags
-        anchors.left: chosenTags.right
-        width: 300
-
-        Repeater{
-            id: tagsRepeater
-            model: application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
-
-            Tag{
-                property bool chosen: false
-                required property int index
-
-            }
-
-        }
-    }
-
-
-    Connections{
-        target: application
-
-        function onTagsChosenUiChanged(){
-            chosenTagsRepeater.model = application.getTagsChosenUiSize()
-            application.message("Title" ,"Detailed description", "error")
-
-        }
-
-        function onTagsUiChanged(){
-            tagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
-        }
-    }*/
 }
 
 

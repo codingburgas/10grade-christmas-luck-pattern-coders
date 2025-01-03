@@ -6,53 +6,11 @@ import QtQuick.Effects
 
 
 Rectangle{
-    /*
-    Properties to be set:
-        string tagName: name to be displayed
-        int removeFrom: 0 - no remove button; 1 - from chosen tags; 2 - from word
-        int addTo: 0 - no ability to add; 1 -to chosen tags; 2 - to word
-        bool deleteButton: false - delete icon is not shown; true - shown
-    */
-
     id: tag
     width: 80
     height: 30
     radius: 45
     color: "#0099D1"
-
-
-
-
-
-
-    /*property string tagText: (() => {
-                                 if (!chosen){
-                                     return application.tagsUi.getElementOnIndex(index);
-                                 }
-
-                                 if (location == 0){
-                                     return application.tagsChosenUi[index];
-                                 } else if (location == 1){
-                                     return application.wordsUi[application.indexOfClickedWord].tags[index];
-                                 } else{
-                                     application.message("Unexpected type of tag");
-                                 }
-
-                             })()*/
-
-
-    /*function defineVisible() {
-        if (chosen){
-            return true;
-        }
-        if (location == 0){
-            return !application.isInTagsChosen(tagText)
-        } else{
-            return (!application.wordsUi[application.indexOfClickedWord].isInTags(tagText) && application.tagsUi.isInCustomTags(tagText))
-        }
-    }
-
-    visible: defineVisible()*/
 
     Rectangle{
         id: removeButton
@@ -191,7 +149,6 @@ Rectangle{
 
     Rectangle{
         id: deleteButton
-        //anchors.verticalCenter: tag.verticalCenter
         anchors.right: tag.right
         anchors.rightMargin: 2
         anchors.topMargin: 2
@@ -227,24 +184,4 @@ Rectangle{
         }
 
     }
-
-
-    /*Connections{
-        target: application
-
-        function onTagsChosenUiChanged(){
-            tag.visible = tag.defineVisible()
-            removeButton.visible = removeButton.defineVisible()
-        }
-
-    }*/
-
-    /*Connections{
-        target: application.wordsUi[application.indexOfClickedWord]
-
-        function onTagsChanged(){
-            tag.visible = tag.defineVisible()
-            removeButton.visible = removeButton.defineVisible()
-        }
-    }*/
 }

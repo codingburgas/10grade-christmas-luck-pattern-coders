@@ -53,7 +53,6 @@ Rectangle{
                     model: (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
 
                     Tag{
-                        //Layout.alignment: Qt.AlignLeft
 
                         required property int index
 
@@ -120,13 +119,7 @@ Rectangle{
                 columnSpacing: 5
                 rowSpacing: 5
 
-
-                /*columns: {
-                    let cols = Math.floor(width / (80 + columnSpacing));
-                    return Math.max(cols, 1); // Ensure at least 1 column
-                }*/
                 columns: 6
-                //rows: Math.ceil(allTagsRepeater.model / columns)
 
                 Repeater{
                     id: allTagsRepeater
@@ -239,9 +232,6 @@ Rectangle{
     }
 
 
-    /*Component.onCompleted: {
-        tagsSelectedRepeater.model = (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
-    }*/
 
     Connections{
         target: application
@@ -254,32 +244,8 @@ Rectangle{
             allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
 
         }
-
-
-        /*function onTagsUiChanged(){
-            tagsSelectedRepeater.model = null
-            tagsSelectedRepeater.model = (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
-
-            allTagsRepeater.model = null
-            allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
-
-        }*/
-
     }
 
-    /*Connections{
-        target: application.wordsUi[application.indexOfClickedWord]
-
-        function onTagsChanged(){
-            tagsSelectedRepeater.model = null
-            tagsSelectedRepeater.model = (tagsEditWindow.index == 0) ? (application.getTagsChosenUiSize()) : (application.wordsUi[application.indexOfClickedWord].getTagsSize())
-
-            allTagsRepeater.model = null
-            allTagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
-
-
-        }
-    }*/
     Connections{
         target: application
 
