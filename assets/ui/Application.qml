@@ -20,7 +20,7 @@ Window {
 
     property int userWasOnPage: 1
 
-    property string currentPath: "MainPage.qml"
+    property string currentPath: "StartingPage.qml"
     property Rectangle currentPage
 
 

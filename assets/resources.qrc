@@ -14,6 +14,8 @@
         <file>magnifyingGlass.png</file>
         <file>sortingIcon.png</file>
         <file>arrowRightBlack.png</file>
+        <file>ui/StartingPage.qml</file>
+        <file>VocabBook.png</file>
         <file>ui/TagEditPopup.qml</file>
         <file>checkMark.png</file>
         <file>trashCan.png</file>
