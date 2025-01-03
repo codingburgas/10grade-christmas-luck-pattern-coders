@@ -2,7 +2,6 @@
 #include "fileManager.h"
 #include "message.h"
 
-#include <QDebug>
 
 
 /* Constructor, which reads custom tags from file and adds them to customTags property

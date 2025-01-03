@@ -92,11 +92,11 @@ qt_add_executable(application
 
         #------ application ------
         ${APP_FILES}
-        src/main.cpp
+        #src/main.cpp
 
         #----- testing -----------
-        #${TESTING_FILES}
-        #tests/test.cpp
+        ${TESTING_FILES}
+        tests/test.cpp
 
         #----- git -------
         .gitignore

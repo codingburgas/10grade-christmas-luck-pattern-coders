@@ -1,5 +1,4 @@
 #include "application.h"
-#include "fileManager.h"
 
 int main(int argc, char *argv[]) {
     Application app;

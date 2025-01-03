@@ -9,6 +9,7 @@ libcurl/bin/
 
 bin/
 lexify.zip
+CMakeLists.txt.user
 
 
 # Prerequisites

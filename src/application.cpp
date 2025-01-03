@@ -73,10 +73,6 @@ int Application::run(int argc, char *argv[]) {
         delete cache;
     });
 
-    QObject::connect(this->cache, &Cache::pageChanged, [&](){
-        qDebug() << "Page in cache changed to " << cache->page << "\n";
-    });
-
 
 
     try{
