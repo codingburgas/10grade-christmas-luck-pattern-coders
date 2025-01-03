@@ -5,9 +5,6 @@ import QtQuick.Layouts
 
 Rectangle {
     id: word
-    //property Rectangle page: Rectangle{ width: 800; height: 600 }
-    /*width: page.width * 0.28
-    height: page.height * 0.28*/
     width: 300
     height: 200
 
@@ -15,10 +12,7 @@ Rectangle {
     color: "#D9D9D9"
     radius: 45
 
-
-    /*ColumnLayout{
-        anchors.fill: parent
-        anchors.margins: 10*/
+    clip: true
 
     TextEdit{
         id: wordText
@@ -30,10 +24,6 @@ Rectangle {
         anchors.right: word.right
         anchors.rightMargin: 10
         height: 40
-        /*Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.verticalStretchFactor: 25
-        Layout.alignment: Qt.AlignTop*/
 
 
         horizontalAlignment: Text.AlignHCenter
@@ -92,11 +82,6 @@ Rectangle {
         anchors.right: word.right
         anchors.rightMargin: 10
         height: 20
-        //Layout.fillWidth: true
-        /*Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.verticalStretchFactor: 15
-        Layout.alignment: Qt.AlignTop*/
 
         color: "#000000"
         text: word.wordUi.definition
@@ -141,49 +126,6 @@ Rectangle {
     }
 
 
-    /*TextEdit{
-        color: "#000000"
-        //text: word.url
-        text: word.wordUi.url
-
-        readOnly: true
-        selectByMouse: true
-        selectedTextColor: "#2F2F2F"
-        selectionColor: "#E0E0E0"
-
-        Component.onCompleted: {
-            this.text = elidedText()
-        }
-
-        function elidedText(){
-            let position = 0
-            let elide = true;
-
-            while(true){
-                let rect = this.positionToRectangle(position)
-                let text = this.text.substring(position, 1)
-                if (rect.x > this.width || rect.y > this.height){
-                    break;
-                }
-
-                if (position >= this.text.length){
-                    elide = false;
-                    break;
-                }
-
-                position++;
-            }
-
-            if (elide){
-                return this.text.substring(0, position-3) + "..."
-            } else{
-                return this.text
-            }
-
-
-        }
-    }*/
-
     TextEdit{
         id: frequencyOfUseText
 
@@ -194,13 +136,8 @@ Rectangle {
         anchors.right: word.right
         anchors.rightMargin: 10
         height: 20
-        /*Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.verticalStretchFactor: 15
-        Layout.alignment: Qt.AlignTop*/
 
         color: "#000000"
-        //text: word.frequencyOfUse
         text: "Viewed :" + word.wordUi.frequencyOfUse + " times"
 
         readOnly: true
@@ -256,10 +193,6 @@ Rectangle {
         property rect tagSize: Qt.rect(0, 0, 80, 30)
         columns: parent.width / (tagSize.width + columnSpacing)
         rows: parent.height / (tagSize.width + rowSpacing)
-        /*Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.verticalStretchFactor: 45
-        Layout.alignment: Qt.AlignBottom*/
 
         Repeater{
             id: tagsRepeater
@@ -272,35 +205,23 @@ Rectangle {
                 property string tagName: word.wordUi.tags[index]
                 property int removeFrom: 0
                 property int addTo: 0
+                property bool deleteButton: false
             }
         }
-
     }
 
 
 
     MouseArea{
         anchors.fill: parent
+        clip: true
 
         onClicked: {
             //console.log(word.indexInWordsUi)
             application.increaseWordFrequncyOfUse(word.indexInWordsUi);
             application.indexOfClickedWord = word.indexInWordsUi;
+            word.page.updateCache();
             word.page.screenChanged("WordPage.qml");
         }
     }
-
-
-
-    /*Connections{
-        target: word.wordUi
-
-        function onTagsChanged(){
-            let size = word.wordUi.getTagsSize();
-            tagsRepeater.model = (size < tagsGrid.rows * tagsGrid.columns) ? (size) : (tagsGrid.rows * tagsGrid.columns)
-        }
-    }*/
-
-
-
 }

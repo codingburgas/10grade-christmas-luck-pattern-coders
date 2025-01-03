@@ -190,6 +190,10 @@ json getWordData(std::string &htmlCode){
             return json({});
         }
 
+        if (visibleText.find("class=\"usage dusage\"") != std::string::npos){
+            return json({});
+        }
+
         // try to find real definition(sometimes firstly comes spelling)
         if (visibleText.find("US spelling of") == std::string::npos){
             size_t colonPosition = visibleText.find(":");

@@ -2,6 +2,8 @@
 #include "fileManager.h"
 #include "message.h"
 
+#include <QDebug>
+
 
 /* Constructor, which reads custom tags from file and adds them to customTags property
  * Parameters:
@@ -64,5 +66,6 @@ std::string Tags::getElementOnIndex(size_t index){
         return customTags[index];
     }
 
+    std::cout << "index is " << index;
     throw Message("Couldn't find tag", "Tag index is invalid.", "error");
 }

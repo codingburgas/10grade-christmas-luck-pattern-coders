@@ -242,18 +242,27 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
  * --None
  */
 void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
-    for (size_t i=0; i<arr.size(); i++){
+    if (tags.size() == 0){
+        return;
+    }
+
+    for (auto i = arr.begin(); i != arr.end(); ){
         bool containsTag = false;
+
         for (std::string& tag : tags){
-            if (contains(arr[i]->tags, tag)){
+            if (contains((*i)->tags, tag)){
                 containsTag = true;
                 break;
             }
         }
 
         if (!containsTag){
-            arr.erase(arr.begin() + i);
+            i = arr.erase(i);
+        } else{
+            i++;
         }
+
+
     }
 }
 

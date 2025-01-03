@@ -29,7 +29,7 @@ Rectangle{
 
 
 
-    Text{
+    TextEdit{
         id: title
         anchors.left: message.left
         anchors.right: message.right
@@ -45,6 +45,46 @@ Rectangle{
         font.family: "Inter"
         font.weight: 600
         font.pixelSize: 20
+
+        Component.onCompleted: {
+
+            this.text = elidedText()
+        }
+
+
+        readOnly: true
+        selectByMouse: true
+        selectedTextColor: "#ffffff"
+        selectionColor: "#5969c9"
+
+
+        function elidedText(){
+            let position = 0
+            let elide = true;
+
+            while(true){
+                let rect = this.positionToRectangle(position)
+                let text = this.text.substring(position, 1)
+                if (rect.x > this.width || rect.y > this.height){
+                    break;
+                }
+
+                if (position >= this.text.length){
+                    elide = false;
+                    break;
+                }
+
+                position++;
+            }
+
+            if (elide){
+                return this.text.substring(0, position-3) + "..."
+            } else{
+                return this.text
+            }
+
+
+        }
     }
 
     Rectangle{
@@ -66,7 +106,7 @@ Rectangle{
 
     }
 
-    Text{
+    TextEdit{
         anchors.left: message.left
         anchors.right: message.right
         anchors.top: line.bottom
@@ -80,6 +120,45 @@ Rectangle{
         font.family: "Inter"
         font.weight: 300
         font.pixelSize: 14
+
+        Component.onCompleted: {
+
+            this.text = elidedText()
+        }
+
+        readOnly: true
+        selectByMouse: true
+        selectedTextColor: "#ffffff"
+        selectionColor: "#5969c9"
+
+
+        function elidedText(){
+            let position = 0
+            let elide = true;
+
+            while(true){
+                let rect = this.positionToRectangle(position)
+                let text = this.text.substring(position, 1)
+                if (rect.x > this.width || rect.y > this.height){
+                    break;
+                }
+
+                if (position >= this.text.length){
+                    elide = false;
+                    break;
+                }
+
+                position++;
+            }
+
+            if (elide){
+                return this.text.substring(0, position-3) + "..."
+            } else{
+                return this.text
+            }
+
+
+        }
     }
 
 

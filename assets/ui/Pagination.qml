@@ -6,7 +6,7 @@ Rectangle{
     width: 300
     height: 50
     color: "transparent"
-    visible: contentRect.pagesTotal != 1
+    visible: contentRect.pagesTotal > 1
 
     border.width: 2
     border.color: "#848484"

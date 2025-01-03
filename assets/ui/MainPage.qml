@@ -6,6 +6,7 @@ import QtQuick.Controls 2.15
 
 import WordUi 1.0
 import TagsUi 1.0
+import Cache 1.0
 
 Rectangle{
     id: mainPage
@@ -15,55 +16,81 @@ Rectangle{
     height: mainWindow.height// - 2*anchors.margins
 
     color: "#ADADAD"
+    focus: true
 
 
     signal screenChanged(path: string)
+
+    MouseArea{
+        anchors.fill: parent
+
+        onClicked: { mainPage.focus = true }
+    }
 
     Rectangle{
         id: menu
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        property bool closed: true
+        property bool closed: application.cache.menuClosed
 
         color: "#697795"
         radius: 50
 
         width: (closed) ? (70) : (parent.width*0.35)
 
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: { mainPage.focus = true }
+        }
+
+
         Image {
             id: openCloseButton
             source: (menu.closed) ? "qrc:/arrowRightBlack.png" : "qrc:/arrowLeftBlack.png"
-            //source: "qrc:/arrowLeftBlack.png"
-            /*transform: Rotation{
-                angle: (menu.closed) ? (180) : (0)
-            }*/
-
-            //y: (menu.closed) ? (35) : (15)
             anchors.top: parent.top
-            anchors.topMargin: 15
+            anchors.topMargin: 10
+
+            function resize(){
+                openCloseButton.anchors.horizontalCenter = undefined
+                openCloseButton.anchors.right = undefined
+                openCloseButton.anchors.rightMargin = 0
+
+                if (menu.closed){
+                    openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
+                    openCloseButton.width = menu.width - 25
+                    openCloseButton.height = openCloseButton.width
+                } else{
+                    openCloseButton.anchors.right = menu.right
+                    openCloseButton.anchors.rightMargin = 20
+
+                    openCloseButton.height = menu.height * 0.08 - 5
+                    openCloseButton.width = openCloseButton.height
+                }
+            }
 
             Component.onCompleted: {
-                if (menu.closed){
-                    anchors.horizontalCenter = menu.horizontalCenter
-                } else{
-                    anchors.right = menu.right
-                }
+                resize()
             }
 
             Connections{
                 target: menu
 
                 function onClosedChanged(){
-                    openCloseButton.anchors.horizontalCenter = undefined
-                    openCloseButton.anchors.right = undefined
-                    openCloseButton.anchors.rightMargin = 0
-                    if (menu.closed){
-                        openCloseButton.anchors.horizontalCenter = menu.horizontalCenter
-                    } else{
-                        openCloseButton.anchors.right = menu.right
-                        openCloseButton.anchors.rightMargin = 20
-                    }
+                    openCloseButton.resize()
+                }
+            }
+
+            Connections{
+                target: mainPage
+
+                function onHeightChanged(){
+                    openCloseButton.resize()
+                }
+
+                function onWidthChanged(){
+                    openCloseButton.resize()
                 }
             }
 
@@ -82,8 +109,8 @@ Rectangle{
             id: sortingLabel
             anchors.margins: 10
             visible: !menu.closed
-            width: parent.width * 0.4
-            height: parent.height * 0.1
+            width: parent.width * 0.5
+            height: parent.height * 0.08
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
 
@@ -93,7 +120,7 @@ Rectangle{
             Text{
                 text: "Sorting"
                 anchors.centerIn: parent
-                font.pointSize: parent.height * 0.2
+                font.pointSize: parent.height * 0.4
                 font.bold: true
             }
         }
@@ -103,7 +130,7 @@ Rectangle{
             anchors.top: sortingLabel.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -128,6 +155,8 @@ Rectangle{
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.margins: 15
+
+                checked: application.cache.descendingOrderChecked
             }
         }
 
@@ -137,7 +166,7 @@ Rectangle{
             anchors.top: descendingOrderLine.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -165,6 +194,7 @@ Rectangle{
                 anchors.margins: 10
 
                 model: ["Word", "Definition", "Part of speech", "Difficulty", "Frequency of use"]
+                currentIndex: application.cache.propertyIndex
 
                 function getProperty(){
                     switch (currentIndex){
@@ -192,10 +222,10 @@ Rectangle{
 
         Rectangle{
             id: searchingLabel
-            anchors.margins: 10
+            anchors.margins: 7
             visible: !menu.closed
-            width: parent.width * 0.4
-            height: parent.height * 0.1
+            width: parent.width * 0.5
+            height: parent.height * 0.08
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: propertyLine.bottom
 
@@ -205,7 +235,7 @@ Rectangle{
             Text{
                 text: "Searching"
                 anchors.centerIn: parent
-                font.pointSize: parent.height * 0.2
+                font.pointSize: parent.height * 0.4
                 font.bold: true
 
                 verticalAlignment: Text.AlignVCenter
@@ -218,7 +248,7 @@ Rectangle{
             anchors.top: searchingLabel.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -243,6 +273,8 @@ Rectangle{
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.margins: 15
+
+                checked: application.cache.caseSensitiveChecked
             }
         }
 
@@ -253,7 +285,7 @@ Rectangle{
             anchors.top: caseSensitiveLine.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             visible: !menu.closed
@@ -281,6 +313,7 @@ Rectangle{
                 anchors.margins: 10
 
                 model: ["Word", "Definition", "Part of speech", "Difficulty"]
+                currentIndex: application.cache.property2Index
 
                 function getProperty(){
                     switch (currentIndex){
@@ -308,7 +341,7 @@ Rectangle{
             anchors.top: property2Line.bottom
             anchors.left: menu.left
             anchors.right: menu.right
-            anchors.margins: 10
+            anchors.margins: 7
             height: parent.height * 0.07
 
             color: "transparent"
@@ -336,9 +369,181 @@ Rectangle{
                 anchors.margins: 10
 
                 model: ["Contain", "Start with", "End with"]
+                currentIndex: application.cache.propertyHasToIndex
 
             }
 
+        }
+
+
+        Rectangle{
+            id: tagsLabel
+            anchors.margins: 10
+            visible: !menu.closed
+            width: parent.width * 0.5
+            height: parent.height * 0.08
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: propertyHasToLine.bottom
+
+            color: "#D9D9D9"
+            radius: 50
+
+            Text{
+                text: "Tags"
+                anchors.centerIn: parent
+                font.pointSize: parent.height * 0.4
+                font.bold: true
+
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+
+
+
+        Rectangle{
+            id: tagsRect
+            visible: !menu.closed
+
+            anchors.top: tagsLabel.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: parent.height * 0.2
+
+            color: "transparent"
+
+            anchors.margins: 7
+
+
+            GridLayout{
+                id: tagsLayout
+
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: parent.height * 0.75
+
+                columnSpacing: 5
+                rowSpacing: 3
+
+
+                columns: width / (80 + columnSpacing)
+                rows: height / (30 + rowSpacing)
+
+
+                property int itemsPerPage: columns * rows
+
+
+                Repeater{
+                    id: chosenTagsRepeater
+                    model: (application.getTagsChosenUiSize() < tagsLayout.itemsPerPage) ? (application.getTagsChosenUiSize()) : (tagsLayout.itemsPerPage)
+
+                    Tag{
+                        required property int index
+
+                        property string tagName: application.tagsChosenUi[index]
+                        property int removeFrom: 1
+                        property int addTo: 0
+                        property bool deleteButton: false
+                    }
+
+                    onModelChanged: {
+                        chosenTagsRepeater.model = (application.getTagsChosenUiSize() < tagsLayout.itemsPerPage) ? (application.getTagsChosenUiSize()) : (tagsLayout.itemsPerPage)
+                    }
+                }
+
+                Text{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    visible: (chosenTagsRepeater.model == 0)
+
+                    text: "No tags chosen"
+                    font.bold: true
+                    font.pixelSize: width * 0.09
+
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                onItemsPerPageChanged: {
+                    chosenTagsRepeater.model = (application.getTagsChosenUiSize() < tagsLayout.itemsPerPage) ? (application.getTagsChosenUiSize()) : (tagsLayout.itemsPerPage)
+                    //wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
+                }
+
+            }
+
+            Rectangle{
+                anchors.top: tagsLayout.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                width: parent.width * 0.4
+
+                color: "#848484"
+
+                radius: 45
+
+                Text{
+                    anchors.fill: parent
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
+                    text: "Edit tags"
+                    color: "#000000"
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                    font.pointSize: parent.height * 0.375
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        // open window with tags
+                        mainWindow.openEditTagsWindow(0);
+                    }
+                }
+            }
+        }
+
+        Rectangle{
+            id: resetSettingsButton
+            anchors.top: tagsRect.bottom
+            anchors.left: menu.left
+            anchors.right: menu.right
+            anchors.bottom: menu.bottom
+            anchors.margins: 10
+            anchors.rightMargin: 20
+            anchors.leftMargin: 20
+
+            visible: !menu.closed
+
+            color: "#D9D9D9"
+            radius: 20
+
+            Text{
+                text: "Clear settings"
+                anchors.fill: parent
+                color: "#000000"
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.bold: true
+                font.pointSize: parent.height * 0.375
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
+            }
+
+
+            MouseArea{
+                anchors.fill: parent
+
+                onClicked: {
+                    descendingOrderCheckBox.checked = false
+                    propertyComboBox.currentIndex = 0
+                    caseSensitiveCheckBox.checked = false
+                    property2ComboBox.currentIndex = 0
+                    propertyHasToComboBox.currentIndex = 0
+                    application.resetTagsChosen()
+                }
+            }
         }
 
 
@@ -353,6 +558,12 @@ Rectangle{
 
         color: "#D9D9D9"
         radius: 50
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: { mainPage.focus = true }
+        }
 
 
         RowLayout{
@@ -374,13 +585,14 @@ Rectangle{
                     background: Rectangle{ color: "transparent" }
                     anchors.fill: parent
                     font.pointSize: 18
-                    text: ""
+                    text: application.cache.userInput
                     placeholderText: "Leave blank to get all words"
                     placeholderTextColor: "#FFFFFF"
                     clip: true
                     leftPadding: 15
                     rightPadding: 15
                     verticalAlignment: Text.AlignVCenter
+
                 }
             }
 
@@ -408,6 +620,7 @@ Rectangle{
                 }
 
                 MouseArea{
+                    id: searchButtonMouseArea
                     anchors.fill: parent
 
                     onClicked: {
@@ -451,14 +664,20 @@ Rectangle{
     }
 
 
-
+    Pagination{
+        id: pagination
+        anchors.bottom: mainPage.bottom
+        anchors.horizontalCenter: content.horizontalCenter
+        property QtObject contentRect: content
+    }
 
 
 
     Rectangle{
         id: content
         anchors.top: toolBar.bottom
-        anchors.bottom: mainPage.bottom
+        anchors.bottom: pagination.top
+
         anchors.left: menu.right
         anchors.right: mainPage.right
         anchors.topMargin: 10
@@ -470,14 +689,19 @@ Rectangle{
         property int wordsUiSize: application.getWordsUiSize()
         property int pagesTotal: Math.ceil(wordsUiSize / wordsGrid.itemsPerPage)
 
-        property int page: (mainWindow.userWasOnPage < pagesTotal) ? (mainWindow.userWasOnPage) : (pagesTotal)
+        property int page: (application.cache.page < pagesTotal) ? (application.cache.page) : (pagesTotal)
 
         Component.onCompleted: {
-            page = page + 1 - 1;
-            pageChanged()
+            page = (application.cache.page < pagesTotal) ? (application.cache.page) : (pagesTotal)
         }
 
-        Grid{
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: { mainPage.focus = true }
+        }
+
+        GridLayout{
             id: wordsGrid
 
             anchors.fill: parent
@@ -508,7 +732,25 @@ Rectangle{
 
 
                 }
+
+
             }
+
+
+            Text{
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                visible: (wordsRepeater.model == 0)
+
+                text: "No words found"
+                font.bold: true
+                font.pixelSize: width * 0.08
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+
 
             onItemsPerPageChanged: {
                 content.page = content.calculateNewPage()
@@ -519,7 +761,7 @@ Rectangle{
 
         onPageChanged: {
             if (page < 1){ page = 1; }
-            mainWindow.userWasOnPage = page
+            //mainWindow.userWasOnPage = page
 
             wordsRepeater.model = null
             wordsRepeater.model = ((content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) < wordsGrid.itemsPerPage) ? (content.wordsUiSize - (content.page-1)*wordsGrid.itemsPerPage) : (wordsGrid.itemsPerPage)
@@ -540,11 +782,6 @@ Rectangle{
 
     }
 
-    Pagination{
-        anchors.bottom: content.bottom
-        anchors.horizontalCenter: content.horizontalCenter
-        property QtObject contentRect: content
-    }
 
     Connections{
         target: application
@@ -561,54 +798,47 @@ Rectangle{
         }
     }
 
-    /*ColumnLayout{
-        id: chosenTags
-        width: 300
-
-        Repeater{
-            id: chosenTagsRepeater
-            model: application.getTagsChosenUiSize()
-
-            Tag{
-                property bool chosen: true
-                required property int index
-            }
-        }
+    function updateCache(){
+        application.cache.page = content.page
+        application.cache.userInput = searchInput.text
+        application.cache.menuClosed = menu.closed
+        application.cache.descendingOrderChecked = descendingOrderCheckBox.checked
+        application.cache.propertyIndex = propertyComboBox.currentIndex
+        application.cache.caseSensitiveChecked = caseSensitiveCheckBox.checked
+        application.cache.property2Index = property2ComboBox.currentIndex
+        application.cache.propertyHasToIndex = propertyHasToComboBox.currentIndex
     }
 
+    Keys.onPressed: (event) => {
 
-    ColumnLayout{
-        id: tags
-        anchors.left: chosenTags.right
-        width: 300
-
-        Repeater{
-            id: tagsRepeater
-            model: application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
-
-            Tag{
-                property bool chosen: false
-                required property int index
-
-            }
-
+        if (searchInput.focus && (event.key == Qt.Key_Return)){
+            application.searchWords(searchInput.text, property2ComboBox.getProperty(), caseSensitiveCheckBox.checked, (propertyHasToComboBox.currentIndex==1), (propertyHasToComboBox.currentIndex==2));
+            mainPage.focus = true
+            return;
         }
-    }
+        if (event.key == Qt.Key_M && (event.modifiers & Qt.ControlModifier)){
+            menu.closed = !menu.closed
+            return;
+        }
+        if (!searchInput.focus && event.key == Qt.Key_Slash){
+            searchInput.focus = true
+            return;
+        }
+        if (!searchInput.focus && !(event.modifiers & Qt.ShiftModifier) && !(event.modifiers & Qt.ControlModifier) && !(event.modifiers & Qt.AltModifier) && !(event.key == Qt.Key_CapsLock)){
+            application.message("Press \"/\" to enter search field", "Just so you know :)", "warning")
+        }
 
+
+    }
 
     Connections{
         target: application
 
         function onTagsChosenUiChanged(){
-            chosenTagsRepeater.model = application.getTagsChosenUiSize()
-            application.message("Title" ,"Detailed description", "error")
-
+            chosenTagsRepeater.model = null
+            chosenTagsRepeater.model = application.getTagsChosenUiSize();
         }
-
-        function onTagsUiChanged(){
-            tagsRepeater.model = application.tagsUi.getDifficultyTagsSize() + application.tagsUi.getPartOfSpeechTagsSize() + application.tagsUi.getCustomTagsSize()
-        }
-    }*/
+    }
 }
 
 

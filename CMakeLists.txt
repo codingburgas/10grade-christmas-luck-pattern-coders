@@ -67,6 +67,8 @@ set(APP_FILES
     "src/tagsUi.cpp"
     "include/message.h"
     "assets/resources.qrc"
+    "include/cache.h"
+
 )
 
 
@@ -98,6 +100,7 @@ qt_add_executable(application
 
         #----- git -------
         .gitignore
+        .gitkeep
 
 
 

@@ -30,7 +30,6 @@ public:
 
     WordUi(Word *word);
 
-
     // constructor of copying(for being able to use this type in QList)
     WordUi(const WordUi& other){
         word = other.word;
@@ -57,6 +56,7 @@ public:
     }
 
     // Getters
+
     /*
      * Retrieves the word.
      * Parameters:
@@ -218,10 +218,22 @@ public:
         }
     }
 
-
-
+    /*
+     * Retrieves the number of tags associated with the word.
+     * Parameters:
+     * -- None
+     * Returns:
+     * -- int: the size of the tags list
+     */
     Q_INVOKABLE int getTagsSize(){ return tags.size(); }
 
+    /*
+     * Checks if a specified tag exists in the list of tags.
+     * Parameters:
+     * -- tagToFind: QString, the tag to search for
+     * Returns:
+     * -- bool: true if the tag exists, false otherwise
+     */
     Q_INVOKABLE bool isInTags(QString tagToFind);
 
 signals:

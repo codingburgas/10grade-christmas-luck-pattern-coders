@@ -6,50 +6,62 @@ import QtQuick.Effects
 
 
 Rectangle{
-    /*
-    Properties to be set:
-        string tagName: name to be displayed
-        int removeFrom: 0 - no remove button; 1 - from chosen tags; 2 - from word
-        int addTo: 0 - no ability to add; 1 -to chosen tags; 2 - to word
-    */
-
     id: tag
     width: 80
     height: 30
     radius: 45
     color: "#0099D1"
 
+    Rectangle{
+        id: removeButton
+        //anchors.verticalCenter: tag.verticalCenter
+        anchors.right: tag.right
+        anchors.rightMargin: 2
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+        anchors.top: tag.top
+        anchors.bottom: tag.bottom
+
+        width: height
+        radius: 44
+        color: "white"
+        clip: true
 
 
 
-    /*property string tagText: (() => {
-                                 if (!chosen){
-                                     return application.tagsUi.getElementOnIndex(index);
-                                 }
-
-                                 if (location == 0){
-                                     return application.tagsChosenUi[index];
-                                 } else if (location == 1){
-                                     return application.wordsUi[application.indexOfClickedWord].tags[index];
-                                 } else{
-                                     application.message("Unexpected type of tag");
-                                 }
-
-                             })()*/
+        visible: (tag.removeFrom != 0)
 
 
-    /*function defineVisible() {
-        if (chosen){
-            return true;
+        Image{
+            id: crossImg
+            source: "qrc:/crossToClose.png"
+            anchors.fill: parent
+            anchors.margins: 6
+            fillMode: Image.PreserveAspectCrop
+            clip: true
         }
-        if (location == 0){
-            return !application.isInTagsChosen(tagText)
-        } else{
-            return (!application.wordsUi[application.indexOfClickedWord].isInTags(tagText) && application.tagsUi.isInCustomTags(tagText))
+
+        MouseArea{
+            anchors.fill: parent
+
+            onClicked: {
+
+                if (tag.removeFrom == 1){
+                    application.removeTagFromChosen(tag.index);
+                } else{
+                    application.deleteWordTag(application.indexOfClickedWord, tag.index);
+                }
+
+
+            }
         }
+
     }
 
-    visible: defineVisible()*/
+
+
+
+
 
 
     TextEdit{
@@ -70,9 +82,12 @@ Rectangle{
         verticalAlignment: Text.AlignVCenter
 
         Component.onCompleted: {
-            if (removeButton.visible){
+            anchors.right = undefined
+            if (tag.removeFrom != 0){
                 anchors.right = removeButton.left
-            } else{
+            } else if (tag.deleteButton) {
+                anchors.right = deleteButton.left
+            }else{
                 anchors.right = tag.right
             }
 
@@ -115,59 +130,6 @@ Rectangle{
     }
 
 
-    Rectangle{
-        id: removeButton
-        anchors.left: textField.right
-        //anchors.verticalCenter: tag.verticalCenter
-        anchors.right: tag.right
-        anchors.rightMargin: 2
-        anchors.topMargin: 2
-        anchors.bottomMargin: 2
-        anchors.top: tag.top
-        anchors.bottom: tag.bottom
-        radius: 44
-        color: "white"
-        clip: true
-        //z: 1000
-
-        /*function defineVisible(){
-            if (!tag.chosen){
-                return false;
-            }
-            if (tag.location == 0){
-                return true;
-            }
-            return application.tagsUi.isInCustomTags(tag.tagText);
-        }
-
-        visible: removeButton.defineVisible()*/
-        visible: (tag.removeFrom != 0)
-
-        Image{
-            id: crossImg
-            source: "qrc:/crossToClose.png"
-            anchors.fill: parent
-            anchors.margins: 6
-            fillMode: Image.PreserveAspectCrop
-            clip: true
-        }
-
-        MouseArea{
-            anchors.fill: parent
-
-            onClicked: {
-
-                if (tag.removeFrom == 1){
-                    application.removeTagFromChosen(tag.index);
-                } else{
-                    application.deleteWordTag(application.indexOfClickedWord, tag.index);
-                }
-
-
-            }
-        }
-
-    }
 
     MouseArea{
         visible: (tag.addTo != 0)
@@ -185,23 +147,41 @@ Rectangle{
     }
 
 
+    Rectangle{
+        id: deleteButton
+        anchors.right: tag.right
+        anchors.rightMargin: 2
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+        anchors.top: tag.top
+        anchors.bottom: tag.bottom
 
-    /*Connections{
-        target: application
+        width: height
+        radius: 44
+        color: "white"
+        clip: true
 
-        function onTagsChosenUiChanged(){
-            tag.visible = tag.defineVisible()
-            removeButton.visible = removeButton.defineVisible()
+
+
+        visible: tag.deleteButton
+
+
+        Image{
+            id: deleteImg
+            source: "qrc:/trashCan.png"
+            anchors.fill: parent
+            anchors.margins: 2
+            fillMode: Image.PreserveAspectCrop
+            clip: true
         }
 
-    }*/
+        MouseArea{
+            anchors.fill: parent
 
-    /*Connections{
-        target: application.wordsUi[application.indexOfClickedWord]
-
-        function onTagsChanged(){
-            tag.visible = tag.defineVisible()
-            removeButton.visible = removeButton.defineVisible()
+            onClicked: {
+                application.deleteTag(tag.index)
+            }
         }
-    }*/
+
+    }
 }

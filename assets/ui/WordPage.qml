@@ -6,10 +6,7 @@ import WordUi 1.0
 
 Rectangle{
     id: wordPage
-    //anchors.margins: 10
     anchors.centerIn: parent
-    //width: mainWindow.width - 2*anchors.margins
-    //height: mainWindow.height - 2*anchors.margins
     width: mainWindow.width
     height: mainWindow.height
     color: "#ADADADB2"
@@ -18,9 +15,6 @@ Rectangle{
     signal screenChanged(path: string)
 
     property WordUi word: application.wordsUi[application.indexOfClickedWord]
-
-    //property int tagsSize: application.getTagsUiSize()
-
 
     Rectangle{
         id: backButton
@@ -282,7 +276,7 @@ Rectangle{
         anchors.left: definition.right
         anchors.top: title.bottom
         width: parent.width * 0.22
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
         anchors.margins: wordPage.height * 0.016
@@ -380,7 +374,7 @@ Rectangle{
         anchors.left: partOfSpeech.right
         anchors.top: title.bottom
         anchors.right: wordPage.right
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
         anchors.margins: wordPage.height * 0.016
@@ -479,7 +473,7 @@ Rectangle{
         anchors.top: partOfSpeech.bottom
 
         width: parent.width * 0.22
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
 
@@ -578,7 +572,7 @@ Rectangle{
         anchors.left: difficulty.right
         anchors.top: frequencyOfUse.bottom
         anchors.right: wordPage.right
-        height: parent.width * 0.13
+        height: parent.height * 0.17
 
 
         anchors.margins: wordPage.height * 0.016
@@ -716,6 +710,7 @@ Rectangle{
 
                 onClicked: {
                     // open window with tags
+                    mainWindow.openEditTagsWindow(1);
                 }
             }
         }
@@ -753,12 +748,17 @@ Rectangle{
 
 
             Grid{
+                id: tagsGrid
                 spacing: wordPage.height * 0.0083
                 anchors.fill: parent
                 anchors.margins: wordPage.height * 0.013
+
+                columns: Math.max(1, Math.floor(width / (80 + spacing)))
+                rows: height / (30 + spacing)
+
                 Repeater{
                     id: wordTagsRepeater
-                    model: (wordPage.word.getTagsSize() < 6) ? (wordPage.word.getTagsSize()) : (6)
+                    model: (wordPage.word.getTagsSize() < tagsGrid.columns * tagsGrid.rows) ? (wordPage.word.getTagsSize()) : (tagsGrid.columns * tagsGrid.rows)
 
                     Tag{
                         required property int index
@@ -766,6 +766,11 @@ Rectangle{
                         property string tagName: wordPage.word.tags[index]
                         property int removeFrom: 0
                         property int addTo: 0
+                        property bool deleteButton: false
+                    }
+
+                    onModelChanged: {
+                        tagsGrid.forceLayout()
                     }
                 }
             }
@@ -776,93 +781,10 @@ Rectangle{
     }
 
 
-    /*Repeater{
-        id: wordTagsRepeater
-        //anchors.top: title.bottom
-        model: wordPage.word.getTagsSize()
-
-
-        Tag{
-            required property int index
-            property int location: 1
-            property bool chosen: true
-            y: 100 + index*100
-        }
-    }*/
-
-    /*Repeater{
-        id: difficultyTagsRepeater
-        //anchors.top: title.bottom
-        model: application.tagsUi.getDifficultyTagsSize()
-
-        Text{
-            required property int index
-            x: 100 + index*100
-            y: 50
-            text: application.tagsUi.difficultyTags[index]
-        }
-    }
-
-    Repeater{
-        id: partOfSpeechTagsRepeater
-        //anchors.top: title.bottom
-        model: application.tagsUi.getPartOfSpeechTagsSize()
-
-        Text{
-            required property int index
-            x: 100 + index*100
-            y: 100
-            text: application.tagsUi.partOfSpeechTags[index]
-        }
-    }
-
-    Repeater{
-        id: customTagsRepeater
-        //anchors.top: title.bottom
-        model: application.tagsUi.getCustomTagsSize()
-
-        Text{
-            required property int index
-            x: 100 + index*100
-            y: 150
-            text: application.tagsUi.customTags[index]
-        }
-    }*/
-
-
-
-
-    /*MouseArea{
-        anchors.fill: parent
-
-        onClicked: {
-            // send message
-            //application.message(word.text, "description of the message", "type");
-            // delete tag of word
-            //application.deleteWordTag(application.indexOfClickedWord, 2);
-            //add tag to word
-            application.addWordTag(application.indexOfClickedWord, 3);
-        }
-    }*/
-
-
-
-
-    /*
     Connections{
         target: application
 
-        function onTagsUiChanged(){
-            wordPage.tagsSize = application.getDisplayedTagsSize();
-        }
-    }
-    */
-
-    Connections{
-        target: wordPage.word
-
-        function onTagsChanged(){
-            //wordPage.tagsSize = application.getDisplayedTagsSize();
+        function onWordTagsChanged(){
             wordTagsRepeater.model = wordPage.word.getTagsSize()
         }
     }
