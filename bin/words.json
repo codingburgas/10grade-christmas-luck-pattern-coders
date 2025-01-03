@@ -38,7 +38,7 @@
     {
         "definition": "something that has happened",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 21,
+        "frequencyOfUse": 22,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -17998,5 +17998,17 @@
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/virus",
         "word": "virus"
+    },
+    {
+        "definition": "the person who owns, cares for, and controls an animal",
+        "difficulty": "B2",
+        "frequencyOfUse": 0,
+        "partOfSpeech": "noun",
+        "tags": [
+            "noun",
+            "B2"
+        ],
+        "url": "https://dictionary.cambridge.org/dictionary/english/master",
+        "word": "master"
     }
 ]

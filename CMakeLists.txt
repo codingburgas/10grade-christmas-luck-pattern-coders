@@ -100,6 +100,7 @@ qt_add_executable(application
 
         #----- git -------
         .gitignore
+        .gitkeep
 
 
 

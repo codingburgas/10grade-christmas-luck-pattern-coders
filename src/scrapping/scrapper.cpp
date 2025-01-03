@@ -86,6 +86,8 @@ void appendWord(CURL* curl, std::string *url, std::vector<std::string> *linksOfW
                 tags.push_back(wordData["partOfSpeech"]);
                 tags.push_back(wordData["difficulty"]);
 
+                wordData["tags"] = tags;
+
                 std::string fileName = "words.json";
                 appendToFile(fileName, wordData);
 
