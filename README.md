@@ -33,6 +33,7 @@ git clone https://github.com/codingburgas/10grade-christmas-luck-pattern-coders.
 ## ***The most important is to expose an object to qml, which will handle the communication :***
 
 ```cpp
+/* src/application.cpp : 105 */
 engine.rootContext()->setContextProperty("application", this);
 ```
 
@@ -42,7 +43,7 @@ engine.rootContext()->setContextProperty("application", this);
 
 <br>
 
-### Let's take a look at an examples
+### Let's take a look at an example :
 
 <br>
 
@@ -51,6 +52,7 @@ In the following code block of Application::updateWordsUi in application.cpp fil
 <br>
 
 ```cpp
+/* src/application.cpp : 132 */
 emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
 ```
 
@@ -60,7 +62,8 @@ After that in the assets/ui/Application.qml(one of ui files) Connections type li
 
 <br>
 
-```qml
+```js
+/* assets/ui/Application.qml : 89 */
 Connections{
         target: application
 
@@ -99,7 +102,8 @@ Connections{
 <br>
 
 ```cpp
+/* assets/ui/MainPage.qml : 627 */
 application.searchWords(searchInput.text, property2ComboBox.getProperty(), caseSensitiveCheckBox.checked, (propertyHasToComboBox.currentIndex==1), (propertyHasToComboBox.currentIndex==2))
 ```
 
-In this code from assets/ui/MainPage.qml method searchWords of application is called to search words with specific properties and update the UI
+In this code method searchWords of application is called to search words with specific properties and update the UI
