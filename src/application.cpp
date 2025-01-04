@@ -2,12 +2,12 @@
 #include <QQmlApplicationEngine>
 #include <QCoreApplication>
 #include <QQmlContext>
+#include <QIcon>
 
 #include "application.h"
 #include "wordAlgorithms.h"
 #include "message.h"
 #include "cache.h"
-#include <QDebug>
 
 
 /*
@@ -54,6 +54,7 @@ int Application::run(int argc, char *argv[]) {
     qRegisterMetaType<QList<Message>>("QList<Message>");
 
 
+    app.setWindowIcon(QIcon(":/VocabBook.png"));
 
 
 
