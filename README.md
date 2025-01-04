@@ -1,1 +1,21 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/BzKY5FoF)
+---
+
+# Setup intructions
+
+
+#### 1. Install necessary dependencies :
+        -- Install [Qt](https://www.qt.io/download-qt-installer-oss)
+        -- Intall [Cmake](https://cmake.org/download/)
+        -- Install [MinGW](https://sourceforge.net/projects/mingw/) or other compiler
+
+
+#### 2. Clone our project :
+        
+        
+        git clone https://github.com/codingburgas/10grade-christmas-luck-pattern-coders.git
+        
+        
+#### and open it in IDE( preferably QtCreator )
+
+
+#### 3. Build, run application and expand your knowledge!
