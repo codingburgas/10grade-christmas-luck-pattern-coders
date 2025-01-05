@@ -47,7 +47,7 @@ engine.rootContext()->setContextProperty("application", this);
 
 <br>
 
-In the following code block of Application::updateWordsUi in application.cpp file signal message of Application object is being emitted.
+In the following code block signal message of Application object is being emitted.
 
 <br>
 
@@ -58,7 +58,7 @@ emit message(QString::fromStdString(m.title), QString::fromStdString(m.descripti
 
 <br>
 
-After that in the assets/ui/Application.qml(one of ui files) Connections type listens to signals on application object, which was exposed to qml earlier, and invokes onMessage function, when message signal is emitted. After that this function creates a message widget, which can be visible to user.
+After that, "Connections" object listens to signals on application object, which was exposed to qml earlier, and invokes onMessage function, when message signal is emitted. After that this function creates a message widget, which can be visible to user.
 
 <br>
 
@@ -83,7 +83,7 @@ Connections{
 
                     message.destroy(2000)
                 }else if (newComponent.status === Component.Loading) {
-                    newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+                    newComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
                 }
             }
 
