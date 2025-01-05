@@ -67,7 +67,7 @@ Window {
                     if (newComponent.status == Component.Ready){
                         changeWindow();
                     }else if (newComponent.status === Component.Loading) {
-                        newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+                        newComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
                     } else if (newComponent.status === Component.Error) {
                         application.message("Failed to load new page", `Failed to go to the ${path}`, "error");
                     }
@@ -105,7 +105,7 @@ Window {
 
                     message.destroy(2000)
                 }else if (newComponent.status === Component.Loading) {
-                    newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+                    newComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
                 }
             }
 
@@ -127,7 +127,7 @@ Window {
                     });
 
             }else if (editTagsWindowComponent.status === Component.Loading) {
-                editTagsWindowComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+                editTagsWindowComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
             } else if (editTagsWindowComponent.status === Component.Error) {
                 //console.error("Error loading component:", newComponent.errorString()); // Handle error case
                 application.message("Failed to create window for editing tags", `Failed to create window for editing tags`, "error");
