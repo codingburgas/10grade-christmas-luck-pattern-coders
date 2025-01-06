@@ -112,3 +112,9 @@ application.searchWords(searchInput.text, property2ComboBox.getProperty(), caseS
 ```
 
 In this code method searchWords of application is called to search words with specific properties and update the UI
+
+# 👦Our Team Members
+
+- [Petar Kostov](https://github.com/PTKostov22) 
+- [Vinichenko Oleksandr Oleksandrov](https://github.com/VOOleksandrov22)
+- [Denis Pirig](https://github.com/DIPirig22)
