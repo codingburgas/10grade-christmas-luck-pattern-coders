@@ -2,9 +2,25 @@
 <hr/>
 
 # Documentation and presentation
+<br>
 
 - [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/ptkostov22_codingburgas_bg/EVGk1WREb9VNjzAX4T-z7U8Bnqk4Xd8G5Xseo0OHYnEUnQ?e=GhRT45)
 - [Documentation]()
+
+# Core Tech Stack
+<br>
+
+<p align="left" gap="10px">
+<a href="https://github.com/"><img src="https://img.icons8.com/nolan/344/github.png" alt="GitHub logo" width=52px /></a>
+<a href="https://git-scm.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/git.png" alt="git"/> </a>
+<a href="https://www.figma.com/"><img src="https://img.icons8.com/color/344/figma--v1.png" alt="Figma logo" width=48px/></a>
+<a href="https://cplusplus.com/"><img width="48" height="48" src="https://img.icons8.com/fluency/48/c-plus-plus-logo.png" alt="c-plus-plus-logo"/></a>
+<a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=48px /></a>
+<a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
+<img width="50" height="50" src="https://img.icons8.com/ios/50/qt.png" alt="qt"/>
+<img width="48" height="48" src="https://img.icons8.com/pulsar-color/48/json.png" alt="json"/>
+</p>
+
 
 # Setup intructions
 
