@@ -4058,11 +4058,12 @@
     {
         "definition": "an attack intended to stop or oppose an attack by an enemy",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 2,
+        "frequencyOfUse": 3,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "Undefined value."
+            "Undefined value.",
+            "test tag"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/counterattack",
         "word": "counterattack"
