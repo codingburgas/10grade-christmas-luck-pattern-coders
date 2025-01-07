@@ -2,7 +2,7 @@
     {
         "definition": "the activity or job of writing computer programs",
         "difficulty": "B2",
-        "frequencyOfUse": 212,
+        "frequencyOfUse": 214,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -14,7 +14,7 @@
     {
         "definition": "the situation in which a lot of things are happening or people are moving around",
         "difficulty": "B2",
-        "frequencyOfUse": 42,
+        "frequencyOfUse": 43,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -26,7 +26,7 @@
     {
         "definition": "the set of things that are happening and the conditions that exist at a particular time and place",
         "difficulty": "B1",
-        "frequencyOfUse": 24,
+        "frequencyOfUse": 25,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -62,7 +62,7 @@
     {
         "definition": "anything that happens, especially something important or unusual",
         "difficulty": "B1",
-        "frequencyOfUse": 10,
+        "frequencyOfUse": 11,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -74,7 +74,7 @@
     {
         "definition": "very much; more than usual or more than other people or things",
         "difficulty": "A2",
-        "frequencyOfUse": 2,
+        "frequencyOfUse": 3,
         "partOfSpeech": "adverb",
         "tags": [
             "adverb",
@@ -110,7 +110,7 @@
     {
         "definition": "not different or special or unexpected in any way; usual",
         "difficulty": "B1",
-        "frequencyOfUse": 1,
+        "frequencyOfUse": 3,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -134,7 +134,7 @@
     {
         "definition": "a road vehicle with an engine, four wheels, and seats for a small number of people",
         "difficulty": "A1",
-        "frequencyOfUse": 1,
+        "frequencyOfUse": 2,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -722,7 +722,7 @@
     {
         "definition": "how large or small something or someone is",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 2,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -1994,7 +1994,7 @@
     {
         "definition": "designed and made using the most recent ideas and methods",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -4058,7 +4058,7 @@
     {
         "definition": "an attack intended to stop or oppose an attack by an enemy",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 2,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -6734,7 +6734,7 @@
     {
         "definition": "an area of land that has its own government, army, etc.",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -13574,11 +13574,12 @@
     {
         "definition": "the part of a plant that is often brightly coloured and has a pleasant smell, or the type of plant that produces these",
         "difficulty": "A1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
-            "A1"
+            "A1",
+            "test tag"
         ],
         "url": "https://dictionary.cambridge.org/dictionary/english/flower",
         "word": "flower"
@@ -15818,7 +15819,7 @@
     {
         "definition": "land not in towns, cities, or industrial areas, that is either used for farming or left in its natural condition",
         "difficulty": "A2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -19094,7 +19095,7 @@
     {
         "definition": "an arrangement with a bank to keep your money there and to allow you to take it out when you need to",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 2,
         "partOfSpeech": "noun",
         "tags": [
             "noun",
@@ -46358,7 +46359,7 @@
     {
         "definition": "to say numbers one after the other in order, or to calculate the number of people or things in a group",
         "difficulty": "B1",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 3,
         "partOfSpeech": "verb",
         "tags": [
             "verb",
@@ -52382,7 +52383,7 @@
     {
         "definition": "connected by a political or military agreement",
         "difficulty": "C2",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "adjective",
         "tags": [
             "adjective",
@@ -81926,7 +81927,7 @@
     {
         "definition": "the young or offspring of a person, animal, or plant",
         "difficulty": "Undefined value.",
-        "frequencyOfUse": 0,
+        "frequencyOfUse": 1,
         "partOfSpeech": "noun",
         "tags": [
             "noun",

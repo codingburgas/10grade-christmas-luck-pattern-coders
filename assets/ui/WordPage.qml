@@ -612,7 +612,7 @@ Rectangle{
             TextEdit{
                 id: syllablesCountText
 
-                text: application.countSyllablesOfWord(application.indexOfWordClicked)
+                text: application.countSyllablesOfWord(application.indexOfClickedWord)
                 anchors.fill: parent
                 anchors.leftMargin: wordPage.height * 0.0083
 
