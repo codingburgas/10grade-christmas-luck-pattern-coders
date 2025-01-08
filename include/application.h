@@ -1,3 +1,12 @@
+/*
+ * application.h
+ *
+ * Manages word and tag data for a Qt application, including search, sort, and update functions.
+ * Provides Qt property bindings and signal-slot mechanisms for real-time UI updates.
+ * Includes Q_INVOKABLE methods for QML interaction and application lifecycle control.
+ */
+
+
 #ifndef APPLICATION_H
 #define APPLICATION_H
 

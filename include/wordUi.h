@@ -1,3 +1,9 @@
+/*
+ * TagsUi provides an interface to manage difficulty, part of speech, and custom tags.
+ * It exposes lists of tags and allows access through Qt properties.
+ * Supports custom tag management with getter, setter, and utility functions.
+ */
+
 #ifndef WORDUI_H
 #define WORDUI_H
 

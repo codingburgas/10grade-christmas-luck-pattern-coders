@@ -1,3 +1,8 @@
+/*
+ * WordUi adapts word data for use in Qt environment by converting it from Word object.
+ * It also provides functionality for checking if a specific tag is associated with the word.
+ */
+
 #include "wordUi.h"
 #include "wordAlgorithms.h"
 
@@ -9,6 +14,7 @@
  * Returns:
  * -- None
  */
+
 WordUi::WordUi(Word *word){
     this->word = QString::fromStdString(word->word);
     this->definition = QString::fromStdString(word->definition);

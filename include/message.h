@@ -1,3 +1,8 @@
+//
+// message.h
+// Header file defining a Message object with title, description, and type properties.
+//
+
 #ifndef MESSAGE_H
 #define MESSAGE_H
 

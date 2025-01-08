@@ -1,3 +1,8 @@
+/**
+ * This class stores properties like menu state, order type, search filters,
+ * and user input. It uses signals to notify other components when these properties
+ * are modified, enabling reactive behavior in the system.
+ */
 #ifndef CACHE_H
 #define CACHE_H
 

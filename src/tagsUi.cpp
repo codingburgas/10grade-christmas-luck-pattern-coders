@@ -1,13 +1,13 @@
-#include "tagsUi.h"
-#include "message.h"
-
-
 /* Constructor, which copies properies from Tags object into Qt-like types
  * Parameters:
  * -- tags: Tags object
  * Returns:
  * -- Creates Tags
  */
+
+#include "tagsUi.h"
+#include "message.h"
+
 TagsUi::TagsUi(Tags *tags){
     difficultyTags = {};
     partOfSpeechTags = {};

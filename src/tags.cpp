@@ -1,3 +1,9 @@
+/*
+ * Tags handles custom, difficulty, and part of speech tags.
+ * It reads custom tags from a file and converts them to JSON.
+ * Provides functionality for retrieving tags by index.
+ */
+
 #include "tags.h"
 #include "fileManager.h"
 #include "message.h"
