@@ -120,24 +120,6 @@ int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int
 }
 
 
-/*
- * Quicksort for array of word pointers
- * Parameters:
- * --arr: array of word pointers
- * --propertyName: string, which contains property to sort by
- * --begin: starting index of the subarray to partition
- * --end: ending index of the subarray to partition
- * Returns:
- * --None
-
-void quickSort(std::vector<Word*>& arr, int begin, int end) {
-    if (begin < end) {
-        int pivotIndex = partition(arr, begin, end);
-        quickSort(arr, begin, pivotIndex - 1);
-        quickSort(arr, pivotIndex + 1, end);
-    }
-}
-*/
 
 /*
  * Hybrid sort for array of word pointers
@@ -162,6 +144,7 @@ void hybridSort(std::vector<Word*>& arr, std::string &propertyName, int begin, i
         hybridSort(arr, propertyName, pivotIndex + 1, end);
     }
 }
+
 
 /*
  * sorts array of words by alphabet
@@ -242,18 +225,27 @@ void leaveWordsWithSpecificPart(std::vector<Word*>& arr, std::string& part, std:
  * --None
  */
 void leaveWordsWithSpecificTags(std::vector<Word*>& arr, std::vector<std::string>& tags){
-    for (size_t i=0; i<arr.size(); i++){
+    if (tags.size() == 0){
+        return;
+    }
+
+    for (auto i = arr.begin(); i != arr.end(); ){
         bool containsTag = false;
+
         for (std::string& tag : tags){
-            if (contains(arr[i]->tags, tag)){
+            if (contains((*i)->tags, tag)){
                 containsTag = true;
                 break;
             }
         }
 
         if (!containsTag){
-            arr.erase(arr.begin() + i);
+            i = arr.erase(i);
+        } else{
+            i++;
         }
+
+
     }
 }
 

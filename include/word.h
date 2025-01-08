@@ -27,6 +27,7 @@ struct Word {
     unsigned long frequencyOfUse = 0;
     std::vector<std::string> tags = {};
 
+    Word(std::string word = "", std::string definition = "", std::string partOfSpeech = "", std::string difficulty = "", std::string url = "", unsigned long frequencyOfUse = 0, std::vector<std::string> tags = {});
 
     /*
      * Converts JSON data to a Word object.

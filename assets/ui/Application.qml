@@ -4,6 +4,9 @@ import QtQuick 2.15
 import QtQuick.Layouts 2.15
 import QtQuick.Controls 2.15
 
+import Message 1.0
+
+
 Window {
     id: mainWindow
     visible: true
@@ -12,34 +15,26 @@ Window {
 
     minimumWidth: 700
     minimumHeight: 600
-    /*width: 1536
-    height: 801
-
-    onWidthChanged: {
-        console.log(`${width}x${height}`)
-    }*/
-    //visibility: Qt.WindowFullScreen
-    //minimumWidth: width
-    //minimumHeight: height
 
     title: "LEXIFY"
 
     property int userWasOnPage: 1
 
-    //property string currentPath: "MainPage.qml"
-    //property Rectangle currentPage: MainPage{}
     property string currentPath: "StartingPage.qml"
-    property Rectangle currentPage: StartingPage{}
+    property Rectangle currentPage
 
-
-
-    Component.onDestruction: {
-        console.log(`${width}x${height}`)
-    }
 
 
     Component.onCompleted: {
         currentPage = Qt.createComponent( Qt.resolvedUrl(currentPath) ).createObject(mainWindow, {x:0, y:0})
+
+
+        let size = application.getMessagesBeforeStartSize();
+        for (let i = 0; i < size; i++){
+            console.log(typeof application.messagesBeforeStart)
+            let message = application.messagesBeforeStart[i]
+            application.message(message.titleUi, message.descriptionUi, message.typeUi);
+        }
     }
 
 
@@ -72,7 +67,7 @@ Window {
                     if (newComponent.status == Component.Ready){
                         changeWindow();
                     }else if (newComponent.status === Component.Loading) {
-                        newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
+                        newComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
                     } else if (newComponent.status === Component.Error) {
                         application.message("Failed to load new page", `Failed to go to the ${path}`, "error");
                     }
@@ -110,10 +105,7 @@ Window {
 
                     message.destroy(2000)
                 }else if (newComponent.status === Component.Loading) {
-                    newComponent.statusChanged.connect(changeWindow); // Connect to statusChanged if still loading
-                } else if (newComponent.status === Component.Error) {
-                    //console.error("Error loading component:", newComponent.errorString()); // Handle error case
-                    //application.message("Failed to create message", `Failed to go to the ${page}`, "error");
+                    newComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
                 }
             }
 
@@ -121,6 +113,31 @@ Window {
             waitFunction();
         }
     }
+
+
+    function openEditTagsWindow(index){
+        let editTagsWindowComponent = Qt.createComponent( Qt.resolvedUrl("TagEditPopup.qml") )
+
+        let waitFunction = () => {
+            if (editTagsWindowComponent.status == Component.Ready){
+                let editTagsWindow = editTagsWindowComponent.createObject(
+                    mainWindow,
+                    {
+                        index: index
+                    });
+
+            }else if (editTagsWindowComponent.status === Component.Loading) {
+                editTagsWindowComponent.statusChanged.connect(waitFunction); // Connect to statusChanged if still loading
+            } else if (editTagsWindowComponent.status === Component.Error) {
+                //console.error("Error loading component:", newComponent.errorString()); // Handle error case
+                application.message("Failed to create window for editing tags", `Failed to create window for editing tags`, "error");
+            }
+        }
+
+
+        waitFunction();
+    }
+
 
 
 }

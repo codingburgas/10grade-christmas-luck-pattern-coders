@@ -14,6 +14,31 @@
 
 
 /*
+ * Initializes a Word object with the provided parameters or default values.
+ * Parameters:
+ * -- word: The word to initialize (default: "").
+ * -- definition: The definition of the word (default: "").
+ * -- partOfSpeech: The part of speech for the word (default: "").
+ * -- difficulty: The difficulty level of the word (default: "").
+ * -- url: The URL associated with the word (default: "").
+ * -- frequencyOfUse: The frequency of use for the word (default: 0).
+ * -- tags: A list of tags associated with the word (default: empty list).
+ * Returns:
+ * -- None: The Word object is initialized with the provided or default values.
+ */
+Word::Word(std::string word, std::string definition, std::string partOfSpeech, std::string difficulty, std::string url, unsigned long frequencyOfUse, std::vector<std::string> tags){
+    this->word = word;
+    this->definition = definition;
+    this->partOfSpeech = partOfSpeech;
+    this->difficulty = difficulty;
+    this->url = url;
+    this->frequencyOfUse = frequencyOfUse;
+    this->tags = tags;
+
+}
+
+
+/*
  * Returns the HTML selector for the word.
  * Returns:
  * --std::string: The HTML span element selector for the word.

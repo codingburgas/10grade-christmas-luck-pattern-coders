@@ -257,25 +257,25 @@ int test_sortWords(){
     int code = 0;
 
     std::vector< std::vector< Word* > > testArrays = {
-        {new Word{ .word = "apple"}, new Word{ .word = "banana"}, new Word{ .word = "apples" }, new Word{ .word = "orange"}},
-        {new Word{ .word = "d"}, new Word{ .word = "c"}, new Word{ .word = "b"}, new Word{ .word = "a"}},
-        {new Word{ .word = "apple", .difficulty = "c1"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}},
-        {new Word{ .frequencyOfUse=100 }, new Word{ .frequencyOfUse=40 } }
+        {new Word("apple"), new Word("banana"), new Word("apples"), new Word("orange")},
+        {new Word("d"), new Word("c"), new Word("b"), new Word("a")},
+        {new Word("apple", "", "", "c1"), new Word("banana", "", "", "b1"), new Word("apples", "", "", "a1"), new Word("orange", "", "", "a2")},
+        {new Word("", "", "", "", "", 100), new Word( "", "", "", "", "", 40 ) }
     };
 
 
     std::vector<std::string> propertyToSortBy = {"word", "word", "difficulty", "frequencyOfUse"};
 
     std::vector< std::vector< Word* > > expectedResults{
-        {new Word{ .word = "apple"}, new Word{ .word = "apples"}, new Word{ .word = "banana"}, new Word{ .word = "orange"}},
-        {new Word{ .word = "a"}, new Word{ .word = "b"}, new Word{ .word = "c"}, new Word{ .word = "d"}},
-        {new Word{ .word = "apples", .difficulty = "a1"}, new Word{ .word = "orange", .difficulty = "a2"}, new Word{ .word = "banana", .difficulty = "b1"}, new Word{ .word = "apple", .difficulty = "c1"} },
-        {new Word{ .frequencyOfUse=40 }, new Word{ .frequencyOfUse=100 } }
+        {new Word("apple"), new Word("apples"), new Word("banana"), new Word("orange")},
+        {new Word("a"), new Word("b"), new Word("c"), new Word("d")},
+        {new Word("apples", "", "", "a1"), new Word("orange", "", "", "a2"), new Word("banana", "", "", "b1"), new Word("apple", "", "", "c1") },
+        {new Word("", "", "", "", "", 40 ), new Word("", "", "", "", "", 100 ) }
     };
 
 
     for (size_t i=0; i<testArrays.size(); i++){
-        sortWords( testArrays[i], propertyToSortBy[i] );
+        sortByProperty( testArrays[i], propertyToSortBy[i], true);
         if (!compareVectors(testArrays[i], expectedResults[i], true)){
             code = 1;
         }
@@ -299,10 +299,10 @@ int test_leaveWordsWithSpecificPart(){
     int code = 0;
 
     std::vector< std::vector< Word* > > testArrays = {
-        {new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}, new Word{"APPLICATION"}},
-        {new Word{"apple"}, new Word{"banana"}, new Word{"apples"}, new Word{"orange"}, new Word{"APPLICATION"}},
-        {new Word{"abcdefgh"}, new Word{"ABCDEFGH"}, new Word{"abcde"}, new Word{"fghabcde"}},
-        {new Word{"abcdefgh"}, new Word{"ABCDEFGH"}, new Word{"abcde"}, new Word{"fghabcde"}}
+        {new Word("apple"), new Word("banana"), new Word("apples"), new Word("orange"), new Word("APPLICATION")},
+        {new Word("apple"), new Word("banana"), new Word("apples"), new Word("orange"), new Word("APPLICATION")},
+        {new Word("abcdefgh"), new Word("ABCDEFGH"), new Word("abcde"), new Word("fghabcde")},
+        {new Word("abcdefgh"), new Word("ABCDEFGH"), new Word("abcde"), new Word("fghabcde")}
     };
 
     struct Options{
@@ -319,10 +319,10 @@ int test_leaveWordsWithSpecificPart(){
     };
 
     std::vector< std::vector< Word* > > expectedResults = {
-        {new Word{"apple"}, new Word{"apples"}, new Word{"APPLICATION"}},
-        {new Word{"apple"}, new Word{"apples"}},
-        {new Word{"abcdefgh"}, new Word{"ABCDEFGH"}},
-        {new Word{"abcdefgh"}}
+        {new Word("apple"), new Word("apples"), new Word("APPLICATION")},
+        {new Word("apple"), new Word("apples")},
+        {new Word("abcdefgh"), new Word("ABCDEFGH")},
+        {new Word("abcdefgh")}
     };
 
 

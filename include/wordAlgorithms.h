@@ -40,17 +40,6 @@ void insertionSort(std::vector<Word*>& arr, std::string &propertyName, int begin
 int partition(std::vector<Word*>& arr, std::string &propertyName, int begin, int end);
 
 
-/*
- * quick sort for array of words
- * Parameters:
- * --arr: array of words
- * --propertyName: string, which contains property to sort by
- * --begin: starting index of the subarray to partition
- * --end: ending index of the subarray to partition
- * Returns:
- * --None
- */
-//void quickSort(std::vector<Word*>& arr, std::string &propertyName, int begin, int end);
 
 
 /*

@@ -2,10 +2,12 @@
 #include <QQmlApplicationEngine>
 #include <QCoreApplication>
 #include <QQmlContext>
+#include <QIcon>
 
 #include "application.h"
 #include "wordAlgorithms.h"
 #include "message.h"
+#include "cache.h"
 
 
 /*
@@ -30,22 +32,6 @@ void getAllWords(std::vector<Word*> &arr) {
 
 
 
-/*
- * Retrieves all tags from a JSON file and stores them in the provided vector.
- * Parameters:
- * -- arr: vector to store the tags.
- * Returns:
- * -- No return value. The words are directly stored in the vector passed by reference.
- */
-void getAllTags(std::vector<std::string> &arr){
-    arr = {};
-
-    std::string fileName = "tags.json";
-    for (json& tag : getJsonDataFromFile(fileName)){
-        arr.push_back(tag.get<std::string>());
-    }
-}
-
 
 /*
  * Initializes and runs the application.
@@ -62,6 +48,13 @@ int Application::run(int argc, char *argv[]) {
 
     qmlRegisterType<WordUi>("WordUi", 1, 0, "WordUi");
     qmlRegisterType<TagsUi>("TagsUi", 1, 0, "TagsUi");
+    qmlRegisterType<Cache>("Cache", 1, 0, "Cache");
+    qmlRegisterType<Message>("Message", 1, 0, "Message");
+
+    qRegisterMetaType<QList<Message>>("QList<Message>");
+
+
+    app.setWindowIcon(QIcon(":/VocabBook.png"));
 
 
 
@@ -76,17 +69,22 @@ int Application::run(int argc, char *argv[]) {
 
         for (Word* word : words){ delete word; }
         for (WordUi* wordUi : wordsUi){ delete wordUi; }
+        for (Message* message : messagesBeforeStart){ delete message; }
         delete tagsUi;
+        delete cache;
     });
+
 
 
     try{
         getAllWords(words);
         updateWordsUi();
     }catch(Message& m){
-        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        //emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        messagesBeforeStart.push_back(new Message(m));
     } catch(...){
-        emit message("Failed to load words", "Application may work incorrectly. Try reloading it", "error");
+        //emit message("Failed to load words", "Application may work incorrectly. Try reloading it", "error");
+        messagesBeforeStart.push_back(new Message("Failed to load words", "Application may work incorrectly. Try reloading it", "error"));
     }
 
 
@@ -94,9 +92,12 @@ int Application::run(int argc, char *argv[]) {
         tags = new Tags();
         updateTagsUi();
     } catch(Message& m){
-        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        //emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+        messagesBeforeStart.push_back(new Message(m));
+
     } catch(...){
-        emit message("Failed to load tags", "Application may work incorrectly. Try reloading it", "error");
+        messagesBeforeStart.push_back(new Message("Failed to load words", "Application may work incorrectly. Try reloading it", "error"));
+        //emit message("Failed to load tags", "Application may work incorrectly. Try reloading it", "error");
     }
 
 
@@ -171,8 +172,10 @@ void Application::searchWords(QString part, QString propertyName, bool caseSensi
         getAllWords(words);
         std::string strPart = part.toStdString();
         std::string strPropertyName = propertyName.toStdString();
-        leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
-        //leaveWordsWithSpecificTags(words, tagsChosen);
+        if (strPart.size() != 0){
+            leaveWordsWithSpecificPart(words, strPart, strPropertyName, caseSensitive, startsWith, endsWith);
+        }
+        leaveWordsWithSpecificTags(words, tagsChosen);
 
         updateWordsUi();
     } catch (Message& m) {
@@ -258,7 +261,8 @@ void Application::deleteWordTag(int wordIndex, int tagIndex){
 
         words[wordIndex]->save();
 
-        emit wordsUi[wordIndex]->tagsChanged();
+        //emit wordsUi[wordIndex]->tagsChanged();
+        emit wordTagsChanged();
 
 
     } catch(std::out_of_range&){
@@ -280,13 +284,14 @@ void Application::deleteWordTag(int wordIndex, int tagIndex){
 void Application::addWordTag(int wordIndex, int tagIndex){
     try{
 
-        if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+        if (tagIndex < 0 || tagIndex >= (tags->partOfSpeechTags.size() + tags->difficultyTags.size() + tags->customTags.size())){
             emit message("Couldn't find the tag", "Couldn't find the tag", "error");
             return;
         }
 
 
-        std::string &tag = tags->customTags[tagIndex];
+        //std::string &tag = tags->customTags[tagIndex];
+        std::string tag = tags->getElementOnIndex(tagIndex);
 
         if (contains(words[wordIndex]->tags, tag)){
             emit message("This tag is already added", "Word already has this tag", "warning");
@@ -299,7 +304,8 @@ void Application::addWordTag(int wordIndex, int tagIndex){
 
         words[wordIndex]->save();
 
-        emit wordsUi[wordIndex]->tagsChanged();
+        //emit wordsUi[indexOfClickedWord]->tagsChanged();
+        emit wordTagsChanged();
 
 
     } catch(std::out_of_range&){
@@ -319,7 +325,12 @@ void Application::addWordTag(int wordIndex, int tagIndex){
 void Application::addTag(QString tag){
     std::string strTag = tag.toStdString();
     if (contains(tags->customTags, strTag)){
-        emit message("This tag is already added", "Word already has this tag", "warning");
+        emit message("This tag is already added", "This tag is already added", "error");
+        return;
+    }
+
+    if (tag.isEmpty()){
+        emit message("Tag cannot be blank.", "Tag cannot be blank.", "error");
         return;
     }
 
@@ -327,7 +338,8 @@ void Application::addTag(QString tag){
         tags->customTags.push_back(strTag);
         tagsUi->customTags.push_back(tag);
 
-        emit tagsUiChanged();
+        //emit tagsUiChanged();
+        tagsUi->customTagsChanged();
     } catch(...){
         emit message();
     }
@@ -341,17 +353,46 @@ void Application::addTag(QString tag){
  * Returns:
  * --None
  */
-void deleteTagInJsonData(std::string& tag){
+void Application::deleteTagInData(std::string& tag){
 
     std::string fileName = "words.json";
 
+
     json data = getJsonDataFromFile(fileName);
     for (json &wordData : data){
-        wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+        //wordData["tags"].erase(std::remove(wordData["tags"].begin(), wordData["tags"].end(), tag), wordData["tags"].end());
+        for (size_t i=wordData["tags"].size()-1; i > 1; i--){
+            if (wordData["tags"][i] == tag){
+                wordData["tags"].erase(i);
+            }
+        }
+        //wordData["tags"].erase(tag);
     }
 
     writeJsonToFile(data, fileName);
 
+    for (Word* word: words){
+        for (size_t i=word->tags.size()-1; i>1; i--){
+            if (word->tags[i] == tag){
+                word->tags.erase(word->tags.begin() + i);
+            }
+        }
+    }
+
+
+    try {
+        QList<WordUi*> result = {};
+        for (Word *word : words) {
+            auto wordUi = new WordUi(word);
+            result.push_back(wordUi);
+        }
+
+        wordsUi = result;
+    } catch (Message& m) {
+        emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
+    } catch (...) {
+        emit message();
+    }
 
 }
 
@@ -363,20 +404,30 @@ void deleteTagInJsonData(std::string& tag){
  * --None
  */
 void Application::deleteTag(int tagIndex){
-    if (tagIndex < 0 || tagIndex >= tags->customTags.size()){
+    int notCustomTagsSize = tags->partOfSpeechTags.size() + tags->difficultyTags.size();
+
+    if (tagIndex >= (tags->customTags.size() + notCustomTagsSize)){
         emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+        return;
+    }
+    if (tagIndex < notCustomTagsSize){
+        emit message("Cannot delete part of speech and difficulty tags", "Cannot delete part of speech and difficulty tags", "error");
         return;
     }
 
     try{
-        std::string tag = tags->customTags[tagIndex];
+        std::string tag = tags->getElementOnIndex(tagIndex);
 
-        tags->customTags.erase(tags->customTags.begin() + tagIndex);
-        tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex);
 
-        emit tagsUiChanged();
+        tags->customTags.erase(tags->customTags.begin() + tagIndex - notCustomTagsSize);
+        tagsUi->customTags.erase(tagsUi->customTags.begin() + tagIndex - notCustomTagsSize);
 
-        deleteTagInJsonData(tag);
+        //emit tagsUiChanged();
+
+
+        deleteTagInData(tag);
+
+        emit tagsUi->customTagsChanged();
     } catch (Message& m) {
         emit message(QString::fromStdString(m.title), QString::fromStdString(m.description), QString::fromStdString(m.type));
     } catch (...) {
@@ -443,6 +494,10 @@ void Application::addTagToChosen(int tagIndex){
  */
 void Application::removeTagFromChosen(int tagIndex){
     try{
+        if (tagIndex >= tagsChosen.size()) {
+            emit message("Couldn't find the tag", "Couldn't find the tag", "error");
+            return;
+        }
 
         tagsChosen.erase(tagsChosen.begin() + tagIndex);
         tagsChosenUi.erase(tagsChosenUi.begin() + tagIndex);
@@ -471,7 +526,30 @@ bool Application::isInTagsChosen(QString tag){
 }
 
 
-
+/*Function that can be invoked from qml and returns amount of syllables in word
+ * Parameters:
+ * --wordIndex - index of the word
+ * Returns:
+ * --amount of its syllables as a string
+*/
 QString Application::countSyllablesOfWord(int wordIndex){
     return QString::number(countSyllables(words[wordIndex]->word));
+}
+
+
+/*Resets chosen tags
+ * Parameters:
+ * -- None
+ * Returns:
+ * -- None
+*/
+void Application::resetTagsChosen(){
+    try{
+        tagsChosen.clear();
+        tagsChosenUi.clear();
+
+        emit tagsChosenUiChanged();
+    }catch(...){
+        emit message();
+    }
 }
