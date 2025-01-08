@@ -177,6 +177,17 @@ Rectangle{
 
             maximumLength: 40
 
+            Text {
+                anchors.fill: parent
+                text: "Enter new tag..."
+                color: "grey"
+                visible: !parent.text
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 16
+
+            }
+
             Keys.onReturnPressed: {
                 application.addTag(text)
                 text = ""
