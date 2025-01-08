@@ -78,8 +78,8 @@ Rectangle{
     Image {
         id: vocBookAvatar
         source: "qrc:/VocabBook.png"
-        width:40
-        height:40
+        width:55
+        height:55
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -260
         anchors.horizontalCenterOffset: 32
