@@ -2,7 +2,7 @@
 
 
 int main(int argc, char *argv[]) {
-    Application app;
+    Application* app = new Application{};
 
-    return app.run(argc, argv);
+    return app->run(argc, argv);
 }
